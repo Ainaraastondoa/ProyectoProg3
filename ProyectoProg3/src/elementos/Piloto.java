@@ -8,26 +8,26 @@ public class Piloto {
 	//ATRIBUTOS de la clase Piloto
 	public String nombre; 		//Nombre del piloto
 	public int edad; 			//Edad del piloto
-	public Escuderia escuderia; 	//Escuderia para la que corre
 	public int nivel; 			//Nivel del piloto(sobre 10)
-	public int regularidad; 		//Regularidad/consistencia (0-10)
+	public int regularidad; 	//Regularidad/consistencia (0-10)
 	public int adelantar; 		//Capacidad de adelantamiento (0-10)
 	public int defender; 		//Defensa (0-10)
 	public int velocidad; 		//Rendimiento/velocidad del piloto a 1 vuelta (0-10)
 	public int mojado; 			//Nivel del piloto en mojado (0-10)
+	public Coche coche;			//Coche con el que compite
 	
 	//CONSTRUCTOR
-	public Piloto(String nombre, int edad, Escuderia escuderia, int nivel, int regularidad, int adelantar, int defender,
-			int velocidad, int mojado) {
+	public Piloto(String nombre, int edad, int nivel, int regularidad, int adelantar, int defender, int velocidad, int mojado,
+			Coche coche) {
 		this.nombre = nombre;
 		this.edad = edad;
-		this.escuderia = escuderia;
 		this.nivel = nivel;
 		this.regularidad = regularidad;
 		this.adelantar = adelantar;
 		this.defender = defender;
 		this.velocidad = velocidad;
 		this.mojado = mojado;
+		this.coche = coche;
 	}
 	
 	//GETTERS Y SETTERS
@@ -42,12 +42,6 @@ public class Piloto {
 	}
 	public void setEdad(int edad) {
 		this.edad = edad;
-	}
-	public Escuderia getEscuderia() {
-		return escuderia;
-	}
-	public void setEscuderia(Escuderia escuderia) {
-		this.escuderia = escuderia;
 	}
 	public int getNivel() {
 		return nivel;
@@ -84,5 +78,11 @@ public class Piloto {
 	}
 	public void setMojado(int mojado) {
 		this.mojado = mojado;
+	}
+	public Coche getCoche() {
+		return coche;
+	}
+	public void setCoche(Coche coche) {
+		this.coche = coche;
 	}
 }

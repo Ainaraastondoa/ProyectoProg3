@@ -10,11 +10,11 @@ public class Componente {
 	//ATRIBUTOS de la clase Componente
 	public String nombre;			//Nombre del componente 
 	public int incidencia;			//Incidencia del componente en el rendimiento general del coche
-	public ArrayList listaMejoras;	//Lista de mejoras disponibles para el componente
+	public ArrayList<Mejora> listaMejoras;	//Lista de mejoras disponibles para el componente
 	public int rendimiento;			//Rendimiento del componente (0-10)
 		
 	//CONSTRUCTOR
-	public Componente(String nombre, int incidencia, ArrayList listaMejoras, int rendimiento) {
+	public Componente(String nombre, int incidencia, ArrayList<Mejora> listaMejoras, int rendimiento) {
 		this.nombre = nombre;
 		this.incidencia = incidencia;
 		this.listaMejoras = listaMejoras;
@@ -38,11 +38,11 @@ public class Componente {
 		this.incidencia = incidencia;
 	}
 
-	public ArrayList getListaMejoras() {
+	public ArrayList<Mejora> getListaMejoras() {
 		return listaMejoras;
 	}
 
-	public void setListaMejoras(ArrayList listaMejoras) {
+	public void setListaMejoras(ArrayList<Mejora> listaMejoras) {
 		this.listaMejoras = listaMejoras;
 	}
 

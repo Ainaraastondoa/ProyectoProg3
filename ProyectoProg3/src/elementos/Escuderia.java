@@ -10,16 +10,14 @@ public class Escuderia {
 	public String director;		//Director tecnico del equipo
 	public Piloto piloto1;		//Piloto 1 del equipo
 	public Piloto piloto2;		//Piloto 2 del equipo
-	public Coche coche;			//Coche de la escuderia
 	public int presupuesto;		//Presupuesto de la escuderia
 	
 	//CONSTRUCTOR
-	public Escuderia(String nombre, String director, Piloto piloto1, Piloto piloto2, Coche coche, int presupuesto) {
+	public Escuderia(String nombre, String director, Piloto piloto1, Piloto piloto2, int presupuesto) {
 		this.nombre = nombre;
 		this.director = director;
 		this.piloto1 = piloto1;
 		this.piloto2 = piloto2;
-		this.coche = coche;
 		this.presupuesto = presupuesto;
 	}
 	
@@ -47,12 +45,6 @@ public class Escuderia {
 	}
 	public void setPiloto2(Piloto piloto2) {
 		this.piloto2 = piloto2;
-	}
-	public Coche getCoche() {
-		return coche;
-	}
-	public void setCoche(Coche coche) {
-		this.coche = coche;
 	}
 	public int getPresupuesto() {
 		return presupuesto;

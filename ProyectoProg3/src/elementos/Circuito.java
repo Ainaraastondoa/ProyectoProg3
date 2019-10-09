@@ -1,35 +1,31 @@
 package elementos;
 
-import java.util.ArrayList;
-
 /** Esta clase define los circuitos del mundial y sus caracteristicas
  *
  */
 public class Circuito {
 	
-	//ATRIBUTOS de la clase circuito
-	public String nombre;			//Nombre del circuito
-	public String pais;				//Pais de origen
-	public String fecha;			//Fecha de celebracion del GP
-	public int degradacion;			//degradadion por vuelta en el circuito
-	public float tiempoQ;			//Tiempo de referencia para Clasificacion
-	public float tiempoR;			//Tiempo de referencia para Carrera
-	public float tiempoB;			//Tiempo de referencia para la vuelta de Boxes
-	public int vueltas;				//Vueltas que se completan en el GP
-	public ArrayList resultados;	//Resultados y clasificacion en carrera
+	//ATRIBUTOS de la clase Circuito
+	public String nombre;							//Nombre del circuito
+	public String pais;								//País de origen
+	public String fecha;							//Fecha de celebracion del GP
+	public int degradacion;							//Degradadion por vuelta en el circuito
+	public float tiempoReferenciaClasif;			//Tiempo de referencia para Clasificacion
+	public float tiempoReferenciaCarrera;			//Tiempo de referencia para Carrera
+	public float tiempoReferenciaBoxes;				//Tiempo de referencia para la vuelta de Boxes
+	public int vueltas;								//Vueltas que se completan en el GP
 	
 	//CONSTRUCTOR
-	public Circuito(String nombre, String pais, String fecha, int degradacion, float tiempoQ, float tiempoR,
-			float tiempoB, int vueltas, ArrayList resultados) {
+	public Circuito(String nombre, String pais, String fecha, int degradacion, float tiempoReferenciaClasif,
+			float tiempoReferenciaCarrera, float tiempoReferenciaBoxes, int vueltas) {
 		this.nombre = nombre;
 		this.pais = pais;
 		this.fecha = fecha;
 		this.degradacion = degradacion;
-		this.tiempoQ = tiempoQ;
-		this.tiempoR = tiempoR;
-		this.tiempoB = tiempoB;
+		this.tiempoReferenciaClasif = tiempoReferenciaClasif;
+		this.tiempoReferenciaCarrera = tiempoReferenciaCarrera;
+		this.tiempoReferenciaBoxes = tiempoReferenciaBoxes;
 		this.vueltas = vueltas;
-		this.resultados = resultados;
 	}
 
 	//GETTERS Y SETTERS
@@ -65,28 +61,28 @@ public class Circuito {
 		this.degradacion = degradacion;
 	}
 
-	public float getTiempoQ() {
-		return tiempoQ;
+	public float getTiempoReferenciaClasif() {
+		return tiempoReferenciaClasif;
 	}
 
-	public void setTiempoQ(float tiempoQ) {
-		this.tiempoQ = tiempoQ;
+	public void setTiempoReferenciaClasif(float tiempoReferenciaClasif) {
+		this.tiempoReferenciaClasif = tiempoReferenciaClasif;
 	}
 
-	public float getTiempoR() {
-		return tiempoR;
+	public float getTiempoReferenciaCarrera() {
+		return tiempoReferenciaCarrera;
 	}
 
-	public void setTiempoR(float tiempoR) {
-		this.tiempoR = tiempoR;
+	public void setTiempoReferenciaCarrera(float tiempoReferenciaCarrera) {
+		this.tiempoReferenciaCarrera = tiempoReferenciaCarrera;
 	}
 
-	public float getTiempoB() {
-		return tiempoB;
+	public float getTiempoReferenciaBoxes() {
+		return tiempoReferenciaBoxes;
 	}
 
-	public void setTiempoB(float tiempoB) {
-		this.tiempoB = tiempoB;
+	public void setTiempoReferenciaBoxes(float tiempoReferenciaBoxes) {
+		this.tiempoReferenciaBoxes = tiempoReferenciaBoxes;
 	}
 
 	public int getVueltas() {
@@ -95,13 +91,5 @@ public class Circuito {
 
 	public void setVueltas(int vueltas) {
 		this.vueltas = vueltas;
-	}
-
-	public ArrayList getResultados() {
-		return resultados;
-	}
-
-	public void setResultados(ArrayList resultados) {
-		this.resultados = resultados;
 	}
 }
