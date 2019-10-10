@@ -8,12 +8,12 @@ public class Piloto {
 	//ATRIBUTOS de la clase Piloto
 	public String nombre; 		//Nombre del piloto
 	public int edad; 			//Edad del piloto
-	public int nivel; 			//Nivel del piloto(sobre 10)
-	public int regularidad; 	//Regularidad/consistencia (0-10)
-	public int adelantar; 		//Capacidad de adelantamiento (0-10)
-	public int defender; 		//Defensa (0-10)
-	public int velocidad; 		//Rendimiento/velocidad del piloto a 1 vuelta (0-10)
-	public int mojado; 			//Nivel del piloto en mojado (0-10)
+	public int nivel; 			//Nivel del piloto (0-10)
+	public int regularidad; 	//Regularidad/consistencia (0-100)
+	public int adelantar; 		//Capacidad de adelantamiento (0-100)
+	public int defender; 		//Defensa (0-100)
+	public int velocidad; 		//Rendimiento/velocidad del piloto a 1 vuelta (0-100)
+	public int mojado; 			//Nivel del piloto en mojado (0-100)
 	public Coche coche;			//Coche con el que compite
 	
 	//CONSTRUCTOR

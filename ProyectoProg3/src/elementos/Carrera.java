@@ -38,19 +38,24 @@ public class Carrera {
 	
 	// Método para calcular tiempo por vuelta
 	public float calcularTiempoPorVuelta(Piloto piloto, float tiempoReferencia) {
-		float tiempoVueltaInicial = calcularTiempoInicial(tiempoReferencia);
+		float tiempoVueltaInicial = calcularTiempoInicial(tiempoReferencia, piloto);
 		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * Coche.calcularDegradacion(piloto.getCoche().getPorcentajeRuedas());
 		float tiempoVueltaFinal = tiempoVueltaTrasDegradacion * generarNumeroAleatorio();
 		return tiempoVueltaFinal;
 	}
 	
 	// Método para calcular tiempo por vuelta teniendo en cuenta únicamente los atributos del piloto y los componentes del coche
-	public float calcularTiempoInicial(float tiempoReferencia) {
+	public float calcularTiempoInicial(float tiempoReferencia, Piloto piloto) {
 		return 0; //PENDIENTE
 	}
 	
-	// Método para calcular número aleatorio entre 0,9975 y 1,0025 para usarlo en el cálculo del tiempo por vuelta
+	/**
+	 * Método que calcula un número aleatorio entre 0,9975 y 1,0025 para la parte aleatoria del cálculo del tiempo por vuelta
+	 * @return El número aleatorio por el que hay que multiplicar el tiempo por vuelta tras degradación
+	 */
 	public float generarNumeroAleatorio() {
-		return 0; //PENDIENTE
+		int n = (int)(Math.random() * (10025 - 9975 + 1) + 9975);
+		float numeroAleatorio = (float)n / 10000;
+		return numeroAleatorio;
 	}
 }

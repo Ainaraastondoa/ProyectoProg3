@@ -8,15 +8,13 @@ import java.util.ArrayList;
 public class Componente {
 	
 	//ATRIBUTOS de la clase Componente
-	public String nombre;			//Nombre del componente 
-	public int incidencia;			//Incidencia del componente en el rendimiento general del coche
+	public String nombre;					//Nombre del componente
 	public ArrayList<Mejora> listaMejoras;	//Lista de mejoras disponibles para el componente
-	public int rendimiento;			//Rendimiento del componente (0-10)
+	public int rendimiento;					//Rendimiento del componente (0-100)
 		
 	//CONSTRUCTOR
-	public Componente(String nombre, int incidencia, ArrayList<Mejora> listaMejoras, int rendimiento) {
+	public Componente(String nombre, ArrayList<Mejora> listaMejoras, int rendimiento) {
 		this.nombre = nombre;
-		this.incidencia = incidencia;
 		this.listaMejoras = listaMejoras;
 		this.rendimiento = rendimiento;
 	}
@@ -28,14 +26,6 @@ public class Componente {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public int getIncidencia() {
-		return incidencia;
-	}
-
-	public void setIncidencia(int incidencia) {
-		this.incidencia = incidencia;
 	}
 
 	public ArrayList<Mejora> getListaMejoras() {
