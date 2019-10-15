@@ -9,10 +9,10 @@ public class Circuito {
 	public String nombre;							//Nombre del circuito
 	public String pais;								//País de origen
 	public String fecha;							//Fecha de celebracion del GP
-	public int degradacion;							//Degradadion por vuelta en el circuito
+	public int degradacion;							//Degradación por vuelta en el circuito
 	public float tiempoReferenciaClasif;			//Tiempo de referencia para Clasificacion
 	public float tiempoReferenciaCarrera;			//Tiempo de referencia para Carrera
-	public float tiempoReferenciaBoxes;				//Tiempo de referencia para la vuelta de Boxes
+	public float tiempoExtraBoxes;					//Tiempo que se tarda en pasar por boxes en el circuito
 	public int vueltas;								//Vueltas que se completan en el GP
 	
 	//CONSTRUCTOR
@@ -24,7 +24,7 @@ public class Circuito {
 		this.degradacion = degradacion;
 		this.tiempoReferenciaClasif = tiempoReferenciaClasif;
 		this.tiempoReferenciaCarrera = tiempoReferenciaCarrera;
-		this.tiempoReferenciaBoxes = tiempoReferenciaBoxes;
+		this.tiempoExtraBoxes = tiempoReferenciaBoxes;
 		this.vueltas = vueltas;
 	}
 
@@ -77,12 +77,12 @@ public class Circuito {
 		this.tiempoReferenciaCarrera = tiempoReferenciaCarrera;
 	}
 
-	public float getTiempoReferenciaBoxes() {
-		return tiempoReferenciaBoxes;
+	public float getTiempoExtraBoxes() {
+		return tiempoExtraBoxes;
 	}
 
-	public void setTiempoReferenciaBoxes(float tiempoReferenciaBoxes) {
-		this.tiempoReferenciaBoxes = tiempoReferenciaBoxes;
+	public void setTiempoExtraBoxes(float tiempoExtraBoxes) {
+		this.tiempoExtraBoxes = tiempoExtraBoxes;
 	}
 
 	public int getVueltas() {

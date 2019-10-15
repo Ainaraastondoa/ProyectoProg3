@@ -44,8 +44,8 @@ public class Carrera {
 	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
 	 * @return El tiempo por vuelta definitivo de ese piloto concreto (en segundos / redondeado a milésimas)
 	 */
-	public float calcularTiempoPorVuelta(Piloto piloto, float tiempoReferencia) {
-		float tiempoVueltaInicial = calcularTiempoInicial(tiempoReferencia, piloto);
+	public float calcularTiempoPorVuelta(Piloto piloto) {
+		float tiempoVueltaInicial = calcularTiempoInicial(piloto);
 		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * piloto.getCoche().calcularDegradacion();
 		float tiempoVueltaFinal = tiempoVueltaTrasDegradacion * generarNumeroAleatorio();
 		BigDecimal tiempoFinalRedondeado = new BigDecimal(tiempoVueltaFinal).setScale(3, RoundingMode.HALF_EVEN);
@@ -58,12 +58,12 @@ public class Carrera {
 	 * @param piloto Piloto del que queremos calcular el tiempo por vuelta
 	 * @return Tiempo por vuelta inicial, calculado únicamente según el rendimiento de Coche + Piloto
 	 */
-	public float calcularTiempoInicial(float tiempoReferencia, Piloto piloto) {
+	public float calcularTiempoInicial(Piloto piloto) {
 		int puntuacionTotal = 0;
 		puntuacionTotal += piloto.calcularPuntosPiloto();
 		puntuacionTotal += piloto.getCoche().calcularPuntosCoche();
 		float sumaSegundos = 3 - ((float)3 * puntuacionTotal / 10000);
-		return tiempoReferencia + sumaSegundos;
+		return (this.getCircuito().getTiempoReferenciaCarrera() + sumaSegundos);
 	}
 	
 	/**
