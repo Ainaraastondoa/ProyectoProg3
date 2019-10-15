@@ -1,5 +1,7 @@
 package elementos;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
@@ -36,17 +38,32 @@ public class Carrera {
 		this.listaPilotos = listaPilotos;
 	}
 	
-	// Método para calcular tiempo por vuelta
+	/**
+	 * Método para calcular el tiempo por vuelta final de cada piloto
+	 * @param piloto Piloto del que queremos sacar su tiempo por vuelta
+	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
+	 * @return El tiempo por vuelta definitivo de ese piloto concreto (en segundos / redondeado a milésimas)
+	 */
 	public float calcularTiempoPorVuelta(Piloto piloto, float tiempoReferencia) {
 		float tiempoVueltaInicial = calcularTiempoInicial(tiempoReferencia, piloto);
-		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * Coche.calcularDegradacion(piloto.getCoche().getPorcentajeRuedas());
+		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * piloto.getCoche().calcularDegradacion();
 		float tiempoVueltaFinal = tiempoVueltaTrasDegradacion * generarNumeroAleatorio();
-		return tiempoVueltaFinal;
+		BigDecimal tiempoFinalRedondeado = new BigDecimal(tiempoVueltaFinal).setScale(3, RoundingMode.HALF_EVEN);
+		return tiempoFinalRedondeado.floatValue();
 	}
 	
-	// Método para calcular tiempo por vuelta teniendo en cuenta únicamente los atributos del piloto y los componentes del coche
+	/**
+	 * Método para calcular tiempo por vuelta teniendo en cuenta únicamente los atributos del piloto y los componentes del coche
+	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
+	 * @param piloto Piloto del que queremos calcular el tiempo por vuelta
+	 * @return Tiempo por vuelta inicial, calculado únicamente según el rendimiento de Coche + Piloto
+	 */
 	public float calcularTiempoInicial(float tiempoReferencia, Piloto piloto) {
-		return 0; //PENDIENTE
+		int puntuacionTotal = 0;
+		puntuacionTotal += piloto.calcularPuntosPiloto();
+		puntuacionTotal += piloto.getCoche().calcularPuntosCoche();
+		float sumaSegundos = 3 - ((float)3 * puntuacionTotal / 10000);
+		return tiempoReferencia + sumaSegundos;
 	}
 	
 	/**

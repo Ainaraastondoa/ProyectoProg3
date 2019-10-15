@@ -85,4 +85,19 @@ public class Piloto {
 	public void setCoche(Coche coche) {
 		this.coche = coche;
 	}
+	
+	/**
+	 * Método que calcula la puntuación sobre 3500 puntos de los atributos del piloto para calcular después el rendimiento total
+	 * sobre 10000 del Piloto + Coche concreto
+	 * @return La puntuación total sobre 3500
+	 */
+	public int calcularPuntosPiloto() {
+		int puntuacion = 0;
+		puntuacion += this.getRegularidad() * 9;
+		puntuacion += this.getAdelantar() * 7;
+		puntuacion += this.getDefender() * 7;
+		puntuacion += this.getVelocidad() * 9;
+		puntuacion += this.getMojado() * 3;
+		return puntuacion;
+	}
 }

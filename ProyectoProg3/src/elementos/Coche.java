@@ -63,23 +63,36 @@ public class Coche {
 	}
 	
 	/**
-	 * Método que calcula el número cercano a 1 por el que tenemos que multiplicar el tiempo por vuelta
-	 * @param porcentajeRuedas Porcentaje de degradación de las ruedas. 100% si están nuevas
-	 * @return El número para multiplicar
+	 * Método que calcula el número cercano a 1 por el que tenemos que multiplicar el tiempo por vuelta según la degradación de
+	 * las ruedas.
+	 * @return El número por el que multiplicar el tiempo por vuelta inicial
 	 */
-	public static float calcularDegradacion(int porcentajeRuedas) {
-		if (porcentajeRuedas == 100) { // Ruedas al 100%
+	public float calcularDegradacion() {
+		if (this.porcentajeRuedas == 100) { // Ruedas al 100%
 			return 1;
-		} else if (porcentajeRuedas >= 80) { // Ruedas entre el 100% y el 80%
-			return ((100 - porcentajeRuedas) * (float)0.0002 + 1);
-		} else if (porcentajeRuedas >= 60) { // Ruedas entre el 80% y el 60%
-			return ((100 - porcentajeRuedas) * (float)0.0003 + 1);
-		} else if (porcentajeRuedas >= 30) { // Ruedas entre el 60% y el 30%
-			return ((100 - porcentajeRuedas) * (float)0.0004 + 1);
-		} else if (porcentajeRuedas >= 15) { // Ruedas entre el 30% y el 15%
-			return ((100 - porcentajeRuedas) * (float)0.0005 + 1);
+		} else if (this.porcentajeRuedas >= 80) { // Ruedas entre el 100% y el 80%
+			return ((100 - this.porcentajeRuedas) * (float)0.0002 + 1);
+		} else if (this.porcentajeRuedas >= 60) { // Ruedas entre el 80% y el 60%
+			return ((100 - this.porcentajeRuedas) * (float)0.0003 + 1);
+		} else if (this.porcentajeRuedas >= 30) { // Ruedas entre el 60% y el 30%
+			return ((100 - this.porcentajeRuedas) * (float)0.0004 + 1);
+		} else if (this.porcentajeRuedas >= 15) { // Ruedas entre el 30% y el 15%
+			return ((100 - this.porcentajeRuedas) * (float)0.0005 + 1);
 		} else { // Ruedas entre el 15% y el 0%
-			return ((100 - porcentajeRuedas) * (float)0.0006 + 1);
+			return ((100 - this.porcentajeRuedas) * (float)0.0006 + 1);
 		}
+	}
+	
+	/**
+	 * Método que calcula la puntuación sobre 7500 puntos de los componentes del coche para calcular después el rendimiento total
+	 * sobre 10000 del Piloto + Coche concreto
+	 * @return La puntuación total sobre 7500
+	 */
+	public int calcularPuntosCoche() {
+		int puntuacion = 0;
+		puntuacion += this.getMotor().getRendimiento() * 23;
+		puntuacion += this.getAerodinamica().getRendimiento() * 22;
+		puntuacion += this.getChasis().getRendimiento() * 20;
+		return puntuacion;
 	}
 }
