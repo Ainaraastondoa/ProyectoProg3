@@ -75,4 +75,19 @@ public class Carrera {
 		float numeroAleatorio = (float)n / 10000;
 		return numeroAleatorio;
 	}
+	
+	/**
+	 * Método que calcula la degradación por vuelta de los neumáticos en función del circuito y hace la resta en el porcentaje del
+	 * coche de los pilotos
+	 * @param piloto Piloto del que queremos calcular la degradación
+	 */
+	public void calcularDegradacionPorVuelta(Piloto piloto) {
+		if (this.getCircuito().getNivelDegradacion() == 1) { // Nivel de degradación Bajo
+			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 2);
+		} else if (this.getCircuito().getNivelDegradacion() == 2) { // Nivel de degradación Medio
+			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 3);
+		} else { // Nivel de degradación Alto
+			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 4);
+		}
+	}
 }

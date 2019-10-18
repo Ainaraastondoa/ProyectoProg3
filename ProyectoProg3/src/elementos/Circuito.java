@@ -9,19 +9,19 @@ public class Circuito {
 	public String nombre;							//Nombre del circuito
 	public String pais;								//País de origen
 	public String fecha;							//Fecha de celebracion del GP
-	public int degradacion;							//Degradación por vuelta en el circuito
+	public int nivelDegradacion;					//Nivel de degradación por vuelta en el circuito (1-3)
 	public float tiempoReferenciaClasif;			//Tiempo de referencia para Clasificacion
 	public float tiempoReferenciaCarrera;			//Tiempo de referencia para Carrera
 	public float tiempoExtraBoxes;					//Tiempo que se tarda en pasar por boxes en el circuito
 	public int vueltas;								//Vueltas que se completan en el GP
 	
 	//CONSTRUCTOR
-	public Circuito(String nombre, String pais, String fecha, int degradacion, float tiempoReferenciaClasif,
+	public Circuito(String nombre, String pais, String fecha, int nivelDegradacion, float tiempoReferenciaClasif,
 			float tiempoReferenciaCarrera, float tiempoReferenciaBoxes, int vueltas) {
 		this.nombre = nombre;
 		this.pais = pais;
 		this.fecha = fecha;
-		this.degradacion = degradacion;
+		this.nivelDegradacion = nivelDegradacion;
 		this.tiempoReferenciaClasif = tiempoReferenciaClasif;
 		this.tiempoReferenciaCarrera = tiempoReferenciaCarrera;
 		this.tiempoExtraBoxes = tiempoReferenciaBoxes;
@@ -53,12 +53,12 @@ public class Circuito {
 		this.fecha = fecha;
 	}
 
-	public int getDegradacion() {
-		return degradacion;
+	public int getNivelDegradacion() {
+		return nivelDegradacion;
 	}
 
-	public void setDegradacion(int degradacion) {
-		this.degradacion = degradacion;
+	public void setNivelDegradacion(int nivelDegradacion) {
+		this.nivelDegradacion = nivelDegradacion;
 	}
 
 	public float getTiempoReferenciaClasif() {
