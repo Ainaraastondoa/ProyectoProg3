@@ -14,11 +14,13 @@ public class Carrera {
 	//ATRIBUTOS de la clase Carrera
 	public Circuito circuito;				//Circuito en el que se realiza la carrera correspondiente
 	public ArrayList<Piloto> listaPilotos; 	//Lista de pilotos que compiten en la carrera
+	public ArrayList<Float> listaTiempos;	//Lista de tiempos de cada piloto a lo largo de la carrera
 	
 	//CONSTRUCTOR
 	public Carrera(Circuito circuito, ArrayList<Piloto> listaPilotos) {
 		this.circuito = circuito;
 		this.listaPilotos = listaPilotos;
+		this.listaTiempos = new ArrayList<Float>();
 	}
 	
 	//GETTERS y SETTERS
@@ -38,6 +40,14 @@ public class Carrera {
 		this.listaPilotos = listaPilotos;
 	}
 	
+	public ArrayList<Float> getListaTiempos() {
+		return listaTiempos;
+	}
+
+	public void setListaTiempos(ArrayList<Float> listaTiempos) {
+		this.listaTiempos = listaTiempos;
+	}
+
 	/**
 	 * Método para calcular el tiempo por vuelta final de cada piloto
 	 * @param piloto Piloto del que queremos sacar su tiempo por vuelta
@@ -46,7 +56,7 @@ public class Carrera {
 	 */
 	public float calcularTiempoPorVuelta(Piloto piloto) {
 		float tiempoVueltaInicial = calcularTiempoInicial(piloto);
-		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * piloto.getCoche().calcularDegradacion();
+		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * piloto.getCoche().multiplicarDegradacion();
 		float tiempoVueltaFinal = tiempoVueltaTrasDegradacion * generarNumeroAleatorio();
 		BigDecimal tiempoFinalRedondeado = new BigDecimal(tiempoVueltaFinal).setScale(3, RoundingMode.HALF_EVEN);
 		return tiempoFinalRedondeado.floatValue();
@@ -88,6 +98,38 @@ public class Carrera {
 			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 3);
 		} else { // Nivel de degradación Alto
 			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 4);
+		}
+	}
+	
+	/**
+	 * Método que sirve para simular las paradas en boxes: pone las ruedas a degradación 0 y devuelve el tiempo perdido en el proceso
+	 * @param piloto Piloto que entra a boxes
+	 * @return Tiempo que pierde al cambiar las ruedas en boxes
+	 */
+	public float pararEnBoxes(Piloto piloto) {
+		piloto.getCoche().setPorcentajeRuedas(100);
+		return this.getCircuito().getTiempoExtraBoxes();
+	}
+	
+	/**
+	 * Método que calcula el tiempo total de la carrera de cada piloto y lo deja en la lista de tiempos sin ordenar
+	 */
+	public void simularCarrera() {
+		for ( int i = 0; i < this.getCircuito().getVueltas(); i++ ) { // Se repite tantas veces como vueltas tenga el circuito
+			for ( int j = 0; j < this.getListaPilotos().size(); j++ ) { // Se repite tantas veces como pilotos compitan en la carrera
+				float tiempoVueltaPiloto = calcularTiempoPorVuelta( this.getListaPilotos().get( j ) );
+				if ( this.getListaPilotos().get(j).getCoche().getPorcentajeRuedas() < 60 ) {
+					tiempoVueltaPiloto += pararEnBoxes(this.getListaPilotos().get(j));
+				}
+				calcularDegradacionPorVuelta(this.getListaPilotos().get(j));
+				if (listaTiempos.size() < 20) { // Primera vuelta
+					listaTiempos.add(tiempoVueltaPiloto);
+				} else { // Resto de vueltas
+					float tiempoTotalPiloto = listaTiempos.get(j);
+					tiempoTotalPiloto += tiempoVueltaPiloto;
+					listaTiempos.set(j, tiempoTotalPiloto);
+				}
+			}
 		}
 	}
 }

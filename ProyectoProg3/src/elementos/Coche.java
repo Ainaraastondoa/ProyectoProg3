@@ -67,7 +67,7 @@ public class Coche {
 	 * las ruedas.
 	 * @return El número por el que multiplicar el tiempo por vuelta inicial
 	 */
-	public float calcularDegradacion() {
+	public float multiplicarDegradacion() {
 		if (this.porcentajeRuedas == 100) { // Ruedas al 100%
 			return 1;
 		} else if (this.porcentajeRuedas >= 80) { // Ruedas entre el 100% y el 80%
