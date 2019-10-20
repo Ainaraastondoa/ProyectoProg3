@@ -11,16 +11,14 @@ public class Mejora {
 	public int mejora;				//Incremento en el rendimiento del componente
 	public int tiempo;				//Duracion de la mejora(en semanas)
 	public int coste;				//Coste de la mejora(dinero)
-	public String codigo;			//codigo de la mejora
 	
 	//CONSTRUCTOR
-	public Mejora(String nombre, Componente componente, int mejora, int tiempo, int coste, String codigo) {
+	public Mejora(String nombre, Componente componente, int mejora, int tiempo, int coste) {
 		this.nombre = nombre;
 		this.componente = componente;
 		this.mejora = mejora;
 		this.tiempo = tiempo;
 		this.coste = coste;
-		this.codigo = codigo;
 	}
 
 	//GETTERS Y SETTERS
@@ -62,13 +60,5 @@ public class Mejora {
 
 	public void setCoste(int coste) {
 		this.coste = coste;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 }

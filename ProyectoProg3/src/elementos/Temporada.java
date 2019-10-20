@@ -11,18 +11,14 @@ public class Temporada {
 	//ATRIBUTOS de la clase Temporada
 	public ArrayList<Piloto> pilotos;					//Lista de pilotos
 	public ArrayList<Integer> puntos;					//Lista de puntos por piloto
-	public ArrayList<String> circuitos;					//Lista de circuitos
-	public HashMap<Piloto, Integer> puntosPiloto;		//Puntos que lleva el piloto
+	public ArrayList<Circuito> circuitos;				//Lista de circuitos
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
 	
 	//CONSTRUCTOR
-	public Temporada(ArrayList<Piloto> pilotos, ArrayList<Integer> puntos, ArrayList<String> circuitos,
-			HashMap<Piloto, Integer> puntosPiloto, HashMap<Escuderia, Integer> puntosEscuderia) {
-		super();
+	public Temporada(ArrayList<Piloto> pilotos, ArrayList<Circuito> circuitos, HashMap<Escuderia, Integer> puntosEscuderia) {
 		this.pilotos = pilotos;
-		this.puntos = puntos;
+		this.puntos = new ArrayList<Integer>();
 		this.circuitos = circuitos;
-		this.puntosPiloto = puntosPiloto;
 		this.puntosEscuderia = puntosEscuderia;
 	}
 
@@ -43,20 +39,12 @@ public class Temporada {
 		this.puntos = puntos;
 	}
 
-	public ArrayList<String> getCircuitos() {
+	public ArrayList<Circuito> getCircuitos() {
 		return circuitos;
 	}
 
-	public void setCircuitos(ArrayList<String> circuitos) {
+	public void setCircuitos(ArrayList<Circuito> circuitos) {
 		this.circuitos = circuitos;
-	}
-
-	public HashMap<Piloto, Integer> getPuntosPiloto() {
-		return puntosPiloto;
-	}
-
-	public void setPuntosPiloto(HashMap<Piloto, Integer> puntosPiloto) {
-		this.puntosPiloto = puntosPiloto;
 	}
 
 	public HashMap<Escuderia, Integer> getPuntosEscuderia() {
@@ -65,5 +53,20 @@ public class Temporada {
 
 	public void setPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia) {
 		this.puntosEscuderia = puntosEscuderia;
-	}	
+	}
+	
+	/**
+	 * Método que ordena a los pilotos en función de los puntos en la clasificación general.
+	 */
+	public void ordenarClasificacionTemporada() {
+		for (int i = 0; i < this.getPuntos().size() - 1; i++) {
+			for (int j = 1; j < this.getPuntos().size(); j++) {
+				if (puntos.get(j) < puntos.get(j-1)) {
+					int aux1 = puntos.get(j); Piloto aux2 = pilotos.get(j);
+					puntos.set(j, puntos.get(j-1)); pilotos.set(j, pilotos.get(j-1));
+					puntos.set(j-1, aux1); pilotos.set(j-1, aux2);
+				}
+			}
+		}
+	}
 }

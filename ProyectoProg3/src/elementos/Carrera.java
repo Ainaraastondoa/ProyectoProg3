@@ -132,4 +132,20 @@ public class Carrera {
 			}
 		}
 	}
+	
+	/**
+	 * Método que ordena a los pilotos en función de su tiempo de carrera, ordena la clasificación.
+	 * No se puede usar antes de que todos los pilotos completen 1 vuelta por lo menos
+	 */
+	public void ordenarClasificacionCarrera() {
+		for (int i = 0; i < this.getListaTiempos().size() - 1; i++) {
+			for (int j = 1; j < this.getListaTiempos().size(); j++) {
+				if (listaTiempos.get(j) < listaTiempos.get(j-1)) {
+					float aux1 = listaTiempos.get(j); Piloto aux2 = listaPilotos.get(j);
+					listaTiempos.set(j, listaTiempos.get(j-1)); listaPilotos.set(j, listaPilotos.get(j-1));
+					listaTiempos.set(j-1, aux1); listaPilotos.set(j-1, aux2);
+				}
+			}
+		}
+	}
 }
