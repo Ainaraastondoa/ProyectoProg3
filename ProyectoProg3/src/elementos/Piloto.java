@@ -1,5 +1,7 @@
 package elementos;
 
+import java.util.ArrayList;
+
 /*Esta clase define las caracteristicas de los pilotos 
  * 
  */
@@ -99,5 +101,32 @@ public class Piloto {
 		puntuacion += this.getVelocidad() * 9;
 		puntuacion += this.getMojado() * 3;
 		return puntuacion;
+	}
+	
+	public ArrayList<Piloto> crearPiloto() {
+		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
+		
+		listaPilotos.add(new Piloto("hamilton",34,75,75,81,75,85,88));
+		listaPilotos.add(new Piloto("bottas",30,58,60,47,52,66,40));
+		listaPilotos.add(new Piloto("vettel",32,65,62,69,66,77,60));
+		listaPilotos.add(new Piloto("leclerc",22,66,55,79,77,80,68));
+		listaPilotos.add(new Piloto("verstappen",22,68,50,75,70,77,90));
+		listaPilotos.add(new Piloto("albon",23,54,60,65,55,66,45));
+		listaPilotos.add(new Piloto("sainz",25,55,70,50,70,66,25));
+		listaPilotos.add(new Piloto("norris",19,53,52,68,45,72,20));
+		listaPilotos.add(new Piloto("ricciardo",30,63,55,79,70,75,64));
+		listaPilotos.add(new Piloto("hulkenberg",32,57,65,55,70,68,40));
+		listaPilotos.add(new Piloto("gasly",23,51,60,57,55,58,34));
+		listaPilotos.add(new Piloto("kvyiat",25,45,42,35,50,55,41));
+		listaPilotos.add(new Piloto("perez",29,53,75,47,55,48,42));
+		listaPilotos.add(new Piloto("stroll",20,44,36,50,55,53,39));
+		listaPilotos.add(new Piloto("magnussen",27,51,30,55,78,63,30));
+		listaPilotos.add(new Piloto("grosjean",33,42,4,44,44,48,45));
+		listaPilotos.add(new Piloto("raikkonen",40,54,68,58,64,65,25));
+		listaPilotos.add(new Piloto("giovinazzi",25,45,35,36,45,58,44));
+		listaPilotos.add(new Piloto("russell",21,48,45,54,25,65,56));
+		listaPilotos.add(new Piloto("kubica",34,36,50,33,28,22,34));
+
+		return listaPilotos;		
 	}
 }
