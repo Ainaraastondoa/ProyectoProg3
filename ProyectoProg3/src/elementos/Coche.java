@@ -1,5 +1,7 @@
 package elementos;
 
+import java.util.ArrayList;
+
 /** Esta clase define cada uno de los monoplazas y sus caracteristicas.
  * 
  */
@@ -94,5 +96,23 @@ public class Coche {
 		puntuacion += this.getAerodinamica().getRendimiento() * 22;
 		puntuacion += this.getChasis().getRendimiento() * 20;
 		return puntuacion;
+	}
+	
+	public ArrayList<Coche> crearCoche() {
+		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
+		
+		listaCoches.add(new Coche("mercedes",mercedes.m,mercedes.a,mercedes.c,100));
+		listaCoches.add(new Coche("ferrari",ferrari.m,ferrari.a,ferrari.c,100));
+		listaCoches.add(new Coche("redbull",honda.m,redbull.a,redbull.c,100));
+		listaCoches.add(new Coche("mclaren",renault.m,mclaren.a,mclaren.c,100));
+		listaCoches.add(new Coche("renault",renault.m,renault.a,renault.c,100));
+		listaCoches.add(new Coche("tororosso",honda.m,tororosso.a,tororosso.c,100));
+		listaCoches.add(new Coche("racingpoint",mercedes.m,racingpoint.a,racingpoint.c,100));
+		listaCoches.add(new Coche("haas",ferrari.m,haas.a,haas.c,100));
+		listaCoches.add(new Coche("alfaromeo",ferrari.m,alfaromeo.a,alfaromeo.c,100));
+		listaCoches.add(new Coche("williams",mercedes.m,williams.a,williams.c,100));
+		
+		return listaCoches;
+		
 	}
 }

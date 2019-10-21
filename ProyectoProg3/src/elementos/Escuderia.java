@@ -51,5 +51,9 @@ public class Escuderia {
 	}
 	public void setPresupuesto(int presupuesto) {
 		this.presupuesto = presupuesto;
-	}	
+	}
+	
+	public void listaCochePilotos() {
+		
+	}
 }
