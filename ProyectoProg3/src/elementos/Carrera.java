@@ -3,6 +3,7 @@ package elementos;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * La clase Carrera sirve para desarrollar las acciones de cada carrera, englobando pilotos con el circuito 
@@ -149,6 +150,54 @@ public class Carrera {
 		}
 	}
 	
+	/**
+	 * Método que sirve para otorgar puntos en función de la posición en carrera.
+	 * Obligatoriamente debe ser ejecutado después de que los pilotos hayan sido ordenados en función de su tiempo total
+	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
+	 */
+	public void repartirPuntos(HashMap<Piloto, Integer> puntosPiloto) {
+		for (int i = 0; i < listaPilotos.size() - 10; i++) {
+			if (i == 0) { // 1º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 25);
+			} else if (i == 1) { // 2º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 18);
+			} else if (i == 2) { // 3º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 15);
+			} else if (i == 3) { // 4º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 12);
+			} else if (i == 4) { // 5º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 10);
+			} else if (i == 5) { // 6º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 8);
+			} else if (i == 6) { // 7º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 6);
+			} else if (i == 7) { // 8º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 4);
+			} else if (i == 8) { // 9º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 2);
+			} else if (i == 9) { // 10º Puesto
+				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 1);
+			}
+		}
+	}
+	
+	/**
+	 * Método que sirve para actualizar los puntos de una escudería después de una carrera
+	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderías con sus puntos esa temporada
+	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
+	 */
+	public void actualizarPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia, HashMap<Piloto, Integer> puntosPiloto) {
+		puntosEscuderia.forEach( (k,v) -> {
+			int pts1 = puntosPiloto.get(k.getPiloto1()); int pts2 = puntosPiloto.get(k.getPiloto2());
+			puntosEscuderia.put(k, pts1 + pts2);
+		});
+	}
+	
+	// Método que sirve para repartir el dinero a la escudería en función de la posición de sus pilotos
+	public void repartirDinero(ArrayList<Escuderia> listaEscuderias) {
+		// PENDIENTE
+	}
+	
 	/** Metodo para pasar un tiempo en segundos a un formato más visual mm:ss
 	 * @param seg Segundos que quieres cambiar de formato
 	 * @return tiempo en formato mm:ss
@@ -185,5 +234,19 @@ public class Carrera {
 		float tiempo = tiempoP2-tiempoP1;
 		String tiempoEntrePilotos = segundosAMinutos(tiempo);
 		return tiempoEntrePilotos;		
+	}
+	
+	// Método main de prueba
+	public static void main(String[] args) {
+		HashMap<String, Integer> prueba = new HashMap<String, Integer>();
+		prueba.put("Tomate", 1);
+		prueba.put("Patata", 2);
+		prueba.forEach((k,v) -> {
+			if (k.contains("ma")) {
+				prueba.put(k, 3);
+			} else {
+				System.out.println("El valor de Tomate es: " + prueba.get("Tomate"));
+			}
+		});
 	}
 }

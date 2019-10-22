@@ -9,34 +9,27 @@ import java.util.HashMap;
 public class Temporada {
 	
 	//ATRIBUTOS de la clase Temporada
-	public ArrayList<Piloto> pilotos;					//Lista de pilotos
-	public ArrayList<Integer> puntos;					//Lista de puntos por piloto
+	public HashMap<Piloto, Integer> puntosPiloto;		//Puntos que tiene cada piloto en la temporada
 	public ArrayList<Circuito> circuitos;				//Lista de circuitos
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
+	public ArrayList<Escuderia> listaEscuderias;		//Lista de escuderias que participan en la temporada
 	
 	//CONSTRUCTOR
-	public Temporada(ArrayList<Piloto> pilotos, ArrayList<Circuito> circuitos, HashMap<Escuderia, Integer> puntosEscuderia) {
-		this.pilotos = pilotos;
-		this.puntos = new ArrayList<Integer>();
+	public Temporada(HashMap<Piloto, Integer> puntosPiloto, ArrayList<Circuito> circuitos, HashMap<Escuderia, Integer> puntosEscuderia,
+			ArrayList<Escuderia> listaEscuderias) {
+		this.puntosPiloto = puntosPiloto;
 		this.circuitos = circuitos;
 		this.puntosEscuderia = puntosEscuderia;
+		this.listaEscuderias = listaEscuderias;
 	}
 
 	//GETTERS Y SETTERS
-	public ArrayList<Piloto> getPilotos() {
-		return pilotos;
+	public HashMap<Piloto, Integer> getPuntosPiloto() {
+		return puntosPiloto;
 	}
 
-	public void setPilotos(ArrayList<Piloto> pilotos) {
-		this.pilotos = pilotos;
-	}
-
-	public ArrayList<Integer> getPuntos() {
-		return puntos;
-	}
-
-	public void setPuntos(ArrayList<Integer> puntos) {
-		this.puntos = puntos;
+	public void setPuntosPiloto(HashMap<Piloto, Integer> puntosPiloto) {
+		this.puntosPiloto = puntosPiloto;
 	}
 
 	public ArrayList<Circuito> getCircuitos() {
@@ -54,19 +47,13 @@ public class Temporada {
 	public void setPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia) {
 		this.puntosEscuderia = puntosEscuderia;
 	}
-	
-	/**
-	 * Método que ordena a los pilotos en función de los puntos en la clasificación general.
-	 */
-	public void ordenarClasificacionTemporada() {
-		for (int i = 0; i < this.getPuntos().size() - 1; i++) {
-			for (int j = 1; j < this.getPuntos().size(); j++) {
-				if (puntos.get(j) < puntos.get(j-1)) {
-					int aux1 = puntos.get(j); Piloto aux2 = pilotos.get(j);
-					puntos.set(j, puntos.get(j-1)); pilotos.set(j, pilotos.get(j-1));
-					puntos.set(j-1, aux1); pilotos.set(j-1, aux2);
-				}
-			}
-		}
+
+	public ArrayList<Escuderia> getListaEscuderias() {
+		return listaEscuderias;
 	}
+
+	public void setListaEscuderias(ArrayList<Escuderia> listaEscuderias) {
+		this.listaEscuderias = listaEscuderias;
+	}
+	
 }
