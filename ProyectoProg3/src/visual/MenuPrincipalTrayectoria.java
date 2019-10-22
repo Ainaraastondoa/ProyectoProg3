@@ -19,10 +19,12 @@ import javax.swing.JPanel;
 
 public class MenuPrincipalTrayectoria extends JFrame{
 	
-	JFrame VentanaInicio; 
+	JFrame VentanaInicio;
+	
+
 	
 	public MenuPrincipalTrayectoria(JFrame v) {
-		VentanaInicio = v; 
+		VentanaInicio = v;  
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setSize( 400, 300 );
 		JButton bCarrera = new JButton( "Carrera" );
@@ -63,7 +65,11 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				VentanaPiloto pilotos = new VentanaPiloto( MenuPrincipalTrayectoria.this );
+				pilotos.setLocation( getLocation() );
+				pilotos.setSize( getSize() );
+				pilotos.setVisible( true );
+				MenuPrincipalTrayectoria.this.setVisible( false );	
 			}
 			
 		});
@@ -72,7 +78,11 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				VentanaClasifCarrera clasifCarre = new VentanaClasifCarrera( MenuPrincipalTrayectoria.this );
+				clasifCarre.setLocation( getLocation() );
+				clasifCarre.setSize( getSize() );
+				clasifCarre.setVisible( true );
+				MenuPrincipalTrayectoria.this.setVisible( false );
 			}
 			
 		}); 
@@ -94,5 +104,6 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			}
 
 }); 
+	
 	}
 }
