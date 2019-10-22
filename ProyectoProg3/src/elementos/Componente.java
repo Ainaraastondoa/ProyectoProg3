@@ -44,6 +44,9 @@ public class Componente {
 		this.rendimiento = rendimiento;
 	}	
 	
+	/** Metodo que crea todos los componentes de cada uno de los coches
+	 * @return lista de todos los componentes de cada uno de los coches
+	 */
 	public ArrayList<Componente> crearComponentes() {
 		ArrayList<Componente> listaComponentes = new ArrayList<Componente>();
 		//MERCEDES

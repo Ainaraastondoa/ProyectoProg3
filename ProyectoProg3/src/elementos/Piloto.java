@@ -103,6 +103,9 @@ public class Piloto {
 		return puntuacion;
 	}
 	
+	/** Metodo que crea todos los pilotos del campeonato
+	 * @return lista de pilotos participantes
+	 */
 	public ArrayList<Piloto> crearPiloto() {
 		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
 		

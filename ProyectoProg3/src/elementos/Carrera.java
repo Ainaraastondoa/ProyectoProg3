@@ -148,4 +148,42 @@ public class Carrera {
 			}
 		}
 	}
+	
+	/** Metodo para pasar un tiempo en segundos a un formato más visual mm:ss
+	 * @param seg Segundos que quieres cambiar de formato
+	 * @return tiempo en formato mm:ss
+	 */
+	public String segundosAMinutos(float seg) {
+		int minutos = (int) seg / 60; 	
+		int segundos = (int) seg - (minutos * 60);
+		
+		String minssegs = minutos + ":" + segundos; 
+		return minssegs; 
+	}
+	
+	/** Metodo para pasar un tiempo en segundos a un formato más visual hh:mm:ss
+	 * @param seg Segundos que quieres cambiar de formato
+	 * @return tiempo en formato hh:mm:ss
+	 */
+	public String segundosAHoras(float seg) {
+		int horas = (int) seg / 3600;
+		int minRest = (int) seg - (horas*60);		
+		int minutos = (int) minRest / 60;	
+		int segundos = (int) seg - (minutos * 60);
+		
+		String horMinsSegs = horas + ":" + minutos + ":" + segundos; 
+		return horMinsSegs; 
+	}
+	
+	/** Metodo que al finalizar la carrera, o cuando dos pilotos hayan recorrido la misma distancia, 
+	 * calcula la diferencia de tiempo que hay entre los dos.
+	 * @param tiempoP1 Tiempo del piloto que va delante (menor)
+	 * @param tiempoP2 Tiempo del piloto seguidor (mayor)
+	 * @return Diferencia de tiempo entre ambos en formato visual mm:ss
+	 */
+	public String tiempoEntrePilotos(float tiempoP1, float tiempoP2) {
+		float tiempo = tiempoP2-tiempoP1;
+		String tiempoEntrePilotos = segundosAMinutos(tiempo);
+		return tiempoEntrePilotos;		
+	}
 }

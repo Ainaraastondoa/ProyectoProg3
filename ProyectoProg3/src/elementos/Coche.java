@@ -98,6 +98,9 @@ public class Coche {
 		return puntuacion;
 	}
 	
+	/** Metodo que crea todos los coches del campeonato
+	 * @return lista de coches participantes
+	 */
 	public ArrayList<Coche> crearCoche() {
 		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
 		
