@@ -193,9 +193,36 @@ public class Carrera {
 		});
 	}
 	
-	// Método que sirve para repartir el dinero a la escudería en función de la posición de sus pilotos
-	public void repartirDinero(ArrayList<Escuderia> listaEscuderias) {
-		// PENDIENTE
+	/**
+	 * Método que sirve para repartir el dinero a la escudería en función de la posición de sus pilotos. 
+	 * Obligatoriamente debe ser ejecutado después de que los pilotos hayan sido ordenados en función de su tiempo total
+	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderías con sus puntos esa temporada
+	 */
+	public void repartirDinero(HashMap<Escuderia, Integer> puntosEscuderia) {
+		puntosEscuderia.forEach( (k,v) -> {
+			for (int i = 0; i < listaPilotos.size(); i++) { // Piloto 1
+				if (k.getPiloto1().equals(listaPilotos.get(i))) {
+					if (i == 0) { // Puesto 1
+						k.setPresupuesto(k.getPresupuesto() + 1000000);
+					} else if (i < 3) { // Puestos 2-3
+						k.setPresupuesto(k.getPresupuesto() + 750000);
+					} else if (i < 10) { // Puestos 4-10
+						k.setPresupuesto(k.getPresupuesto() + 500000);
+					} else { //Puesto 11-20
+						k.setPresupuesto(k.getPresupuesto() + 250000);
+					}}}
+			for (int j = 0; j < listaPilotos.size(); j++) { // Piloto 2
+				if (k.getPiloto2().equals(listaPilotos.get(j))) {
+					if (j == 0) { // Puesto 1
+						k.setPresupuesto(k.getPresupuesto() + 1000000);
+					} else if (j < 3) { // Puestos 2-3
+						k.setPresupuesto(k.getPresupuesto() + 750000);
+					} else if (j < 10) { // Puestos 4-10
+						k.setPresupuesto(k.getPresupuesto() + 500000);
+					} else { //Puesto 11-20
+						k.setPresupuesto(k.getPresupuesto() + 250000);
+					}}}
+			});
 	}
 	
 	/** Metodo para pasar un tiempo en segundos a un formato más visual mm:ss
@@ -238,15 +265,6 @@ public class Carrera {
 	
 	// Método main de prueba
 	public static void main(String[] args) {
-		HashMap<String, Integer> prueba = new HashMap<String, Integer>();
-		prueba.put("Tomate", 1);
-		prueba.put("Patata", 2);
-		prueba.forEach((k,v) -> {
-			if (k.contains("ma")) {
-				prueba.put(k, 3);
-			} else {
-				System.out.println("El valor de Tomate es: " + prueba.get("Tomate"));
-			}
-		});
+		
 	}
 }
