@@ -32,11 +32,18 @@ public class VentanaInicial extends JFrame{
 		JButton b = new JButton( "" );
 		bJugador.setBackground(Color.RED);
 		bMulti.setBackground(Color.RED);
-		getContentPane().setLayout( new GridLayout( 3, 1 ) );
-		getContentPane().add( bTrayectoria );
-		getContentPane().add( bJugador );
-		getContentPane().add( bMulti );
-		getContentPane().add( b );
+//		getContentPane().setLayout( new GridLayout( 3, 1 ) );
+//		getContentPane().add( bTrayectoria );
+//		getContentPane().add( bJugador );
+//		getContentPane().add( bMulti );
+//		getContentPane().add( b );
+		JPanel pCentral = new JPanel();
+		getContentPane().add(pCentral, BorderLayout.CENTER);
+		pCentral.setLayout(new GridLayout( 3, 1 ));
+		pCentral.add(bTrayectoria);
+		pCentral.add(bJugador);
+		pCentral.add(bMulti);
+		pCentral.add(b);
 		JButton bAyuda = new JButton("Ayuda"); 
 		JPanel pInferior = new JPanel();
 		pInferior.setBackground(Color.LIGHT_GRAY);
@@ -55,6 +62,7 @@ public class VentanaInicial extends JFrame{
 					}
 					
 				}); 
+		
 		bTrayectoria.addActionListener(
 				new ActionListener() {
 

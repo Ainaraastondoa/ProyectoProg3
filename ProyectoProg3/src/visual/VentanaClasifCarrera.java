@@ -9,6 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**Ventana en la que se mostraran los resultados de la carrera
+ * con los pilotos clasificados por el tiempo que han logrado
+ * y los puntos obtenidos tras finalizar la carrera
+ */
+
 public class VentanaClasifCarrera extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
