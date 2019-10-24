@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -13,7 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import elementos.Piloto;
+import elementos.*;
+
 
 /**Ventana en la que se muestran los pilotos de la escuderia con sus 
  * respectivos atributos
@@ -57,6 +59,15 @@ public class VentanaPiloto extends JFrame{
 		getContentPane().add(pCentral);
 		//Imprimimos a los pilotos de la escuderia con sus atributos
 		
+//		int NumeroPilotos = listaPilotos.size();
+//		
+//		for(int i=0; i<NumeroPilotos; i++)
+//			{
+//				System.out.print ("Piloto:" + i + " " + ListaPilotos.getNombre() + " " + getEdad + " " + get + " " + get);
+//				System.out.println();
+//		
+//	}
+			
 		
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
