@@ -27,7 +27,7 @@ public class VentanaInicial extends JFrame{
 	
 	public VentanaInicial() {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setSize(600, 450);
+		setSize(1300, 900);
 		setTitle( "F1 Manager" );
 		JButton bTrayectoria = new JButton( "Trayectoria" );
 		JButton bJugador = new JButton( "Un jugador "); 

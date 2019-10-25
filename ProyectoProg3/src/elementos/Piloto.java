@@ -106,7 +106,7 @@ public class Piloto {
 	/** Metodo que crea todos los pilotos del campeonato
 	 * @return lista de pilotos participantes
 	 */
-	public ArrayList<Piloto> crearPiloto() {
+	public static ArrayList<Piloto> crearPiloto() {
 		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
 		
 		listaPilotos.add(new Piloto("Hamilton",34,10,75,81,75,85,88,null));
@@ -132,4 +132,12 @@ public class Piloto {
 
 		return listaPilotos;		
 	}
+
+	@Override
+	public String toString() {
+		return "Piloto [nombre=" + nombre + ", edad=" + edad + ", nivel=" + nivel + ", regularidad=" + regularidad
+				+ ", adelantar=" + adelantar + ", defender=" + defender + ", velocidad=" + velocidad + ", mojado="
+				+ mojado + ", coche=" + coche + "]";
+	}
+	
 }

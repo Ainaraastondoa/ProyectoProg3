@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import elementos.*;
@@ -24,6 +25,7 @@ import elementos.*;
 public class VentanaPiloto extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
+	Piloto piloto; 
 	
 	public VentanaPiloto(JFrame m) {
 		MenuPrincipalTrayectoria = m; 
@@ -41,15 +43,13 @@ public class VentanaPiloto extends JFrame{
 		JPanel pIzquierda = new JPanel();
 		JPanel pDerechaSupe = new JPanel();
 		JPanel pIzquierdaSupe = new JPanel();
-		JPanel pIzquierdaInfe = new JPanel();
 		Label eti = new Label("PILOTO 1");
 		Label eti2 = new Label("PILOTO 2");
 		pDerechaSupe.add(eti2);
 		pIzquierdaSupe.add(eti);
 		pDerecha.add(pDerechaSupe);
-		pIzquierda.setLayout(new GridLayout(2, 1, 0, 0));
+		pCentral.setLayout(new GridLayout(2,1));
 		pIzquierda.add(pIzquierdaSupe);
-		pIzquierda.add(pIzquierdaInfe);
 		pIzquierda.setBackground(Color.DARK_GRAY);
 		pDerecha.setBackground(Color.GRAY);
 		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -57,16 +57,15 @@ public class VentanaPiloto extends JFrame{
 		pCentral.add(pIzquierda);
 		pCentral.add(pDerecha);
 		getContentPane().add(pCentral);
-		//Imprimimos a los pilotos de la escuderia con sus atributos
+		//Imprimimos los datos del primer piloto con sus atributos
+		JLabel piloto1 = new JLabel(Piloto.crearPiloto().get(0).toString());
+		pIzquierda.add(piloto1);
+		piloto1.setFont(new java.awt.Font("Tahoma", 1, 11));
+		//Imprimimos los datos del segundo piloto con sus atributos
+		JLabel piloto2 = new JLabel(Piloto.crearPiloto().get(1).toString());
+		pDerecha.add(piloto2);
 		
-//		int NumeroPilotos = listaPilotos.size();
-//		
-//		for(int i=0; i<NumeroPilotos; i++)
-//			{
-//				System.out.print ("Piloto:" + i + " " + ListaPilotos.getNombre() + " " + getEdad + " " + get + " " + get);
-//				System.out.println();
-//		
-//	}
+		
 			
 		
 		//Escuchadores

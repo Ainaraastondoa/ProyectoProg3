@@ -39,7 +39,9 @@ public class VentanaAyuda extends JFrame{
 				"\r\n" + 
 				"	MODO TRAYECTORIA: Modo de juego que consiste en gestionar a una escudería de F1 a lo largo de 10 temporadas completas. Ejerce de director y controla el desarrollo del monoplaza a lo largo de las carreras.\r\n" + 
 				"\r\n" + 
-				"	La primera vez que entras en el Modo Trayectoria deberás elegir una entre las 10 escuderías participantes en la F1, tras ello, pasarás a la ventana principal de Trayectoria. A partir de ese momento, cada vez que entres al Modo Trayectoria, serás enviado a la ventana principal también al no tener que volver elegir una escudería.\r\n" + 
+				"	La primera vez que entras en el Modo Trayectoria deberás elegir una entre las 10 escuderías participantes en la F1, tras ello, pasarás a la ventana principal de Trayectoria.\r\n " +
+				"\r\n" +
+				"\tA partir de ese momento, cada vez que entres al Modo Trayectoria, serás enviado a la ventana principal también al no tener que volver elegir una escudería.\r\n" + 
 				"\r\n" + 
 				"	Una vez en la ventana principal, existen varias opciones: Carrera, Piloto, Coche, Clasificación y Volver.\r\n" + 
 				"\r\n" + 
