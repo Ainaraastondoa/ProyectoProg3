@@ -50,45 +50,45 @@ public class Componente {
 	public ArrayList<Componente> crearComponentes() {
 		ArrayList<Componente> listaComponentes = new ArrayList<Componente>();
 		//MERCEDES
-		listaComponentes.add(new Componente("mercedes.m", listaMejoras, 88)); //MOTOR
-		listaComponentes.add(new Componente("mercedes.a", listaMejoras, 88)); //AERODINAMICA
-		listaComponentes.add(new Componente("mercedes.c", listaMejoras, 90)); //CHASIS
+		listaComponentes.add(new Componente("mercedes.m", null, 88)); //MOTOR
+		listaComponentes.add(new Componente("mercedes.a", null, 88)); //AERODINAMICA
+		listaComponentes.add(new Componente("mercedes.c", null, 90)); //CHASIS
 		//FERRARI
-		listaComponentes.add(new Componente("ferrari.m", listaMejoras, 91));
-		listaComponentes.add(new Componente("ferrari.a", listaMejoras, 88));
-		listaComponentes.add(new Componente("ferrari.c", listaMejoras, 85));
+		listaComponentes.add(new Componente("ferrari.m", null, 91));
+		listaComponentes.add(new Componente("ferrari.a", null, 88));
+		listaComponentes.add(new Componente("ferrari.c", null, 85));
 		//REDBULL
-		listaComponentes.add(new Componente("redbull.m", listaMejoras, 80));
-		listaComponentes.add(new Componente("redbull.a", listaMejoras, 89));
-		listaComponentes.add(new Componente("redbull.c", listaMejoras, 91));
+		listaComponentes.add(new Componente("redbull.m", null, 80));
+		listaComponentes.add(new Componente("redbull.a", null, 89));
+		listaComponentes.add(new Componente("redbull.c", null, 91));
 		//MCLAREN
-		listaComponentes.add(new Componente("mclaren.m", listaMejoras, 81));
-		listaComponentes.add(new Componente("mclaren.a", listaMejoras, 82));
-		listaComponentes.add(new Componente("mclaren.c", listaMejoras, 79));
+		listaComponentes.add(new Componente("mclaren.m", null, 81));
+		listaComponentes.add(new Componente("mclaren.a", null, 82));
+		listaComponentes.add(new Componente("mclaren.c", null, 79));
 		//RENAULT
-		listaComponentes.add(new Componente("renault.m", listaMejoras, 81));
-		listaComponentes.add(new Componente("renault.a", listaMejoras, 78));
-		listaComponentes.add(new Componente("renault.c", listaMejoras, 76));
+		listaComponentes.add(new Componente("renault.m", null, 81));
+		listaComponentes.add(new Componente("renault.a", null, 78));
+		listaComponentes.add(new Componente("renault.c", null, 76));
 		//TOROROSSO
-		listaComponentes.add(new Componente("tororosso.m", listaMejoras, 80));
-		listaComponentes.add(new Componente("tororosso.a", listaMejoras, 76));
-		listaComponentes.add(new Componente("tororosso.c", listaMejoras, 77));
+		listaComponentes.add(new Componente("tororosso.m", null, 80));
+		listaComponentes.add(new Componente("tororosso.a", null, 76));
+		listaComponentes.add(new Componente("tororosso.c", null, 77));
 		//RACINGPOINT
-		listaComponentes.add(new Componente("racingpoint.m", listaMejoras, 86));
-		listaComponentes.add(new Componente("racingpoint.a", listaMejoras, 75));
-		listaComponentes.add(new Componente("racingpoint.c", listaMejoras, 73));
+		listaComponentes.add(new Componente("racingpoint.m", null, 86));
+		listaComponentes.add(new Componente("racingpoint.a", null, 75));
+		listaComponentes.add(new Componente("racingpoint.c", null, 73));
 		//HAAS
-		listaComponentes.add(new Componente("haas.m", listaMejoras, 91));
-		listaComponentes.add(new Componente("haas.a", listaMejoras, 73));
-		listaComponentes.add(new Componente("haas.c", listaMejoras, 72));
+		listaComponentes.add(new Componente("haas.m", null, 91));
+		listaComponentes.add(new Componente("haas.a", null, 73));
+		listaComponentes.add(new Componente("haas.c", null, 72));
 		//ALFAROMEO
-		listaComponentes.add(new Componente("alfaromeo.m", listaMejoras, 91));
-		listaComponentes.add(new Componente("alfaromeo.a", listaMejoras, 70));
-		listaComponentes.add(new Componente("alfaromeo.c", listaMejoras, 68));
+		listaComponentes.add(new Componente("alfaromeo.m", null, 91));
+		listaComponentes.add(new Componente("alfaromeo.a", null, 70));
+		listaComponentes.add(new Componente("alfaromeo.c", null, 68));
 		//WILLIAMS
-		listaComponentes.add(new Componente("williams.m", listaMejoras, 86));
-		listaComponentes.add(new Componente("williams.a", listaMejoras, 51));
-		listaComponentes.add(new Componente("williams.c", listaMejoras, 55));
+		listaComponentes.add(new Componente("williams.m", null, 86));
+		listaComponentes.add(new Componente("williams.a", null, 51));
+		listaComponentes.add(new Componente("williams.c", null, 55));
 
 		return listaComponentes;
 	}

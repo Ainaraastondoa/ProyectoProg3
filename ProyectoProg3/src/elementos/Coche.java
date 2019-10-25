@@ -104,16 +104,16 @@ public class Coche {
 	public ArrayList<Coche> crearCoche() {
 		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
 		
-		listaCoches.add(new Coche("mercedes",null,null,null,100));
-		listaCoches.add(new Coche("ferrari",null,null,null,100));
-		listaCoches.add(new Coche("redbull",null,null,null,100));
-		listaCoches.add(new Coche("mclaren",null,null,null,100));
-		listaCoches.add(new Coche("renault",null,null,null,100));
-		listaCoches.add(new Coche("tororosso",null,null,null,100));
-		listaCoches.add(new Coche("racingpoint",null,null,null,100));
-		listaCoches.add(new Coche("haas",null,null,null,100));
-		listaCoches.add(new Coche("alfaromeo",null,null,null,100));
-		listaCoches.add(new Coche("williams",null,null,null,100));
+		listaCoches.add(new Coche("Mercedes",null,null,null,100));
+		listaCoches.add(new Coche("Ferrari",null,null,null,100));
+		listaCoches.add(new Coche("Redbull",null,null,null,100));
+		listaCoches.add(new Coche("Mclaren",null,null,null,100));
+		listaCoches.add(new Coche("Renault",null,null,null,100));
+		listaCoches.add(new Coche("Tororosso",null,null,null,100));
+		listaCoches.add(new Coche("Racingpoint",null,null,null,100));
+		listaCoches.add(new Coche("Haas",null,null,null,100));
+		listaCoches.add(new Coche("Alfaromeo",null,null,null,100));
+		listaCoches.add(new Coche("Williams",null,null,null,100));
 		
 		return listaCoches;		
 	}
