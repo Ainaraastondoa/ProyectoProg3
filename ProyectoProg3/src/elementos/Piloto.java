@@ -135,9 +135,10 @@ public class Piloto {
 
 	@Override
 	public String toString() {
-		return "Piloto [nombre=" + nombre + ", edad=" + edad + ", nivel=" + nivel + ", regularidad=" + regularidad
-				+ ", adelantar=" + adelantar + ", defender=" + defender + ", velocidad=" + velocidad + ", mojado="
-				+ mojado + ", coche=" + coche + "]";
+		return "\n" + "\n" + "\nNOMBRE: " + nombre + 
+				"\nEDAD: " + edad + "\nNIVEL: " + nivel + "\nREGULARIDAD: " + regularidad
+				+ "\nADELANTAR: " + adelantar + "\nDEFENDER: " + defender + "\nVELOCIDAD: " + velocidad + 
+				"\nMOJADO: " + mojado + "\nCOCHE: " + coche;
 	}
 	
 }

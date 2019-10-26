@@ -31,11 +31,13 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		JButton bCoche = new JButton( "Coche"); 
 		JButton bPilotos = new JButton( "Pilotos" );
 		JButton bClasif = new JButton( "Clasificacion");
-		getContentPane().setLayout( new GridLayout( 3, 1 ) );
-		getContentPane().add( bCarrera );
-		getContentPane().add( bCoche );
-		getContentPane().add( bPilotos);
-		getContentPane().add( bClasif );
+		JPanel pCentral = new JPanel();
+		getContentPane().add(pCentral, BorderLayout.CENTER);
+		pCentral.setLayout(new GridLayout( 3, 1 ));
+		pCentral.add(bCarrera);
+		pCentral.add(bCoche);
+		pCentral.add(bPilotos);
+		pCentral.add(bClasif);
 		JButton bVolver = new JButton( "Volver" ); 
 		JPanel pInferior = new JPanel();
 		pInferior.setBackground( Color.LIGHT_GRAY );

@@ -24,13 +24,20 @@ public class VentanaClasifCarrera extends JFrame{
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
+		//Imprimimos en la ventana a los pilotos con el tiempo que han
+		//obtenido en la carrera y sus respectivos puntos
+		
 		
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				VentanaClasifPiloto clasPilotos = new VentanaClasifPiloto( VentanaClasifCarrera.this );
+				clasPilotos.setLocation( getLocation() );
+				clasPilotos.setSize( getSize() );
+				clasPilotos.setVisible( true );
+				VentanaClasifCarrera.this.setVisible( false );
 				
 			}
 			

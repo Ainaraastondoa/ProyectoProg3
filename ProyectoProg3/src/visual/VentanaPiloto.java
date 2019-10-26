@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import elementos.*;
 
@@ -43,13 +45,13 @@ public class VentanaPiloto extends JFrame{
 		JPanel pIzquierda = new JPanel();
 		JPanel pDerechaSupe = new JPanel();
 		JPanel pIzquierdaSupe = new JPanel();
-		Label eti = new Label("PILOTO 1");
-		Label eti2 = new Label("PILOTO 2");
-		pDerechaSupe.add(eti2);
-		pIzquierdaSupe.add(eti);
-		pDerecha.add(pDerechaSupe);
-		pCentral.setLayout(new GridLayout(2,1));
-		pIzquierda.add(pIzquierdaSupe);
+//		Label eti = new Label("PILOTO 1");
+//		Label eti2 = new Label("PILOTO 2");
+//		pDerechaSupe.add(eti2);
+//		pIzquierdaSupe.add(eti);
+//		pDerecha.add(pDerechaSupe);
+//		pCentral.setLayout(new GridLayout(2,1));
+//		pIzquierda.add(pIzquierdaSupe);
 		pIzquierda.setBackground(Color.DARK_GRAY);
 		pDerecha.setBackground(Color.GRAY);
 		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -57,16 +59,21 @@ public class VentanaPiloto extends JFrame{
 		pCentral.add(pIzquierda);
 		pCentral.add(pDerecha);
 		getContentPane().add(pCentral);
-		//Imprimimos los datos del primer piloto con sus atributos
-		JLabel piloto1 = new JLabel(Piloto.crearPiloto().get(0).toString());
+		Font font = new Font("Verdana", Font.BOLD, 39);
+		//Imprimimos los datos de los pilotos con sus atributos
+		JTextArea piloto1 = new JTextArea(Piloto.crearPiloto().get(0).toString());
+		piloto1.setEditable( false );
+		piloto1.setBackground(Color.DARK_GRAY);
 		pIzquierda.add(piloto1);
-		piloto1.setFont(new java.awt.Font("Tahoma", 1, 11));
-		//Imprimimos los datos del segundo piloto con sus atributos
-		JLabel piloto2 = new JLabel(Piloto.crearPiloto().get(1).toString());
+		piloto1.setFont(font);
+	
+		
+		JTextArea piloto2 = new JTextArea(Piloto.crearPiloto().get(1).toString());
+		piloto2.setEditable( false );
+		piloto2.setBackground(Color.GRAY);
 		pDerecha.add(piloto2);
-		
-		
-			
+		piloto2.setFont(font);
+
 		
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
