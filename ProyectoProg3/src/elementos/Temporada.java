@@ -9,14 +9,17 @@ import java.util.HashMap;
 public class Temporada {
 	
 	//ATRIBUTOS de la clase Temporada
+	public int año;
 	public HashMap<Piloto, Integer> puntosPiloto;		//Puntos que tiene cada piloto en la temporada
-	public ArrayList<Circuito> circuitos;				//Lista de circuitos
+	public ArrayList<Carrera> listaCarreras;			//Lista de carreras de la temporada
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
 	
 	//CONSTRUCTOR
-	public Temporada(HashMap<Piloto, Integer> puntosPiloto, ArrayList<Circuito> circuitos, HashMap<Escuderia, Integer> puntosEscuderia) {
+	public Temporada(int año, HashMap<Piloto, Integer> puntosPiloto, ArrayList<Carrera> listaCarreras,
+			HashMap<Escuderia, Integer> puntosEscuderia) {
+		this.año = año;
 		this.puntosPiloto = puntosPiloto;
-		this.circuitos = circuitos;
+		this.listaCarreras = listaCarreras;
 		this.puntosEscuderia = puntosEscuderia;
 	}
 	
@@ -43,6 +46,14 @@ public class Temporada {
 	
 
 	//GETTERS Y SETTERS
+	public int getAño() {
+		return año;
+	}
+
+	public void setAño(int año) {
+		this.año = año;
+	}
+	
 	public HashMap<Piloto, Integer> getPuntosPiloto() {
 		return puntosPiloto;
 	}
@@ -51,12 +62,12 @@ public class Temporada {
 		this.puntosPiloto = puntosPiloto;
 	}
 
-	public ArrayList<Circuito> getCircuitos() {
-		return circuitos;
+	public ArrayList<Carrera> getListaCarreras() {
+		return listaCarreras;
 	}
 
-	public void setCircuitos(ArrayList<Circuito> circuitos) {
-		this.circuitos = circuitos;
+	public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+		this.listaCarreras = listaCarreras;
 	}
 
 	public HashMap<Escuderia, Integer> getPuntosEscuderia() {

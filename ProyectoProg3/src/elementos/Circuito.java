@@ -1,5 +1,7 @@
 package elementos;
 
+import java.util.ArrayList;
+
 /** Esta clase define los circuitos del mundial y sus caracteristicas
  *
  */
@@ -8,7 +10,6 @@ public class Circuito {
 	//ATRIBUTOS de la clase Circuito
 	public String nombre;							//Nombre del circuito
 	public String pais;								//País de origen
-	public String fecha;							//Fecha de celebracion del GP
 	public int nivelDegradacion;					//Nivel de degradación por vuelta en el circuito (1-3)
 	public float tiempoReferenciaClasif;			//Tiempo de referencia para Clasificacion
 	public float tiempoReferenciaCarrera;			//Tiempo de referencia para Carrera
@@ -16,11 +17,10 @@ public class Circuito {
 	public int vueltas;								//Vueltas que se completan en el GP
 	
 	//CONSTRUCTOR
-	public Circuito(String nombre, String pais, String fecha, int nivelDegradacion, float tiempoReferenciaClasif,
+	public Circuito(String nombre, String pais, int nivelDegradacion, float tiempoReferenciaClasif,
 			float tiempoReferenciaCarrera, float tiempoReferenciaBoxes, int vueltas) {
 		this.nombre = nombre;
 		this.pais = pais;
-		this.fecha = fecha;
 		this.nivelDegradacion = nivelDegradacion;
 		this.tiempoReferenciaClasif = tiempoReferenciaClasif;
 		this.tiempoReferenciaCarrera = tiempoReferenciaCarrera;
@@ -43,14 +43,6 @@ public class Circuito {
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}
-
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
 	}
 
 	public int getNivelDegradacion() {
@@ -91,5 +83,37 @@ public class Circuito {
 
 	public void setVueltas(int vueltas) {
 		this.vueltas = vueltas;
+	}
+	
+	/**
+	 * Método que sirve para crear los circuitos predeterminados de la F1
+	 * @return Lista de los circuitos
+	 */
+	public static ArrayList<Circuito> crearCircuitosPredeterminados() {
+		ArrayList<Circuito> listaCircuitos = new ArrayList<Circuito>();
+		// PENDIENTE ACTUALIZAR NIVEL DEGRADACIÓN Y TIEMPO REFERENCIA BOXES
+		listaCircuitos.add(new Circuito("Albert Park", "Australia", 1, (float)79.5, (float)84.5, (float)20.0, 58));
+		listaCircuitos.add(new Circuito("Sakhir", "Bahrein", 1, (float)76.8, (float)82.4, (float)20.0, 57));
+		listaCircuitos.add(new Circuito("Shanghai", "China", 1, (float)80.5, (float)83.7, (float)20.0, 56));
+		listaCircuitos.add(new Circuito("Baku City Circuit", "Azerbaiyán", 1, (float)89.5, (float)92.0, (float)20.0, 51));
+		listaCircuitos.add(new Circuito("Catalunya", "España", 1, (float)74.4, (float)77.5, (float)20.0, 66));
+		listaCircuitos.add(new Circuito("Montecarlo", "Mónaco", 1, (float)69.1, (float)73.3, (float)20.0, 78));
+		listaCircuitos.add(new Circuito("Gilles Villeneuve", "Canadá", 1, (float)69.2, (float)72.0, (float)20.0, 70));
+		listaCircuitos.add(new Circuito("Paul Ricard", "Francia", 1, (float)87.3, (float)91.7, (float)20.0, 53));
+		listaCircuitos.add(new Circuito("Red Bull Ring", "Austria", 1, (float)62.0, (float)66.5, (float)20.0, 71));
+		listaCircuitos.add(new Circuito("Silverstone", "Reino Unido", 1, (float)84.1, (float)86.4, (float)20.0, 52));
+		listaCircuitos.add(new Circuito("Hockenheim", "Alemania", 1, (float)70.8, (float)75.6, (float)20.0, 64));
+		listaCircuitos.add(new Circuito("Hungaroring", "Hungría", 1, (float)73.5, (float)76.1, (float)20.0, 70));
+		listaCircuitos.add(new Circuito("Spa-Francorchamps", "Bélgica", 1, (float)101.5, (float)105.4, (float)20.0, 44));
+		listaCircuitos.add(new Circuito("Monza", "Italia", 1, (float)78.3, (float)80.8, (float)20.0, 53));
+		listaCircuitos.add(new Circuito("Marina Bay", "Singapur", 1, (float)95.2, (float)100.3, (float)20.0, 61));
+		listaCircuitos.add(new Circuito("Sochi", "Rusia", 1, (float)90.6, (float)94.8, (float)20.0, 53));
+		listaCircuitos.add(new Circuito("Suzuka", "Japón", 1, (float)86.0, (float)90.0, (float)20.0, 52));
+		listaCircuitos.add(new Circuito("Hermanos Rodríguez", "México", 1, (float)74.0, (float)78.2, (float)20.0, 71));
+		listaCircuitos.add(new Circuito("Las Américas", "Estados Unidos", 1, (float)91.2, (float)96.3, (float)20.0, 56));
+		listaCircuitos.add(new Circuito("Interlagos", "Brasil", 1, (float)66.3, (float)69.5, (float)20.0, 71));
+		listaCircuitos.add(new Circuito("Yas Marina", "Abu Dabi", 1, (float)93.8, (float)99.8, (float)20.0, 55));
+		
+		return listaCircuitos;
 	}
 }
