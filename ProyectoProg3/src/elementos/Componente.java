@@ -13,10 +13,10 @@ public class Componente {
 	public int rendimiento;					//Rendimiento del componente (0-100)
 		
 	//CONSTRUCTOR
-	public Componente(String nombre, ArrayList<Mejora> listaMejoras, int rendimiento) {
+	public Componente(String nombre, ArrayList<Mejora> listaMejoras) {
 		this.nombre = nombre;
 		this.listaMejoras = listaMejoras;
-		this.rendimiento = rendimiento;
+		this.rendimiento = calcularRendimientoComponente(listaMejoras);
 	}
 
 	//GETTERS Y SETTERS
@@ -44,52 +44,67 @@ public class Componente {
 		this.rendimiento = rendimiento;
 	}	
 	
-	/** Metodo que crea todos los componentes de cada uno de los coches
-	 * @return lista de todos los componentes de cada uno de los coches
+	/** Método que crea todos los componentes predeterminados de cada uno de los coches. Ejecutar obligatoriamente después del método
+	 * crearMejorasPredeterminadas de la clase Mejora
+	 * @param Lista de las mejoras por componentes de cada coche ordenadas
+	 * @return Lista ordenada de todos los componentes de cada uno de los coches
 	 */
-	public ArrayList<Componente> crearComponentes() {
+	public static ArrayList<Componente> crearComponentesPredeterminados(ArrayList<ArrayList<Mejora>> listaMejoras) {
 		ArrayList<Componente> listaComponentes = new ArrayList<Componente>();
-		//MERCEDES
-		listaComponentes.add(new Componente("mercedes.m", null, 88)); //MOTOR
-		listaComponentes.add(new Componente("mercedes.a", null, 88)); //AERODINAMICA
-		listaComponentes.add(new Componente("mercedes.c", null, 90)); //CHASIS
-		//FERRARI
-		listaComponentes.add(new Componente("ferrari.m", null, 91));
-		listaComponentes.add(new Componente("ferrari.a", null, 88));
-		listaComponentes.add(new Componente("ferrari.c", null, 85));
-		//REDBULL
-		listaComponentes.add(new Componente("redbull.m", null, 80));
-		listaComponentes.add(new Componente("redbull.a", null, 89));
-		listaComponentes.add(new Componente("redbull.c", null, 91));
-		//MCLAREN
-		listaComponentes.add(new Componente("mclaren.m", null, 81));
-		listaComponentes.add(new Componente("mclaren.a", null, 82));
-		listaComponentes.add(new Componente("mclaren.c", null, 79));
-		//RENAULT
-		listaComponentes.add(new Componente("renault.m", null, 81));
-		listaComponentes.add(new Componente("renault.a", null, 78));
-		listaComponentes.add(new Componente("renault.c", null, 76));
-		//TOROROSSO
-		listaComponentes.add(new Componente("tororosso.m", null, 80));
-		listaComponentes.add(new Componente("tororosso.a", null, 76));
-		listaComponentes.add(new Componente("tororosso.c", null, 77));
-		//RACINGPOINT
-		listaComponentes.add(new Componente("racingpoint.m", null, 86));
-		listaComponentes.add(new Componente("racingpoint.a", null, 75));
-		listaComponentes.add(new Componente("racingpoint.c", null, 73));
-		//HAAS
-		listaComponentes.add(new Componente("haas.m", null, 91));
-		listaComponentes.add(new Componente("haas.a", null, 73));
-		listaComponentes.add(new Componente("haas.c", null, 72));
-		//ALFAROMEO
-		listaComponentes.add(new Componente("alfaromeo.m", null, 91));
-		listaComponentes.add(new Componente("alfaromeo.a", null, 70));
-		listaComponentes.add(new Componente("alfaromeo.c", null, 68));
-		//WILLIAMS
-		listaComponentes.add(new Componente("williams.m", null, 86));
-		listaComponentes.add(new Componente("williams.a", null, 51));
-		listaComponentes.add(new Componente("williams.c", null, 55));
+		//MERCEDES (0-2)
+		listaComponentes.add(new Componente("mercedes.m", listaMejoras.get(0))); //MOTOR
+		listaComponentes.add(new Componente("mercedes.a", listaMejoras.get(1))); //AERODINAMICA
+		listaComponentes.add(new Componente("mercedes.c", listaMejoras.get(2))); //CHASIS
+		//FERRARI (3-5)
+		listaComponentes.add(new Componente("ferrari.m", listaMejoras.get(3)));
+		listaComponentes.add(new Componente("ferrari.a", listaMejoras.get(4)));
+		listaComponentes.add(new Componente("ferrari.c", listaMejoras.get(5)));
+		//REDBULL (6-8)
+		listaComponentes.add(new Componente("redbull.m", listaMejoras.get(6)));
+		listaComponentes.add(new Componente("redbull.a", listaMejoras.get(7)));
+		listaComponentes.add(new Componente("redbull.c", listaMejoras.get(8)));
+		//MCLAREN (9-11)
+		listaComponentes.add(new Componente("mclaren.m", listaMejoras.get(9)));
+		listaComponentes.add(new Componente("mclaren.a", listaMejoras.get(10)));
+		listaComponentes.add(new Componente("mclaren.c", listaMejoras.get(11)));
+		//RENAULT (12-14)
+		listaComponentes.add(new Componente("renault.m", listaMejoras.get(12)));
+		listaComponentes.add(new Componente("renault.a", listaMejoras.get(13)));
+		listaComponentes.add(new Componente("renault.c", listaMejoras.get(14)));
+		//TOROROSSO (15-17)
+		listaComponentes.add(new Componente("tororosso.m", listaMejoras.get(15)));
+		listaComponentes.add(new Componente("tororosso.a", listaMejoras.get(16)));
+		listaComponentes.add(new Componente("tororosso.c", listaMejoras.get(17)));
+		//RACINGPOINT (18-20)
+		listaComponentes.add(new Componente("racingpoint.m", listaMejoras.get(18)));
+		listaComponentes.add(new Componente("racingpoint.a", listaMejoras.get(19)));
+		listaComponentes.add(new Componente("racingpoint.c", listaMejoras.get(20)));
+		//HAAS (21-23)
+		listaComponentes.add(new Componente("haas.m", listaMejoras.get(21)));
+		listaComponentes.add(new Componente("haas.a", listaMejoras.get(22)));
+		listaComponentes.add(new Componente("haas.c", listaMejoras.get(23)));
+		//ALFAROMEO (24-26)
+		listaComponentes.add(new Componente("alfaromeo.m", listaMejoras.get(24)));
+		listaComponentes.add(new Componente("alfaromeo.a", listaMejoras.get(25)));
+		listaComponentes.add(new Componente("alfaromeo.c", listaMejoras.get(26)));
+		//WILLIAMS (27-29)
+		listaComponentes.add(new Componente("williams.m", listaMejoras.get(27)));
+		listaComponentes.add(new Componente("williams.a", listaMejoras.get(28)));
+		listaComponentes.add(new Componente("williams.c", listaMejoras.get(29)));
 
 		return listaComponentes;
+	}
+	
+	/**
+	 * Método que sirve para calcular el rendimiento sobre 100 de un componente en función de su lista de mejoras
+	 * @param listaMejoras Lista de mejoras que tiene un componente
+	 * @return Rendimiento del 0 al 100 que tendrá ese componente en función de sus mejoras
+	 */
+	public int calcularRendimientoComponente(ArrayList<Mejora> listaMejoras) {
+		int rendimiento = 0;
+		for (Mejora m: listaMejoras) {
+			rendimiento += m.getAumentoRendimiento();
+		}
+		return rendimiento;
 	}
 }

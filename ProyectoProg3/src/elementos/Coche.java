@@ -98,22 +98,24 @@ public class Coche {
 		return puntuacion;
 	}
 	
-	/** Metodo que crea todos los coches del campeonato
-	 * @return lista de coches participantes
+	/** Metodo que crea todos los coches del campeonato con sus correspondientes componentes predeterminados. Ejecutar obligatoriamente
+	 * después del método crearComponentesPredeterminados de la clase Componente
+	 * @param Lista de componentes predeterminados ordenados con sus correspondientes mejoras
+	 * @return Lista de coches participantes en el campeonato
 	 */
-	public ArrayList<Coche> crearCoche() {
+	public static ArrayList<Coche> crearCochesPredeterminados(ArrayList<Componente> listaComponentes) {
 		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
 		
-		listaCoches.add(new Coche("Mercedes",null,null,null,100));
-		listaCoches.add(new Coche("Ferrari",null,null,null,100));
-		listaCoches.add(new Coche("Redbull",null,null,null,100));
-		listaCoches.add(new Coche("Mclaren",null,null,null,100));
-		listaCoches.add(new Coche("Renault",null,null,null,100));
-		listaCoches.add(new Coche("Tororosso",null,null,null,100));
-		listaCoches.add(new Coche("Racingpoint",null,null,null,100));
-		listaCoches.add(new Coche("Haas",null,null,null,100));
-		listaCoches.add(new Coche("Alfaromeo",null,null,null,100));
-		listaCoches.add(new Coche("Williams",null,null,null,100));
+		listaCoches.add(new Coche("Mercedes",listaComponentes.get(0),listaComponentes.get(1),listaComponentes.get(2),100));
+		listaCoches.add(new Coche("Ferrari",listaComponentes.get(3),listaComponentes.get(4),listaComponentes.get(5),100));
+		listaCoches.add(new Coche("Redbull",listaComponentes.get(6),listaComponentes.get(7),listaComponentes.get(8),100));
+		listaCoches.add(new Coche("Mclaren",listaComponentes.get(9),listaComponentes.get(10),listaComponentes.get(11),100));
+		listaCoches.add(new Coche("Renault",listaComponentes.get(12),listaComponentes.get(13),listaComponentes.get(14),100));
+		listaCoches.add(new Coche("Tororosso",listaComponentes.get(15),listaComponentes.get(16),listaComponentes.get(17),100));
+		listaCoches.add(new Coche("Racingpoint",listaComponentes.get(18),listaComponentes.get(19),listaComponentes.get(20),100));
+		listaCoches.add(new Coche("Haas",listaComponentes.get(21),listaComponentes.get(22),listaComponentes.get(23),100));
+		listaCoches.add(new Coche("Alfaromeo",listaComponentes.get(24),listaComponentes.get(25),listaComponentes.get(26),100));
+		listaCoches.add(new Coche("Williams",listaComponentes.get(27),listaComponentes.get(28),listaComponentes.get(29),100));
 		
 		return listaCoches;		
 	}
