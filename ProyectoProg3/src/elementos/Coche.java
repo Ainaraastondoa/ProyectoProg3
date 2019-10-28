@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * 
  */
 public class Coche {
-	
+
 	//ATRIBUTOS de la clase Coche
 	public String nombre; 			//Nombre del monoplaza
 	public Componente motor;		//Motor que monta el coche
@@ -118,5 +118,11 @@ public class Coche {
 		listaCoches.add(new Coche("Williams",listaComponentes.get(27),listaComponentes.get(28),listaComponentes.get(29),100));
 		
 		return listaCoches;		
+	}
+	
+	@Override
+	public String toString() {
+		return "Coche [nombre=" + nombre + ", motor=" + motor + ", chasis=" + chasis + ", aerodinamica=" + aerodinamica
+				+ ", porcentajeRuedas=" + porcentajeRuedas + "]";
 	}
 }
