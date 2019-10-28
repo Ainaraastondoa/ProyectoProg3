@@ -60,7 +60,7 @@ public class VentanaPiloto extends JFrame{
 		pCentral.add(pDerecha);
 		getContentPane().add(pCentral);
 		Font font = new Font("Verdana", Font.BOLD, 39);
-		//Imprimimos los datos de los pilotos con sus atributos
+		//Imprimimos los datos de los pilotos con sus atributos - PROVISIONAL
 		Escuderia escuderia_seleccionada = new Escuderia ("Ferrari", "Matia Binoto", new Piloto
 				("Vettel",32,9,62,69,66,77,60,null), new Piloto("Leclerc",22,9,55,79,77,80,68,null), 25000000);
 		Piloto p1 = escuderia_seleccionada.getPiloto1();
