@@ -62,7 +62,7 @@ public class Escuderia {
 		listaEscuderias.add(new Escuderia("RedBull", "Christian Horner", listaPilotos.get(4), listaPilotos.get(5), 25000000));
 		listaEscuderias.add(new Escuderia("Mclaren", "Andrea Seidl", listaPilotos.get(6), listaPilotos.get(7), 20000000));
 		listaEscuderias.add(new Escuderia("Renault", "Cyril Abditeboul", listaPilotos.get(8), listaPilotos.get(9), 17500000));
-		listaEscuderias.add(new Escuderia("ToroRosso", "Yukiteo Nakamoto", listaPilotos.get(10), listaPilotos.get(11), 15000000));
+		listaEscuderias.add(new Escuderia("ToroRosso", "Franz Tost", listaPilotos.get(10), listaPilotos.get(11), 15000000));
 		listaEscuderias.add(new Escuderia("RacingPoint", "Bono", listaPilotos.get(12), listaPilotos.get(13), 15000000));
 		listaEscuderias.add(new Escuderia("Haas", "Guenther Steiner", listaPilotos.get(14), listaPilotos.get(15), 10000000));
 		listaEscuderias.add(new Escuderia("AlfaRomeo", "Frank Vasseur", listaPilotos.get(16), listaPilotos.get(17), 10000000));
@@ -72,6 +72,10 @@ public class Escuderia {
 
 	@Override
 	public String toString() {
+		return nombre;
+	}	
+	
+	public String toString2() {
 		return "Escuderia [nombre=" + nombre + ", director=" + director + ", piloto1=" + piloto1 + ", piloto2="
 				+ piloto2 + ", presupuesto=" + presupuesto + "]";
 	}	

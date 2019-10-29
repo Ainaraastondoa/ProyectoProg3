@@ -122,7 +122,11 @@ public class Coche {
 	
 	@Override
 	public String toString() {
-		return "Coche [nombre=" + nombre + ", motor=" + motor + ", chasis=" + chasis + ", aerodinamica=" + aerodinamica
-				+ ", porcentajeRuedas=" + porcentajeRuedas + "]";
+		return nombre;
+	}
+	
+	//Ventana Coche
+	public String toString2() {
+		return "Motor=" + motor.getRendimiento() + "\nChasis=" + chasis.getRendimiento() + "\nAerodinamica=" + aerodinamica.getRendimiento();
 	}
 }

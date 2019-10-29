@@ -58,7 +58,11 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				VentanaCoche coche = new VentanaCoche( MenuPrincipalTrayectoria.this );
+				coche.setLocation( getLocation() );
+				coche.setSize( getSize() );
+				coche.setVisible( true );
+				MenuPrincipalTrayectoria.this.setVisible( false );
 			}
 			
 		});

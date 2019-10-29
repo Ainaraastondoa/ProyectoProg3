@@ -191,4 +191,9 @@ public class Mejora {
 		listaFinal.add(williamsM); listaFinal.add(williamsA); listaFinal.add(williamsC);
 		return listaFinal;
 	}
+
+	@Override
+	public String toString() {
+		return  nombre + "\n";
+	}
 }
