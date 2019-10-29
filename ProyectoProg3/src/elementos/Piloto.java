@@ -2,7 +2,7 @@ package elementos;
 
 import java.util.ArrayList;
 
-/*Esta clase define las caracteristicas de los pilotos 
+/*Esta clase define las características de los pilotos 
  * 
  */
 public class Piloto {
