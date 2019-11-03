@@ -251,7 +251,7 @@ public class Carrera {
 		return horMinsSegs; 
 	}
 	
-	/** Metodo que al finalizar la carrera, o cuando dos pilotos hayan recorrido la misma distancia, 
+	/** Método que al finalizar la carrera, o cuando dos pilotos hayan recorrido la misma distancia, 
 	 * calcula la diferencia de tiempo que hay entre los dos.
 	 * @param tiempoP1 Tiempo del piloto que va delante (menor)
 	 * @param tiempoP2 Tiempo del piloto seguidor (mayor)
@@ -263,8 +263,17 @@ public class Carrera {
 		return tiempoEntrePilotos;		
 	}
 	
-	// Método main de prueba
-	public static void main(String[] args) {
-		
+	/**
+	 * Método que sirve para crear la lista de carreras de una temporada
+	 * @param listaCircuitos Lista de circuitos de F1
+	 * @param listaPilotos Lista de los pilotos que participan en la temporada
+	 * @return Lista de carreras en una temporada
+	 */
+	public static ArrayList<Carrera> crearCarreras(ArrayList<Circuito> listaCircuitos, ArrayList<Piloto> listaPilotos) {
+		ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>();
+		for (Circuito c: listaCircuitos) {
+			listaCarreras.add(new Carrera(c, listaPilotos));
+		}
+		return listaCarreras;
 	}
 }

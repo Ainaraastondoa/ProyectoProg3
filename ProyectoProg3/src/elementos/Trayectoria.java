@@ -5,30 +5,22 @@ import java.util.ArrayList;
 public class Trayectoria {
 
 	// ATRIBUTOS de la clase Trayectoria - DATOS
-	
-	private static ArrayList<ArrayList<Mejora>> listaMejoras = Mejora.crearMejorasPredeterminadas();
-	private static ArrayList<Componente> listaComponentes;
-	private static ArrayList<Coche> listaCoches;
-	private static ArrayList<Piloto> listaPilotos;
-	private static ArrayList<Escuderia> listaEscuderias;
-	public ArrayList<Temporada> listaTemporadas;
+	private ArrayList<Piloto> listaPilotos;
+	private ArrayList<Escuderia> listaEscuderias;
+	private ArrayList<Temporada> listaTemporadas;
 	
 
 	// CONSTRUCTOR de la clase Trayectoria
-	public Trayectoria(ArrayList<Piloto> listaPilotos, ArrayList<Temporada> listaTemporadas) {
-		this.listaPilotos = listaPilotos;
-		this.listaTemporadas = listaTemporadas;
+	public Trayectoria() {
+		ArrayList<ArrayList<Mejora>> listaMejoras = Mejora.crearMejorasPredeterminadas();
+		ArrayList<Componente> listaComponentes = Componente.crearComponentesPredeterminados(listaMejoras);
+		ArrayList<Coche> listaCoches = Coche.crearCochesPredeterminados(listaComponentes);
+		this.listaPilotos = Piloto.crearPilotosPredeterminados(listaCoches);
+		this.listaEscuderias = Escuderia.crearEscuderiasPredeterminadas(this.listaPilotos);
+		this.listaTemporadas = new ArrayList<Temporada>();
 	}
 	
 	// GETTERS Y SETTERS
-	public ArrayList<Piloto> getListaPilotos() {
-		return listaPilotos;
-	}
-
-	public void setListaPilotos(ArrayList<Piloto> listaPilotos) {
-		this.listaPilotos = listaPilotos;
-	}
-
 	public ArrayList<Temporada> getListaTemporadas() {
 		return listaTemporadas;
 	}
@@ -37,18 +29,49 @@ public class Trayectoria {
 		this.listaTemporadas = listaTemporadas;
 	}
 
-	public static void initalizeData() {
-		listaComponentes = Componente.crearComponentesPredeterminados(listaMejoras);
-		listaCoches = Coche.crearCochesPredeterminados(listaComponentes);
-		listaPilotos = Piloto.crearPilotosPredeterminados(listaCoches);
-		listaEscuderias = Escuderia.crearEscuderiasPredeterminadas(listaPilotos);
+	public ArrayList<Escuderia> getListaEscuderias() {
+		return listaEscuderias;
+	}
+
+	public void setListaEscuderias(ArrayList<Escuderia> listaEscuderias) {
+		this.listaEscuderias = listaEscuderias;
 	}
 	
-	/** Devuleve la escuderia seleccionada
-	 * @return escuderia que el jugador ha elegido para la trayectoria
-	 */
-	public static Escuderia getEscuderia() {	
-		initalizeData();
-		return listaEscuderias.get(1);
+	public ArrayList<Piloto> getListaPilotos() {
+		return listaPilotos;
+	}
+
+	public void setListaPilotos(ArrayList<Piloto> listaPilotos) {
+		this.listaPilotos = listaPilotos;
+	}
+
+	// Método de simulación de una trayectoria
+	public void simularTrayectoria() {
+		
+		// Creación de Trayectoria
+		ArrayList<Circuito> listaCircuitos = Circuito.crearCircuitosPredeterminados();
+		
+		// Añadir temporada
+		ArrayList<Carrera> listaCarreras = Carrera.crearCarreras(listaCircuitos, this.listaPilotos);
+		Temporada t = new Temporada(2019, listaCarreras, listaPilotos, listaEscuderias);
+		this.getListaTemporadas().add(t);
+		
+		// Simular Carrera (carrera 1)
+		t.getListaCarreras().get(0).simularCarrera();
+		t.getListaCarreras().get(0).ordenarClasificacionCarrera();
+		t.getListaCarreras().get(0).repartirPuntos(t.getPuntosPiloto());
+		t.getListaCarreras().get(0).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(0).repartirDinero(t.getPuntosEscuderia());
+		
+		// Comprobación (carrera 1)
+		System.out.println("Resultado Carrera:");
+		System.out.println(t.getListaCarreras().get(0).getListaPilotos());
+		System.out.println(t.getListaCarreras().get(0).getListaTiempos());
+	}
+	
+	// Método main de prueba
+	public static void main(String[] args) {
+		Trayectoria t = new Trayectoria();
+		t.simularTrayectoria();
 	}
 }

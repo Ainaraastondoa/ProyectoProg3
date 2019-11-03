@@ -55,6 +55,7 @@ public class Escuderia {
 		this.presupuesto = presupuesto;
 	}
 	
+	// Método qur sirve para crear las escuderías predeterminadas. Ejecutar después de crear a los pilotos
 	public static ArrayList<Escuderia> crearEscuderiasPredeterminadas(ArrayList<Piloto> listaPilotos) {
 		ArrayList<Escuderia> listaEscuderias = new ArrayList<Escuderia>();
 		listaEscuderias.add(new Escuderia("Mercedes", "Toto Wolf", listaPilotos.get(0), listaPilotos.get(1), 25000000));

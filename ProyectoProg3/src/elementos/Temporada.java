@@ -15,12 +15,11 @@ public class Temporada {
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
 	
 	//CONSTRUCTOR
-	public Temporada(int año, HashMap<Piloto, Integer> puntosPiloto, ArrayList<Carrera> listaCarreras,
-			HashMap<Escuderia, Integer> puntosEscuderia) {
+	public Temporada(int año, ArrayList<Carrera> listaCarreras, ArrayList<Piloto> listaPilotos, ArrayList<Escuderia> listaEscuderias) {
 		this.año = año;
-		this.puntosPiloto = puntosPiloto;
+		this.puntosPiloto = crearMapaPilotosPuntos(listaPilotos);
 		this.listaCarreras = listaCarreras;
-		this.puntosEscuderia = puntosEscuderia;
+		this.puntosEscuderia = crearMapaEscuderiasPuntos(listaEscuderias);
 	}
 	
 	//Creamos hashmap para hacer pruebas de visualizacion en ventana
@@ -76,5 +75,31 @@ public class Temporada {
 
 	public void setPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia) {
 		this.puntosEscuderia = puntosEscuderia;
+	}
+	
+	/**
+	 * Método que sirve para crear el hashmap de pilotos y puntos
+	 * @param listaPilotos Lista de pilotos que toman parte en la temporada
+	 * @return Puntos por piloto en la temporada (a 0 en el inicio)
+	 */
+	public HashMap<Piloto, Integer> crearMapaPilotosPuntos(ArrayList<Piloto> listaPilotos) {
+		HashMap<Piloto, Integer> mapa = new HashMap<Piloto, Integer>();
+		for (Piloto p: listaPilotos) {
+			mapa.put(p, 0);
+		}
+		return mapa;
+	}
+	
+	/**
+	 * Método que sirve para crear el hashmap de escuderías y puntos
+	 * @param listaEscuderias Lista de escuderías que toman parte en la temporada
+	 * @return Puntos por escudería en la temporada (a 0 en el inicio)
+	 */
+	public HashMap<Escuderia, Integer> crearMapaEscuderiasPuntos(ArrayList<Escuderia> listaEscuderias) {
+		HashMap<Escuderia, Integer> mapa = new HashMap<Escuderia, Integer>();
+			for (Escuderia c: listaEscuderias) {
+				mapa.put(c, 0);
+			}
+		return mapa;
 	}
 }
