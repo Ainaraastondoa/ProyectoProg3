@@ -2,8 +2,10 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,22 +32,29 @@ public class VentanaClasifPiloto extends JFrame{
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
 		//Imprimimos a sus pilotos con sus respectivos puntos 
-//		JTextArea pilotos = new JTextArea(Temporada.crearPuntosPiloto().get(0).toString());
-//		getContentPane().add(pilotos, BorderLayout.CENTER);
+
 		
 		//Creamos el panel de la clasificacion
 		JPanel pCentral = new JPanel();
-		
-		pCentral.setBackground(Color.gray);
+		JPanel pDerecha = new JPanel();
+		JPanel pIzquierda = new JPanel();
+		Label eti = new Label("PILOTOS");
+		Label eti2 = new Label("PUNTOS");
+		JPanel pDerechaSupe = new JPanel();
+		JPanel pIzquierdaSupe = new JPanel();
+		pDerechaSupe.add(eti2);
+		pIzquierdaSupe.add(eti);
+		pDerecha.add(pDerechaSupe);
+		pCentral.setLayout(new GridLayout(2,1));
+		pIzquierda.add(pIzquierdaSupe);
+		pIzquierda.setBackground(Color.DARK_GRAY);
+		pDerecha.setBackground(Color.GRAY);
+		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pCentral.setLayout(new GridLayout(1,2));
+		pCentral.add(pIzquierda);
+		pCentral.add(pDerecha);
 		getContentPane().add(pCentral);
-		Font font = new Font("Verdana", Font.BOLD, 39);
 
-//		JTextArea pilotos = new JTextArea(Temporada.puntosPiloto..toString());
-//		piloto1.setEditable( false );
-//		piloto1.setBackground(Color.DARK_GRAY);
-//		pIzquierda.add(piloto1);
-//		piloto1.setFont(font);
 	
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {

@@ -1,6 +1,10 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +27,27 @@ public class VentanaClasifEscuderia extends JFrame{
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
 		//Imprimimos las escuderias con sus respectivos puntos
+		//Creamos el panel de la clasificación
+		JPanel pCentral = new JPanel();
+		JPanel pDerecha = new JPanel();
+		JPanel pIzquierda = new JPanel();
+		Label eti = new Label("ESCUDERIAS");
+		Label eti2 = new Label("PUNTOS");
+		JPanel pDerechaSupe = new JPanel();
+		JPanel pIzquierdaSupe = new JPanel();
+		pDerechaSupe.add(eti2);
+		pIzquierdaSupe.add(eti);
+		pDerecha.add(pDerechaSupe);
+		pCentral.setLayout(new GridLayout(2,1));
+		pIzquierda.add(pIzquierdaSupe);
+		pIzquierda.setBackground(Color.GRAY);
+		pDerecha.setBackground(Color.DARK_GRAY);
+		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		pCentral.setLayout(new GridLayout(1,2));
+		pCentral.add(pIzquierda);
+		pCentral.add(pDerecha);
+		getContentPane().add(pCentral);
+
 		
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
