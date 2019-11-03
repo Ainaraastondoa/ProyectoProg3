@@ -48,7 +48,7 @@ public class VentanaCoche extends JFrame{
 		pCentral.add(pPresupuesto);
 		getContentPane().add(pCentral);
 		Font font = new Font("Verdana", Font.BOLD, 39);
-		Font font1 = new Font("Verdana", Font.PLAIN, 22);
+		Font font1 = new Font("Verdana", Font.PLAIN, 39);
 
 		//Imprimimos los datos del coche y sus mejoras
 		Coche coche_seleccionado = Trayectoria.getEscuderia().getPiloto1().getCoche();		
@@ -90,49 +90,50 @@ public class VentanaCoche extends JFrame{
 
 		
 		//MEJORAS YA REALIZADAS
-		ArrayList<Mejora> motorR = coche_seleccionado.getMotor().listaMejoras;
-//		ArrayList<Mejora> chasisR = coche_seleccionado.getChasis().listaMejoras;
-//		ArrayList<Mejora> aerodinamicaR = coche_seleccionado.getAerodinamica().listaMejoras;
-
+		ArrayList<ArrayList<Mejora>> listaMejorasR = Mejora.crearMejorasPredeterminadas();
+		ArrayList<Mejora> motorR = new ArrayList<Mejora>();
+		motorR.addAll(listaMejorasR.get(0));
+		ArrayList<Mejora> chasisR = new ArrayList<Mejora>();
+		chasisR.addAll(listaMejorasR.get(1));
+		ArrayList<Mejora> aerodinamicaR = new ArrayList<Mejora>();
+		aerodinamicaR.addAll(listaMejorasR.get(2));
 		
+
+		//Si algunas de las mejoras de la lista se encuentra completada, se cambia la fuente 
+		//(Habrá que usar JTextPane)
 		JTextArea mm = new JTextArea(motor.toString());
 		mm.setEditable(false);
 		mm.setBackground(Color.LIGHT_GRAY);
-		pChasis.add(mm);
-		for (Mejora mejora : motor) {
-			if (mejora.equals(motorR)) {
+		pMotor.add(mm);
+		mm.setFont(font);
+		for (Mejora mejora : motorR) {
+			if (!motor.contains(mejora)) {
 				mm.setFont(font1);
-			} else {
-				mm.setFont(font);
 			}
-		}
-		
-		//Si algunas de las mejoras de la lista se encuentra completada, se marca en negrita
-//		JTextArea mm = new JTextArea (
-//			if (int i=0; motor.get(i).equals(coche_seleccionado.getMotor().listaMejoras); i++) {
-//				motor.get(i).toString();
-//				mm.setFont(font1);
-//			} else {
-//				motor.get(i).toString();
-//				mm.setFont(font);				
-//			});
-//		mm.setEditable(false);
-//		mm.setBackground(Color.LIGHT_GRAY);
-//		pMotor.add(mm);
-		
-
+		}	
 		
 		JTextArea mc = new JTextArea(chasis.toString());
 		mc.setEditable(false);
 		mc.setBackground(Color.LIGHT_GRAY);
 		pChasis.add(mc);
 		mc.setFont(font);
+		for (Mejora mejora : chasisR) {
+			if (!chasis.contains(mejora)) {
+				mc.setFont(font1);
+			}
+		}
+	
 		
 		JTextArea ma = new JTextArea(aerodinamica.toString());
 		ma.setEditable(false);
 		ma.setBackground(Color.LIGHT_GRAY);
 		pAerodinamica.add(ma);
 		ma.setFont(font);
+		for (Mejora mejora : aerodinamicaR) {
+			if (!aerodinamica.contains(mejora)) {
+				ma.setFont(font1);
+			}
+		}
 		
 		
 		//Escuchadores
