@@ -57,8 +57,11 @@ public class Carrera {
 	 */
 	public float calcularTiempoPorVuelta(Piloto piloto) {
 		float tiempoVueltaInicial = calcularTiempoInicial(piloto);
+		/*PR*/System.out.println(piloto + " -> Tiempo Inicial: " + tiempoVueltaInicial);
 		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * piloto.getCoche().multiplicarDegradacion();
+		/*PR*/System.out.println(piloto + " -> Tiempo tras Degradación: " + tiempoVueltaTrasDegradacion);
 		float tiempoVueltaFinal = tiempoVueltaTrasDegradacion * generarNumeroAleatorio();
+		/*PR*/System.out.println(piloto + " -> Tiempo tras Aleatorio: " + tiempoVueltaFinal);
 		BigDecimal tiempoFinalRedondeado = new BigDecimal(tiempoVueltaFinal).setScale(3, RoundingMode.HALF_EVEN);
 		return tiempoFinalRedondeado.floatValue();
 	}
@@ -117,6 +120,7 @@ public class Carrera {
 	 */
 	public void simularCarrera() {
 		for ( int i = 0; i < this.getCircuito().getVueltas(); i++ ) { // Se repite tantas veces como vueltas tenga el circuito
+			/*P*///System.out.println("Vuelta " + (i + 1));
 			for ( int j = 0; j < this.getListaPilotos().size(); j++ ) { // Se repite tantas veces como pilotos compitan en la carrera
 				float tiempoVueltaPiloto = calcularTiempoPorVuelta( this.getListaPilotos().get( j ) );
 				if ( this.getListaPilotos().get(j).getCoche().getPorcentajeRuedas() < 60 ) {
@@ -125,10 +129,12 @@ public class Carrera {
 				calcularDegradacionPorVuelta(this.getListaPilotos().get(j));
 				if (listaTiempos.size() < 20) { // Primera vuelta
 					listaTiempos.add(tiempoVueltaPiloto);
+					/*P*///System.out.println("Piloto: " + this.getListaPilotos().get(j) + "  ->  " + this.getListaTiempos().get(j));
 				} else { // Resto de vueltas
 					float tiempoTotalPiloto = listaTiempos.get(j);
 					tiempoTotalPiloto += tiempoVueltaPiloto;
 					listaTiempos.set(j, tiempoTotalPiloto);
+					/*P*///System.out.println("Piloto: " + this.getListaPilotos().get(j) + "  ->  " + this.getListaTiempos().get(j));
 				}
 			}
 		}

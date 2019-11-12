@@ -144,6 +144,10 @@ public class Piloto {
 
 	@Override
 	public String toString() {
+		return nombre;
+	}
+	
+	public String toString2() {
 		return "\n" + "\n" + "\nNOMBRE: " + nombre + 
 				"\nEDAD: " + edad + "\nNIVEL: " + nivel + "\nREGULARIDAD: " + regularidad
 				+ "\nADELANTAR: " + adelantar + "\nDEFENDER: " + defender + "\nVELOCIDAD: " + velocidad + 
