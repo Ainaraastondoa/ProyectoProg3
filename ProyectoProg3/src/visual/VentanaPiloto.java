@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import elementos.*;
 
@@ -61,23 +62,28 @@ public class VentanaPiloto extends JFrame{
 		getContentPane().add(pCentral);
 		Font font = new Font("Verdana", Font.BOLD, 39);
 		//Imprimimos los datos de los pilotos con sus atributos _PROVISIONAL 
-		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
-		Piloto p1 = escuderia_seleccionada.getPiloto1();
-		Piloto p2 = escuderia_seleccionada.getPiloto2();	
-		
-		JTextArea piloto1 = new JTextArea(p1.toString());
-		piloto1.setEditable( false );
-		piloto1.setBackground(Color.DARK_GRAY);
-		pIzquierda.add(piloto1);
-		piloto1.setFont(font);
-	
-		
-		JTextArea piloto2 = new JTextArea(p2.toString());
-		piloto2.setEditable( false );
-		piloto2.setBackground(Color.GRAY);
-		pDerecha.add(piloto2);
-		piloto2.setFont(font);
-
+		String nombre_escuderia_seleccionada = Trayectoria.getPiloto().getCoche().nombre;
+		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(initDatos.initPilotos())) {
+			if (nombre_escuderia_seleccionada.equals(escuderia.nombre)) {
+				Escuderia escuderia_seleccionada = escuderia;
+				
+				Piloto p1 = escuderia_seleccionada.getPiloto1();
+				Piloto p2 = escuderia_seleccionada.getPiloto2();
+				
+				JTextArea piloto1 = new JTextArea(p1.toString2());
+				piloto1.setEditable( false );
+				piloto1.setBackground(Color.DARK_GRAY);
+				pIzquierda.add(piloto1);
+				piloto1.setFont(font);
+			
+				
+				JTextArea piloto2 = new JTextArea(p2.toString2());
+				piloto2.setEditable( false );
+				piloto2.setBackground(Color.GRAY);
+				pDerecha.add(piloto2);
+				piloto2.setFont(font);
+			}
+		}
 		
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
@@ -87,11 +93,7 @@ public class VentanaPiloto extends JFrame{
 				dispose();
 				MenuPrincipalTrayectoria.setVisible( true );
 				
-			}
-			
-		}); 
-		
+			}			
+		}); 		
 	}
-	
-
 }

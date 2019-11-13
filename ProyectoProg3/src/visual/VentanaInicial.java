@@ -66,11 +66,11 @@ public class VentanaInicial extends JFrame{
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaInicial.this );
-						menu.setLocation( getLocation() );
-						menu.setSize( getSize() );
-						menu.setVisible( true );
-						VentanaInicial.this.setVisible( false );	
+						VentanaSelPiloto piloto = new VentanaSelPiloto( VentanaInicial.this );
+						piloto.setLocation( getLocation() );
+						piloto.setSize( getSize() );
+						piloto.setVisible( true );
+						VentanaInicial.this.setVisible( false );
 					}
 					
 				});

@@ -8,6 +8,7 @@ public class Trayectoria {
 	private ArrayList<Piloto> listaPilotos;
 	private ArrayList<Escuderia> listaEscuderias;
 	private ArrayList<Temporada> listaTemporadas;
+	private static Piloto piloto; //Piloto seleccionado para la trayectoria.
 	
 
 	// CONSTRUCTOR de la clase Trayectoria
@@ -43,6 +44,14 @@ public class Trayectoria {
 
 	public void setListaPilotos(ArrayList<Piloto> listaPilotos) {
 		this.listaPilotos = listaPilotos;
+	}
+
+	public static Piloto getPiloto() {
+		return piloto;
+	}
+
+	public static void setPiloto(Piloto piloto) {
+		Trayectoria.piloto = piloto;
 	}
 
 	// Método de simulación de una trayectoria
