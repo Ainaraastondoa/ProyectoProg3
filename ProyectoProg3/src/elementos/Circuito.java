@@ -116,4 +116,9 @@ public class Circuito {
 		
 		return listaCircuitos;
 	}
+
+	@Override
+	public String toString() {
+		return "Circuito [nombre=" + nombre + ", pais=" + pais + ", vueltas=" + vueltas + "]";
+	}
 }

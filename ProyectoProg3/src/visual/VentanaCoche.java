@@ -18,6 +18,7 @@ import elementos.Coche;
 import elementos.Escuderia;
 import elementos.Mejora;
 import elementos.Trayectoria;
+import elementos.initDatos;
 
 public class VentanaCoche extends JFrame{
 	
@@ -29,7 +30,7 @@ public class VentanaCoche extends JFrame{
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		JPanel pSuperior = new JPanel();
-		Label etiqueta = new Label(Trayectoria.getEscuderia().toString());
+		Label etiqueta = new Label(Trayectoria.getPiloto().getCoche().toString());
 		pSuperior.add(etiqueta); 
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		getContentPane().add(pSuperior, BorderLayout.NORTH); 
@@ -51,23 +52,27 @@ public class VentanaCoche extends JFrame{
 		Font font1 = new Font("Verdana", Font.PLAIN, 39);
 
 		//Imprimimos los datos del coche y sus mejoras
-		Coche coche_seleccionado = Trayectoria.getEscuderia().getPiloto1().getCoche();		
-		Coche datos = coche_seleccionado;
-		Integer presupuesto = Trayectoria.getEscuderia().getPresupuesto();
-		
-		
-		JTextArea da = new JTextArea(datos.toString2());
+		String nombre_escuderia_seleccionada = Trayectoria.getPiloto().getCoche().nombre;
+		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(initDatos.initPilotos())) {
+			if (nombre_escuderia_seleccionada.equals(escuderia.nombre)) {
+				Escuderia escuderia_seleccionada = escuderia;
+				Integer presupuesto = escuderia_seleccionada.getPresupuesto();
+				
+				JTextArea pr = new JTextArea(presupuesto.toString());
+				pr.setEditable(false);
+				pr.setBackground(Color.LIGHT_GRAY);
+				pPresupuesto.add(pr);
+				pr.setFont(font);
+			}
+		}
+		Coche coche_seleccionado = Trayectoria.getPiloto().getCoche();		
+	
+		JTextArea da = new JTextArea(coche_seleccionado.toString2());
 		da.setEditable(false);
 		da.setBackground(Color.LIGHT_GRAY);
 		pDatos.add(da);
 		da.setFont(font);
-		
-		JTextArea pr = new JTextArea(presupuesto.toString());
-		pr.setEditable(false);
-		pr.setBackground(Color.LIGHT_GRAY);
-		pPresupuesto.add(pr);
-		pr.setFont(font);
-		
+				
 		//LISTA MEJORAS
 		ArrayList<Mejora> listaMejoras = Mejora.crearMejoras();
 		ArrayList<Mejora> motor = new ArrayList<Mejora>();
@@ -87,7 +92,6 @@ public class VentanaCoche extends JFrame{
 			aerodinamica.add(listaMejoras.get(i));
 			i++;
 		}
-
 		
 		//MEJORAS YA REALIZADAS
 		ArrayList<ArrayList<Mejora>> listaMejorasR = Mejora.crearMejorasPredeterminadas();
@@ -98,7 +102,6 @@ public class VentanaCoche extends JFrame{
 		ArrayList<Mejora> aerodinamicaR = new ArrayList<Mejora>();
 		aerodinamicaR.addAll(listaMejorasR.get(2));
 		
-
 		//Si algunas de las mejoras de la lista se encuentra completada, se cambia la fuente 
 		//(Habrá que usar JTextPane)
 		JTextArea mm = new JTextArea(motor.toString());
@@ -122,8 +125,7 @@ public class VentanaCoche extends JFrame{
 				mc.setFont(font1);
 			}
 		}
-	
-		
+			
 		JTextArea ma = new JTextArea(aerodinamica.toString());
 		ma.setEditable(false);
 		ma.setBackground(Color.LIGHT_GRAY);
@@ -133,8 +135,7 @@ public class VentanaCoche extends JFrame{
 			if (!aerodinamica.contains(mejora)) {
 				ma.setFont(font1);
 			}
-		}
-		
+		}		
 		
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
@@ -144,10 +145,8 @@ public class VentanaCoche extends JFrame{
 				dispose();
 				MenuPrincipalTrayectoria.setVisible( true );
 				
-			}
-			
+			}			
 		}); 
-
 	}
 	
 //	public void dibujar (Graphics g) {

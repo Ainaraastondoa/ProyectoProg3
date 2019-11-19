@@ -8,10 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import elementos.Carrera;
+import elementos.Circuito;
+import elementos.Piloto;
+import elementos.initDatos;
 
 /**Esta clase es para visualizar el menu principal
  * del modo trayectoria
@@ -49,7 +55,11 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				VentanaCarrera vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this);
+				vCarrera.setLocation(getLocation());
+				vCarrera.setSize(getSize());
+				vCarrera.setVisible(true);
+				MenuPrincipalTrayectoria.this.setVisible(false);
 			}
 			
 		});
