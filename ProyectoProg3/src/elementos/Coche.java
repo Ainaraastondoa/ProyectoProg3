@@ -22,6 +22,13 @@ public class Coche {
 		this.aerodinamica = aerodinamica;
 		this.porcentajeRuedas = porcentajeRuedas;
 	}
+	public Coche (Coche coche) {
+		this.nombre = coche.nombre;
+		this.motor = coche.motor;
+		this.chasis = coche.chasis;
+		this.aerodinamica = coche.aerodinamica;
+		this.porcentajeRuedas = coche.porcentajeRuedas;
+	}
 	
 	//GETTERS Y SETTERS
 	public String getNombre() {
