@@ -71,9 +71,7 @@ public class VentanaInicial extends JFrame{
 						piloto.setSize( getSize() );
 						piloto.setVisible( true );
 						VentanaInicial.this.setVisible( false );
-					}
-					
+					}					
 				});
 	}
-
 }
