@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elementos.Piloto;
+
 /**Ventana en la que se mostraran los resultados de la carrera
  * con los pilotos clasificados por el tiempo que han logrado
  * y los puntos obtenidos tras finalizar la carrera
@@ -57,8 +59,9 @@ public class VentanaClasifCarrera extends JFrame{
 		pCentral.add(pDerecha);
 		pCentral.add(pCentro);
 		getContentPane().add(pCentral);
-
 		
+		
+
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
 

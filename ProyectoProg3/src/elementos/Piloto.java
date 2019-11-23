@@ -141,6 +141,8 @@ public class Piloto {
 		listaPilotos.add(new Piloto("Kubica",34,4,50,33,28,22,34,new Coche(listaCoches.get(9))));
 		return listaPilotos;		
 	}
+	
+	
 
 	@Override
 	public String toString() {
