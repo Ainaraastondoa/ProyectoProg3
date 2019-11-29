@@ -29,6 +29,23 @@ public class Temporada {
 		HMpuntosPiloto.put(new Piloto("Bottas",30,8,60,47,52,66,40,null), 175);
 		HMpuntosPiloto.put(new Piloto("Vettel",32,9,62,69,66,77,60,null), 75);
 		HMpuntosPiloto.put(new Piloto("Leclerc",22,9,55,79,77,80,68,null), 90);
+		HMpuntosPiloto.put(new Piloto("Verstappen",22,9,50,75,70,77,90,null), 75);
+		HMpuntosPiloto.put(new Piloto("Albon",23,7,60,65,55,66,45,null), 90);
+		HMpuntosPiloto.put(new Piloto("Sainz",25,8,70,50,70,66,25,null), 75);
+		HMpuntosPiloto.put(new Piloto("Norris",19,7,52,68,45,72,20,null), 90);
+		HMpuntosPiloto.put(new Piloto("Ricciardo",30,9,55,79,70,75,64,null), 75);
+		HMpuntosPiloto.put(new Piloto("Hulkenberg",32,8,65,55,70,68,40,null), 90);
+		HMpuntosPiloto.put(new Piloto("Gasly",23,7,60,57,55,58,34,null), 75);
+		HMpuntosPiloto.put(new Piloto("Kvyat",25,6,42,35,50,55,41,null), 90);
+		HMpuntosPiloto.put(new Piloto("Pérez",29,7,75,47,55,48,42,null), 75);
+		HMpuntosPiloto.put(new Piloto("Stroll",20,6,36,50,55,53,39,null), 90);
+		HMpuntosPiloto.put(new Piloto("Magnussen",27,7,30,55,78,63,30,null), 75);
+		HMpuntosPiloto.put(new Piloto("Grosjean",33,5,4,44,44,48,45,null), 90);
+		HMpuntosPiloto.put(new Piloto("Raikkonen",40,7,68,58,64,65,25,null), 75);
+		HMpuntosPiloto.put(new Piloto("Giovinazzi",25,6,35,36,45,58,44,null), 90);
+		HMpuntosPiloto.put(new Piloto("Russell",21,48,6,54,25,65,56,null), 75);
+		HMpuntosPiloto.put(new Piloto("Kubica",34,4,50,33,28,22,34,null), 90);
+		
 		
 		return HMpuntosPiloto; 
 	}

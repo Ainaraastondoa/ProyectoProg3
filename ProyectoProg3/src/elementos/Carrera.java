@@ -193,7 +193,7 @@ public class Carrera {
 	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
 	 */
 	public void actualizarPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia, HashMap<Piloto, Integer> puntosPiloto) {
-		puntosEscuderia.forEach( (k,v) -> {
+		puntosEscuderia.forEach( (k, V) -> {
 			int pts1 = puntosPiloto.get(k.getPiloto1()); int pts2 = puntosPiloto.get(k.getPiloto2());
 			puntosEscuderia.put(k, pts1 + pts2);
 		});
