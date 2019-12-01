@@ -9,14 +9,15 @@ import java.util.HashMap;
 public class Temporada {
 	
 	//ATRIBUTOS de la clase Temporada
-	public int año;
+	public int anno;
 	public HashMap<Piloto, Integer> puntosPiloto;		//Puntos que tiene cada piloto en la temporada
 	public ArrayList<Carrera> listaCarreras;			//Lista de carreras de la temporada
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
 	
 	//CONSTRUCTOR
-	public Temporada(int año, ArrayList<Carrera> listaCarreras, ArrayList<Piloto> listaPilotos, ArrayList<Escuderia> listaEscuderias) {
-		this.año = año;
+	public Temporada(int anno, ArrayList<Carrera> listaCarreras, ArrayList<Piloto> listaPilotos,
+			ArrayList<Escuderia> listaEscuderias) {
+		this.anno = anno;
 		this.puntosPiloto = crearMapaPilotosPuntos(listaPilotos);
 		this.listaCarreras = listaCarreras;
 		this.puntosEscuderia = crearMapaEscuderiasPuntos(listaEscuderias);
@@ -62,12 +63,12 @@ public class Temporada {
 	
 
 	//GETTERS Y SETTERS
-	public int getAño() {
-		return año;
+	public int getAnno() {
+		return anno;
 	}
 
-	public void setAño(int año) {
-		this.año = año;
+	public void setAnno(int anno) {
+		this.anno = anno;
 	}
 	
 	public HashMap<Piloto, Integer> getPuntosPiloto() {

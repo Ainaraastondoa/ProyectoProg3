@@ -80,7 +80,6 @@ public class Trayectoria {
 	
 	// Método main de prueba
 	public static void main(String[] args) {
-		Trayectoria t = new Trayectoria();
-		t.simularTrayectoria();
+		
 	}
 }
