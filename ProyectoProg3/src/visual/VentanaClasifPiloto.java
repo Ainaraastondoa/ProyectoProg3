@@ -22,7 +22,7 @@ import elementos.Trayectoria;
 
 /**Ventana en la que se mostrará a los pilotos 
  *clasificados según su puntuación 
- */
+ */ 
 
 public class VentanaClasifPiloto extends JFrame{
 	
@@ -39,14 +39,14 @@ public class VentanaClasifPiloto extends JFrame{
 		//Imprimimos a sus pilotos con sus respectivos puntos 
 		
 		
-		//CUANDO SE CIERRE EL JUEGO PARA GUARDAR LA CLASIFICACION
-		for (Piloto piloto : Trayectoria.listaPilotos) {
-			Integer i = 0;
-			Statement st = con.createStatement();
-			while (i < 20) {
-			BD.insertclasificacionpilotos(st, Trayectoria.listaPilotos.indexOf(piloto) + 1, Temporada.crearPuntosPiloto().get(piloto), piloto.toString(), piloto.calcularPuntosPiloto())
-			}		
-		}
+//		//CUANDO SE CIERRE EL JUEGO PARA GUARDAR LA CLASIFICACION
+//		for (Piloto piloto : Trayectoria.listaPilotos) {
+//			Integer i = 0;
+//			Statement st = con.createStatement();
+//			while (i < 20) {
+//			BD.insertclasificacionpilotos(st, Trayectoria.listaPilotos.indexOf(piloto) + 1, Temporada.crearPuntosPiloto().get(piloto), piloto.toString(), piloto.calcularPuntosPiloto())
+//			}		
+//		}
 		
 		//Creamos el panel de la clasificacion
 		JPanel pCentral = new JPanel();

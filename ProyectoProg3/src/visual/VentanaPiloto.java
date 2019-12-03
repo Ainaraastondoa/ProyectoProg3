@@ -20,7 +20,7 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import elementos.*;
 
-
+ 
 /**Ventana en la que se muestran los pilotos de la escuderia con sus 
  * respectivos atributos
  */

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+ 
 /**
  * La clase Carrera sirve para desarrollar las acciones de cada carrera, englobando pilotos con el circuito 
  * para hacer los cálculos de tiempo por vuelta, clasificación final, etc.

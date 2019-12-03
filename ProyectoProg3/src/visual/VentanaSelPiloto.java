@@ -20,7 +20,7 @@ import elementos.initDatos;
 public class VentanaSelPiloto extends JFrame{
 	
 	JFrame VentanaInicial;
-	
+	 
 	public VentanaSelPiloto(JFrame m) {		
 		VentanaInicial = m;
 		JButton bVolver = new JButton("Volver");

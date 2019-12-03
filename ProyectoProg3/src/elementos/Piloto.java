@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /*Esta clase define las características de los pilotos 
  * 
- */
+ */ 
 public class Piloto {
 	
 	//ATRIBUTOS de la clase Piloto

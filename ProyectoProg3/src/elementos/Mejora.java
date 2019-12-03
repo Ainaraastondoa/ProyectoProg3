@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /** Esta clase define las mejoras realizables a distintos componentes
  *
- */
+ */ 
 public class Mejora {
 	
 	//ATRIBUTOS de la clase Mejora

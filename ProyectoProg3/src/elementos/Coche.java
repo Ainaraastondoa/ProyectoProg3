@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /** Esta clase define cada uno de los monoplazas y sus caracteristicas.
  * 
- */
+ */ 
 public class Coche {
 
 	//ATRIBUTOS de la clase Coche

@@ -3,7 +3,7 @@ package elementos;
 import java.util.ArrayList;
 
 /** Esta clase define los componentes de los monoplazas
- *
+ * 
  */
 public class Componente {
 	

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**Ventana en la que se mostrarán las escuderias
  *clasificadas según su puntuación 
- */
+ */ 
 
 public class VentanaClasifEscuderia extends JFrame{
 	

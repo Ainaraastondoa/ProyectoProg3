@@ -1,7 +1,7 @@
 package elementos;
 
 import java.util.ArrayList;
-
+ 
 public class Trayectoria {
 
 	// ATRIBUTOS de la clase Trayectoria - DATOS

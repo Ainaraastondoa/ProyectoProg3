@@ -28,7 +28,7 @@ public class VentanaCarrera extends JFrame{
 	JFrame MenuPrincipalTrayectoria;
 	JFrame VentanaClasifCarrera;
 	Piloto piloto; 
-	
+	 
 	public VentanaCarrera(JFrame m) {
 		VentanaClasifCarrera = m; 
 		JButton bok = new JButton("Ok");

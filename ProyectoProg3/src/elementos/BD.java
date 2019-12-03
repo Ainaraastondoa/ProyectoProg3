@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 
 public class BD {
-	
+	 
 	
 	static String url = "src/elementos/F1BaseDatos.db";
 	

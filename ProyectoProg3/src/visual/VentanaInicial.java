@@ -15,7 +15,7 @@ import elementos.*;
 
 /**Esta clase sirve para crear la ventana principal
  *
- */
+ */ 
 
 public class VentanaInicial extends JFrame{
 	

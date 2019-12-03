@@ -20,7 +20,7 @@ import javax.swing.ScrollPaneConstants;
 /** Clase para la ventana de ayuda en la que explicaremos
  * las reglas del simulador 
  *
- */
+ */ 
 
 public class VentanaAyuda extends JFrame{
 	

@@ -25,7 +25,7 @@ public class VentanaCoche extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
 	Coche coche;
-
+ 
 	public VentanaCoche (JFrame m) {
 		MenuPrincipalTrayectoria = m;
 		JButton bok = new JButton("Ok");

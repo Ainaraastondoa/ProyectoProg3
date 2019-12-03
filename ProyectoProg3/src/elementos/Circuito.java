@@ -3,7 +3,7 @@ package elementos;
 import java.util.ArrayList;
 
 /** Esta clase define los circuitos del mundial y sus caracteristicas
- *
+ * 
  */
 public class Circuito {
 	
