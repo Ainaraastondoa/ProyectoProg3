@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Trayectoria {
 
 	// ATRIBUTOS de la clase Trayectoria - DATOS
-	private ArrayList<Piloto> listaPilotos;
+	public static ArrayList<Piloto> listaPilotos;
 	private ArrayList<Escuderia> listaEscuderias;
 	private ArrayList<Temporada> listaTemporadas;
 	private static Piloto piloto; //Piloto seleccionado para la trayectoria.

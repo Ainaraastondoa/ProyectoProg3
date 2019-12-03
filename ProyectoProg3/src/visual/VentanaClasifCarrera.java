@@ -21,6 +21,8 @@ import elementos.Piloto;
 
 public class VentanaClasifCarrera extends JFrame{
 	
+	
+	// HACER JTable
 	JFrame MenuPrincipalTrayectoria;
 	
 	public VentanaClasifCarrera(JFrame m) {

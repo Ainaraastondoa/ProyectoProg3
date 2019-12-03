@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 public class VentanaClasifEscuderia extends JFrame{
 	
+	// HACER JTable
 	JFrame MenuPrincipalTrayectoria; 
 	
 	public VentanaClasifEscuderia(JFrame v) {

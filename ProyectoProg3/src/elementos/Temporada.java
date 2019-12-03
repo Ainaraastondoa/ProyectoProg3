@@ -6,6 +6,7 @@ import java.util.HashMap;
 /** Esta clase define las temporadas y sus atributos
  *
  */
+//¿¿¿¿IMPLEMENTS COMPARABLE????
 public class Temporada {
 	
 	//ATRIBUTOS de la clase Temporada
