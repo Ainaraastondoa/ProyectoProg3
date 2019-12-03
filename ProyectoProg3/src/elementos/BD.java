@@ -98,7 +98,7 @@ public class BD {
 //						")");
 				
 				//TABLA clasificacionpilotos
-				statement.executeUpdate("create tabla clasificacionpilotos " +
+				statement.executeUpdate("create table clasificacionpilotos " +
 					"(puesto integer primary key not null" +			//puesto en la clasificacion
 					", piloto_id string " +			//codigo del piloto
 					", nombre string" +				//nombre del piloto
@@ -106,7 +106,7 @@ public class BD {
 					")");
 				
 				//TABLA clasificacionescuderias
-				statement.executeUpdate("create tabla clasificacionescuderias " +
+				statement.executeUpdate("create table clasificacionescuderias " +
 					"(puesto integer primary key not null" +			//puesto en la clasificacion
 					", escuderia_id string " +		//codigo de la escuderia
 					", nombre string" +				//nombre de la escuderia
@@ -114,7 +114,7 @@ public class BD {
 					")");
 				
 				//TABLA temporada
-				statement.executeUpdate("create tabla temporada " +
+				statement.executeUpdate("create table temporada " +
 					"(año string primary key not null" +			//año de temporada
 					", circuitos string " +		//codigo del piloto
 					", escuderias string" +		//nombre del piloto
