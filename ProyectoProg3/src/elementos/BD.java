@@ -45,80 +45,108 @@ public class BD {
 			Statement statement = con.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
 			try {
+//				statement.executeUpdate("create table mejora " +
+	//				"(mejora_id string primary key not null" +	//codigo de mejora
+	//				", nombre string" +							//nombre de mejora
+	//				", componente_id string" +					//Componente sobre el que se aplica la mejora
+	//				", aumentorendimiento integer" +			//Incremento de rendimiento que implica el componente
+	//				", coste integer" +							//Coste de la mejora
+	//				", mejorasNecesarias_id string" + 			//Lista de nombres de mejoras previas que necesita para poder canjearse
+	//				")");
+				statement.executeUpdate("create table componente " +
+					"(componente_id string primary key not null" +	//codigo de componente
+					", nombre string" +								//nombre de componente
+//						", mejorasDisponible_id1 string" +				//Lista de mejoras disponibles para el componente
+//						", mejorasDisponible_id2 string" +
+//						", mejorasDisponible_id3 string" +
+					")");
+				
+				statement.executeUpdate("create table coche " +
+						"(coche_id string primary key not null" +
+						", nombre string" +
+						", componente_id1 string references componente(componente_id)" + 
+						", componente_id2 string references componente(componente_id)" + 
+						", componente_id3 string references componente(componente_id)" + 
+						", porcentajeRuedas real" +
+						")");
+				
+				statement.executeUpdate("create table piloto " +
+						"(piloto_id string primary key not null" +
+						", nombre string" +
+						", edad integer" +
+						", nivel integer" +
+						", regularidad integer" +
+						", adelantar integer" +
+						", defender integer" +
+						", velocidad integer" +
+						", mojado integer" +
+						", coche_id string not null references coche(coche_id)" +
+						")");
+				
 				statement.executeUpdate("create table escuderia " +
 					"(escuderia_id string primary key not null" +	// Codigo de la escuderia
 					", nombre string" +           					// Nombre de la escuderia
 					", director string" +           				// Nombre del director
-					", piloto1_id string not null"  +       		// Nombre del piloto1
-					", piloto2_id string not null" +    			// Nombre del piloto2
+					", piloto1_id string not null references piloto(piloto_id)"  +       		// Codigo del piloto1
+					", piloto2_id string not null references piloto(piloto_id)" +    			// Codigo del piloto2
 					", presupuesto integer" +						// Presupuesto del equipo
 					")");
 				
-				statement.executeUpdate("create table piloto " +
-					"(piloto_id string primary key not null" +
-					", nombre string" +
-					", edad integer" +
-					", nivel integer" +
-					", regularidad integer" +
-					", adelantar integer" +
-					", defender integer" +
-					", velocidad integer" +
-					", mojado integer" +
-					", coche_id string not null" +
-					")");
-				
-				statement.executeUpdate("create table coche " +
-					"(coche_id string primary key not null" +
-					", nombre string" +
-					", componente_id string" + 
-					", porcentajeRuedas real" +
-					")");
-				
-				statement.executeUpdate("create table componente " +
-					"(componente_id string primary key not null" +	//codigo de componente
-					", nombre string" +						//nombre de componente
-					", mejorasDisponibles_id string" +		//Lista de mejoras disponibles para el componente
-					")");
-				
-				statement.executeUpdate("create table mejora " +
-					"(mejora_id string primary key not null" +	//codigo de mejora
-					", nombre string" +					//nombre de mejora
-					", componente_id string" +			//Componente sobre el que se aplica la mejora
-					", aumentorendimiento integer" +	//Incremento de rendimiento que implica el componente
-					", coste integer" +					//Coste de la mejora
-					", mejorasNecesarias_id string" + 	//Lista de nombres de mejoras previas que necesita para poder canjearse
-					")");
+
 				
 //				//TABLA clasificacioncarrera
 //				statement.executeUpdate("create tabla clasificacioncarrera " +
 //						"(puesto integer " +			//puesto en la clasificacion
 //						", piloto_id string " +			//codigo del piloto
 //						", nombre string" +				//nombre del piloto
-//						", puntos integer " +		//puntos conseguidos
+//						", puntos integer " +			//puntos conseguidos
 //						")");
 				
 				//TABLA clasificacionpilotos
 				statement.executeUpdate("create table clasificacionpilotos " +
-					"(puesto integer primary key not null" +			//puesto en la clasificacion
-					", piloto_id string " +			//codigo del piloto
-					", nombre string" +				//nombre del piloto
-					", puntos integer " +		//puntos conseguidos
-					")");
+					"(puesto integer primary key not null" +	//puesto en la clasificacion
+					", piloto_id string " +						//codigo del piloto
+					", nombre string" +							//nombre del piloto
+					", puntos integer " +						//puntos conseguidos
+					")");	
 				
 				//TABLA clasificacionescuderias
 				statement.executeUpdate("create table clasificacionescuderias " +
-					"(puesto integer primary key not null" +			//puesto en la clasificacion
-					", escuderia_id string " +		//codigo de la escuderia
-					", nombre string" +				//nombre de la escuderia
-					", puntos integer " +			//puntos conseguidos
+					"(puesto integer primary key not null" +	//puesto en la clasificacion
+					", escuderia_id string " +					//codigo de la escuderia
+					", nombre string" +							//nombre de la escuderia
+					", puntos integer " +						//puntos conseguidos
 					")");
 				
 				//TABLA temporada
 				statement.executeUpdate("create table temporada " +
-					"(año string primary key not null" +			//año de temporada
-					", circuitos string " +		//codigo del piloto
-					", escuderias string" +		//nombre del piloto
-					", pilotos integer " +			//puntos conseguidos
+					"(año string primary key not null" +	//año de temporada
+					", circuitos string " +					//codigo del piloto
+					", escuderias string" +					//nombre del piloto
+					", pilotos integer " +					//puntos conseguidos
+					")");
+				
+				//TABLA relacion
+				statement.executeUpdate("create table relacion " +
+					"(escuderia_id primary key not null" +
+					", piloto1_id string " +
+					", piloto2_id string " +
+					", coche_id string " +
+					", componente1_id string " +
+					", componente2_id string " +
+					", componente3_id string " +
+//					", mejora1_id string " +
+//					", mejora2_id string " +
+//					", mejora3_id string " +
+//					", mejora4_id string " +
+//					", mejora5_id string " +
+//					", mejora6_id string " +
+//					", mejora7_id string " +
+//					", mejora8_id string " +
+//					", mejora9_id string " +
+//					", mejora10_id string " +
+//					", mejora11_id string " +
+//					", mejora12_id string " +
 					")");
 								
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
@@ -150,30 +178,12 @@ public class BD {
 				
 			} catch (SQLException e) {} // Si la tabla ya existe no hay nada que hacer
 			try {
-				statement.executeUpdate("create table relacionEscuderiaPilotos " +
-					"(escuderia_id String primary key" +  	// Codigo de escuderia
-					", piloto1_id String primary key " +  	// codigo del piloto1
-					", piloto2_id String primary key " +  	// codigo del piloto2
-					")");
-				
-				statement.executeUpdate("create table relacionPilotoCoche" +
-					"(piloto_id string primary key" +	//codigo de piloto
-					", coche_id string primary key" +	//codigo del coche
-					")");
-				
-				statement.executeUpdate("create table relacionCocheComponente" +
-					", coche_id string primary key" + 		//codigo de coche
-					", componente_id string primary key" +	//codigo de componente
-					")");
-				
-				statement.executeUpdate("create table relacionComponenteMejoras" +
-					", componente_id string primary key" +		//codigo de componente
-					", mejorasDisponibles_id string primary key" +			//codigo de mejora
-					")");
 				
 				statement.executeUpdate("create table relacionMejorasMejorasNecesarias" +
 					", mejora_id string primary key" +				//codigo de mejora
-					", mejoraNecesaria_id string primary key" +		//codigo de mejora previa necesaria
+					", mejoraNecesaria1_id string primary key" +		//codigo de mejora previa necesaria
+					", mejoraNecesaria2_id string primary key" +
+					", mejoraNecesaria3_id string primary key" +
 					")");
 									
 			} catch (SQLException e) {} // Si la tabla ya existe no hay nada que hacer
@@ -188,92 +198,74 @@ public class BD {
 	public static boolean insertEscuderia( Statement st) {
 		String sentSQL = "";
 		try {
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					1 + ", " +
 					"'" + "Mercedes" + "', '" +
 					"Toto Wolf" + "', '" +
-					initDatos.initPilotos().get(0).toString() + "', '" +
-					initDatos.initPilotos().get(1).toString() + "', " +
 					25000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					2 + ", " +
 					"'" + "Ferrari" + "', '" +
 					"Matia Binotto" + "', '" +
-					initDatos.initPilotos().get(2).toString() + "', '" +
-					initDatos.initPilotos().get(3).toString() + "', " +
 					25000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					3 + ", " +
 					"'" + "Red Bull" + "', '" +
 					"Christian Horner" + "', '" +
-					initDatos.initPilotos().get(4) + "', '" +
-					initDatos.initPilotos().get(5) + "'," +
 					25000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					4 + ", " +
 					"'" + "Mclaren" + "', '" +
 					"Andrea Seidl" + "', '" +
-					initDatos.initPilotos().get(6) + "', '" +
-					initDatos.initPilotos().get(7) + "'," +
 					20000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					5 + ", " +
 					"'" + "Renault" + "', '" +
 					"Cyril Abditeboul" + "', '" +
-					initDatos.initPilotos().get(8) + "', '" +
-					initDatos.initPilotos().get(9) + "'," +
 					17500000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					6 + ", " +
 					"'" + "Toro Rosso" + "', '" +
 					"Franz Tost" + "', '" +
-					initDatos.initPilotos().get(10) + "', '" +
-					initDatos.initPilotos().get(11) + "'," +
 					15000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					7 + ", " +
 					"'" + "Racing Point" + "', '" +
 					"Andrew Green" + "', '" +
-					initDatos.initPilotos().get(12) + "', '" +
-					initDatos.initPilotos().get(13) + "'," +
 					15000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					8 + ", " +
 					"'" + "Haas" + "', '" +
 					"Guenther Steiner" + "', '" +
-					initDatos.initPilotos().get(14) + "', '" +
-					initDatos.initPilotos().get(15) + "'," +
 					10000000 +
 					")";
 			st.executeUpdate(sentSQL);
 			
-			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
+			sentSQL = "insert into escuderia (escuderia_id, nombre, director, presupuesto) values(" +
 					9 + ", " +
 					"'" + "Alfa Romeo" + "', '" +
 					"Frank Vasseur" + "', '" +
-					initDatos.initPilotos().get(16) + "', '" +
-					initDatos.initPilotos().get(17) + "'," +
 					10000000 +
 					")";
 			st.executeUpdate(sentSQL);
@@ -325,7 +317,7 @@ public class BD {
 		}
 	}
 	
-	public static boolean insertclasificacionescuderias( Statement st, Integer puesto, Integer escuderia_id, String nombre, Integer puntos) {
+	public static boolean insertclasificacioncuderias( Statement st, Integer puesto, Integer escuderia_id, String nombre, Integer puntos) {
 		String sentSQL = "";
 		try {
 			sentSQL = "insert into clasificacionpilotos(puesto, piloto_id, nombre, puntos) values (" +

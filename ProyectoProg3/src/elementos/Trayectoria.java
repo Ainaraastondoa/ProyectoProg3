@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Trayectoria {
 
 	// ATRIBUTOS de la clase Trayectoria - DATOS
-	public static ArrayList<Piloto> listaPilotos;
+	private ArrayList<Piloto> listaPilotos;
 	private ArrayList<Escuderia> listaEscuderias;
 	private ArrayList<Temporada> listaTemporadas;
 	private static Piloto piloto; //Piloto seleccionado para la trayectoria.
@@ -66,18 +66,20 @@ public class Trayectoria {
 		this.getListaTemporadas().add(t);
 		
 		// Simular Carrera (carrera 1)
-		t.getListaCarreras().get(0).simularCarrera();
-		t.getListaCarreras().get(0).ordenarClasificacionCarrera();
-		t.getListaCarreras().get(0).repartirPuntos(t.getPuntosPiloto());
-		t.getListaCarreras().get(0).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
-		t.getListaCarreras().get(0).repartirDinero(t.getPuntosEscuderia());
-		
+		Integer carreraActual = 0;
+		t.getListaCarreras().get(carreraActual).simularCarrera();
+		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
+		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
+				
 		// Comprobación (carrera 1)
 		System.out.println("Resultado Carrera:");
-		System.out.println(t.getListaCarreras().get(0).getListaPilotos());
-		System.out.println(t.getListaCarreras().get(0).getListaTiempos());
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
 	}
 	
+
 	// Método main de prueba
 	public static void main(String[] args) {
 		
