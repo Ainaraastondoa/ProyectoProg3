@@ -137,7 +137,7 @@ public class Piloto {
 		listaPilotos.add(new Piloto("Raikkonen",40,7,68,58,64,65,25,listaCoches.get(8)));
 		listaPilotos.add(new Piloto("Giovinazzi",25,6,35,36,45,58,44,new Coche(listaCoches.get(8))));
 		// Coche Williams
-		listaPilotos.add(new Piloto("Russell",21,48,6,54,25,65,56,listaCoches.get(9)));
+		listaPilotos.add(new Piloto("Russell",21,6,48,54,25,65,56,listaCoches.get(9)));
 		listaPilotos.add(new Piloto("Kubica",34,4,50,33,28,22,34,new Coche(listaCoches.get(9))));
 		return listaPilotos;		
 	}
