@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class BD {
 	 
 	
-	static String url = "src/datos/F1BaseDatos.csv";
+	static String url = "src/datos/F1BaseDatos.db";
 	
 	/**Inicializa una BDSQLITE y devuelve una conexión con ella
 	 * @param nombreBD
@@ -21,8 +21,8 @@ public class BD {
 	public static Connection initBD( String nombreBD) {
 		try {
 			//FOREIGN KEY
-			//SQLiteConfig config = new SQLiteConfig();
-			//config.enforcedForeignKeys(true);
+//			SQLiteConfig config = new SQLiteConfig();
+//			config.enforcedForeignKeys(true);
 		    Class.forName("org.sqlite.JDBC");
 		    Connection con = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );	    
 			log( Level.INFO, "Conectada base de datos " + nombreBD, null );
@@ -43,16 +43,16 @@ public class BD {
 	public static Statement usarCrearTablasBD( Connection con ) {
 		try {
 			Statement statement = con.createStatement();
-			statement.setQueryTimeout(30);  // poner timeout 30 msg
+ // poner timeout 30 msg
 			try {
 				statement.executeUpdate("create table componente " +
-					"(componente_id string primary key not null" +	//codigo de componente
+					"(componente_id integer primary key not null" +	//codigo de componente
 					", nombre string" +								//nombre de componente
 					", rendimiento integer" +						//Rendimiento del componente
 					")");
 				
 				statement.executeUpdate("create table coche " +
-						"(coche_id string primary key not null" +
+						"(coche_id integer primary key not null" +
 						", nombre string" +
 						", componente_id1 string references componente(componente_id)" + 
 						", componente_id2 string references componente(componente_id)" + 
@@ -61,7 +61,7 @@ public class BD {
 						")");
 				
 				statement.executeUpdate("create table piloto " +
-						"(piloto_id string primary key not null" +
+						"(piloto_id integer primary key not null" +
 						", nombre string" +
 						", edad integer" +
 						", nivel integer" +
@@ -74,24 +74,24 @@ public class BD {
 						")");
 				
 				statement.executeUpdate("create table escuderia " +
-					"(escuderia_id string primary key not null" +	// Codigo de la escuderia
+					"(escuderia_id integer primary key not null" +	// Codigo de la escuderia
 					", nombre string" +           					// Nombre de la escuderia
 					", director string" +           				// Nombre del director
-					", piloto1_id string not null references piloto(piloto_id)"  +       		// Codigo del piloto1
-					", piloto2_id string not null references piloto(piloto_id)" +    			// Codigo del piloto2
+					", piloto1_id integer not null references piloto(piloto_id)"  +       		// Codigo del piloto1
+					", piloto2_id integer not null references piloto(piloto_id)" +    			// Codigo del piloto2
 					", presupuesto integer" +						// Presupuesto del equipo
 					")");
 				
 				//ESTO????
 				//TABLA relacion
 				statement.executeUpdate("create table relacion " +
-					"(escuderia_id primary key not null" +
-					", piloto1_id string not null references piloto(piloto_id)" +
-					", piloto2_id string not null references piloto(piloto_id)" +
-					", coche_id string not null references coche(coche_id)" +
-					", componente1_id string not null references componente(componente_id)" +
-					", componente2_id string not null references componente(componente_id)" +
-					", componente3_id string not null references componente(componente_id)" +
+					"(escuderia_id integer primary key not null" +
+					", piloto1_id integer not null references piloto(piloto_id)" +
+					", piloto2_id integer not null references piloto(piloto_id)" +
+					", coche_id integer not null references coche(coche_id)" +
+					", componente1_id integer not null references componente(componente_id)" +
+					", componente2_id integer not null references componente(componente_id)" +
+					", componente3_id integer not null references componente(componente_id)" +
 					")");
 				
 				//TABLA clasificacionpilotos
@@ -114,7 +114,7 @@ public class BD {
 				
 				//TABLA circuitos
 				statement.executeUpdate("create table circuito " +
-						"(circuito_id string primary key not null" +	
+						"(circuito_id integer primary key not null" +	
 						", nombre string " +			
 						", nivDegradacion integer" +					
 						", tiempoRefClas float " +	
@@ -123,19 +123,32 @@ public class BD {
 						", vueltas integer" +
 						")");
 				
-				//CON LA ESCUDERIA PODEMOS ACCEDER A SUS PILOTOS, COCHES. ETC?
-				//TABLA carrera
-				statement.executeUpdate("create table carrera " +
-						"(carrera_id integer primary key not null" +	//id carrera
-						", circuito_id integer foreign key not null references circuito(circuito_id)" +
-						", escuderia_id string not null references carrera(carrera_id) " +				//id escuderia participante
-						")");
+				// TABLA Carrera
+				statement.executeUpdate("create table carrera" +
+					"(carrera_id integer primary key not null " + 
+					", circuito_id integer primary key not null " +
+					", escuderia_id integer primary key not null " +
+					")");
 				
 				//TABLA temporada
-				statement.executeUpdate("create table temporada " +
-					"(anno integer primary key not null" +										//año de temporada
-					", carrera_id string not null references carrera(carrera_id) " +			//id carrera
+				statement.executeUpdate("create table temporada" +
+					"(anno integer primary key not null " +
+					", carrera_id integer not null " +
 					")");
+				
+//				//CON LA ESCUDERIA PODEMOS ACCEDER A SUS PILOTOS, COCHES. ETC?
+//				//TABLA carrera
+//				statement.executeUpdate("create table carrera " +
+//						"(carrera_id integer primary key not null" +	//id carrera
+//						", circuito_id integer not null references circuito(circuito_id)" +
+//						", escuderia_id integer not null references escuderia(escuderia_id) " +				//id escuderia participante
+//						")");
+//				
+//				//TABLA temporada
+//				statement.executeUpdate("create table temporada " +
+//					"(anno integer primary key not null" +										//año de temporada
+//					", carrera_id integer not null references carrera(carrera_id) " +			//id carrera
+//					")");
 
 
 								
@@ -143,7 +156,7 @@ public class BD {
 			try {
 				
 				statement.executeUpdate("create table componente " +
-						"(componente_id string primary key" +	//codigo componente
+						"(componente_id integer primary key" +	//codigo componente
 						", nombre string" +						//nombre componente
 						")");
 				
@@ -354,31 +367,31 @@ public class BD {
 			// DATOS TABLA ESCUDERIA
 			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					1 + ", " + "'" + "Mercedes" + "', '" + "Toto Wolf" + "', '" + 1 + ", " + 2 + ", " + 25000000 + ")";
+					1 + ", " + "'" + "Mercedes" + "', '" + "Toto Wolf" + "', " + 1 + ", " + 2 + ", " + 25000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					2 + ", " + "'" + "Ferrari" + "', '" + "Matia Binotto" + "', '" + 3 + ", " + 4 + ", " + 25000000 + ")";
+					2 + ", " + "'" + "Ferrari" + "', '" + "Matia Binotto" + "', " + 3 + ", " + 4 + ", " + 25000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					3 + ", " + "'" + "Red Bull" + "', '" + "Christian Horner" + "', '" + 5 + ", " + 6 + ", " + 25000000 + ")";
+					3 + ", " + "'" + "Red Bull" + "', '" + "Christian Horner" + "', " + 5 + ", " + 6 + ", " + 25000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					4 + ", " + "'" + "Mclaren" + "', '" + "Andrea Seidl" + "', '" + 7 + ", " + 8 + ", " + 20000000 + ")";
+					4 + ", " + "'" + "Mclaren" + "', '" + "Andrea Seidl" + "', " + 7 + ", " + 8 + ", " + 20000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					5 + ", " + "'" + "Renault" + "', '" + "Cyril Abditeboul" + "', '" + 9 + ", " + 10 + ", " + 17500000 + ")";
+					5 + ", " + "'" + "Renault" + "', '" + "Cyril Abditeboul" + "', " + 9 + ", " + 10 + ", " + 17500000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					6 + ", " + "'" + "Toro Rosso" + "', '" + "Franz Tost" + "', '" + 11 + ", " + 12 + ", " + 15000000 + ")";
+					6 + ", " + "'" + "ToroRosso" + "', '" + "Franz Tost" + "', " + 11 + ", " + 12 + ", " + 15000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					7 + ", " + "'" + "Racing Point" + "', '" + "Andrew Green" + "', '" + 13 + ", " + 14 + ", " + 15000000 + ")";
+					7 + ", " + "'" + "RacingPoint" + "', '" + "Andrew Green" + "', " + 13 + ", " + 14 + ", " + 15000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					8 + ", " + "'" + "Haas" + "', '" + "Guenther Steiner" + "', '" + 15 + ", " + 16 + ", " + 10000000 + ")";
+					8 + ", " + "'" + "Haas" + "', '" + "Guenther Steiner" + "', " + 15 + ", " + 16 + ", " + 10000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
-					9 + ", " + "'" + "Alfa Romeo" + "', '" + "Frank Vasseur" + "', '" + 17 + ", " + 18 + ", " + 10000000 + ")";
+					9 + ", " + "'" + "AlfaRomeo" + "', '" + "Frank Vasseur" + "', " + 17 + ", " + 18 + ", " + 10000000 + ")";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia (escuderia_id, nombre, director, piloto1_id, piloto2_id, presupuesto) values(" +
 					10 + ", " + "'" + "Williams" + "', '" + "Claire Williams" + "', " + 19 + ", " + 20 + ", " + 8000000 + ")";
@@ -417,99 +430,6 @@ public class BD {
 					10 + ", " + 19 + ", " + 20 + ", " + 10 + ", " + 1 + ", " + 14 + ", " + 24 + ")";
 			st.executeUpdate(sentSQL);
 			
-			//DATOS clasificacionpilotos
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					1 + ", " + 1 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					2 + ", " + 2 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					3 + ", " + 3 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					4 + ", " + 4 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					5 + ", " + 5 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					6 + ", " + 6 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					7 + ", " + 7 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					8 + ", " + 8 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					9 + ", " + 9 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					10 + ", " + 10 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					11 + ", " + 11 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					12 + ", " + 12 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					13 + ", " + 13 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					14 + ", " + 14 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					15 + ", " + 15 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					16 + ", " + 16 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					17 + ", " + 17 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					18 + ", " + 18 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					19 + ", " + 19 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
-					20 + ", " + 20 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			
-			//DATOS clasificacionescuderias
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					1 + ", " + 1 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					2 + ", " + 2 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					3 + ", " + 3 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					4 + ", " + 4 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					5 + ", " + 5 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					6 + ", " + 6 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					7 + ", " + 7 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					8 + ", " + 8 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					9 + ", " + 9 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
-			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
-					10 + ", " + 10 + ", " + 0 + ")";
-			st.executeUpdate(sentSQL);
 			
 			// DATOS CIRCUITOS
 			
@@ -578,35 +498,35 @@ public class BD {
 			st.executeUpdate(sentSQL);
 
 			
-//			//DATOS carrera
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			//DATOS carrera
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 1 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 2 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 3 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 4 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 5 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 6 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 7 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 8 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 9 + ")";
 			st.executeUpdate(sentSQL);
-			sentSQL = "insert into carrera (carrera_id, circuito_id, escuderia_id) values(" +
+			sentSQL = "insert into carrera values(" +
 					1 + ", " + 1 + ", " + 10 + ")";
 			//--- x21 ---
 			
@@ -616,6 +536,103 @@ public class BD {
 			sentSQL = "insert into temporada (anno, carrera_id) values(" +
 					2019 + ", " + 1 + ")";
 			st.executeUpdate(sentSQL);
+			
+			
+			//ESTOS NO SON NECESARIOS!!!!???
+
+//			//DATOS clasificacionpilotos
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					1 + ", " + 1 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					2 + ", " + 2 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					3 + ", " + 3 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					4 + ", " + 4 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					5 + ", " + 5 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					6 + ", " + 6 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					7 + ", " + 7 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					8 + ", " + 8 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					9 + ", " + 9 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					10 + ", " + 10 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					11 + ", " + 11 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					12 + ", " + 12 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					13 + ", " + 13 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					14 + ", " + 14 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					15 + ", " + 15 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					16 + ", " + 16 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					17 + ", " + 17 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					18 + ", " + 18 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					19 + ", " + 19 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionpilotos (puesto, piloto_id, puntos) values(" +
+//					20 + ", " + 20 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			
+//			//DATOS clasificacionescuderias
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					1 + ", " + 1 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					2 + ", " + 2 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					3 + ", " + 3 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					4 + ", " + 4 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					5 + ", " + 5 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					6 + ", " + 6 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					7 + ", " + 7 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					8 + ", " + 8 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					9 + ", " + 9 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
+//			sentSQL = "insert into clasificacionescuderias (puesto, escuderia_id, puntos) values(" +
+//					10 + ", " + 10 + ", " + 0 + ")";
+//			st.executeUpdate(sentSQL);
 			
 
 
@@ -697,7 +714,6 @@ public class BD {
 	
 	public static void main(String[] args) throws SQLException {
 		
-		initBD(url);
 		Connection con = initBD(url);
 		usarCrearTablasBD(con);
 		Statement st = con.createStatement();
