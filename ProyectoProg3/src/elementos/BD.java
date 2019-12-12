@@ -22,7 +22,6 @@ public class BD {
 	 * @param nombreBD
 	 * @return Devuelve null si hay algun error con la conexión
 	 */
-
 	public static Connection initBD( String nombreBD) {
 		try {
 			//FOREIGN KEY
@@ -59,9 +58,9 @@ public class BD {
 				statement.executeUpdate("create table if not exists coche " +
 						"(coche_id integer PRIMARY KEY not null" +
 						", nombre string" +
-						", componente_id1 integer" + 
-						", componente_id2 integer" + 
-						", componente_id3 integer" + 
+						", componente1_id integer" + 
+						", componente2_id integer" + 
+						", componente3_id integer" + 
 						", porcentajeRuedas real" +
 						")");
 			} catch (SQLException e) {}	
@@ -105,7 +104,7 @@ public class BD {
 				statement.executeUpdate("create table if not exists carrera " +
 					"(carrera_id integer PRIMARY KEY not null" +
 					", circuito_id integer" +
-					", piloto_id integer PRIMARY KEY" +
+					", piloto_id integer" +
 					")");
 			} catch(SQLException e) {}
 			try {	
@@ -386,7 +385,7 @@ public class BD {
 					3 + ", " + "'Shanghai'" + ", " + "'China'" + ", " + 3 + ", " + 80.5 + ", " + 83.7 + ", " + 24.0 + ", " + 56 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
-					4 + ", " + "'Baku City Circuit'" + "'Azerbaijan'" + ", " + ", " + 2 + ", " + 89.5 + ", " + 92 + ", " + 22.0 + ", " + 51 + ")";
+					4 + ", " + "'Baku City Circuit'" + ", " + "'Azerbaijan'" + ", " + 2 + ", " + 89.5 + ", " + 92 + ", " + 22.0 + ", " + 51 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
 					5 + ", " + "'Catalunya'" + ", " + "'España'" + ", " + 3 + ", " + 74.4 + ", " + 77.5 + ", " + 24.0 + ", " + 66 + ")";
@@ -548,13 +547,11 @@ public class BD {
 
 	
 	//SELECCION DATOS - Componente-Coche-Piloto-Escuderia
-		
-	
 
 	public static Componente componenteSelect (Statement st, int componente_id) {
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from componente where componente_id =" + componente_id;
+			sentSQL = "Select * from componente where componente_id=" + componente_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
 			if (rs.next()) {
@@ -574,16 +571,16 @@ public class BD {
 		}
 	}
 		
-	
-	
+		
 	
 	public static Coche cocheSelect (Statement st, int coche_id) {
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from coche where coche_id =" + coche_id;
+			sentSQL = "select * from coche where coche_id=" + coche_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
 			if (rs.next()) {
+				Integer cid = rs.getInt("coche_id");
 				String nombrecoche = rs.getString("nombre");			
 				Integer c1 = rs.getInt("componente1_id");
 				Componente comp1 = componenteSelect(st, c1);				
@@ -606,12 +603,11 @@ public class BD {
 	}	
 	
 	
-
 	
 	public static Piloto pilotoSelect (Statement st, int piloto_id) {
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from coche where piloto_id =" + piloto_id;
+			sentSQL = "select * from piloto where piloto_id=" + piloto_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
 			if (rs.next()) {
@@ -639,14 +635,12 @@ public class BD {
 			return null;
 		}		
 	}
-	
-	
-
+		
 	
 	public static Escuderia escuderiaSelect (Statement st, int escuderia_id) {
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from escuderia where escuderia_id =" + escuderia_id;
+			sentSQL = "Select * from escuderia where escuderia_id=" + escuderia_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
 			if (rs.next()) {
@@ -678,8 +672,7 @@ public class BD {
 		try {
 			sentSQL = "Select * from componente";
 			ResultSet rs = st.executeQuery(sentSQL);
-			
-			if (rs.next()) {
+			while (rs.next()) {
 				int componente_id = rs.getInt("componente_id");		
 				Componente componente = componenteSelect(st, componente_id);
 				ret.add(componente);
@@ -700,10 +693,10 @@ public class BD {
 		ArrayList<Coche> ret = new ArrayList<>();
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from coche";
+			sentSQL = "Select * from coche order by coche_id;";
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				int coche_id = rs.getInt("coche_id");		
 				Coche coche = cocheSelect(st, coche_id);
 				ret.add(coche);
@@ -727,7 +720,7 @@ public class BD {
 			sentSQL = "Select * from piloto";
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				int piloto_id = rs.getInt("piloto_id");		
 				Piloto piloto = pilotoSelect(st, piloto_id);
 				ret.add(piloto);
@@ -751,7 +744,7 @@ public class BD {
 			sentSQL = "Select * from escuderia";
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				int escuderia_id = rs.getInt("escuderia_id");
 				Escuderia escuderia = escuderiaSelect(st, escuderia_id);	
 				ret.add(escuderia);
@@ -832,7 +825,7 @@ public class BD {
 			sentSQL = "Select * from circuito";
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				int circuito_id = rs.getInt("circuito_id");		
 				Circuito circuito = circuitoSelect(st, circuito_id);
 				ret.add(circuito);
@@ -857,7 +850,7 @@ public class BD {
 			sentSQL = "Select * from circuito";
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				int carrera_id = rs.getInt("carrera_id");		
 				Carrera carrera = carreraSelect(st, carrera_id);
 				ret.add(carrera);
@@ -892,13 +885,22 @@ public class BD {
 	public static void main(String[] args) throws SQLException {
 		
 		Connection con = initBD(url);
-		//usarCrearTablasBD(con);
+		usarCrearTablasBD(con);
 		Statement st = con.createStatement();
+		st.executeUpdate("drop table componente");
+		st.executeUpdate("drop table coche");
+		usarCrearTablasBD(con);
+
 		st.executeUpdate("delete from componente");
 		st.executeUpdate("delete from coche");
 		st.executeUpdate("delete from piloto");
 		st.executeUpdate("delete from escuderia");
 		st.executeUpdate("delete from circuito");
 		insertDatos(st);
+//		ArrayList<Piloto> listapilotos = new ArrayList<>();
+//		listapilotos = listaPilotosSelect(st);
+//		for (Piloto piloto : listapilotos) {
+//			System.out.println(piloto.toString());
+//		}
 	}
 }

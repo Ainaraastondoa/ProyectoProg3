@@ -24,6 +24,11 @@ public class Componente {
 		this.rendimiento = rendimiento;
 	}
 
+	@Override
+	public String toString() {
+		return nombre;
+	}
+
 	//GETTERS Y SETTERS
 	public String getNombre() {
 		return nombre;

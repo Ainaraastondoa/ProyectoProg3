@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -66,11 +67,17 @@ public class VentanaInicial extends JFrame{
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						VentanaSelPiloto piloto = new VentanaSelPiloto( VentanaInicial.this );
-						piloto.setLocation( getLocation() );
-						piloto.setSize( getSize() );
-						piloto.setVisible( true );
-						VentanaInicial.this.setVisible( false );
+						VentanaSelEscuderia escuderia;
+						try {
+							escuderia = new VentanaSelEscuderia( VentanaInicial.this );
+							escuderia.setLocation( getLocation() );
+							escuderia.setSize( getSize() );
+							escuderia.setVisible( true );
+							VentanaInicial.this.setVisible( false );
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}					
 				});
 	}
