@@ -26,7 +26,7 @@ public class Componente {
 
 	@Override
 	public String toString() {
-		return nombre;
+		return nombre + ", " + rendimiento;
 	}
 
 	//GETTERS Y SETTERS

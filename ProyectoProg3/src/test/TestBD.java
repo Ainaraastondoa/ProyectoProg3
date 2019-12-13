@@ -27,7 +27,7 @@ public class TestBD {
 		//assertEquals(componente1, "mercedes.m");
 		
 		for (Coche coche : listaCoches) {
-			System.out.println(coche.toString());
+			System.out.println(coche.toString2());
 		}
 //		for (Componente componente : listaComponentes) {
 //			System.out.println(componente.toString());

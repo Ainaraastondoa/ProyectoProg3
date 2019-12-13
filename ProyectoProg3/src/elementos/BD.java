@@ -693,17 +693,17 @@ public class BD {
 		ArrayList<Componente> ret2 = new ArrayList<>();
 		String sentSQL = "";
 		try {
-			sentSQL = "Select coche.nombre, coche.porcentajeRuedas, componente.* from coche JOIN componente ON coche.componente1_id = componente.componente_id or "
+			sentSQL = "Select `coche`.`nombre` AS `cno`, `coche`.`porcentajeRuedas` AS `cpo`,`componente`.`nombre` AS `cn`, `componente`.`rendimiento` AS `cr` from coche JOIN componente ON coche.componente1_id = componente.componente_id or "
 					+ "coche.componente2_id = componente.componente_id or coche.componente3_id = componente.componente_id ";
 			ResultSet rs = st.executeQuery(sentSQL);
 			int cont = 0;
 			while (rs.next()) {
-				String nombrecom = rs.getString(3);
-				Integer rend = rs.getInt(4);
+				String nombrecom = rs.getString("cn");
+				Integer rend = rs.getInt("cr");
 				Componente componente = new Componente(nombrecom, rend);
 				ret2.add(componente);
 				if (cont == 2) {
-					Coche coche = new Coche(rs.getString("nombre"), ret2.get(0), ret2.get(1), ret2.get(2), rs.getInt("porcentajeRuedas"));		
+					Coche coche = new Coche(rs.getString("cno"), ret2.get(0), ret2.get(1), ret2.get(2), rs.getInt("cpo"));		
 					ret.add(coche);
 					cont = -1;
 				}
@@ -911,20 +911,25 @@ public class BD {
 		st.executeUpdate("delete from escuderia");
 		st.executeUpdate("delete from circuito");
 		insertDatos(st);
-//		ArrayList<Coche> listacoches = new ArrayList<>();
-//		listacoches = listaCochesSelect(st);
-//		for (Coche coche : listacoches) {
-//			System.out.println(coche.toString());
+//		ArrayList<Componente> listacomponentes = new ArrayList<>();
+//		listacomponentes = listaComponentesSelect(st);
+//		for (Componente componente : listacomponentes) {
+//			System.out.println(componente.toString());
 //		}
+		ArrayList<Coche> listacoches = new ArrayList<>();
+		listacoches = listaCochesSelect(st);
+		for (Coche coche : listacoches) {
+			System.out.println(coche.toString2());
+		}
 //		ArrayList<Piloto> listapilotos = new ArrayList<>();
 //		listapilotos = listaPilotosSelect(st);
 //		for (Piloto piloto : listapilotos) {
 //			System.out.println(piloto.toString());
 //		}
-		ArrayList<Escuderia> listaescuderias = new ArrayList<>();
-		listaescuderias = listaEscuderiasSelect(st);
-		for (Escuderia escuderia : listaescuderias) {
-			System.out.println(escuderia.toString());
-		}
+//		ArrayList<Escuderia> listaescuderias = new ArrayList<>();
+//		listaescuderias = listaEscuderiasSelect(st);
+//		for (Escuderia escuderia : listaescuderias) {
+//			System.out.println(escuderia.toString());
+//		}
 	}
 }
