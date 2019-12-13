@@ -54,16 +54,16 @@ public class BD {
 					", rendimiento integer" +						//Rendimiento del componente
 					")");
 			} catch (SQLException e) {}	
-			try {				
+			try {
 				statement.executeUpdate("create table if not exists coche " +
-						"(coche_id integer PRIMARY KEY not null" +
-						", nombre string" +
-						", componente1_id integer" + 
-						", componente2_id integer" + 
-						", componente3_id integer" + 
-						", porcentajeRuedas real" +
-						")");
-			} catch (SQLException e) {}	
+					"(coche_id integer PRIMARY KEY not null" +
+					", nombre string" +
+					", componente1_id integer" +
+					", componente2_id integer" +
+					", componente3_id integer" +
+					", porcentajeRuedas real" +
+					")");
+			}catch (SQLException e) {}
 			try {	
 				statement.executeUpdate("create table if not exists piloto " +
 						"(piloto_id integer PRIMARY KEY not null" +
@@ -554,7 +554,7 @@ public class BD {
 			sentSQL = "Select * from componente where componente_id=" + componente_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				String nombrecomponente = rs.getString("nombre");
 				Integer rendimiento = rs.getInt("rendimiento");
 				
@@ -579,8 +579,8 @@ public class BD {
 			sentSQL = "select * from coche where coche_id=" + coche_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
-				Integer cid = rs.getInt("coche_id");
+			while (rs.next()) {
+				//Integer cid = rs.getInt("coche_id");
 				String nombrecoche = rs.getString("nombre");			
 				Integer c1 = rs.getInt("componente1_id");
 				Componente comp1 = componenteSelect(st, c1);				
@@ -610,7 +610,7 @@ public class BD {
 			sentSQL = "select * from piloto where piloto_id=" + piloto_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				String nombrepiloto = rs.getString("nombre");
 				Integer edad = rs.getInt("edad");
 				Integer nivel = rs.getInt("nivel");
@@ -643,7 +643,7 @@ public class BD {
 			sentSQL = "Select * from escuderia where escuderia_id=" + escuderia_id;
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				String nombreescuderia = rs.getString("nombre");
 				String director = rs.getString("director");				
 				Integer p1_id = rs.getInt("piloto1_id");
@@ -673,14 +673,13 @@ public class BD {
 			sentSQL = "Select * from componente";
 			ResultSet rs = st.executeQuery(sentSQL);
 			while (rs.next()) {
-				int componente_id = rs.getInt("componente_id");		
-				Componente componente = componenteSelect(st, componente_id);
-				ret.add(componente);
-				return ret;
+				Componente c = new Componente(rs.getString("nombre"), rs.getInt("rendimiento"));
+				ret.add(c);
 			}
 			rs.close();
 			log(Level.INFO, "BD/t" + sentSQL, null);
-			return null;
+			return ret;
+
 		}catch (SQLException e) {
 			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
 			e.printStackTrace();
@@ -691,20 +690,28 @@ public class BD {
 	
 	public static ArrayList<Coche> listaCochesSelect (Statement st) {
 		ArrayList<Coche> ret = new ArrayList<>();
+		ArrayList<Componente> ret2 = new ArrayList<>();
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from coche order by coche_id;";
+			sentSQL = "Select coche.nombre, coche.porcentajeRuedas, componente.* from coche JOIN componente ON coche.componente1_id = componente.componente_id or "
+					+ "coche.componente2_id = componente.componente_id or coche.componente3_id = componente.componente_id ";
 			ResultSet rs = st.executeQuery(sentSQL);
-			
+			int cont = 0;
 			while (rs.next()) {
-				int coche_id = rs.getInt("coche_id");		
-				Coche coche = cocheSelect(st, coche_id);
-				ret.add(coche);
-				return ret;
+				String nombrecom = rs.getString(3);
+				Integer rend = rs.getInt(4);
+				Componente componente = new Componente(nombrecom, rend);
+				ret2.add(componente);
+				if (cont == 2) {
+					Coche coche = new Coche(rs.getString("nombre"), ret2.get(0), ret2.get(1), ret2.get(2), rs.getInt("porcentajeRuedas"));		
+					ret.add(coche);
+					cont = -1;
+				}
+				cont ++;
 			}
 			rs.close();
 			log(Level.INFO, "BD/t" + sentSQL, null);
-			return null;
+			return ret;
 		}catch (SQLException e) {
 			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
 			e.printStackTrace();
@@ -715,20 +722,25 @@ public class BD {
 	
 	public static ArrayList<Piloto> listaPilotosSelect (Statement st) {
 		ArrayList<Piloto> ret = new ArrayList<>();
+		ArrayList<Coche> ret2 = listaCochesSelect(st);
 		String sentSQL = "";
 		try {
 			sentSQL = "Select * from piloto";
 			ResultSet rs = st.executeQuery(sentSQL);
-			
+			int cont = 0;
 			while (rs.next()) {
-				int piloto_id = rs.getInt("piloto_id");		
-				Piloto piloto = pilotoSelect(st, piloto_id);
+				Piloto piloto = new Piloto(rs.getString("nombre"), rs.getInt("edad"), rs.getInt("nivel"), rs.getInt("regularidad"), rs.getInt("adelantar"),
+						rs.getInt("defender"), rs.getInt("velocidad"), rs.getInt("mojado"), ret2.get(cont));
 				ret.add(piloto);
-				return ret;
+				if ( cont == 19 ) {
+					cont = -1;
+					return ret;
+				}
+				cont ++;
 			}
 			rs.close();
 			log(Level.INFO, "BD/t" + sentSQL, null);
-			return null;
+			return ret;
 		}catch (SQLException e) {
 			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
 			e.printStackTrace();
@@ -739,20 +751,24 @@ public class BD {
 	
 	public static ArrayList<Escuderia> listaEscuderiasSelect (Statement st) {
 		ArrayList<Escuderia> ret = new ArrayList<>();
+		ArrayList<Piloto> ret2 = listaPilotosSelect(st);
 		String sentSQL = "";
 		try {
 			sentSQL = "Select * from escuderia";
 			ResultSet rs = st.executeQuery(sentSQL);
-			
+			int cont = 0;
+			int piloto1 = 0;
+			int piloto2 = 1;
 			while (rs.next()) {
-				int escuderia_id = rs.getInt("escuderia_id");
-				Escuderia escuderia = escuderiaSelect(st, escuderia_id);	
+				Escuderia escuderia = new Escuderia(rs.getString("nombre"), rs.getString("director"), ret2.get(piloto1), ret2.get(piloto2),rs.getInt("presupuesto"));	
 				ret.add(escuderia);
-				return ret;
+				if (cont == 9) {
+					return ret;
+				}
 			}
 			rs.close();
 			log(Level.INFO, "BD/t" + sentSQL, null);
-			return null;
+			return ret;
 		}catch (SQLException e) {
 			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
 			e.printStackTrace();
@@ -829,11 +845,10 @@ public class BD {
 				int circuito_id = rs.getInt("circuito_id");		
 				Circuito circuito = circuitoSelect(st, circuito_id);
 				ret.add(circuito);
-				return ret;
 			}
 			rs.close();
 			log(Level.INFO, "BD/t" + sentSQL, null);
-			return null;
+			return ret;
 		}catch (SQLException e) {
 			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
 			e.printStackTrace();
@@ -854,11 +869,10 @@ public class BD {
 				int carrera_id = rs.getInt("carrera_id");		
 				Carrera carrera = carreraSelect(st, carrera_id);
 				ret.add(carrera);
-				return ret;
 			}
 			rs.close();
 			log(Level.INFO, "BD/t" + sentSQL, null);
-			return null;
+			return ret;
 		}catch (SQLException e) {
 			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
 			e.printStackTrace();
@@ -897,10 +911,20 @@ public class BD {
 		st.executeUpdate("delete from escuderia");
 		st.executeUpdate("delete from circuito");
 		insertDatos(st);
+//		ArrayList<Coche> listacoches = new ArrayList<>();
+//		listacoches = listaCochesSelect(st);
+//		for (Coche coche : listacoches) {
+//			System.out.println(coche.toString());
+//		}
 //		ArrayList<Piloto> listapilotos = new ArrayList<>();
 //		listapilotos = listaPilotosSelect(st);
 //		for (Piloto piloto : listapilotos) {
 //			System.out.println(piloto.toString());
 //		}
+		ArrayList<Escuderia> listaescuderias = new ArrayList<>();
+		listaescuderias = listaEscuderiasSelect(st);
+		for (Escuderia escuderia : listaescuderias) {
+			System.out.println(escuderia.toString());
+		}
 	}
 }

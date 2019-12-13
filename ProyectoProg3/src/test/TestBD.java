@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import elementos.BD;
+import elementos.Coche;
 import elementos.Componente;
 
 public class TestBD {
@@ -19,13 +20,18 @@ public class TestBD {
 		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 		Statement st = con.createStatement();
 		
-		ArrayList<Componente> listaComponentes = BD.listaComponentesSelect(st);
 		
-		String componente1 = listaComponentes.get(0).toString();
-		assertEquals(componente1, "mercedes.m");
+		//ArrayList<Componente> listaComponentes = BD.listaComponentesSelect(st);
+		ArrayList<Coche> listaCoches = BD.listaCochesSelect(st);
+ 		//String componente1 = listaComponentes.get(0).toString();
+		//assertEquals(componente1, "mercedes.m");
 		
-		for (Componente componente : listaComponentes) {
-			System.out.println(componente.toString());
+		for (Coche coche : listaCoches) {
+			System.out.println(coche.toString());
 		}
+//		for (Componente componente : listaComponentes) {
+//			System.out.println(componente.toString());
+//			//System.out.println(BD.componenteSelect(st, 1).toString());
+//		}
 	}
 }
