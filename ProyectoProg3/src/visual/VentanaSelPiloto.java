@@ -1,27 +1,32 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elementos.BD;
 import elementos.Piloto;
 import elementos.Trayectoria;
-import elementos.initDatos;
+
 
 public class VentanaSelPiloto extends JFrame{
 	
 	JFrame VentanaInicial;
 	 
-	public VentanaSelPiloto(JFrame m) {		
+	public VentanaSelPiloto(JFrame m) throws SQLException {		
 		VentanaInicial = m;
 		JButton bVolver = new JButton("Volver");
 		JPanel pInferior = new JPanel();
@@ -33,8 +38,10 @@ public class VentanaSelPiloto extends JFrame{
 		getContentPane().add(pSuperior, BorderLayout.NORTH); 
 		pSuperior.add(etiqueta); 
 		pInferior.add(bVolver);
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();
 		
-		ArrayList<Piloto> listaPilotos = initDatos.initPilotos();
+		ArrayList<Piloto> listaPilotos = BD.listaPilotosSelect(st);
 		for (Piloto piloto : listaPilotos) {
 			JButton bPiloto = new JButton(piloto.getNombre());
 			pCentral.add(bPiloto);

@@ -2,12 +2,16 @@ package visual;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -15,18 +19,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import elementos.BD;
 import elementos.Coche;
 import elementos.Escuderia;
 import elementos.Mejora;
+import elementos.Piloto;
 import elementos.Trayectoria;
-import elementos.initDatos;
+
 
 public class VentanaCoche extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
 	Coche coche;
  
-	public VentanaCoche (JFrame m) {
+	public VentanaCoche (JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m;
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
@@ -51,10 +57,13 @@ public class VentanaCoche extends JFrame{
 		getContentPane().add(pCentral);
 		Font font = new Font("Verdana", Font.BOLD, 39);
 		Font font1 = new Font("Verdana", Font.PLAIN, 39);
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();
+		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
 
 		//Imprimimos los datos del coche y sus mejoras
 		String nombre_escuderia_seleccionada = Trayectoria.getPiloto().getCoche().nombre;
-		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(initDatos.initPilotos())) {
+		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(pilotos)) {
 			if (nombre_escuderia_seleccionada.equals(escuderia.nombre)) {
 				Escuderia escuderia_seleccionada = escuderia;
 				Integer presupuesto = escuderia_seleccionada.getPresupuesto();

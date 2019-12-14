@@ -9,7 +9,10 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,7 +33,7 @@ public class VentanaPiloto extends JFrame{
 	JFrame MenuPrincipalTrayectoria;
 	Piloto piloto; 
 	
-	public VentanaPiloto(JFrame m) {
+	public VentanaPiloto(JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m; 
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
@@ -61,9 +64,12 @@ public class VentanaPiloto extends JFrame{
 		pCentral.add(pDerecha);
 		getContentPane().add(pCentral);
 		Font font = new Font("Verdana", Font.BOLD, 39);
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();
+		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
 		//Imprimimos los datos de los pilotos con sus atributos _PROVISIONAL 
 		String nombre_escuderia_seleccionada = Trayectoria.getPiloto().getCoche().nombre;
-		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(initDatos.initPilotos())) {
+		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(pilotos)) {
 			if (nombre_escuderia_seleccionada.equals(escuderia.nombre)) {
 				Escuderia escuderia_seleccionada = escuderia;
 				

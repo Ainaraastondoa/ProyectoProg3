@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -8,16 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elementos.BD;
 import elementos.Carrera;
 import elementos.Circuito;
 import elementos.Piloto;
-import elementos.initDatos;
+
 
 /**Esta clase es para visualizar el menu principal
  * del modo trayectoria
@@ -29,7 +34,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	
 
 	
-	public MenuPrincipalTrayectoria(JFrame v) {
+	public MenuPrincipalTrayectoria(JFrame v) throws SQLException {
 		VentanaInicio = v;  
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setSize( 400, 300 );
@@ -49,6 +54,9 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		pInferior.setBackground( Color.LIGHT_GRAY );
 		getContentPane().add( pInferior, BorderLayout.SOUTH); 
 		pInferior.add( bVolver );
+		
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();
 		
 		//Escuchadores
 		bCarrera.addActionListener(new ActionListener() {

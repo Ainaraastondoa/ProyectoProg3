@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,6 +9,9 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -15,13 +19,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import elementos.BD;
 import elementos.Carrera;
 import elementos.Circuito;
 import elementos.Escuderia;
 import elementos.Piloto;
 import elementos.Temporada;
 import elementos.Trayectoria;
-import elementos.initDatos;
+
 
 public class VentanaCarrera extends JFrame{
 	
@@ -29,14 +34,17 @@ public class VentanaCarrera extends JFrame{
 	JFrame VentanaClasifCarrera;
 	Piloto piloto; 
 	 
-	public VentanaCarrera(JFrame m) {
+	public VentanaCarrera(JFrame m) throws SQLException {
 		VentanaClasifCarrera = m; 
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		JPanel pSuperior = new JPanel();
 		
 		ArrayList<Circuito> circuitos = Circuito.crearCircuitosPredeterminados();
-		ArrayList<Piloto> pilotos = initDatos.initPilotos();
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();
+		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
+		ArrayList<Escuderia> escuderias = BD.listaEscuderiasSelect(st);
 		
 		//CARRERA
 	
@@ -51,7 +59,7 @@ public class VentanaCarrera extends JFrame{
 		ArrayList<Carrera> listaCarreras = Carrera.crearCarreras(listaCircuitos, pilotos);
 		
 		//if ( i >= 20) {
-		Temporada t = new Temporada(2019, listaCarreras, pilotos, Escuderia.crearEscuderiasPredeterminadas(initDatos.initPilotos()));
+		Temporada t = new Temporada(2019, listaCarreras, pilotos, escuderias);
 		//this.getListaTemporadas().add(t);
 		
 		
