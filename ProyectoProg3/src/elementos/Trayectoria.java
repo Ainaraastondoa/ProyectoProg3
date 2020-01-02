@@ -1,24 +1,47 @@
 package elementos;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
  
 public class Trayectoria {
 
 	// ATRIBUTOS de la clase Trayectoria - DATOS
 	private ArrayList<Piloto> listaPilotos;
+	private ArrayList<Componente> listaComponentes;
+	private ArrayList<Coche> listaCoches;
+	private ArrayList<Circuito> listaCircuitos;
+	private ArrayList<Carrera> listaCarreras;
 	private ArrayList<Escuderia> listaEscuderias;
 	private ArrayList<Temporada> listaTemporadas;
-	private static Piloto piloto; //Piloto seleccionado para la trayectoria.
+	
+	private static Piloto piloto; 						//Piloto seleccionado para la trayectoria
 	
 
 	// CONSTRUCTOR de la clase Trayectoria
 	public Trayectoria() {
-		ArrayList<ArrayList<Mejora>> listaMejoras = Mejora.crearMejorasPredeterminadas();
-		ArrayList<Componente> listaComponentes = Componente.crearComponentesPredeterminados(listaMejoras);
-		ArrayList<Coche> listaCoches = Coche.crearCochesPredeterminados(listaComponentes);
-		this.listaPilotos = Piloto.crearPilotosPredeterminados(listaCoches);
-		this.listaEscuderias = Escuderia.crearEscuderiasPredeterminadas(this.listaPilotos);
-		this.listaTemporadas = new ArrayList<Temporada>();
+		// CreaciÃ³n de la base de datos y la trayectoria
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st;
+		try {
+			st = con.createStatement();
+			BD.usarCrearTablasBD(con);
+			BD.insertDatos(st);
+			
+			// Inicializar componentes trayectoria
+//			ArrayList<ArrayList<Mejora>> listaMejoras = Mejora.crearMejorasPredeterminadas();
+			this.listaComponentes = BD.listaComponentesSelect(st);
+			this.listaCoches = BD.listaCochesSelect(st);
+			this.listaCircuitos = BD.listaCircuitosSelect(st);
+			this.listaPilotos = BD.listaPilotosSelect(st);
+			this.listaEscuderias = BD.listaEscuderiasSelect(st);
+			this.listaCarreras = new ArrayList<Carrera>();
+			this.listaTemporadas = new ArrayList<Temporada>();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	// GETTERS Y SETTERS
@@ -54,34 +77,35 @@ public class Trayectoria {
 		Trayectoria.piloto = piloto;
 	}
 
-	// Método de simulación de una trayectoria
+	// MÃ©todo de simulaciÃ³n de una trayectoria
 	public void simularTrayectoria() {
 		
-		// Creación de Trayectoria
-		ArrayList<Circuito> listaCircuitos = Circuito.crearCircuitosPredeterminados();
-		
-		// Añadir temporada
-		ArrayList<Carrera> listaCarreras = Carrera.crearCarreras(listaCircuitos, this.listaPilotos);
-		Temporada t = new Temporada(2019, listaCarreras, listaPilotos, listaEscuderias);
+		// AÃ±adir temporada
+		Temporada t = new Temporada(2019, this.listaPilotos, this.listaEscuderias);
 		this.getListaTemporadas().add(t);
+		
+		// AÃ±adir carrera
+		Carrera c = new Carrera(this.listaCircuitos.get(0), this.getListaPilotos());
+		this.getListaTemporadas().get(0).getListaCarreras().add(c);
 		
 		// Simular Carrera (carrera 1)
 		Integer carreraActual = 0;
 		t.getListaCarreras().get(carreraActual).simularCarrera();
 		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
 		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
-		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
 		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
 				
-		// Comprobación (carrera 1)
+		// ComprobaciÃ³n (carrera 1)
 		System.out.println("Resultado Carrera:");
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
 	}
 	
 
-	// Método main de prueba
+	// MÃ©todo main de prueba
 	public static void main(String[] args) {
-		
+		Trayectoria t = new Trayectoria();
+		t.simularTrayectoria();
 	}
 }

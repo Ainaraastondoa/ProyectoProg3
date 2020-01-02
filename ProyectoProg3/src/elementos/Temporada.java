@@ -6,7 +6,7 @@ import java.util.HashMap;
 /** Esta clase define las temporadas y sus atributos
  * 
  */
-//¿¿¿¿IMPLEMENTS COMPARABLE????
+//ï¿½ï¿½ï¿½ï¿½IMPLEMENTS COMPARABLE????
 public class Temporada {
 	
 	//ATRIBUTOS de la clase Temporada
@@ -16,11 +16,10 @@ public class Temporada {
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
 	
 	//CONSTRUCTOR
-	public Temporada(int anno, ArrayList<Carrera> listaCarreras, ArrayList<Piloto> listaPilotos,
-			ArrayList<Escuderia> listaEscuderias) {
+	public Temporada(int anno, ArrayList<Piloto> listaPilotos, ArrayList<Escuderia> listaEscuderias) {
 		this.anno = anno;
 		this.puntosPiloto = crearMapaPilotosPuntos(listaPilotos);
-		this.listaCarreras = listaCarreras;
+		this.listaCarreras = new ArrayList<Carrera>();
 		this.puntosEscuderia = crearMapaEscuderiasPuntos(listaEscuderias);
 	}
 	
@@ -39,7 +38,7 @@ public class Temporada {
 		HMpuntosPiloto.put(new Piloto("Hulkenberg",32,8,65,55,70,68,40,null), 90);
 		HMpuntosPiloto.put(new Piloto("Gasly",23,7,60,57,55,58,34,null), 75);
 		HMpuntosPiloto.put(new Piloto("Kvyat",25,6,42,35,50,55,41,null), 90);
-		HMpuntosPiloto.put(new Piloto("Pérez",29,7,75,47,55,48,42,null), 75);
+		HMpuntosPiloto.put(new Piloto("Pï¿½rez",29,7,75,47,55,48,42,null), 75);
 		HMpuntosPiloto.put(new Piloto("Stroll",20,6,36,50,55,53,39,null), 90);
 		HMpuntosPiloto.put(new Piloto("Magnussen",27,7,30,55,78,63,30,null), 75);
 		HMpuntosPiloto.put(new Piloto("Grosjean",33,5,4,44,44,48,45,null), 90);
@@ -97,7 +96,7 @@ public class Temporada {
 	}
 	
 	/**
-	 * Método que sirve para crear el hashmap de pilotos y puntos
+	 * Mï¿½todo que sirve para crear el hashmap de pilotos y puntos
 	 * @param listaPilotos Lista de pilotos que toman parte en la temporada
 	 * @return Puntos por piloto en la temporada (a 0 en el inicio)
 	 */
@@ -110,9 +109,9 @@ public class Temporada {
 	}
 	
 	/**
-	 * Método que sirve para crear el hashmap de escuderías y puntos
-	 * @param listaEscuderias Lista de escuderías que toman parte en la temporada
-	 * @return Puntos por escudería en la temporada (a 0 en el inicio)
+	 * Mï¿½todo que sirve para crear el hashmap de escuderï¿½as y puntos
+	 * @param listaEscuderias Lista de escuderï¿½as que toman parte en la temporada
+	 * @return Puntos por escuderï¿½a en la temporada (a 0 en el inicio)
 	 */
 	public HashMap<Escuderia, Integer> crearMapaEscuderiasPuntos(ArrayList<Escuderia> listaEscuderias) {
 		HashMap<Escuderia, Integer> mapa = new HashMap<Escuderia, Integer>();

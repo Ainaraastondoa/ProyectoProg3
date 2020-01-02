@@ -20,7 +20,6 @@ public class TestBD {
 		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 		Statement st = con.createStatement();
 		
-		
 		ArrayList<Componente> listaComponentes = BD.listaComponentesSelect(st);
 		ArrayList<Coche> listaCoches = BD.listaCochesSelect(st);
  		String componente1 = listaComponentes.get(0).toString();

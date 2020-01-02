@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,9 +17,9 @@ public class BD {
 	
 	static String url = "src/datos/F1BaseDatos.db";
 	
-	/**Inicializa una BDSQLITE y devuelve una conexión con ella
+	/**Inicializa una BDSQLITE y devuelve una conexiï¿½n con ella
 	 * @param nombreBD
-	 * @return Devuelve null si hay algun error con la conexión
+	 * @return Devuelve null si hay algun error con la conexiï¿½n
 	 */
 	public static Connection initBD( String nombreBD) {
 		try {
@@ -32,13 +31,13 @@ public class BD {
 			log( Level.INFO, "Conectada base de datos " + nombreBD, null );
 		    return con;
 		} catch (ClassNotFoundException | SQLException e) {
-			log( Level.SEVERE, "Error en conexión de base de datos " + nombreBD, e );
+			log( Level.SEVERE, "Error en conexiï¿½n de base de datos " + nombreBD, e );
 			return null;
 		}
 	}
 	
 	/**Creamos las tablas de escuderia, pilotos, coches, componentes, atributos con sus respectivos atributos. 
-	 * Además de las tablas relacionales necesarias para realizar las referencias necesarias
+	 * Ademï¿½s de las tablas relacionales necesarias para realizar las referencias necesarias
 	 * Si ya existen, las deja tal cual. Devuelve un statement para trabajar con esa base de datos
 	 * @param con Conexion ya creada y abierta a la base de datos
 	 * @return sentencia de trabajo si se crea correctamente, null si hay cualquier error
@@ -124,7 +123,7 @@ public class BD {
 			log( Level.INFO, "Creada base de datos", null );
 			return statement;
 		} catch (SQLException e) {
-			log( Level.SEVERE, "Error en creación de base de datos", e );
+			log( Level.SEVERE, "Error en creaciï¿½n de base de datos", e );
 			return null;
 		}		
 	}
@@ -379,7 +378,7 @@ public class BD {
 					1 + ", " + "'Albert Park'" + ", " + "'Australia'" + ", " + 2 + ", " + 79.5 + ", " + 84.5 + ", " + 22.0 + ", " + 58 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
-					2 + ", " + "'Sakhir'" + ", " + "'Baréin'" + ", " + 3 + ", " + 76.8 + ", " + 82.4 + ", " + 22.0 + ", " + 57 + ")";
+					2 + ", " + "'Sakhir'" + ", " + "'Barï¿½in'" + ", " + 3 + ", " + 76.8 + ", " + 82.4 + ", " + 22.0 + ", " + 57 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
 					3 + ", " + "'Shanghai'" + ", " + "'China'" + ", " + 3 + ", " + 80.5 + ", " + 83.7 + ", " + 24.0 + ", " + 56 + ")";
@@ -388,7 +387,7 @@ public class BD {
 					4 + ", " + "'Baku City Circuit'" + ", " + "'Azerbaijan'" + ", " + 2 + ", " + 89.5 + ", " + 92 + ", " + 22.0 + ", " + 51 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
-					5 + ", " + "'Catalunya'" + ", " + "'España'" + ", " + 3 + ", " + 74.4 + ", " + 77.5 + ", " + 24.0 + ", " + 66 + ")";
+					5 + ", " + "'Catalunya'" + ", " + "'Espaï¿½a'" + ", " + 3 + ", " + 74.4 + ", " + 77.5 + ", " + 24.0 + ", " + 66 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
 					6 + ", " + "'Montecarlo'" + ", " + "'Monaco'" + ", " + 1 + ", " + 69.1 + ", " + 73.3 + ", " + 20.0 + ", " + 78 + ")";
@@ -403,7 +402,7 @@ public class BD {
 					9 + ", " + "'Red Bull Ring'" + ", " + "'Austria'" + ", " + 2 + ", " + 62.0 + ", " + 66.5 + ", " + 20.0 + ", " + 71 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
-					10 + ", " + "'Silverstone'" + ", " + "'Gran Bretaña'" + ", " + 3 + ", " + 84.1 + ", " + 86.4 + ", " + 20.0 + ", " + 52 + ")";
+					10 + ", " + "'Silverstone'" + ", " + "'Gran Bretaï¿½a'" + ", " + 3 + ", " + 84.1 + ", " + 86.4 + ", " + 20.0 + ", " + 52 + ")";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into circuito values(" +
 					11 + ", " + "'Hockenheim'" + ", " + "'Alemania'" + ", " + 2 + ", " + 70.8 + ", " + 75.6 + ", " + 22.0 + ", " + 64 + ")";
@@ -440,7 +439,7 @@ public class BD {
 			//st.executeUpdate(sentSQL);
 			
 			int val = st.executeUpdate( sentSQL );
-			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
+			log( Level.INFO, "BD aï¿½adida " + val + " fila\t" + sentSQL, null );
 			if (val!=1) {  // Se tiene que aÃ±adir 1 - error si no
 				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
 				return false;  
@@ -463,7 +462,7 @@ public class BD {
 			st.executeUpdate(sentSQL);
 					
 			int val = st.executeUpdate( sentSQL );
-			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
+			log( Level.INFO, "BD aï¿½adida " + val + " fila\t" + sentSQL, null );
 			if (val!=1) {  // Se tiene que aÃ±adir 1 - error si no
 				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
 				return false;  
@@ -484,7 +483,7 @@ public class BD {
 			st.executeUpdate(sentSQL);
 					
 			int val = st.executeUpdate( sentSQL );
-			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
+			log( Level.INFO, "BD aï¿½adida " + val + " fila\t" + sentSQL, null );
 			if (val!=1) {  // Se tiene que aÃ±adir 1 - error si no
 				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
 				return false;  
@@ -884,7 +883,7 @@ public class BD {
 	
 	private static Logger logger = null;
 	
-	// Método local para loggear
+	// Mï¿½todo local para loggear
 	private static void log( Level level, String msg, Throwable excepcion ) {
 		if (logger==null) {  // Logger por defecto local:
 			logger = Logger.getLogger( BD.class.getName() );  // Nombre del logger - el de la clase

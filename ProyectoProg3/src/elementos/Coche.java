@@ -12,7 +12,7 @@ public class Coche {
 	public Componente motor;		//Motor que monta el coche
 	public Componente chasis;		//Chasis que usa el coche
 	public Componente aerodinamica;	//Paquete aerodinamico del coche
-	public int porcentajeRuedas;	//Porcentaje restante de duración de las ruedas en carrera
+	public int porcentajeRuedas;	//Porcentaje restante de duraciï¿½n de las ruedas en carrera
 	
 	//CONSTRUCTOR	
 	public Coche(String nombre, Componente motor, Componente chasis, Componente aerodinamica, int porcentajeRuedas) {
@@ -72,9 +72,9 @@ public class Coche {
 	}
 	
 	/**
-	 * Método que calcula el número cercano a 1 por el que tenemos que multiplicar el tiempo por vuelta según la degradación de
+	 * Mï¿½todo que calcula el nï¿½mero cercano a 1 por el que tenemos que multiplicar el tiempo por vuelta segï¿½n la degradaciï¿½n de
 	 * las ruedas.
-	 * @return El número por el que multiplicar el tiempo por vuelta inicial
+	 * @return El nï¿½mero por el que multiplicar el tiempo por vuelta inicial
 	 */
 	public float multiplicarDegradacion() {
 		if (this.porcentajeRuedas == 100) { // Ruedas al 100%
@@ -93,9 +93,9 @@ public class Coche {
 	}
 	
 	/**
-	 * Método que calcula la puntuación sobre 7500 puntos de los componentes del coche para calcular después el rendimiento total
+	 * Mï¿½todo que calcula la puntuaciÃ³n sobre 6500 puntos de los componentes del coche para calcular despuÃ©s el rendimiento total
 	 * sobre 10000 del Piloto + Coche concreto
-	 * @return La puntuación total sobre 7500
+	 * @return La puntuaciÃ³n total sobre 6500
 	 */
 	public int calcularPuntosCoche() {
 		int puntuacion = 0;
@@ -106,7 +106,7 @@ public class Coche {
 	}
 	
 	/** Metodo que crea todos los coches del campeonato con sus correspondientes componentes predeterminados. Ejecutar obligatoriamente
-	 * después del método crearComponentesPredeterminados de la clase Componente
+	 * despuï¿½s del mï¿½todo crearComponentesPredeterminados de la clase Componente
 	 * @param Lista de componentes predeterminados ordenados con sus correspondientes mejoras
 	 * @return Lista de coches participantes en el campeonato
 	 */

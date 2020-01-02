@@ -7,7 +7,7 @@ import java.util.HashMap;
  
 /**
  * La clase Carrera sirve para desarrollar las acciones de cada carrera, englobando pilotos con el circuito 
- * para hacer los cálculos de tiempo por vuelta, clasificación final, etc.
+ * para hacer los cÃ¡lculos de tiempo por vuelta, clasificaciÃ³n final, etc.
  *
  */
 public class Carrera {
@@ -50,27 +50,27 @@ public class Carrera {
 	}
 
 	/**
-	 * Método para calcular el tiempo por vuelta final de cada piloto
+	 * Mï¿½todo para calcular el tiempo por vuelta final de cada piloto
 	 * @param piloto Piloto del que queremos sacar su tiempo por vuelta
 	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
-	 * @return El tiempo por vuelta definitivo de ese piloto concreto (en segundos / redondeado a milésimas)
+	 * @return El tiempo por vuelta definitivo de ese piloto concreto (en segundos / redondeado a milï¿½simas)
 	 */
 	public float calcularTiempoPorVuelta(Piloto piloto) {
 		float tiempoVueltaInicial = calcularTiempoInicial(piloto);
-		/*PR*/System.out.println(piloto + " -> Tiempo Inicial: " + tiempoVueltaInicial);
+//		/*PR*/System.out.println(piloto + " -> Tiempo Inicial: " + tiempoVueltaInicial);
 		float tiempoVueltaTrasDegradacion = tiempoVueltaInicial * piloto.getCoche().multiplicarDegradacion();
-		/*PR*/System.out.println(piloto + " -> Tiempo tras Degradación: " + tiempoVueltaTrasDegradacion);
+//		/*PR*/System.out.println(piloto + " -> Tiempo tras DegradaciÃ³n: " + tiempoVueltaTrasDegradacion);
 		float tiempoVueltaFinal = tiempoVueltaTrasDegradacion * generarNumeroAleatorio();
-		/*PR*/System.out.println(piloto + " -> Tiempo tras Aleatorio: " + tiempoVueltaFinal);
+//		/*PR*/System.out.println(piloto + " -> Tiempo tras Aleatorio: " + tiempoVueltaFinal);
 		BigDecimal tiempoFinalRedondeado = new BigDecimal(tiempoVueltaFinal).setScale(3, RoundingMode.HALF_EVEN);
 		return tiempoFinalRedondeado.floatValue();
 	}
 	
 	/**
-	 * Método para calcular tiempo por vuelta teniendo en cuenta únicamente los atributos del piloto y los componentes del coche
+	 * Mï¿½todo para calcular tiempo por vuelta teniendo en cuenta ï¿½nicamente los atributos del piloto y los componentes del coche
 	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
 	 * @param piloto Piloto del que queremos calcular el tiempo por vuelta
-	 * @return Tiempo por vuelta inicial, calculado únicamente según el rendimiento de Coche + Piloto
+	 * @return Tiempo por vuelta inicial, calculado ï¿½nicamente segï¿½n el rendimiento de Coche + Piloto
 	 */
 	public float calcularTiempoInicial(Piloto piloto) {
 		int puntuacionTotal = 0;
@@ -81,8 +81,8 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que calcula un número aleatorio entre 0,9975 y 1,0025 para la parte aleatoria del cálculo del tiempo por vuelta
-	 * @return El número aleatorio por el que hay que multiplicar el tiempo por vuelta tras degradación
+	 * Mï¿½todo que calcula un nï¿½mero aleatorio entre 0,9975 y 1,0025 para la parte aleatoria del cï¿½lculo del tiempo por vuelta
+	 * @return El nï¿½mero aleatorio por el que hay que multiplicar el tiempo por vuelta tras degradaciï¿½n
 	 */
 	public float generarNumeroAleatorio() {
 		int n = (int)(Math.random() * (10025 - 9975 + 1) + 9975);
@@ -91,22 +91,22 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que calcula la degradación por vuelta de los neumáticos en función del circuito y hace la resta en el porcentaje del
+	 * Mï¿½todo que calcula la degradaciï¿½n por vuelta de los neumï¿½ticos en funciï¿½n del circuito y hace la resta en el porcentaje del
 	 * coche de los pilotos
-	 * @param piloto Piloto del que queremos calcular la degradación
+	 * @param piloto Piloto del que queremos calcular la degradaciï¿½n
 	 */
 	public void calcularDegradacionPorVuelta(Piloto piloto) {
-		if (this.getCircuito().getNivelDegradacion() == 1) { // Nivel de degradación Bajo
+		if (this.getCircuito().getNivelDegradacion() == 1) { // Nivel de degradaciï¿½n Bajo
 			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 2);
-		} else if (this.getCircuito().getNivelDegradacion() == 2) { // Nivel de degradación Medio
+		} else if (this.getCircuito().getNivelDegradacion() == 2) { // Nivel de degradaciï¿½n Medio
 			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 3);
-		} else { // Nivel de degradación Alto
+		} else { // Nivel de degradaciï¿½n Alto
 			piloto.getCoche().setPorcentajeRuedas(piloto.getCoche().getPorcentajeRuedas() - 4);
 		}
 	}
 	
 	/**
-	 * Método que sirve para simular las paradas en boxes: pone las ruedas a degradación 0 y devuelve el tiempo perdido en el proceso
+	 * Mï¿½todo que sirve para simular las paradas en boxes: pone las ruedas a degradaciï¿½n 0 y devuelve el tiempo perdido en el proceso
 	 * @param piloto Piloto que entra a boxes
 	 * @return Tiempo que pierde al cambiar las ruedas en boxes
 	 */
@@ -116,7 +116,7 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que calcula el tiempo total de la carrera de cada piloto y lo deja en la lista de tiempos sin ordenar
+	 * Mï¿½todo que calcula el tiempo total de la carrera de cada piloto y lo deja en la lista de tiempos sin ordenar
 	 */
 	public void simularCarrera() {
 		for ( int i = 0; i < this.getCircuito().getVueltas(); i++ ) { // Se repite tantas veces como vueltas tenga el circuito
@@ -141,7 +141,7 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que ordena a los pilotos en función de su tiempo de carrera, ordena la clasificación.
+	 * Mï¿½todo que ordena a los pilotos en funciï¿½n de su tiempo de carrera, ordena la clasificaciï¿½n.
 	 * No se puede usar antes de que todos los pilotos completen 1 vuelta por lo menos
 	 */
 	public void ordenarClasificacionCarrera() {
@@ -157,39 +157,39 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que sirve para otorgar puntos en función de la posición en carrera.
-	 * Obligatoriamente debe ser ejecutado después de que los pilotos hayan sido ordenados en función de su tiempo total
+	 * Mï¿½todo que sirve para otorgar puntos en funciï¿½n de la posiciï¿½n en carrera.
+	 * Obligatoriamente debe ser ejecutado despuï¿½s de que los pilotos hayan sido ordenados en funciï¿½n de su tiempo total
 	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
 	 */
 	public void repartirPuntos(HashMap<Piloto, Integer> puntosPiloto) {
 		for (int i = 0; i < listaPilotos.size() - 10; i++) {
-			if (i == 0) { // 1º Puesto
+			if (i == 0) { // 1ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 25);
-			} else if (i == 1) { // 2º Puesto
+			} else if (i == 1) { // 2ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 18);
-			} else if (i == 2) { // 3º Puesto
+			} else if (i == 2) { // 3ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 15);
-			} else if (i == 3) { // 4º Puesto
+			} else if (i == 3) { // 4ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 12);
-			} else if (i == 4) { // 5º Puesto
+			} else if (i == 4) { // 5ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 10);
-			} else if (i == 5) { // 6º Puesto
+			} else if (i == 5) { // 6ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 8);
-			} else if (i == 6) { // 7º Puesto
+			} else if (i == 6) { // 7ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 6);
-			} else if (i == 7) { // 8º Puesto
+			} else if (i == 7) { // 8ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 4);
-			} else if (i == 8) { // 9º Puesto
+			} else if (i == 8) { // 9ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 2);
-			} else if (i == 9) { // 10º Puesto
+			} else if (i == 9) { // 10ï¿½ Puesto
 				puntosPiloto.put(listaPilotos.get(i), puntosPiloto.get(listaPilotos.get(i)) + 1);
 			}
 		}
 	}
 	
 	/**
-	 * Método que sirve para actualizar los puntos de una escudería después de una carrera
-	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderías con sus puntos esa temporada
+	 * Mï¿½todo que sirve para actualizar los puntos de una escuderï¿½a despuï¿½s de una carrera
+	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderï¿½as con sus puntos esa temporada
 	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
 	 */
 	public void actualizarPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia, HashMap<Piloto, Integer> puntosPiloto) {
@@ -200,9 +200,9 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que sirve para repartir el dinero a la escudería en función de la posición de sus pilotos. 
-	 * Obligatoriamente debe ser ejecutado después de que los pilotos hayan sido ordenados en función de su tiempo total
-	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderías con sus puntos esa temporada
+	 * Mï¿½todo que sirve para repartir el dinero a la escuderï¿½a en funciï¿½n de la posiciï¿½n de sus pilotos. 
+	 * Obligatoriamente debe ser ejecutado despuï¿½s de que los pilotos hayan sido ordenados en funciï¿½n de su tiempo total
+	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderï¿½as con sus puntos esa temporada
 	 */
 	public void repartirDinero(HashMap<Escuderia, Integer> puntosEscuderia) {
 		puntosEscuderia.forEach( (k,v) -> {
@@ -231,7 +231,7 @@ public class Carrera {
 			});
 	}
 	
-	/** Metodo para pasar un tiempo en segundos a un formato más visual mm:ss
+	/** Metodo para pasar un tiempo en segundos a un formato mï¿½s visual mm:ss
 	 * @param seg Segundos que quieres cambiar de formato
 	 * @return tiempo en formato mm:ss
 	 */
@@ -243,7 +243,7 @@ public class Carrera {
 		return minssegs; 
 	}
 	
-	/** Metodo para pasar un tiempo en segundos a un formato más visual hh:mm:ss
+	/** Metodo para pasar un tiempo en segundos a un formato mï¿½s visual hh:mm:ss
 	 * @param seg Segundos que quieres cambiar de formato
 	 * @return tiempo en formato hh:mm:ss
 	 */
@@ -257,7 +257,7 @@ public class Carrera {
 		return horMinsSegs; 
 	}
 	
-	/** Método que al finalizar la carrera, o cuando dos pilotos hayan recorrido la misma distancia, 
+	/** Mï¿½todo que al finalizar la carrera, o cuando dos pilotos hayan recorrido la misma distancia, 
 	 * calcula la diferencia de tiempo que hay entre los dos.
 	 * @param tiempoP1 Tiempo del piloto que va delante (menor)
 	 * @param tiempoP2 Tiempo del piloto seguidor (mayor)
@@ -270,7 +270,7 @@ public class Carrera {
 	}
 	
 	/**
-	 * Método que sirve para crear la lista de carreras de una temporada
+	 * Mï¿½todo que sirve para crear la lista de carreras de una temporada
 	 * @param listaCircuitos Lista de circuitos de F1
 	 * @param listaPilotos Lista de los pilotos que participan en la temporada
 	 * @return Lista de carreras en una temporada
