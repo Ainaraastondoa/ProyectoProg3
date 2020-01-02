@@ -4,7 +4,7 @@ package elementos;
 /** Esta clase define los componentes de los monoplazas
  * 
  */
-public class Componente {
+public class Componente implements Comparable<Componente> {
 	
 	//ATRIBUTOS de la clase Componente
 	public String nombre;					//Nombre del componente
@@ -46,6 +46,11 @@ public class Componente {
 		this.rendimiento = rendimiento;
 	}
 
+	@Override
+	public int compareTo(Componente o) {
+		return this.getRendimiento() - o.getRendimiento();
+	}
+
 
 //	public ArrayList<Mejora> getListaMejoras() {
 //		return listaMejoras;
@@ -55,7 +60,7 @@ public class Componente {
 //		this.listaMejoras = listaMejoras;
 //	}
 //
-//	/** Método que crea todos los componentes predeterminados de cada uno de los coches. Ejecutar obligatoriamente después del método
+//	/** Mï¿½todo que crea todos los componentes predeterminados de cada uno de los coches. Ejecutar obligatoriamente despuï¿½s del mï¿½todo
 //	 * crearMejorasPredeterminadas de la clase Mejora
 //	 * @param Lista de las mejoras por componentes de cada coche ordenadas
 //	 * @return Lista ordenada de todos los componentes de cada uno de los coches
@@ -107,9 +112,9 @@ public class Componente {
 //	}
 //	
 //	/**
-//	 * Método que sirve para calcular el rendimiento sobre 100 de un componente en función de su lista de mejoras
+//	 * Mï¿½todo que sirve para calcular el rendimiento sobre 100 de un componente en funciï¿½n de su lista de mejoras
 //	 * @param listaMejoras Lista de mejoras que tiene un componente
-//	 * @return Rendimiento del 0 al 100 que tendrá ese componente en función de sus mejoras
+//	 * @return Rendimiento del 0 al 100 que tendrï¿½ ese componente en funciï¿½n de sus mejoras
 //	 */
 //	public int calcularRendimientoComponente(ArrayList<Mejora> listaMejoras) {
 //		int rendimiento = 0;
