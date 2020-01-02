@@ -2,7 +2,7 @@ package elementos;
 
 import java.util.ArrayList;
 
-/*Esta clase define las características de los pilotos 
+/*Esta clase define las caracterï¿½sticas de los pilotos 
  * 
  */ 
 public class Piloto {
@@ -89,17 +89,17 @@ public class Piloto {
 	}
 	
 	/**
-	 * Método que calcula la puntuación sobre 3500 puntos de los atributos del piloto para calcular después el rendimiento total
+	 * Mï¿½todo que calcula la puntuaciÃ³n sobre 2600 puntos de los atributos del piloto para calcular despuï¿½s el rendimiento total
 	 * sobre 10000 del Piloto + Coche concreto
-	 * @return La puntuación total sobre 3500
+	 * @return La puntuaciÃ³n total sobre 2600
 	 */
 	public int calcularPuntosPiloto() {
 		int puntuacion = 0;
-		puntuacion += this.getRegularidad() * 9;
-		puntuacion += this.getAdelantar() * 7;
-		puntuacion += this.getDefender() * 7;
-		puntuacion += this.getVelocidad() * 9;
-		puntuacion += this.getMojado() * 3;
+		puntuacion += this.getRegularidad() * 7;
+		puntuacion += this.getAdelantar() * 5;
+		puntuacion += this.getDefender() * 5;
+		puntuacion += this.getVelocidad() * 7;
+		puntuacion += this.getMojado() * 2;
 		return puntuacion;
 	}
 	
@@ -128,7 +128,7 @@ public class Piloto {
 		listaPilotos.add(new Piloto("Gasly",23,7,60,57,55,58,34,listaCoches.get(5)));
 		listaPilotos.add(new Piloto("Kvyat",25,6,42,35,50,55,41,new Coche(listaCoches.get(5))));
 		// Coche Racing Point
-		listaPilotos.add(new Piloto("Pérez",29,7,75,47,55,48,42,listaCoches.get(6)));
+		listaPilotos.add(new Piloto("Pï¿½rez",29,7,75,47,55,48,42,listaCoches.get(6)));
 		listaPilotos.add(new Piloto("Stroll",20,6,36,50,55,53,39,new Coche(listaCoches.get(6))));
 		// Coche Haas
 		listaPilotos.add(new Piloto("Magnussen",27,7,30,55,78,63,30,listaCoches.get(7)));

@@ -93,15 +93,15 @@ public class Coche {
 	}
 	
 	/**
-	 * M�todo que calcula la puntuación sobre 6500 puntos de los componentes del coche para calcular después el rendimiento total
+	 * M�todo que calcula la puntuación sobre 7400 puntos de los componentes del coche para calcular después el rendimiento total
 	 * sobre 10000 del Piloto + Coche concreto
-	 * @return La puntuación total sobre 6500
+	 * @return La puntuación total sobre 7400
 	 */
 	public int calcularPuntosCoche() {
 		int puntuacion = 0;
-		puntuacion += this.getMotor().getRendimiento() * 23;
-		puntuacion += this.getAerodinamica().getRendimiento() * 22;
-		puntuacion += this.getChasis().getRendimiento() * 20;
+		puntuacion += this.getMotor().getRendimiento() * 26;
+		puntuacion += this.getAerodinamica().getRendimiento() * 25;
+		puntuacion += this.getChasis().getRendimiento() * 23;
 		return puntuacion;
 	}
 	

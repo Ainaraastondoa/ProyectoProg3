@@ -84,7 +84,7 @@ public class Trayectoria {
 		Temporada t = new Temporada(2019, this.listaPilotos, this.listaEscuderias);
 		this.getListaTemporadas().add(t);
 		
-		// Añadir carrera
+		// Añadir carrera 1
 		Carrera c = new Carrera(this.listaCircuitos.get(0), this.getListaPilotos());
 		this.getListaTemporadas().get(0).getListaCarreras().add(c);
 		
@@ -97,6 +97,23 @@ public class Trayectoria {
 		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
 				
 		// Comprobación (carrera 1)
+		System.out.println("Resultado Carrera:");
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
+		
+		// Añadir carrera 2
+		Carrera c2 = new Carrera(this.listaCircuitos.get(1), this.listaPilotos);
+		this.getListaTemporadas().get(0).getListaCarreras().add(c2);
+		
+		// Simular Carrera (carrera 2)
+		carreraActual++;
+		t.getListaCarreras().get(carreraActual).simularCarrera();
+		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
+		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
+//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
+		
+		// Comprobación (carrera 2)
 		System.out.println("Resultado Carrera:");
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
