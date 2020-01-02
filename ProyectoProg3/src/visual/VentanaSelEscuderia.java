@@ -47,13 +47,20 @@ public class VentanaSelEscuderia extends JFrame{
 			bEscuderia.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaSelEscuderia.this );
-					menu.setLocation( getLocation() );
-					menu.setSize( getSize() );
-					menu.setVisible( true );
-					VentanaSelEscuderia.this.setVisible( false );
-					//Piloto seleccionado
-					Trayectoria.setPiloto(escuderia.piloto1);;
+					MenuPrincipalTrayectoria menu;
+					try {
+						menu = new MenuPrincipalTrayectoria( VentanaSelEscuderia.this );
+						menu.setLocation( getLocation() );
+						menu.setSize( getSize() );
+						menu.setVisible( true );
+						VentanaSelEscuderia.this.setVisible( false );
+						//Piloto seleccionado
+						Trayectoria.setPiloto(escuderia.piloto1);;
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
 				}
 				
 			});

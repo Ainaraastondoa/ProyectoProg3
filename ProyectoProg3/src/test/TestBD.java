@@ -21,10 +21,10 @@ public class TestBD {
 		Statement st = con.createStatement();
 		
 		
-		//ArrayList<Componente> listaComponentes = BD.listaComponentesSelect(st);
+		ArrayList<Componente> listaComponentes = BD.listaComponentesSelect(st);
 		ArrayList<Coche> listaCoches = BD.listaCochesSelect(st);
- 		//String componente1 = listaComponentes.get(0).toString();
-		//assertEquals(componente1, "mercedes.m");
+ 		String componente1 = listaComponentes.get(0).toString();
+		assertEquals(componente1, "mercedes.m");
 		
 		for (Coche coche : listaCoches) {
 			System.out.println(coche.toString2());

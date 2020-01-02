@@ -63,11 +63,18 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaCarrera vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this);
-				vCarrera.setLocation(getLocation());
-				vCarrera.setSize(getSize());
-				vCarrera.setVisible(true);
-				MenuPrincipalTrayectoria.this.setVisible(false);
+				VentanaCarrera vCarrera;
+				try {
+					vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this);
+					vCarrera.setLocation(getLocation());
+					vCarrera.setSize(getSize());
+					vCarrera.setVisible(true);
+					MenuPrincipalTrayectoria.this.setVisible(false);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 			
 		});
@@ -76,11 +83,18 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaCoche coche = new VentanaCoche( MenuPrincipalTrayectoria.this );
-				coche.setLocation( getLocation() );
-				coche.setSize( getSize() );
-				coche.setVisible( true );
-				MenuPrincipalTrayectoria.this.setVisible( false );
+				VentanaCoche coche;
+				try {
+					coche = new VentanaCoche( MenuPrincipalTrayectoria.this );
+					coche.setLocation( getLocation() );
+					coche.setSize( getSize() );
+					coche.setVisible( true );
+					MenuPrincipalTrayectoria.this.setVisible( false );
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 			
 		});
@@ -89,11 +103,18 @@ public class MenuPrincipalTrayectoria extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPiloto pilotos = new VentanaPiloto( MenuPrincipalTrayectoria.this );
-				pilotos.setLocation( getLocation() );
-				pilotos.setSize( getSize() );
-				pilotos.setVisible( true );
-				MenuPrincipalTrayectoria.this.setVisible( false );	
+				VentanaPiloto pilotos;
+				try {
+					pilotos = new VentanaPiloto( MenuPrincipalTrayectoria.this );
+					pilotos.setLocation( getLocation() );
+					pilotos.setSize( getSize() );
+					pilotos.setVisible( true );
+					MenuPrincipalTrayectoria.this.setVisible( false );	
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 			
 		});
