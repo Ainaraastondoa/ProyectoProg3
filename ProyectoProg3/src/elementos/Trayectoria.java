@@ -95,47 +95,36 @@ public class Trayectoria {
 		t.getListaCarreras().get(carreraActual).simularCarrera();
 		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
 		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
-//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
 		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
 				
-		// Comprobación (carrera 1)
+		// Comprobaciones (carrera 1)
 		System.out.println("Resultado Carrera:");
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
+		t.getPuntosPiloto().forEach( (k, v) -> System.out.println("Piloto: " + k + "   Puntos: " + v ));
+		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Puntos: " + v ));
+		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Dinero: " + k.getPresupuesto()));
 		
 		// Añadir carrera 2
-		Carrera c2 = new Carrera(this.listaCircuitos.get(1), this.listaPilotos);
-		this.getListaTemporadas().get(0).getListaCarreras().add(c2);
+		Carrera c2 = new Carrera(this.listaCircuitos.get(1), this.getListaPilotos());
+		this.getListaTemporadas().get(0).getListaCarreras().add(c);
 		
 		// Simular Carrera (carrera 2)
-		carreraActual++;
+		carreraActual = 1;
 		t.getListaCarreras().get(carreraActual).simularCarrera();
 		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
 		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
-//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
 		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
-		
-		// Comprobación (carrera 2)
+				
+		// Comprobaciones (carrera 2)
 		System.out.println("Resultado Carrera:");
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
-		
-		// Añadir carrera 3
-		Carrera c3 = new Carrera(this.listaCircuitos.get(2), this.listaPilotos);
-		this.getListaTemporadas().get(0).getListaCarreras().add(c3);
-		
-		// Simular Carrera (carrera 3)
-		carreraActual++;
-		t.getListaCarreras().get(carreraActual).simularCarrera();
-		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
-		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
-//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
-		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
-		
-		// Comprobación (carrera 3)
-		System.out.println("Resultado Carrera:");
-		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
-		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
+		t.getPuntosPiloto().forEach( (k, v) -> System.out.println("Piloto: " + k + "   Puntos: " + v ));
+		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Puntos: " + v ));
+		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Dinero: " + k.getPresupuesto()));
 	}
 	
 

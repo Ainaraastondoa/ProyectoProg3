@@ -188,50 +188,58 @@ public class Carrera {
 	}
 	
 	/**
-	 * M�todo que sirve para actualizar los puntos de una escuder�a despu�s de una carrera
-	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuder�as con sus puntos esa temporada
-	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
+	 * Método que sirve para actualizar los puntos de una escudería después de una carrera
+	 * @param puntosEscuderia Mapa de la clase Temporada que relaciona a las escuderías con sus puntos esa temporada
+	 * @param puntosPiloto Mapa de la clase Temporaada que relaciona a los pilotos con sus puntos esa temporada
 	 */
 	public void actualizarPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia, HashMap<Piloto, Integer> puntosPiloto) {
-		puntosEscuderia.forEach( (k, V) -> {
-			int pts1 = puntosPiloto.get(k.getPiloto1()); int pts2 = puntosPiloto.get(k.getPiloto2());
-			puntosEscuderia.put(k, pts1 + pts2);
+		puntosEscuderia.forEach( (k, v) -> {
+			int primerPiloto = 0;
+			for (Piloto p : listaPilotos) {
+				if (p.getNombre().equals(k.getPiloto1().getNombre()) || p.getNombre().equals(k.getPiloto2().getNombre())) {
+					primerPiloto++;
+					int pts = puntosPiloto.get(p);
+					if (primerPiloto == 1) {
+						puntosEscuderia.put(k, pts);
+					} else {
+						int puntos = puntosEscuderia.get(k) + pts;
+						puntosEscuderia.put(k, puntos);
+					}
+				}
+			}
 		});
 	}
 	
 	/**
-	 * M�todo que sirve para repartir el dinero a la escuder�a en funci�n de la posici�n de sus pilotos. 
-	 * Obligatoriamente debe ser ejecutado despu�s de que los pilotos hayan sido ordenados en funci�n de su tiempo total
-	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuder�as con sus puntos esa temporada
+	 * Método que sirve para repartir el dinero a la escudería en función de la posición de sus pilotos. 
+	 * Obligatoriamente debe ser ejecutado después de que los pilotos hayan sido ordenados en función de su tiempo total
+	 * @param puntosEscuderia Mapa de la clase Tempoarada que relaciona a las escuderías con sus puntos esa temporada
 	 */
 	public void repartirDinero(HashMap<Escuderia, Integer> puntosEscuderia) {
-		puntosEscuderia.forEach( (k,v) -> {
-			for (int i = 0; i < listaPilotos.size(); i++) { // Piloto 1
-				if (k.getPiloto1().equals(listaPilotos.get(i))) {
-					if (i == 0) { // Puesto 1
-						k.setPresupuesto(k.getPresupuesto() + 1000000);
-					} else if (i < 3) { // Puestos 2-3
-						k.setPresupuesto(k.getPresupuesto() + 750000);
-					} else if (i < 10) { // Puestos 4-10
-						k.setPresupuesto(k.getPresupuesto() + 500000);
-					} else { //Puesto 11-20
-						k.setPresupuesto(k.getPresupuesto() + 250000);
-					}}}
-			for (int j = 0; j < listaPilotos.size(); j++) { // Piloto 2
-				if (k.getPiloto2().equals(listaPilotos.get(j))) {
-					if (j == 0) { // Puesto 1
-						k.setPresupuesto(k.getPresupuesto() + 1000000);
-					} else if (j < 3) { // Puestos 2-3
-						k.setPresupuesto(k.getPresupuesto() + 750000);
-					} else if (j < 10) { // Puestos 4-10
-						k.setPresupuesto(k.getPresupuesto() + 500000);
-					} else { //Puesto 11-20
-						k.setPresupuesto(k.getPresupuesto() + 250000);
-					}}}
-			});
+		puntosEscuderia.forEach( (k, v) -> {
+			for (Piloto p : listaPilotos) {
+				if (p.getNombre().equals(k.getPiloto1().getNombre()) || p.getNombre().equals(k.getPiloto2().getNombre())) {
+					int presu = k.getPresupuesto();
+					int indice = listaPilotos.indexOf(p);
+					if (indice == 0) { // Puesto 1
+						presu += 1000000;
+						k.setPresupuesto(presu);
+					} else if (indice <= 2) { // Puestos 2-3
+						presu += 750000;
+						k.setPresupuesto(presu);
+					} else if (indice <= 9) { // Puestos 4-10
+						presu += 500000;
+						k.setPresupuesto(presu);
+					} else { // Puestos 11-20
+						presu += 250000;
+						k.setPresupuesto(presu);
+					}
+				}
+			}
+		});
 	}
 	
-	/** Metodo para pasar un tiempo en segundos a un formato m�s visual mm:ss
+	/** Metodo para pasar un tiempo en segundos a un formato más visual mm:ss
 	 * @param seg Segundos que quieres cambiar de formato
 	 * @return tiempo en formato mm:ss
 	 */
