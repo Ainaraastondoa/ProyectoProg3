@@ -70,7 +70,38 @@ public class Trayectoria {
 		this.listaPilotos = listaPilotos;
 	}
 
-	
+	public ArrayList<Componente> getListaComponentes() {
+		return listaComponentes;
+	}
+
+	public void setListaComponentes(ArrayList<Componente> listaComponentes) {
+		this.listaComponentes = listaComponentes;
+	}
+
+	public ArrayList<Coche> getListaCoches() {
+		return listaCoches;
+	}
+
+	public void setListaCoches(ArrayList<Coche> listaCoches) {
+		this.listaCoches = listaCoches;
+	}
+
+	public ArrayList<Circuito> getListaCircuitos() {
+		return listaCircuitos;
+	}
+
+	public void setListaCircuitos(ArrayList<Circuito> listaCircuitos) {
+		this.listaCircuitos = listaCircuitos;
+	}
+
+	public ArrayList<Carrera> getListaCarreras() {
+		return listaCarreras;
+	}
+
+	public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+		this.listaCarreras = listaCarreras;
+	}
+
 	public static Escuderia getEscuderia() {
 		return escuderia;
 	}
@@ -80,14 +111,14 @@ public class Trayectoria {
 	}
 
 	// Método de simulación de una trayectoria
-	public void simularTrayectoria() {
+	public void simularTrayectoriaPrueba() {
 		
 		// Añadir temporada
 		Temporada t = new Temporada(2019, this.listaPilotos, this.listaEscuderias);
 		this.getListaTemporadas().add(t);
 		
 		// Añadir carrera 1
-		Carrera c = new Carrera(this.listaCircuitos.get(0), this.getListaPilotos());
+		Carrera c = new Carrera(this.getListaCircuitos().get(0), this.getListaPilotos());
 		this.getListaTemporadas().get(0).getListaCarreras().add(c);
 		
 		// Simular Carrera (carrera 1)
@@ -107,8 +138,8 @@ public class Trayectoria {
 		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Dinero: " + k.getPresupuesto()));
 		
 		// Añadir carrera 2
-		Carrera c2 = new Carrera(this.listaCircuitos.get(1), this.getListaPilotos());
-		this.getListaTemporadas().get(0).getListaCarreras().add(c);
+		Carrera c2 = new Carrera(this.getListaCircuitos().get(1), this.getListaPilotos());
+		this.getListaTemporadas().get(0).getListaCarreras().add(c2);
 		
 		// Simular Carrera (carrera 2)
 		carreraActual = 1;
@@ -127,10 +158,33 @@ public class Trayectoria {
 		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Dinero: " + k.getPresupuesto()));
 	}
 	
+	// Método que sirve para simular una temporada
+	public void simularTemporada() {
+		// Crear temporada
+		Temporada t = new Temporada(2019, this.listaPilotos, this.listaEscuderias);
+		this.getListaTemporadas().add(t);
+		// Crear todas las carreras
+		for (Circuito c : this.getListaCircuitos()) {
+			Carrera ca = new Carrera(c, this.getListaPilotos());
+			this.getListaTemporadas().get(0).getListaCarreras().add(ca);
+		}
+		// Simular todas las carreras
+		for (Carrera ca : t.getListaCarreras()) {
+			ca.simularCarrera();
+			ca.ordenarClasificacionCarrera();
+			ca.repartirPuntos(t.getPuntosPiloto());
+			ca.actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+			ca.repartirDinero(t.getPuntosEscuderia());
+		}
+		// Mostrar resultados
+		t.getPuntosPiloto().forEach( (k, v) -> System.out.println("Piloto: " + k + "   Puntos: " + v ));
+		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Puntos: " + v ));
+		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Dinero: " + k.getPresupuesto()));
+	}
 
 	// Método main de prueba
 	public static void main(String[] args) {
 		Trayectoria t = new Trayectoria();
-		t.simularTrayectoria();
+		t.simularTemporada();
 	}
 }

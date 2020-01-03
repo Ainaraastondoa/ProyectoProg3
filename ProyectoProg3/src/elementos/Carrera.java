@@ -81,17 +81,17 @@ public class Carrera {
 	}
 	
 	/**
-	 * M�todo que calcula un n�mero aleatorio entre 0,9975 y 1,0025 para la parte aleatoria del c�lculo del tiempo por vuelta
+	 * Método que calcula un n�mero aleatorio entre 0,99 y 1,01 para la parte aleatoria del c�lculo del tiempo por vuelta
 	 * @return El n�mero aleatorio por el que hay que multiplicar el tiempo por vuelta tras degradaci�n
 	 */
 	public float generarNumeroAleatorio() {
-		int n = (int)(Math.random() * (10025 - 9975 + 1) + 9975);
+		int n = (int)(Math.random() * (10100 - 9900 + 1) + 9900);
 		float numeroAleatorio = (float)n / 10000;
 		return numeroAleatorio;
 	}
 	
 	/**
-	 * M�todo que calcula la degradaci�n por vuelta de los neum�ticos en funci�n del circuito y hace la resta en el porcentaje del
+	 * M�todo que calcula la degradación por vuelta de los neum�ticos en funci�n del circuito y hace la resta en el porcentaje del
 	 * coche de los pilotos
 	 * @param piloto Piloto del que queremos calcular la degradaci�n
 	 */
@@ -157,9 +157,9 @@ public class Carrera {
 	}
 	
 	/**
-	 * M�todo que sirve para otorgar puntos en funci�n de la posici�n en carrera.
-	 * Obligatoriamente debe ser ejecutado despu�s de que los pilotos hayan sido ordenados en funci�n de su tiempo total
-	 * @param puntosPiloto Mapa de la clase Tempoarada que relaciona a los pilotos con sus puntos esa temporada
+	 * M�todo que sirve para otorgar puntos en función de la posición en carrera.
+	 * Obligatoriamente debe ser ejecutado después de que los pilotos hayan sido ordenados en función de su tiempo total
+	 * @param puntosPiloto Mapa de la clase Temporada que relaciona a los pilotos con sus puntos esa temporada
 	 */
 	public void repartirPuntos(HashMap<Piloto, Integer> puntosPiloto) {
 		for (int i = 0; i < listaPilotos.size() - 10; i++) {
