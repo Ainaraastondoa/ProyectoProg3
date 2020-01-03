@@ -12,8 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**Ventana en la que se mostrarán las escuderias
- *clasificadas según su puntuación 
+/**Ventana en la que se mostrarï¿½n las escuderias
+ *clasificadas segï¿½n su puntuaciï¿½n 
  */ 
 
 public class VentanaClasifEscuderia extends JFrame{
@@ -28,7 +28,7 @@ public class VentanaClasifEscuderia extends JFrame{
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
 		//Imprimimos las escuderias con sus respectivos puntos
-		//Creamos el panel de la clasificación
+		//Creamos el panel de la clasificaciï¿½n
 		JPanel pCentral = new JPanel();
 		JPanel pDerecha = new JPanel();
 		JPanel pIzquierda = new JPanel();
@@ -50,21 +50,21 @@ public class VentanaClasifEscuderia extends JFrame{
 		getContentPane().add(pCentral);
 
 		
-		//Escuchadores
-		bok.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaClasifEscuderia.this );
-				menu.setLocation( getLocation() );
-				menu.setSize( getSize() );
-				menu.setVisible( true );
-				VentanaClasifEscuderia.this.setVisible( false );
-				
-				
-			}
-			
-		});
+//		//Escuchadores
+//		bok.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaClasifEscuderia.this );
+//				menu.setLocation( getLocation() );
+//				menu.setSize( getSize() );
+//				menu.setVisible( true );
+//				VentanaClasifEscuderia.this.setVisible( false );
+//				
+//				
+//			}
+//			
+//		});
 	}
 
 }

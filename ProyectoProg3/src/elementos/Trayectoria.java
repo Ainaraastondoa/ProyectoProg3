@@ -16,7 +16,7 @@ public class Trayectoria {
 	private ArrayList<Escuderia> listaEscuderias;
 	private ArrayList<Temporada> listaTemporadas;
 	
-	private static Piloto piloto; 						//Piloto seleccionado para la trayectoria
+	private static Escuderia escuderia; 		//Escuderia seleccionada para la trayectoria
 	
 
 	// CONSTRUCTOR de la clase Trayectoria
@@ -27,7 +27,8 @@ public class Trayectoria {
 		try {
 			st = con.createStatement();
 			BD.usarCrearTablasBD(con);
-			BD.insertDatos(st);
+			//PARA QUE NO SALGA EL UNIQUE CONSTRAINT ERROR EN LA BASE DE DATOS (METER MÁS DE UNA VEZ LOS MISMOS DATOS)
+			//BD.insertDatos(st);
 			
 			// Inicializar componentes trayectoria
 //			ArrayList<ArrayList<Mejora>> listaMejoras = Mejora.crearMejorasPredeterminadas();
@@ -69,12 +70,13 @@ public class Trayectoria {
 		this.listaPilotos = listaPilotos;
 	}
 
-	public static Piloto getPiloto() {
-		return piloto;
+	
+	public static Escuderia getEscuderia() {
+		return escuderia;
 	}
 
-	public static void setPiloto(Piloto piloto) {
-		Trayectoria.piloto = piloto;
+	public static void setEscuderia(Escuderia escuderia) {
+		Trayectoria.escuderia = escuderia;
 	}
 
 	// Método de simulación de una trayectoria
@@ -114,6 +116,23 @@ public class Trayectoria {
 		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
 		
 		// Comprobación (carrera 2)
+		System.out.println("Resultado Carrera:");
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
+		
+		// Añadir carrera 3
+		Carrera c3 = new Carrera(this.listaCircuitos.get(2), this.listaPilotos);
+		this.getListaTemporadas().get(0).getListaCarreras().add(c3);
+		
+		// Simular Carrera (carrera 3)
+		carreraActual++;
+		t.getListaCarreras().get(carreraActual).simularCarrera();
+		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
+		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
+//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
+		
+		// Comprobación (carrera 3)
 		System.out.println("Resultado Carrera:");
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
 		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());

@@ -32,7 +32,9 @@ public class VentanaCarrera extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
 	JFrame VentanaClasifCarrera;
-	Piloto piloto; 
+	Piloto piloto;
+	
+	ArrayList<Temporada> listaTemporadas;
 	 
 	public VentanaCarrera(JFrame m) throws SQLException {
 		VentanaClasifCarrera = m; 
@@ -40,50 +42,43 @@ public class VentanaCarrera extends JFrame{
 		JPanel pInferior = new JPanel();
 		JPanel pSuperior = new JPanel();
 		
-		ArrayList<Circuito> circuitos = Circuito.crearCircuitosPredeterminados();
 		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 		Statement st = con.createStatement();
+		ArrayList<Circuito> circuitos = BD.listaCircuitosSelect(st);
 		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
 		ArrayList<Escuderia> escuderias = BD.listaEscuderiasSelect(st);
+		this.listaTemporadas = new ArrayList<Temporada>();
+
+		// AÃ±adir temporada
+		Temporada t = new Temporada(2019, pilotos, escuderias);
+		this.getListaTemporadas().add(t);
 		
-		//CARRERA
-	
-		int i = 0;
-		Carrera c = new Carrera(circuitos.get(i), pilotos);
-		c.simularCarrera();
-		
-		// Creación de Trayectoria
-		ArrayList<Circuito> listaCircuitos = Circuito.crearCircuitosPredeterminados();
-		
-		// Añadir temporada
-		ArrayList<Carrera> listaCarreras = Carrera.crearCarreras(listaCircuitos, pilotos);
-		
-		//if ( i >= 20) {
-		Temporada t = new Temporada(2019, listaCarreras, pilotos, escuderias);
-		//this.getListaTemporadas().add(t);
-		
+		// AÃ±adir carrera 1
+		Carrera c = new Carrera(circuitos.get(0), pilotos);
+		t.getListaCarreras().add(c);
 		
 		// Simular Carrera (carrera 1)
-		t.getListaCarreras().get(i).simularCarrera();
-		t.getListaCarreras().get(i).ordenarClasificacionCarrera();
-		t.getListaCarreras().get(i).repartirPuntos(t.getPuntosPiloto());
-		t.getListaCarreras().get(i).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
-		t.getListaCarreras().get(i).repartirDinero(t.getPuntosEscuderia());
-		
-		// Comprobación (carrera 1)
+		Integer carreraActual = 0;
+		t.getListaCarreras().get(carreraActual).simularCarrera();
+		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
+		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
+//				t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
+		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
+				
+		// ComprobaciÃ³n (carrera 1)
 		System.out.println("Resultado Carrera:");
-		System.out.println(t.getListaCarreras().get(i).getListaPilotos());
-		System.out.println(t.getListaCarreras().get(i).getListaTiempos());
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
+		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());
 		
 
-		//INFO ARRIBA
-		Label etiqueta = new Label(Circuito.crearCircuitosPredeterminados().get(i).toString());
-		pSuperior.add(etiqueta); 
-		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		getContentPane().add(pSuperior, BorderLayout.NORTH); 
-		pInferior.add(bok);
-		
-		i++;
+//		//INFO ARRIBA
+//		Label etiqueta = new Label(Circuito.crearCircuitosPredeterminados().get(i).toString());
+//		pSuperior.add(etiqueta); 
+//		getContentPane().add(pInferior, BorderLayout.SOUTH);
+//		getContentPane().add(pSuperior, BorderLayout.NORTH); 
+//		pInferior.add(bok);
+//		
+//		i++;
 		
 
 		
@@ -147,5 +142,12 @@ public class VentanaCarrera extends JFrame{
 				
 			}			
 		}); 		
+	}
+	public ArrayList<Temporada> getListaTemporadas() {
+		return listaTemporadas;
+	}
+
+	public void setListaTemporadas(ArrayList<Temporada> listaTemporadas) {
+		this.listaTemporadas = listaTemporadas;
 	}
 }

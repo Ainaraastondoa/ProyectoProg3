@@ -66,13 +66,11 @@ public class VentanaPiloto extends JFrame{
 		Font font = new Font("Verdana", Font.BOLD, 39);
 		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 		Statement st = con.createStatement();
-		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
+		//ArrayList<Escuderia> escuderias = BD.listaEscuderiasSelect(st);
 		//Imprimimos los datos de los pilotos con sus atributos _PROVISIONAL 
-		String nombre_escuderia_seleccionada = Trayectoria.getPiloto().getCoche().nombre;
-		for ( Escuderia escuderia : Escuderia.crearEscuderiasPredeterminadas(pilotos)) {
-			if (nombre_escuderia_seleccionada.equals(escuderia.nombre)) {
-				Escuderia escuderia_seleccionada = escuderia;
-				
+		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
+//		for (Escuderia escuderia : escuderias) {
+//			if (escuderia_seleccionada.equals(escuderia)) {
 				Piloto p1 = escuderia_seleccionada.getPiloto1();
 				Piloto p2 = escuderia_seleccionada.getPiloto2();
 				
@@ -88,9 +86,9 @@ public class VentanaPiloto extends JFrame{
 				piloto2.setBackground(Color.GRAY);
 				pDerecha.add(piloto2);
 				piloto2.setFont(font);
-			}
-		}
-		
+//			}
+//		}
+	
 		//Escuchadores
 		bok.addActionListener(new ActionListener() {
 

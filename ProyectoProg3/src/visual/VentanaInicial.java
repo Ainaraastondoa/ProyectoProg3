@@ -6,7 +6,9 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,15 +23,21 @@ import elementos.*;
 public class VentanaInicial extends JFrame{
 	
 	//metodo main de pruebas
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		VentanaInicial v = new VentanaInicial(); 
 		v.setVisible( true );
 	}
 	
-	public VentanaInicial() {
+	public VentanaInicial() throws SQLException {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setSize(1300, 900);
 		setTitle( "F1 Manager" );
+		
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();
+		BD.usarCrearTablasBD(con);
+		//BD.insertDatos(st);
+		
 		JButton bTrayectoria = new JButton( "Trayectoria" );
 		JButton bJugador = new JButton( "Un jugador "); 
 		JButton bMulti = new JButton( "Multijugador" );

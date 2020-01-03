@@ -692,7 +692,9 @@ public class BD {
 		ArrayList<Componente> ret2 = new ArrayList<>();
 		String sentSQL = "";
 		try {
-			sentSQL = "Select `coche`.`nombre` AS `cno`, `coche`.`porcentajeRuedas` AS `cpo`,`componente`.`nombre` AS `cn`, `componente`.`rendimiento` AS `cr` from coche JOIN componente ON coche.componente1_id = componente.componente_id or "
+			sentSQL = "Select `coche`.`nombre` AS `cno`, `coche`.`porcentajeRuedas` AS `cpo`,`componente`.`nombre` AS `cn`, `componente`.`rendimiento` AS `cr` "
+					+ "from coche "
+					+ "JOIN componente ON coche.componente1_id = componente.componente_id or "
 					+ "coche.componente2_id = componente.componente_id or coche.componente3_id = componente.componente_id ";
 			ResultSet rs = st.executeQuery(sentSQL);
 			int cont = 0;
@@ -705,6 +707,7 @@ public class BD {
 					Coche coche = new Coche(rs.getString("cno"), ret2.get(0), ret2.get(1), ret2.get(2), rs.getInt("cpo"));		
 					ret.add(coche);
 					cont = -1;
+					ret2.clear();
 				}
 				cont ++;
 			}
@@ -761,6 +764,8 @@ public class BD {
 			while (rs.next()) {
 				Escuderia escuderia = new Escuderia(rs.getString("nombre"), rs.getString("director"), ret2.get(piloto1), ret2.get(piloto2),rs.getInt("presupuesto"));	
 				ret.add(escuderia);
+				piloto1 += 2;
+				piloto2 += 2;
 				if (cont == 9) {
 					return ret;
 				}
@@ -841,8 +846,9 @@ public class BD {
 			ResultSet rs = st.executeQuery(sentSQL);
 			
 			while (rs.next()) {
-				int circuito_id = rs.getInt("circuito_id");		
-				Circuito circuito = circuitoSelect(st, circuito_id);
+				
+				Circuito circuito = new Circuito(rs.getString("nombre"), rs.getString("pais"), rs.getInt("nivDegradacion"), 
+						rs.getFloat("tiempoRefClas"), rs.getFloat("tiempoRefCar"), rs.getFloat("tiempoRefBox"), rs.getInt("vueltas"));
 				ret.add(circuito);
 			}
 			rs.close();
@@ -859,14 +865,15 @@ public class BD {
 	
 	public static ArrayList<Carrera> listaCarrerasSelect (Statement st) {
 		ArrayList<Carrera> ret = new ArrayList<>();
+		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
+		ArrayList<Circuito> circuitos = BD.listaCircuitosSelect(st);
 		String sentSQL = "";
 		try {
-			sentSQL = "Select * from circuito";
+			sentSQL = "Select * from carrera";
 			ResultSet rs = st.executeQuery(sentSQL);
 			
-			while (rs.next()) {
-				int carrera_id = rs.getInt("carrera_id");		
-				Carrera carrera = carreraSelect(st, carrera_id);
+			for (Circuito circuito : circuitos) {
+				Carrera carrera = new Carrera(circuito, pilotos);
 				ret.add(carrera);
 			}
 			rs.close();
