@@ -13,14 +13,16 @@ public class Coche {
 	public Componente chasis;		//Chasis que usa el coche
 	public Componente aerodinamica;	//Paquete aerodinamico del coche
 	public int porcentajeRuedas;	//Porcentaje restante de duraci�n de las ruedas en carrera
+	public String imagen;			//Ruta a imagen del coche
 	
 	//CONSTRUCTOR	
-	public Coche(String nombre, Componente motor, Componente chasis, Componente aerodinamica, int porcentajeRuedas) {
+	public Coche(String nombre, Componente motor, Componente chasis, Componente aerodinamica, int porcentajeRuedas, String imagen) {
 		this.nombre = nombre;
 		this.motor = motor;
 		this.chasis = chasis;
 		this.aerodinamica = aerodinamica;
 		this.porcentajeRuedas = porcentajeRuedas;
+		this.imagen = imagen;
 	}
 	public Coche (Coche coche) {
 		this.nombre = coche.nombre;
@@ -28,13 +30,13 @@ public class Coche {
 		this.chasis = coche.chasis;
 		this.aerodinamica = coche.aerodinamica;
 		this.porcentajeRuedas = coche.porcentajeRuedas;
+		this.imagen = imagen;
 	}
 	
 	//GETTERS Y SETTERS
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -69,6 +71,12 @@ public class Coche {
 	
 	public void setPorcentajeRuedas(int porcentajeRuedas) {
 		this.porcentajeRuedas = porcentajeRuedas;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	
 	/**
@@ -105,27 +113,28 @@ public class Coche {
 		return puntuacion;
 	}
 	
+	// AHORA EN BD
 	/** Metodo que crea todos los coches del campeonato con sus correspondientes componentes predeterminados. Ejecutar obligatoriamente
 	 * despu�s del m�todo crearComponentesPredeterminados de la clase Componente
 	 * @param Lista de componentes predeterminados ordenados con sus correspondientes mejoras
 	 * @return Lista de coches participantes en el campeonato
 	 */
-	public static ArrayList<Coche> crearCochesPredeterminados(ArrayList<Componente> listaComponentes) {
-		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
-		
-		listaCoches.add(new Coche("Mercedes",listaComponentes.get(0),listaComponentes.get(1),listaComponentes.get(2),100));
-		listaCoches.add(new Coche("Ferrari",listaComponentes.get(3),listaComponentes.get(4),listaComponentes.get(5),100));
-		listaCoches.add(new Coche("Redbull",listaComponentes.get(6),listaComponentes.get(7),listaComponentes.get(8),100));
-		listaCoches.add(new Coche("Mclaren",listaComponentes.get(9),listaComponentes.get(10),listaComponentes.get(11),100));
-		listaCoches.add(new Coche("Renault",listaComponentes.get(12),listaComponentes.get(13),listaComponentes.get(14),100));
-		listaCoches.add(new Coche("Tororosso",listaComponentes.get(15),listaComponentes.get(16),listaComponentes.get(17),100));
-		listaCoches.add(new Coche("Racingpoint",listaComponentes.get(18),listaComponentes.get(19),listaComponentes.get(20),100));
-		listaCoches.add(new Coche("Haas",listaComponentes.get(21),listaComponentes.get(22),listaComponentes.get(23),100));
-		listaCoches.add(new Coche("Alfaromeo",listaComponentes.get(24),listaComponentes.get(25),listaComponentes.get(26),100));
-		listaCoches.add(new Coche("Williams",listaComponentes.get(27),listaComponentes.get(28),listaComponentes.get(29),100));
-		
-		return listaCoches;		
-	}
+//	public static ArrayList<Coche> crearCochesPredeterminados(ArrayList<Componente> listaComponentes) {
+//		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
+//		
+//		listaCoches.add(new Coche("Mercedes",listaComponentes.get(0),listaComponentes.get(1),listaComponentes.get(2),100));
+//		listaCoches.add(new Coche("Ferrari",listaComponentes.get(3),listaComponentes.get(4),listaComponentes.get(5),100));
+//		listaCoches.add(new Coche("Redbull",listaComponentes.get(6),listaComponentes.get(7),listaComponentes.get(8),100));
+//		listaCoches.add(new Coche("Mclaren",listaComponentes.get(9),listaComponentes.get(10),listaComponentes.get(11),100));
+//		listaCoches.add(new Coche("Renault",listaComponentes.get(12),listaComponentes.get(13),listaComponentes.get(14),100));
+//		listaCoches.add(new Coche("Tororosso",listaComponentes.get(15),listaComponentes.get(16),listaComponentes.get(17),100));
+//		listaCoches.add(new Coche("Racingpoint",listaComponentes.get(18),listaComponentes.get(19),listaComponentes.get(20),100));
+//		listaCoches.add(new Coche("Haas",listaComponentes.get(21),listaComponentes.get(22),listaComponentes.get(23),100));
+//		listaCoches.add(new Coche("Alfaromeo",listaComponentes.get(24),listaComponentes.get(25),listaComponentes.get(26),100));
+//		listaCoches.add(new Coche("Williams",listaComponentes.get(27),listaComponentes.get(28),listaComponentes.get(29),100));
+//		
+//		return listaCoches;		
+//	}
 	
 	@Override
 	public String toString() {

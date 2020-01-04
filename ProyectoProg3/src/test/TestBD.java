@@ -39,7 +39,7 @@ public class TestBD {
 //		}
 		
 		for (Coche coche : listaCoches) {
-			System.out.println(coche.toString2());
+			System.out.println(coche.getImagen());
 		}
 //		for (Componente componente : listaComponentes) {
 //			System.out.println(componente.toString());

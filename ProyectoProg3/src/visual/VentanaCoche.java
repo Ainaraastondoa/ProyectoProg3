@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Label;
@@ -31,6 +33,7 @@ public class VentanaCoche extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
 	Coche coche;
+	private PanelConImagenFondo imagen_fondo;
  
 	public VentanaCoche (JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m;
@@ -42,6 +45,16 @@ public class VentanaCoche extends JFrame{
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		getContentPane().add(pSuperior, BorderLayout.NORTH); 
 		pInferior.add(bok);
+		
+		//FONDO DE LA VENTANA
+		imagen_fondo = new PanelConImagenFondo();
+		imagen_fondo.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
+		String imagen = "";
+		imagen += Trayectoria.getEscuderia().getPiloto1().getCoche().getImagen();
+		imagen_fondo.setImage(imagen);
+		
+		setContentPane(imagen_fondo);
+		setLayout(new FlowLayout());
 		
 		JPanel pCentral = new JPanel();
 		JPanel pDatos = new JPanel();

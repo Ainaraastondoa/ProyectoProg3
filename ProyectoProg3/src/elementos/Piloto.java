@@ -17,10 +17,11 @@ public class Piloto {
 	public int velocidad; 		//Rendimiento/velocidad del piloto a 1 vuelta (0-100)
 	public int mojado; 			//Nivel del piloto en mojado (0-100)
 	public Coche coche;			//Coche con el que compite
+	public String imagen;		//Ruta a imagen del piloto
 	
 	//CONSTRUCTOR
 	public Piloto(String nombre, int edad, int nivel, int regularidad, int adelantar, int defender, int velocidad, int mojado,
-			Coche coche) {
+			Coche coche, String imagen) {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.nivel = nivel;
@@ -30,6 +31,7 @@ public class Piloto {
 		this.velocidad = velocidad;
 		this.mojado = mojado;
 		this.coche = coche;
+		this.imagen = imagen;
 	}
 	
 	//GETTERS Y SETTERS
@@ -87,7 +89,13 @@ public class Piloto {
 	public void setCoche(Coche coche) {
 		this.coche = coche;
 	}
-	
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	/**
 	 * M�todo que calcula la puntuación sobre 2600 puntos de los atributos del piloto para calcular despu�s el rendimiento total
 	 * sobre 10000 del Piloto + Coche concreto
@@ -103,45 +111,6 @@ public class Piloto {
 		return puntuacion;
 	}
 	
-	/** Metodo que crea todos los pilotos del campeonato con sus respectivos coches
-	 * @param Lista ordenada de coches con sus respectivos componentes
-	 * @return Lista de pilotos participantes en el campeonato
-	 */
-	public static ArrayList<Piloto> crearPilotosPredeterminados(ArrayList<Coche> listaCoches) {
-		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
-		// Coche Mercedes
-		listaPilotos.add(new Piloto("Hamilton",34,10,75,81,75,85,88,listaCoches.get(0)));
-		listaPilotos.add(new Piloto("Bottas",30,8,60,47,52,66,40,new Coche(listaCoches.get(0))));
-		// Coche Ferrari
-		listaPilotos.add(new Piloto("Vettel",32,9,62,69,66,77,60,listaCoches.get(1)));
-		listaPilotos.add(new Piloto("Leclerc",22,9,55,79,77,80,68,new Coche(listaCoches.get(1))));
-		// Coche Redbull
-		listaPilotos.add(new Piloto("Verstappen",22,9,50,75,70,77,90,listaCoches.get(2)));
-		listaPilotos.add(new Piloto("Albon",23,7,60,65,55,66,45,new Coche(listaCoches.get(2))));
-		// Coche Mclaren
-		listaPilotos.add(new Piloto("Sainz",25,8,70,50,70,66,25,listaCoches.get(3)));
-		listaPilotos.add(new Piloto("Norris",19,7,52,68,45,72,20,new Coche(listaCoches.get(3))));
-		// Coche Renault
-		listaPilotos.add(new Piloto("Ricciardo",30,9,55,79,70,75,64,listaCoches.get(4)));
-		listaPilotos.add(new Piloto("Hulkenberg",32,8,65,55,70,68,40,new Coche(listaCoches.get(4))));
-		// Coche Toro Rosso
-		listaPilotos.add(new Piloto("Gasly",23,7,60,57,55,58,34,listaCoches.get(5)));
-		listaPilotos.add(new Piloto("Kvyat",25,6,42,35,50,55,41,new Coche(listaCoches.get(5))));
-		// Coche Racing Point
-		listaPilotos.add(new Piloto("P�rez",29,7,75,47,55,48,42,listaCoches.get(6)));
-		listaPilotos.add(new Piloto("Stroll",20,6,36,50,55,53,39,new Coche(listaCoches.get(6))));
-		// Coche Haas
-		listaPilotos.add(new Piloto("Magnussen",27,7,30,55,78,63,30,listaCoches.get(7)));
-		listaPilotos.add(new Piloto("Grosjean",33,5,4,44,44,48,45,new Coche(listaCoches.get(7))));
-		// Coche Alfa Romeo
-		listaPilotos.add(new Piloto("Raikkonen",40,7,68,58,64,65,25,listaCoches.get(8)));
-		listaPilotos.add(new Piloto("Giovinazzi",25,6,35,36,45,58,44,new Coche(listaCoches.get(8))));
-		// Coche Williams
-		listaPilotos.add(new Piloto("Russell",21,6,48,54,25,65,56,listaCoches.get(9)));
-		listaPilotos.add(new Piloto("Kubica",34,4,50,33,28,22,34,new Coche(listaCoches.get(9))));
-		return listaPilotos;		
-	}
-	
 	
 
 	@Override
@@ -154,6 +123,46 @@ public class Piloto {
 				"\nEDAD: " + edad + "\nNIVEL: " + nivel + "\nREGULARIDAD: " + regularidad
 				+ "\nADELANTAR: " + adelantar + "\nDEFENDER: " + defender + "\nVELOCIDAD: " + velocidad + 
 				"\nMOJADO: " + mojado + "\nCOCHE: " + coche;
-	}
+	}	
 	
+	//AHORA EN BD.
+	/** Metodo que crea todos los pilotos del campeonato con sus respectivos coches
+	 * @param Lista ordenada de coches con sus respectivos componentes
+	 * @return Lista de pilotos participantes en el campeonato
+	 */
+//	public static ArrayList<Piloto> crearPilotosPredeterminados(ArrayList<Coche> listaCoches) {
+//		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
+//		// Coche Mercedes
+//		listaPilotos.add(new Piloto("Hamilton",34,10,75,81,75,85,88,listaCoches.get(0)));
+//		listaPilotos.add(new Piloto("Bottas",30,8,60,47,52,66,40,new Coche(listaCoches.get(0))));
+//		// Coche Ferrari
+//		listaPilotos.add(new Piloto("Vettel",32,9,62,69,66,77,60,listaCoches.get(1)));
+//		listaPilotos.add(new Piloto("Leclerc",22,9,55,79,77,80,68,new Coche(listaCoches.get(1))));
+//		// Coche Redbull
+//		listaPilotos.add(new Piloto("Verstappen",22,9,50,75,70,77,90,listaCoches.get(2)));
+//		listaPilotos.add(new Piloto("Albon",23,7,60,65,55,66,45,new Coche(listaCoches.get(2))));
+//		// Coche Mclaren
+//		listaPilotos.add(new Piloto("Sainz",25,8,70,50,70,66,25,listaCoches.get(3)));
+//		listaPilotos.add(new Piloto("Norris",19,7,52,68,45,72,20,new Coche(listaCoches.get(3))));
+//		// Coche Renault
+//		listaPilotos.add(new Piloto("Ricciardo",30,9,55,79,70,75,64,listaCoches.get(4)));
+//		listaPilotos.add(new Piloto("Hulkenberg",32,8,65,55,70,68,40,new Coche(listaCoches.get(4))));
+//		// Coche Toro Rosso
+//		listaPilotos.add(new Piloto("Gasly",23,7,60,57,55,58,34,listaCoches.get(5)));
+//		listaPilotos.add(new Piloto("Kvyat",25,6,42,35,50,55,41,new Coche(listaCoches.get(5))));
+//		// Coche Racing Point
+//		listaPilotos.add(new Piloto("P�rez",29,7,75,47,55,48,42,listaCoches.get(6)));
+//		listaPilotos.add(new Piloto("Stroll",20,6,36,50,55,53,39,new Coche(listaCoches.get(6))));
+//		// Coche Haas
+//		listaPilotos.add(new Piloto("Magnussen",27,7,30,55,78,63,30,listaCoches.get(7)));
+//		listaPilotos.add(new Piloto("Grosjean",33,5,4,44,44,48,45,new Coche(listaCoches.get(7))));
+//		// Coche Alfa Romeo
+//		listaPilotos.add(new Piloto("Raikkonen",40,7,68,58,64,65,25,listaCoches.get(8)));
+//		listaPilotos.add(new Piloto("Giovinazzi",25,6,35,36,45,58,44,new Coche(listaCoches.get(8))));
+//		// Coche Williams
+//		listaPilotos.add(new Piloto("Russell",21,6,48,54,25,65,56,listaCoches.get(9)));
+//		listaPilotos.add(new Piloto("Kubica",34,4,50,33,28,22,34,new Coche(listaCoches.get(9))));
+//		return listaPilotos;		
+//	}
+//		
 }

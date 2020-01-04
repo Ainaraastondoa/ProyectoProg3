@@ -61,6 +61,7 @@ public class BD {
 					", componente2_id integer" +
 					", componente3_id integer" +
 					", porcentajeRuedas real" +
+					", imagen string" +
 					")");
 			}catch (SQLException e) {}
 			try {	
@@ -75,6 +76,7 @@ public class BD {
 						", velocidad integer" +
 						", mojado integer" +
 						", coche_id integer" +
+						", imagen string" +
 						")");
 			} catch (SQLException e) {}	
 			try {
@@ -85,6 +87,8 @@ public class BD {
 					", piloto1_id integer" +
 					", piloto2_id integer" +
 					", presupuesto integer"+
+					", imagen1 string" +
+					", imagen2 string" +
 					")");
 			} catch (SQLException e) {}
 			try {	
@@ -214,161 +218,161 @@ public class BD {
 
 			//DATOS TABLA COCHE			
 			sentSQL = "insert into coche values(" +
-					1 + ", " + "'" + "mercedes" + "', " + 1 + ", " + 5 + ", " + 15 + ", " + 1.0 + ")";
+					1 + ", " + "'" + "mercedes" + "', " + 1 + ", " + 5 + ", " + 15 + ", " + 1.0 + ", " + "'" + "/img/mercedes.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					2 + ", " + "'" + "mercedes" + "', " + 1 + ", " + 5 + ", " + 15 + ", " + 1.0 + ")";
+					2 + ", " + "'" + "mercedes" + "', " + 1 + ", " + 5 + ", " + 15 + ", " + 1.0 + ", " + "'" + "/img/mercedes.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					3 + ", " + "'" + "ferrari" + "', " + 2 + ", " + 6 + ", " + 16 + ", " + 1.0 + ")";
+					3 + ", " + "'" + "ferrari" + "', " + 2 + ", " + 6 + ", " + 16 + ", " + 1.0 + ", " + "'" + "/img/ferrari.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					4 + ", " + "'" + "ferrari" + "', " + 2 + ", " + 6 + ", " + 16 + ", " + 1.0 + ")";
+					4 + ", " + "'" + "ferrari" + "', " + 2 + ", " + 6 + ", " + 16 + ", " + 1.0 + ", " + "'" + "/img/ferrari.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					5 + ", " + "'" + "red bull" + "', " + 4 + ", " + 7 + ", " + 17 + ", " + 1.0 + ")";
+					5 + ", " + "'" + "red bull" + "', " + 4 + ", " + 7 + ", " + 17 + ", " + 1.0 + ", " + "'" + "/img/redbull.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					6 + ", " + "'" + "red bull" + "', " + 4 + ", " + 7 + ", " + 17 + ", " + 1.0 + ")";
+					6 + ", " + "'" + "red bull" + "', " + 4 + ", " + 7 + ", " + 17 + ", " + 1.0 + ", " + "'" + "/img/redbull.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					7 + ", " + "'" + "mclaren" + "', " + 3 + ", " + 8 + ", " + 18 + ", " + 1.0 + ")";
+					7 + ", " + "'" + "mclaren" + "', " + 3 + ", " + 8 + ", " + 18 + ", " + 1.0 + ", " + "'" + "/img/mclaren.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					8 + ", " + "'" + "mclaren" + "', " + 3 + ", " + 8 + ", " + 18 + ", " + 1.0 + ")";
+					8 + ", " + "'" + "mclaren" + "', " + 3 + ", " + 8 + ", " + 18 + ", " + 1.0 + ", " + "'" + "/img/mclaren.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					9 + ", " + "'" + "renault" + "', " + 3 + ", " + 9 + ", " + 19 + ", " + 1.0 + ")";
+					9 + ", " + "'" + "renault" + "', " + 3 + ", " + 9 + ", " + 19 + ", " + 1.0 + ", " + "'" + "/img/renault.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					10 + ", " + "'" + "renault" + "', " + 3 + ", " + 9 + ", " + 19 + ", " + 1.0 + ")";
+					10 + ", " + "'" + "renault" + "', " + 3 + ", " + 9 + ", " + 19 + ", " + 1.0 + ", " + "'" + "/img/renault.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					11 + ", " + "'" + "toro rosso" + "', " + 4 + ", " + 10 + ", " + 20 + ", " + 1.0 + ")";
+					11 + ", " + "'" + "toro rosso" + "', " + 4 + ", " + 10 + ", " + 20 + ", " + 1.0 + ", " + "'" + "/img/tororosso.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					12 + ", " + "'" + "toro rosso" + "', " + 4 + ", " + 10 + ", " + 20 + ", " + 1.0 + ")";
+					12 + ", " + "'" + "toro rosso" + "', " + 4 + ", " + 10 + ", " + 20 + ", " + 1.0 + ", " + "'" + "/img/tororosso.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					13 + ", " + "'" + "racing point" + "', " + 1 + ", " + 11 + ", " + 21 + ", " + 1.0 + ")";
+					13 + ", " + "'" + "racing point" + "', " + 1 + ", " + 11 + ", " + 21 + ", " + 1.0 + ", " + "'" + "/img/racingpoint.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					14 + ", " + "'" + "racing point" + "', " + 1 + ", " + 11 + ", " + 21 + ", " + 1.0 + ")";
+					14 + ", " + "'" + "racing point" + "', " + 1 + ", " + 11 + ", " + 21 + ", " + 1.0 + ", " + "'" + "/img/racingpoint.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					15 + ", " + "'" + "haas" + "', " + 2 + ", " + 12 + ", " + 22 + ", " + 1.0 + ")";
+					15 + ", " + "'" + "haas" + "', " + 2 + ", " + 12 + ", " + 22 + ", " + 1.0 + ", " + "'" + "/img/haas.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					16 + ", " + "'" + "haas" + "', " + 2 + ", " + 12 + ", " + 22 + ", " + 1.0 + ")";
+					16 + ", " + "'" + "haas" + "', " + 2 + ", " + 12 + ", " + 22 + ", " + 1.0 + ", " + "'" + "/img/haas.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					17 + ", " + "'" + "alfa romeo" + "', " + 2 + ", " + 13 + ", " + 23 + ", " + 1.0 + ")";
+					17 + ", " + "'" + "alfa romeo" + "', " + 2 + ", " + 13 + ", " + 23 + ", " + 1.0 + ", " + "'" + "/img/alfaromeo.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					18 + ", " + "'" + "alfa romeo" + "', " + 2 + ", " + 13 + ", " + 23 + ", " + 1.0 + ")";
+					18 + ", " + "'" + "alfa romeo" + "', " + 2 + ", " + 13 + ", " + 23 + ", " + 1.0 + ", " + "'" + "/img/alfaromeo.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					19 + ", " + "'" + "williams" + "', " + 1 + ", " + 14 + ", " + 24 + ", " + 1.0 + ")";
+					19 + ", " + "'" + "williams" + "', " + 1 + ", " + 14 + ", " + 24 + ", " + 1.0 + ", " + "'" + "/img/williams.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into coche values(" +
-					20 + ", " + "'" + "williams" + "', " + 1 + ", " + 14 + ", " + 24 + ", " + 1.0 + ")";
+					20 + ", " + "'" + "williams" + "', " + 1 + ", " + 14 + ", " + 24 + ", " + 1.0 + ", " + "'" + "/img/williams.png" + "')";
 			st.executeUpdate(sentSQL);
 		
 			//DATOS TABLA PILOTO
 	
 			sentSQL = "insert into piloto values(" +
-					1 + ", " + "'" + "Hamilton" + "', " + 34 + ", " + 10 + ", " + 75 + ", " + 81 + ", " + 75 + ", " + 85 + ", " + 88 + ", " + 1 + ")";
+					1 + ", " + "'" + "Hamilton" + "', " + 34 + ", " + 10 + ", " + 75 + ", " + 81 + ", " + 75 + ", " + 85 + ", " + 88 + ", " + 1 + ", " + "'" + "/img/ham.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					2 + ", " + "'" + "Bottas" + "', " + 30 + ", " + 8 + ", " + 60 + ", " + 47 + ", " + 52 + ", " + 66 + ", " + 40 + ", " + 2 + ")";
+					2 + ", " + "'" + "Bottas" + "', " + 30 + ", " + 8 + ", " + 60 + ", " + 47 + ", " + 52 + ", " + 66 + ", " + 40 + ", " + 2 + ", " + "'" + "/img/bot.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					3 + ", " + "'" + "Vettel" + "', " + 32 + ", " + 9 + ", " + 62 + ", " + 69 + ", " + 66 + ", " + 77 + ", " + 60 + ", " + 3 + ")";
+					3 + ", " + "'" + "Vettel" + "', " + 32 + ", " + 9 + ", " + 62 + ", " + 69 + ", " + 66 + ", " + 77 + ", " + 60 + ", " + 3 + ", " + "'" + "/img/vet.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					4 + ", " + "'" + "Leclerc" + "', " + 22 + ", " + 9 + ", " + 55 + ", " + 79 + ", " + 77 + ", " + 80 + ", " + 68 + ", " + 4 + ")";
+					4 + ", " + "'" + "Leclerc" + "', " + 22 + ", " + 9 + ", " + 55 + ", " + 79 + ", " + 77 + ", " + 80 + ", " + 68 + ", " + 4 + ", " + "'" + "/img/lec.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					5 + ", " + "'" + "Verstappen" + "', " + 22 + ", " + 9 + ", " + 50 + ", " + 75 + ", " + 70 + ", " + 77 + ", " + 90 + ", " + 5 + ")";
+					5 + ", " + "'" + "Verstappen" + "', " + 22 + ", " + 9 + ", " + 50 + ", " + 75 + ", " + 70 + ", " + 77 + ", " + 90 + ", " + 5 + ", " + "'" + "/img/ver.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					6 + ", " + "'" + "Albon" + "', " + 23 + ", " + 7 + ", " + 60 + ", " + 65 + ", " + 55 + ", " + 66 + ", " + 45 + ", " + 6 + ")";
+					6 + ", " + "'" + "Albon" + "', " + 23 + ", " + 7 + ", " + 60 + ", " + 65 + ", " + 55 + ", " + 66 + ", " + 45 + ", " + 6 + ", " + "'" + "/img/alb.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					7 + ", " + "'" + "Sainz" + "', " + 25 + ", " + 8 + ", " + 70 + ", " + 50 + ", " + 70 + ", " + 66 + ", " + 25 + ", " + 7 + ")";
+					7 + ", " + "'" + "Sainz" + "', " + 25 + ", " + 8 + ", " + 70 + ", " + 50 + ", " + 70 + ", " + 66 + ", " + 25 + ", " + 7 + ", " + "'" + "/img/sai.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					8 + ", " + "'" + "Norris" + "', " + 19 + ", " + 7 + ", " + 52 + ", " + 68 + ", " + 45 + ", " + 72 + ", " + 60 + ", " + 8 + ")";
+					8 + ", " + "'" + "Norris" + "', " + 19 + ", " + 7 + ", " + 52 + ", " + 68 + ", " + 45 + ", " + 72 + ", " + 60 + ", " + 8 + ", " + "'" + "/img/nor.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					9 + ", " + "'" + "Ricciardo" + "', " + 30 + ", " + 9 + ", " + 55 + ", " + 79 + ", " + 70 + ", " + 66 + ", " + 25 + ", " + 9 + ")";
+					9 + ", " + "'" + "Ricciardo" + "', " + 30 + ", " + 9 + ", " + 55 + ", " + 79 + ", " + 70 + ", " + 66 + ", " + 25 + ", " + 9 + ", " + "'" + "/img/ric.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					10 + ", " + "'" + "Hulkenberg" + "', " + 32 + ", " + 8 + ", " + 65 + ", " + 55 + ", " + 70 + ", " + 68 + ", " + 40 + ", " + 10 + ")";
+					10 + ", " + "'" + "Hulkenberg" + "', " + 32 + ", " + 8 + ", " + 65 + ", " + 55 + ", " + 70 + ", " + 68 + ", " + 40 + ", " + 10 + ", " + "'" + "/img/hul.png" + "')";
 			st.executeUpdate(sentSQL);		
 			sentSQL = "insert into piloto values(" +
-					11 + ", " + "'" + "Gasly" + "', " + 23 + ", " + 7 + ", " + 60 + ", " + 57 + ", " + 55 + ", " + 58 + ", " + 34 + ", " + 11 + ")";
+					11 + ", " + "'" + "Gasly" + "', " + 23 + ", " + 7 + ", " + 60 + ", " + 57 + ", " + 55 + ", " + 58 + ", " + 34 + ", " + 11 + ", " + "'" + "/img/gas.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					12 + ", " + "'" + "Kvyat" + "', " + 25 + ", " + 6 + ", " + 42 + ", " + 35 + ", " + 50 + ", " + 55 + ", " + 41 + ", " + 12 + ")";
+					12 + ", " + "'" + "Kvyat" + "', " + 25 + ", " + 6 + ", " + 42 + ", " + 35 + ", " + 50 + ", " + 55 + ", " + 41 + ", " + 12 + ", " + "'" + "/img/kvy.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					13 + ", " + "'" + "Perez" + "', " + 29 + ", " + 7 + ", " + 75 + ", " + 47 + ", " + 55 + ", " + 48 + ", " + 42 + ", " + 13 + ")";
+					13 + ", " + "'" + "Perez" + "', " + 29 + ", " + 7 + ", " + 75 + ", " + 47 + ", " + 55 + ", " + 48 + ", " + 42 + ", " + 13 + ", " + "'" + "/img/per.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					14 + ", " + "'" + "Stroll" + "', " + 20 + ", " + 6 + ", " + 36 + ", " + 50 + ", " + 55 + ", " + 53 + ", " + 39 + ", " + 14 + ")";
+					14 + ", " + "'" + "Stroll" + "', " + 20 + ", " + 6 + ", " + 36 + ", " + 50 + ", " + 55 + ", " + 53 + ", " + 39 + ", " + 14 + ", " + "'" + "/img/str.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					15 + ", " + "'" + "Magnussen" + "', " + 27 + ", " + 7 + ", " + 30 + ", " + 55 + ", " + 78 + ", " + 63 + ", " + 30 + ", " + 15 + ")";
+					15 + ", " + "'" + "Magnussen" + "', " + 27 + ", " + 7 + ", " + 30 + ", " + 55 + ", " + 78 + ", " + 63 + ", " + 30 + ", " + 15 + ", " + "'" + "/img/mag.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					16 + ", " + "'" + "Grosjean" + "', " + 33 + ", " + 5 + ", " + 4 + ", " + 44 + ", " + 44 + ", " + 48 + ", " + 45 + ", " + 16 + ")";
+					16 + ", " + "'" + "Grosjean" + "', " + 33 + ", " + 5 + ", " + 4 + ", " + 44 + ", " + 44 + ", " + 48 + ", " + 45 + ", " + 16 + ", " + "'" + "/img/gro.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					17 + ", " + "'" + "Raikkonen" + "', " + 40 + ", " + 7 + ", " + 68 + ", " + 58 + ", " + 64 + ", " + 65 + ", " + 25 + ", " + 17 + ")";
+					17 + ", " + "'" + "Raikkonen" + "', " + 40 + ", " + 7 + ", " + 68 + ", " + 58 + ", " + 64 + ", " + 65 + ", " + 25 + ", " + 17 + ", " + "'" + "/img/rai.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					18 + ", " + "'" + "Giovinazzi" + "', " + 25 + ", " + 6 + ", " + 35 + ", " + 36 + ", " + 45 + ", " + 58 + ", " + 44 + ", " + 18 + ")";
+					18 + ", " + "'" + "Giovinazzi" + "', " + 25 + ", " + 6 + ", " + 35 + ", " + 36 + ", " + 45 + ", " + 58 + ", " + 44 + ", " + 18 + ", " + "'" + "/img/gio.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					19 + ", " + "'" + "Russell" + "', " + 21 + ", " + 6 + ", " + 48 + ", " + 54 + ", " + 25 + ", " + 65 + ", " + 56 + ", " + 19 + ")";
+					19 + ", " + "'" + "Russell" + "', " + 21 + ", " + 6 + ", " + 48 + ", " + 54 + ", " + 25 + ", " + 65 + ", " + 56 + ", " + 19 + ", " + "'" + "/img/rus.png" + "')";
 			st.executeUpdate(sentSQL);
 			sentSQL = "insert into piloto values(" +
-					20 + ", " + "'" + "Kubica" + "', " + 34 + ", " + 4 + ", " + 50 + ", " + 33 + ", " + 28 + ", " + 22 + ", " + 34 + ", " + 20 + ")";
+					20 + ", " + "'" + "Kubica" + "', " + 34 + ", " + 4 + ", " + 50 + ", " + 33 + ", " + 28 + ", " + 22 + ", " + 34 + ", " + 20 + ", " + "'" + "/img/kub.png" + "')";
 			st.executeUpdate(sentSQL);
 			
 			
 			// DATOS TABLA ESCUDERIA
 			
 			sentSQL = "insert into escuderia values(" +
-					1 + ", " + "'" + "Mercedes" + "', '" + "Toto Wolf" + "', " + 1 + ", " + 2 + ", " + 25000000 + ")";
+					1 + ", " + "'" + "Mercedes" + "', '" + "Toto Wolf" + "', " + 1 + ", " + 2 + ", " + 25000000 + ", " + "'" + "/img/mercn.jpg" + "', " + "'" + "/img/mercs.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					2 + ", " + "'" + "Ferrari" + "', '" + "Matia Binotto" + "', " + 3 + ", " + 4 + ", " + 25000000 + ")";
+					2 + ", " + "'" + "Ferrari" + "', '" + "Matia Binotto" + "', " + 3 + ", " + 4 + ", " + 25000000 + ", " + "'" + "/img/ferrarin.jpg" + "', " + "'" + "/img/ferraris.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					3 + ", " + "'" + "Red Bull" + "', '" + "Christian Horner" + "', " + 5 + ", " + 6 + ", " + 25000000 + ")";
+					3 + ", " + "'" + "Red Bull" + "', '" + "Christian Horner" + "', " + 5 + ", " + 6 + ", " + 25000000 + ", " + "'" + "/img/rbn.jpg" + "', " + "'" + "/img/rbs.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					4 + ", " + "'" + "Mclaren" + "', '" + "Andrea Seidl" + "', " + 7 + ", " + 8 + ", " + 20000000 + ")";
+					4 + ", " + "'" + "Mclaren" + "', '" + "Andrea Seidl" + "', " + 7 + ", " + 8 + ", " + 20000000 + ", " + "'" + "/img/mclarenn.jpg" + "', " + "'" + "/img/mclarens.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					5 + ", " + "'" + "Renault" + "', '" + "Cyril Abditeboul" + "', " + 9 + ", " + 10 + ", " + 17500000 + ")";
+					5 + ", " + "'" + "Renault" + "', '" + "Cyril Abditeboul" + "', " + 9 + ", " + 10 + ", " + 17500000 + ", " + "'" + "/img/renaultn.jpg" + "', " + "'" + "/img/renaults.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					6 + ", " + "'" + "ToroRosso" + "', '" + "Franz Tost" + "', " + 11 + ", " + 12 + ", " + 15000000 + ")";
+					6 + ", " + "'" + "ToroRosso" + "', '" + "Franz Tost" + "', " + 11 + ", " + 12 + ", " + 15000000 + ", " + "'" + "/img/trn.jpg" + "', " + "'" + "/img/trs.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					7 + ", " + "'" + "RacingPoint" + "', '" + "Andrew Green" + "', " + 13 + ", " + 14 + ", " + 15000000 + ")";
+					7 + ", " + "'" + "RacingPoint" + "', '" + "Andrew Green" + "', " + 13 + ", " + 14 + ", " + 15000000 + ", " + "'" + "/img/rpn.jpg" + "', " + "'" + "/img/rps.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					8 + ", " + "'" + "Haas" + "', '" + "Guenther Steiner" + "', " + 15 + ", " + 16 + ", " + 10000000 + ")";
+					8 + ", " + "'" + "Haas" + "', '" + "Guenther Steiner" + "', " + 15 + ", " + 16 + ", " + 10000000 + ", " + "'" + "/img/haasn.jpg" + "', " + "'" + "/img/haass.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					9 + ", " + "'" + "AlfaRomeo" + "', '" + "Frank Vasseur" + "', " + 17 + ", " + 18 + ", " + 10000000 + ")";
+					9 + ", " + "'" + "AlfaRomeo" + "', '" + "Frank Vasseur" + "', " + 17 + ", " + 18 + ", " + 10000000 + ", " + "'" + "/img/alfan.jpg" + "', " + "'" + "/img/alfas.jpg" + "')";
 			st.executeUpdate(sentSQL);			
 			sentSQL = "insert into escuderia values(" +
-					10 + ", " + "'" + "Williams" + "', '" + "Claire Williams" + "', " + 19 + ", " + 20 + ", " + 8000000 + ")";
+					10 + ", " + "'" + "Williams" + "', '" + "Claire Williams" + "', " + 19 + ", " + 20 + ", " + 8000000 + ", " + "'" + "/img/williamsn.jpg" + "', " + "'" + "/img/williamss.jpg" + "')";
 			st.executeUpdate(sentSQL);
 
 			
@@ -587,8 +591,9 @@ public class BD {
 				Componente comp2 = componenteSelect(st, c2);
 				Integer c3 = rs.getInt("componente3_id");
 				Componente comp3 = componenteSelect(st, c3);
+				String imagen = rs.getString("imagen");
 
-				Coche coche = new Coche(nombrecoche, comp1, comp2, comp3, 1);
+				Coche coche = new Coche(nombrecoche, comp1, comp2, comp3, 1, imagen);
 				return coche;
 			}
 			rs.close();
@@ -619,10 +624,11 @@ public class BD {
 				Integer velocidad = rs.getInt("velocidad");
 				Integer mojado = rs.getInt("mojado");				
 				Integer coche_id = rs.getInt("coche_id");
+				String imagen = rs.getString("imagen");
 				
 				Coche coche = cocheSelect(st,coche_id);
 				
-				Piloto piloto = new Piloto(nombrepiloto, edad, nivel, regularidad, adelantar, defender, velocidad, mojado, coche);
+				Piloto piloto = new Piloto(nombrepiloto, edad, nivel, regularidad, adelantar, defender, velocidad, mojado, coche, imagen);
 				return piloto;
 			}
 			rs.close();
@@ -650,8 +656,10 @@ public class BD {
 				Integer p2_id = rs.getInt("piloto2_id");
 				Piloto piloto2 = pilotoSelect(st, p2_id);
 				Integer presupuesto = rs.getInt("presupuesto");
+				String imagen1 = rs.getString("imagen1");
+				String imagen2 = rs.getString("imagen2");
 
-				Escuderia escuderia = new Escuderia(nombreescuderia, director, piloto1, piloto2, presupuesto);
+				Escuderia escuderia = new Escuderia(nombreescuderia, director, piloto1, piloto2, presupuesto, imagen1, imagen2);
 				return escuderia;
 			}
 			rs.close();
@@ -692,7 +700,8 @@ public class BD {
 		ArrayList<Componente> ret2 = new ArrayList<>();
 		String sentSQL = "";
 		try {
-			sentSQL = "Select `coche`.`nombre` AS `cno`, `coche`.`porcentajeRuedas` AS `cpo`,`componente`.`nombre` AS `cn`, `componente`.`rendimiento` AS `cr` "
+			sentSQL = "Select `coche`.`nombre` AS `cno`, `coche`.`porcentajeRuedas` AS `cpo`,`componente`.`nombre` AS `cn`, "
+					+ "`componente`.`rendimiento` AS `cr`, `coche`.`imagen` AS `cimagen` "
 					+ "from coche "
 					+ "JOIN componente ON coche.componente1_id = componente.componente_id or "
 					+ "coche.componente2_id = componente.componente_id or coche.componente3_id = componente.componente_id ";
@@ -704,7 +713,7 @@ public class BD {
 				Componente componente = new Componente(nombrecom, rend);
 				ret2.add(componente);
 				if (cont == 2) {
-					Coche coche = new Coche(rs.getString("cno"), ret2.get(0), ret2.get(1), ret2.get(2), rs.getInt("cpo"));		
+					Coche coche = new Coche(rs.getString("cno"), ret2.get(0), ret2.get(1), ret2.get(2), rs.getInt("cpo"), rs.getString("cimagen"));		
 					ret.add(coche);
 					cont = -1;
 					ret2.clear();
@@ -732,7 +741,7 @@ public class BD {
 			int cont = 0;
 			while (rs.next()) {
 				Piloto piloto = new Piloto(rs.getString("nombre"), rs.getInt("edad"), rs.getInt("nivel"), rs.getInt("regularidad"), rs.getInt("adelantar"),
-						rs.getInt("defender"), rs.getInt("velocidad"), rs.getInt("mojado"), ret2.get(cont));
+						rs.getInt("defender"), rs.getInt("velocidad"), rs.getInt("mojado"), ret2.get(cont), rs.getString("imagen"));
 				ret.add(piloto);
 				if ( cont == 19 ) {
 					cont = -1;
@@ -762,7 +771,8 @@ public class BD {
 			int piloto1 = 0;
 			int piloto2 = 1;
 			while (rs.next()) {
-				Escuderia escuderia = new Escuderia(rs.getString("nombre"), rs.getString("director"), ret2.get(piloto1), ret2.get(piloto2),rs.getInt("presupuesto"));	
+				Escuderia escuderia = new Escuderia(rs.getString("nombre"), rs.getString("director"), ret2.get(piloto1), ret2.get(piloto2), 
+						rs.getInt("presupuesto"), rs.getString("imagen1"), rs.getString("imagen2"));	
 				ret.add(escuderia);
 				piloto1 += 2;
 				piloto2 += 2;
