@@ -919,6 +919,9 @@ public class BD {
 		Statement st = con.createStatement();
 		st.executeUpdate("drop table componente");
 		st.executeUpdate("drop table coche");
+		st.executeUpdate("drop table piloto");
+		st.executeUpdate("drop table escuderia");
+
 		usarCrearTablasBD(con);
 
 		st.executeUpdate("delete from componente");
@@ -932,11 +935,11 @@ public class BD {
 //		for (Componente componente : listacomponentes) {
 //			System.out.println(componente.toString());
 //		}
-		ArrayList<Coche> listacoches = new ArrayList<>();
-		listacoches = listaCochesSelect(st);
-		for (Coche coche : listacoches) {
-			System.out.println(coche.toString2());
-		}
+//		ArrayList<Coche> listacoches = new ArrayList<>();
+//		listacoches = listaCochesSelect(st);
+//		for (Coche coche : listacoches) {
+//			System.out.println(coche.toString2());
+//		}
 //		ArrayList<Piloto> listapilotos = new ArrayList<>();
 //		listapilotos = listaPilotosSelect(st);
 //		for (Piloto piloto : listapilotos) {

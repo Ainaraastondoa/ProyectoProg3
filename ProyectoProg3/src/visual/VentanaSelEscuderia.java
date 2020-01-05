@@ -43,29 +43,25 @@ public class VentanaSelEscuderia extends JFrame{
 //		setContentPane(imagen_fondo);
 //		setLayout(new FlowLayout());
 		
-		//DATOS
-		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
-		Statement st = con.createStatement();	
-		ArrayList<Escuderia> listaEscuderias = BD.listaEscuderiasSelect(st);
-		
 		//PANELES
 		pCentral = new JPanel();
 		pInferior = new JPanel();
 		getContentPane().add(pCentral, BorderLayout.CENTER);
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		pCentral.setBackground(Color.DARK_GRAY);
-		pCentral.setLayout(new GridLayout(3, 3, 4, 0));
+		
+		//DATOS
+		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+		Statement st = con.createStatement();	
+		ArrayList<Escuderia> listaEscuderias = BD.listaEscuderiasSelect(st);	
 		
 		//BOTONES (Escuderias + Volver)
 		for (Escuderia escuderia : listaEscuderias) {
 			//BOTON ESCUDERIA
-			JButton bEscuderia = new JButton();
-			bEscuderia.setIcon(null);
-	    	revalidate();
+			JButton bEscuderia = new JButton(escuderia.getNombre());
 			pCentral.add(bEscuderia);
 //			bEscuderia.setSize(200, 200);
 //			bEscuderia.setBounds(0, 0, 200,200);
-//			bEscuderia.setBackground(new Color(0,0,0,0));
+			bEscuderia.setBackground(new Color(0,0,0,0));
 			
 			bEscuderia.addMouseListener(new MouseAdapter() {
 			    public void mouseEntered(MouseEvent e) {
@@ -113,7 +109,9 @@ public class VentanaSelEscuderia extends JFrame{
 					}
 				}				
 			});	
-		}
+		}		
+		pCentral.setBackground(Color.DARK_GRAY);
+		pCentral.setLayout(new GridLayout(4,5));
 		
 		//BOTON VOLVER
 		bVolver = new JButton("Volver");

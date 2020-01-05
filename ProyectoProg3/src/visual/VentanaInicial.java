@@ -64,40 +64,16 @@ public class VentanaInicial extends JFrame{
 //		Statement st = con.createStatement();
 //		BD.insertDatos(st);
 		
-		//crearPaneles();
-		//4 BOTONES DE LA VENTANA INICIAL
-		crearBotones();
-	}
-	
-//	public void crearPaneles() {
-//		JPanel panel_1 = new JPanel();
-//		panel_1.setPreferredSize( new Dimension( 1600, 388 ));
-//		panel_1.setOpaque(false);
-//		JPanel panel_2 = new JPanel();
-//		panel_2.setPreferredSize( new Dimension( 355, 666 ));
-//		panel_2.setOpaque(false);
-//		JPanel panel_3 = new JPanel();
-//		panel_3.setPreferredSize( new Dimension( 1000, 70 ));
-//		panel_3.setOpaque(false);
-//		JPanel panel_4= new JPanel();
-//		panel_4.setPreferredSize( new Dimension( 355, 666 ));
-//		panel_4.setOpaque(false);
-//		add(panel_1, BorderLayout.NORTH);
-//		add(panel_3, BorderLayout.SOUTH);
-//		add(panel_2, BorderLayout.EAST);
-//		add(panel_4, BorderLayout.WEST);
-//	}
-
-	private void crearBotones() {
-//		JPanel botones = new JPanel();	
-//		botones.setPreferredSize( new Dimension(VentanaInicial.WIDTH, VentanaInicial.HEIGHT));
-//		botones.setOpaque(false);
+		JPanel pCentral = new JPanel();
+		pCentral.setPreferredSize( new Dimension( 1600, 900 ));
+		pCentral.setOpaque(false);
+		add(pCentral, BorderLayout.WEST);
 		
+		//4 BOTONES DE LA VENTANA INICIAL
 		//AYUDA
 		bAyuda = new JButton();
-    	bAyuda.setIcon(null);
-    	revalidate();
-		bAyuda.setBounds((VentanaInicial.WIDTH/35), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
+		bAyuda.setBounds((pCentral.getWidth()/35), ((pCentral.getHeight()/18)*11), ((pCentral.getWidth()/35)*7), ((pCentral.getHeight()/18)*4));
+		revalidate();
 		bAyuda.setBackground(new Color(0,0,0,0));
 		bAyuda.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
@@ -113,14 +89,16 @@ public class VentanaInicial extends JFrame{
 		    	bAyuda.setIcon(icono);
 		    }
 		});    	
-    	bAyuda.setIcon(null);
-    	revalidate();
+		bAyuda.setIcon(null);
+		revalidate();
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/ayuda.png"));
 		bAyuda.setIcon(icono);
 		bAyuda.setBorder(null);
 		bAyuda.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+		    	bAyuda.setIcon(null);
+		    	revalidate();
 				VentanaAyuda v = new VentanaAyuda( VentanaInicial.this );
 				v.setLocation( getLocation() );
 				v.setSize( getSize() );
@@ -132,7 +110,7 @@ public class VentanaInicial extends JFrame{
 		//TRAYECTORIA
 		bTrayectoria = new JButton();
 		bTrayectoria.setIcon(null);
-    	revalidate();
+		revalidate();
 		bTrayectoria.setBounds(((VentanaInicial.WIDTH/35)*9), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
 		bTrayectoria.setBackground(new Color(0,0,0,0));
 		bTrayectoria.addMouseListener(new MouseAdapter() {
@@ -150,7 +128,7 @@ public class VentanaInicial extends JFrame{
 		    }
 		});
 		bTrayectoria.setIcon(null);
-    	revalidate();
+		revalidate();
 		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/trayectoria.png"));
 		bTrayectoria.setIcon(icono2);
 		bTrayectoria.setBorder(null);
@@ -160,6 +138,8 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
+					bTrayectoria.setIcon(null);
+			    	revalidate();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
@@ -175,7 +155,7 @@ public class VentanaInicial extends JFrame{
 		//TEMPORADA		
 		bTemporada = new JButton();
 		bTemporada.setIcon(null);
-    	revalidate();
+		revalidate();
 		bTemporada.setBounds(((VentanaInicial.WIDTH/35)*18), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
 		bTemporada.setBackground(new Color(0,0,0,0));
 		bTemporada.addMouseListener(new MouseAdapter() {
@@ -193,7 +173,7 @@ public class VentanaInicial extends JFrame{
 		    }
 		});
 		bTemporada.setIcon(null);
-    	revalidate();
+		revalidate();
 		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/temporada.png"));
 		bTemporada.setIcon(icono3);
 		bTemporada.setBorder(null);
@@ -203,6 +183,8 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
+					bTemporada.setIcon(null);
+			    	revalidate();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
@@ -218,7 +200,7 @@ public class VentanaInicial extends JFrame{
 		//MULTIJUGADOR - EN DESARROLLO
 		bMulti = new JButton();
 		bMulti.setIcon(null);
-    	revalidate();
+		revalidate();
 		bMulti.setBounds(((VentanaInicial.WIDTH/35)*27), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
 		bMulti.setBackground(new Color(0,0,0,0));
 		bMulti.addMouseListener(new MouseAdapter() {
@@ -236,19 +218,25 @@ public class VentanaInicial extends JFrame{
 		    }
 		});
 		bMulti.setIcon(null);
-    	revalidate();
+		revalidate();
 		ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
 		bMulti.setIcon(icono4);
-    	revalidate();
+		revalidate();
 		bMulti.setBorder(null);
-				
-		add(bTrayectoria);
-		add(bTemporada);
-		add(bMulti);
-		add(bAyuda);
-		bAyuda.setBounds((VentanaInicial.WIDTH/35), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
-		bTrayectoria.setBounds(((VentanaInicial.WIDTH/35)*9), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
-		bTemporada.setBounds(((VentanaInicial.WIDTH/35)*18), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
-		bMulti.setBounds(((VentanaInicial.WIDTH/35)*27), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
+		
+		pCentral.add(bAyuda);
+		pCentral.add(bMulti);
+		pCentral.add(bTemporada);
+		pCentral.add(bTrayectoria);
+		
+//		add(bTrayectoria);
+//		add(bTemporada);
+//		add(bMulti);
+//		add(bAyuda);
+//		bAyuda.setBounds((VentanaInicial.WIDTH/35), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
+//		bTrayectoria.setBounds(((VentanaInicial.WIDTH/35)*9), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
+//		bTemporada.setBounds(((VentanaInicial.WIDTH/35)*18), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
+//		bMulti.setBounds(((VentanaInicial.WIDTH/35)*27), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
+
 	}
 }
