@@ -38,6 +38,8 @@ public class VentanaCarrera extends JFrame{
 	 
 	public VentanaCarrera(JFrame m) throws SQLException {
 		VentanaClasifCarrera = m; 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		JPanel pSuperior = new JPanel();

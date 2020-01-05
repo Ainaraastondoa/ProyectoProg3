@@ -23,6 +23,8 @@ public class VentanaClasifEscuderia extends JFrame{
 	
 	public VentanaClasifEscuderia(JFrame v) {
 		MenuPrincipalTrayectoria = v; 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);

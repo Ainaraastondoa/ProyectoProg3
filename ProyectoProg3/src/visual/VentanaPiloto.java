@@ -35,6 +35,8 @@ public class VentanaPiloto extends JFrame{
 	
 	public VentanaPiloto(JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m; 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		JPanel pSuperior = new JPanel();

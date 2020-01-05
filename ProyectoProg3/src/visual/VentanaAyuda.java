@@ -28,7 +28,7 @@ public class VentanaAyuda extends JFrame{
 	
 	public VentanaAyuda(JFrame v) {
 		VentanaInicio = v; 
-		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize( 400, 300 ); 
 		JButton bVolver = new JButton( "Volver" ); 
 		JPanel pInferior = new JPanel();

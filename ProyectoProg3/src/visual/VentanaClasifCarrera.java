@@ -41,6 +41,8 @@ public class VentanaClasifCarrera extends JFrame{
 	
 	public VentanaClasifCarrera(JFrame m) {
 		MenuPrincipalTrayectoria = m; 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);

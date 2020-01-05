@@ -64,41 +64,37 @@ public class VentanaInicial extends JFrame{
 //		Statement st = con.createStatement();
 //		BD.insertDatos(st);
 		
+		//CREACIÓN DEL PANEL QUE ALBERGA LOS BOTONES
 		JPanel pCentral = new JPanel();
-		pCentral.setPreferredSize( new Dimension( 1600, 900 ));
+		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
-		add(pCentral, BorderLayout.WEST);
+		pCentral.setLayout(null);
+		getContentPane().add(pCentral);
 		
-		//4 BOTONES DE LA VENTANA INICIAL
+		//CREACION DE 4 BOTONES DE LA VENTANA INICIAL		
 		//AYUDA
 		bAyuda = new JButton();
-		bAyuda.setBounds((pCentral.getWidth()/35), ((pCentral.getHeight()/18)*11), ((pCentral.getWidth()/35)*7), ((pCentral.getHeight()/18)*4));
-		revalidate();
-		bAyuda.setBackground(new Color(0,0,0,0));
+        bAyuda.setContentAreaFilled(false);
+        bAyuda. setOpaque(false);
 		bAyuda.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	bAyuda.setIcon(null);
-		    	revalidate();
 		    	ImageIcon icono = new ImageIcon(getClass().getResource("/img/ayuda2.png"));
 		    	bAyuda.setIcon(icono);
-		    }
-		    public void mouseExited(MouseEvent e) {
-		    	bAyuda.setIcon(null);
-		    	revalidate();
+//		    	//AGRANDAR EL BOTON EN UN 10%
+//				bAyuda.setBounds((int) ((this.getWidth()/35) * 0.95), (int) (((this.getHeight()/18)*9.5) * 0.95), (int) (((this.getWidth()/35)*7) * 1.1), (int) (((this.getHeight()/18)*4) * 1.1));
+//				revalidate();		    
+			}
+			public void mouseExited(MouseEvent e) {
 		    	ImageIcon icono = new ImageIcon(getClass().getResource("/img/ayuda.png"));
 		    	bAyuda.setIcon(icono);
 		    }
 		});    	
-		bAyuda.setIcon(null);
-		revalidate();
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/ayuda.png"));
 		bAyuda.setIcon(icono);
 		bAyuda.setBorder(null);
 		bAyuda.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		    	bAyuda.setIcon(null);
-		    	revalidate();
 				VentanaAyuda v = new VentanaAyuda( VentanaInicial.this );
 				v.setLocation( getLocation() );
 				v.setSize( getSize() );
@@ -109,26 +105,18 @@ public class VentanaInicial extends JFrame{
 		
 		//TRAYECTORIA
 		bTrayectoria = new JButton();
-		bTrayectoria.setIcon(null);
-		revalidate();
-		bTrayectoria.setBounds(((VentanaInicial.WIDTH/35)*9), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
-		bTrayectoria.setBackground(new Color(0,0,0,0));
+		bTrayectoria.setContentAreaFilled(false);
+		bTrayectoria. setOpaque(false);
 		bTrayectoria.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	bTrayectoria.setIcon(null);
-		    	revalidate();
 		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/trayectoria2.png"));
 		    	bTrayectoria.setIcon(icono2);
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	bTrayectoria.setIcon(null);
-		    	revalidate();
 		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/trayectoria.png"));
 		    	bTrayectoria.setIcon(icono2);
 		    }
 		});
-		bTrayectoria.setIcon(null);
-		revalidate();
 		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/trayectoria.png"));
 		bTrayectoria.setIcon(icono2);
 		bTrayectoria.setBorder(null);
@@ -138,8 +126,6 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
-					bTrayectoria.setIcon(null);
-			    	revalidate();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
@@ -154,26 +140,18 @@ public class VentanaInicial extends JFrame{
 		
 		//TEMPORADA		
 		bTemporada = new JButton();
-		bTemporada.setIcon(null);
-		revalidate();
-		bTemporada.setBounds(((VentanaInicial.WIDTH/35)*18), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
-		bTemporada.setBackground(new Color(0,0,0,0));
+		bTemporada.setContentAreaFilled(false);
+		bTemporada. setOpaque(false);
 		bTemporada.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	bTemporada.setIcon(null);
-		    	revalidate();
 		    	ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/temporada2.png"));
 		    	bTemporada.setIcon(icono3);
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	bTemporada.setIcon(null);
-		    	revalidate();
 		    	ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/temporada.png"));
 		    	bTemporada.setIcon(icono3);
 		    }
 		});
-		bTemporada.setIcon(null);
-		revalidate();
 		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/temporada.png"));
 		bTemporada.setIcon(icono3);
 		bTemporada.setBorder(null);
@@ -183,8 +161,6 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
-					bTemporada.setIcon(null);
-			    	revalidate();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
@@ -199,44 +175,31 @@ public class VentanaInicial extends JFrame{
 		
 		//MULTIJUGADOR - EN DESARROLLO
 		bMulti = new JButton();
-		bMulti.setIcon(null);
-		revalidate();
-		bMulti.setBounds(((VentanaInicial.WIDTH/35)*27), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
-		bMulti.setBackground(new Color(0,0,0,0));
+		bMulti.setContentAreaFilled(false);
+		bMulti. setOpaque(false);
 		bMulti.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-				bMulti.setIcon(null);
-		    	revalidate();
 				ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
 				bMulti.setIcon(icono4);
 		    }
 		    public void mouseExited(MouseEvent e) {
-				bMulti.setIcon(null);
-		    	revalidate();
 				ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
 				bMulti.setIcon(icono4);
 		    }
 		});
-		bMulti.setIcon(null);
-		revalidate();
+
 		ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
 		bMulti.setIcon(icono4);
-		revalidate();
 		bMulti.setBorder(null);
 		
+		bAyuda.setBounds((this.getWidth()/35), (int) ((this.getHeight()/18)*9.5), ((this.getWidth()/35)*7), ((this.getHeight()/18)*4));
 		pCentral.add(bAyuda);
+		bTrayectoria.setBounds((this.getWidth()/35)*9, (this.getHeight()/18)*9, (this.getWidth()/35)*8, (this.getHeight()/18)*5);
 		pCentral.add(bMulti);
+		bTemporada.setBounds(((this.getWidth()/35)*18), (this.getHeight()/18)*9, ((this.getWidth()/35)*8), ((this.getHeight()/18)*5));
 		pCentral.add(bTemporada);
+		bMulti.setBounds(((this.getWidth()/35)*27), (int) ((this.getHeight()/18)*9.5), ((this.getWidth()/35)*7), ((this.getHeight()/18)*4));
 		pCentral.add(bTrayectoria);
-		
-//		add(bTrayectoria);
-//		add(bTemporada);
-//		add(bMulti);
-//		add(bAyuda);
-//		bAyuda.setBounds((VentanaInicial.WIDTH/35), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
-//		bTrayectoria.setBounds(((VentanaInicial.WIDTH/35)*9), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
-//		bTemporada.setBounds(((VentanaInicial.WIDTH/35)*18), ((int) ((VentanaInicial.HEIGHT/18)*10.5)), ((VentanaInicial.WIDTH/35)*8), ((VentanaInicial.HEIGHT/18)*5));
-//		bMulti.setBounds(((VentanaInicial.WIDTH/35)*27), ((VentanaInicial.HEIGHT/18)*11), ((VentanaInicial.WIDTH/35)*7), ((VentanaInicial.HEIGHT/18)*4));
 
 	}
 }

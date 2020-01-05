@@ -36,7 +36,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	
 	public MenuPrincipalTrayectoria(JFrame v) throws SQLException {
 		VentanaInicio = v;  
-		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize( 400, 300 );
 		JButton bCarrera = new JButton( "Carrera" );
 		JButton bCoche = new JButton( "Coche"); 

@@ -29,17 +29,16 @@ public class TestBD {
 // 		String componente1 = listaComponentes.get(0).toString();
 //		assertEquals(componente1, "mercedes.m");
 //		
-		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
-		for (Piloto piloto : pilotos) {
-			System.out.println(piloto.toString2());
-		}
-//		
-//		ArrayList<Escuderia> escuderias = BD.listaEscuderiasSelect(st);
-//		for (Escuderia escuderia : escuderias) {
-//			System.out.println(escuderia.toString2());
-//			System.out.println(escuderia.getImagen1());
-//			System.out.println(escuderia.getImagen2());
+//		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
+//		for (Piloto piloto : pilotos) {
+//			System.out.println(piloto.toString2());
 //		}
+//		
+		ArrayList<Escuderia> escuderias = BD.listaEscuderiasSelect(st);
+		for (Escuderia escuderia : escuderias) {
+			System.out.println(escuderia.getImagen1());
+			System.out.println(escuderia.getImagen2());
+		}
 		
 //		for (Coche coche : listaCoches) {
 //			System.out.println(coche.getImagen());

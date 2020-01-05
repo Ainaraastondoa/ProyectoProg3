@@ -32,6 +32,8 @@ public class VentanaClasifPiloto extends JFrame{
 	
 	public VentanaClasifPiloto(JFrame v) {
 		VentanaClasifCarrera = v; 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
