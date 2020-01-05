@@ -239,6 +239,6 @@ public class Trayectoria {
 	public static void main(String[] args) {
 		Trayectoria t = new Trayectoria();
 		t.simularTemporada();
-		t.crearFichero("src/datos/ficheroBinario.bin");
+//		t.crearFichero("src/datos/ficheroBinario.bin");
 	}
 }

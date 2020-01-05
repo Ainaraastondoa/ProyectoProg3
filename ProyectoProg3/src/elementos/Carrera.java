@@ -67,7 +67,7 @@ public class Carrera {
 	}
 	
 	/**
-	 * M�todo para calcular tiempo por vuelta teniendo en cuenta �nicamente los atributos del piloto y los componentes del coche
+	 * Método para calcular tiempo por vuelta teniendo en cuenta �nicamente los atributos del piloto y los componentes del coche
 	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
 	 * @param piloto Piloto del que queremos calcular el tiempo por vuelta
 	 * @return Tiempo por vuelta inicial, calculado �nicamente seg�n el rendimiento de Coche + Piloto
