@@ -1,9 +1,15 @@
 package elementos;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
  
 public class Trayectoria {
 
@@ -160,7 +166,7 @@ public class Trayectoria {
 	
 	// Método que sirve para simular una temporada
 	public void simularTemporada() {
-		// Crear temporada
+		// Crear temporada. Las temporadas se van a leer desde el fichero de temporadas.
 		Temporada t = new Temporada(2019, this.listaPilotos, this.listaEscuderias);
 		this.getListaTemporadas().add(t);
 		// Crear todas las carreras
@@ -181,10 +187,58 @@ public class Trayectoria {
 		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Puntos: " + v ));
 		t.getPuntosEscuderia().forEach( (k, v) -> System.out.println("Escudería: " + k + "   Dinero: " + k.getPresupuesto()));
 	}
+	
+	//Método para crear el fichero serializado donde se van a volcar los datos de las
+	//temporadas
+	public void crearFichero(String fichero) {
+		
+		ArrayList<Temporada> temporadas = this.getListaTemporadas();
+		
+		try {
+			FileOutputStream fich = new FileOutputStream(fichero);
+			ObjectOutputStream fichBi = new ObjectOutputStream(fich);
+			for (Temporada temporada : temporadas) {
+				fichBi.writeObject(temporada);
+			}
+			fichBi.close();
+			fich.close();
+			
+		}catch( IOException e ){
+			e.printStackTrace();	
+		}	
+	}
+	
+	//Método para cargar el fichero serializado
+	public static ArrayList<Temporada> cargaFichero(String fichero){
+		ArrayList<Temporada> temporadas = new ArrayList<>();
+		
+		try {
+			FileInputStream fis = new FileInputStream(fichero);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			Temporada temporada = null;
+			while((temporada = (Temporada) ois.readObject()) != null){
+				temporadas.add(temporada);	
+			}
+			ois.close();
+			fis.close();
+		}catch(IOException e) {
+			
+			e.printStackTrace();
+			
+		}catch(ClassNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		return temporadas; 
+		
+		
+	}
 
 	// Método main de prueba
 	public static void main(String[] args) {
 		Trayectoria t = new Trayectoria();
 		t.simularTemporada();
+		t.crearFichero("src/datos/ficheroBinario.bin");
 	}
 }
