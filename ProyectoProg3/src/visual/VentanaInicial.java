@@ -177,17 +177,6 @@ public class VentanaInicial extends JFrame{
 		bMulti = new JButton();
 		bMulti.setContentAreaFilled(false);
 		bMulti. setOpaque(false);
-		bMulti.addMouseListener(new MouseAdapter() {
-		    public void mouseEntered(MouseEvent e) {
-				ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
-				bMulti.setIcon(icono4);
-		    }
-		    public void mouseExited(MouseEvent e) {
-				ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
-				bMulti.setIcon(icono4);
-		    }
-		});
-
 		ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/multijugador.png"));
 		bMulti.setIcon(icono4);
 		bMulti.setBorder(null);
