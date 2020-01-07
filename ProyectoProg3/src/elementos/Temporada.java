@@ -1,12 +1,13 @@
 package elementos;
 
 import java.util.ArrayList;
+//import java.util.Arrays;
 import java.util.HashMap;
 
 /** Esta clase define las temporadas y sus atributos
  * 
  */
-//����IMPLEMENTS COMPARABLE????
+//¿¿¿¿IMPLEMENTS COMPARABLE????
 public class Temporada {
 	
 	//ATRIBUTOS de la clase Temporada
@@ -18,9 +19,9 @@ public class Temporada {
 	//CONSTRUCTOR
 	public Temporada(int anno, ArrayList<Piloto> listaPilotos, ArrayList<Escuderia> listaEscuderias) {
 		this.anno = anno;
-		this.puntosPiloto = crearMapaPilotosPuntos(listaPilotos);
+		this.puntosPiloto = crearMapaPilotosPuntosRecursivo(listaPilotos);
 		this.listaCarreras = new ArrayList<Carrera>();
-		this.puntosEscuderia = crearMapaEscuderiasPuntos(listaEscuderias);
+		this.puntosEscuderia = crearMapaEscuderiasPuntosRecursivo(listaEscuderias);
 	}
 	
 	//Creamos hashmap para hacer pruebas de visualizacion en ventana
@@ -96,7 +97,7 @@ public class Temporada {
 	}
 	
 	/**
-	 * M�todo que sirve para crear el hashmap de pilotos y puntos
+	 * Método que sirve para crear el hashmap de pilotos y puntos
 	 * @param listaPilotos Lista de pilotos que toman parte en la temporada
 	 * @return Puntos por piloto en la temporada (a 0 en el inicio)
 	 */
@@ -109,9 +110,38 @@ public class Temporada {
 	}
 	
 	/**
-	 * M�todo que sirve para crear el hashmap de escuder�as y puntos
-	 * @param listaEscuderias Lista de escuder�as que toman parte en la temporada
-	 * @return Puntos por escuder�a en la temporada (a 0 en el inicio)
+	 * Método que sirve para crear el hashmap de pilotos y puntos de manera recursiva
+	 * @param listaPilotos Lista de pilotos que toman parte en la temporada
+	 * @return Puntos por piloto en la temporada (a 0 en el inicio)
+	 */
+	public /*static*/ HashMap<Piloto, Integer> crearMapaPilotosPuntosRecursivo(ArrayList<Piloto> listaPilotos) {
+		HashMap<Piloto, Integer> mapa = crearMapaRecursivoAux(listaPilotos, 0, new HashMap<Piloto, Integer>());
+		return mapa;
+	}
+	
+	/**
+	 * Método recursivo para el establecimiento del mapa de pilotos y puntos a inicio de temporada
+	 * @param listaPilotos Lista de pilotos que toman parte en la temporada
+	 * @param indice Indice de la listaPilotos
+	 * @param mapa Mapa donde están los puntos por piloto
+	 * @return Mismo mapa con los puntos por piloto
+	 */
+	public /*static*/ HashMap<Piloto, Integer> crearMapaRecursivoAux(ArrayList<Piloto> listaPilotos, int indice,
+			HashMap<Piloto, Integer> mapa) {
+		if (indice == listaPilotos.size() - 1) {
+			mapa.put( listaPilotos.get(indice), 0 );
+			return mapa;
+		} else {
+			mapa.put( listaPilotos.get(indice), 0 );
+			mapa = crearMapaRecursivoAux( listaPilotos, indice + 1, mapa );
+			return mapa;
+		}
+	}
+	
+	/**
+	 * Método que sirve para crear el hashmap de escuderías y puntos
+	 * @param listaEscuderias Lista de escuderías que toman parte en la temporada
+	 * @return Puntos por escudería en la temporada (a 0 en el inicio)
 	 */
 	public HashMap<Escuderia, Integer> crearMapaEscuderiasPuntos(ArrayList<Escuderia> listaEscuderias) {
 		HashMap<Escuderia, Integer> mapa = new HashMap<Escuderia, Integer>();
@@ -120,4 +150,60 @@ public class Temporada {
 			}
 		return mapa;
 	}
+	
+	/**
+	 * Método que sirve para crear el hashmap de escuderías y puntos de manera recursiva
+	 * @param listaPilotos Lista de escuderías que toman parte en la temporada
+	 * @return Puntos por escudería en la temporada (a 0 en el inicio)
+	 */
+	public /*static*/ HashMap<Escuderia, Integer> crearMapaEscuderiasPuntosRecursivo(ArrayList<Escuderia> listaEscuderias) {
+		HashMap<Escuderia, Integer> mapa = crearMapaRecursivoAux2(listaEscuderias, 0, new HashMap<Escuderia, Integer>());
+		return mapa;
+	}
+	
+	/**
+	 * Método recursivo para el establecimiento del mapa de escuderías y puntos a inicio de temporada
+	 * @param listaEscuderias Lista de escuderías que toman parte en la temporada
+	 * @param indice Indice de la listaEscuderias
+	 * @param mapa Mapa donde están los puntos por escudería
+	 * @return Mismo mapa con los puntos por escudería
+	 */
+	public /*static*/ HashMap<Escuderia, Integer> crearMapaRecursivoAux2(ArrayList<Escuderia> listaEscuderias, int indice,
+			HashMap<Escuderia, Integer> mapa) {
+		if (indice == listaEscuderias.size() - 1) {
+			mapa.put( listaEscuderias.get(indice), 0 );
+			return mapa;
+		} else {
+			mapa.put( listaEscuderias.get(indice), 0 );
+			mapa = crearMapaRecursivoAux2( listaEscuderias, indice + 1, mapa );
+			return mapa;
+		}
+	}
+	
+	// Método main de prueba
+//	public static void main(String[] args) {
+//		Componente c1 = new Componente("a", 80);
+//		Coche coche = new Coche("SF19", c1, c1, c1, 97, "patata2");
+//		Piloto p1 = new Piloto("Alex", 18, 50, 32, 45, 73, 27, 24, coche, "patata");
+//		Piloto p2 = new Piloto("Carlos", 18, 50, 32, 45, 73, 27, 24, coche, "patata");
+//		Piloto p3 = new Piloto("Javier", 18, 50, 32, 45, 73, 27, 24, coche, "patata");
+//		Piloto p4 = new Piloto("Jaime", 18, 50, 32, 45, 73, 27, 24, coche, "patata");
+//		Piloto p5 = new Piloto("Santi", 18, 50, 32, 45, 73, 27, 24, coche, "patata");
+//		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>(Arrays.asList(p1,p2,p3,p4,p5));
+//		HashMap<Piloto, Integer> mapaPilotos = crearMapaPilotosPuntosRecursivo(listaPilotos);
+//		mapaPilotos.forEach( (k,v) -> {
+//			System.out.println("Piloto: " + k.getNombre() + "   Puntos: " + v);
+//		});
+//		
+//		Escuderia e1 = new Escuderia("Ferrari", "Binotto", p1, p2, 200000, "patata", "tomate");
+//		Escuderia e2 = new Escuderia("Mercedes", "Binotto", p1, p2, 200000, "patata", "tomate");
+//		Escuderia e3 = new Escuderia("Red Bull", "Binotto", p1, p2, 200000, "patata", "tomate");
+//		Escuderia e4 = new Escuderia("Renault", "Binotto", p1, p2, 200000, "patata", "tomate");
+//		
+//		ArrayList<Escuderia> listaEscuderias = new ArrayList<Escuderia>(Arrays.asList(e1,e2,e3,e4));
+//		HashMap<Escuderia, Integer> mapaEscuderias = crearMapaEscuderiasPuntosRecursivo(listaEscuderias);
+//		mapaEscuderias.forEach( (k,v) -> {
+//			System.out.println("Escudería: " + k.getNombre() + "   Puntos: " + v);
+//		});
+//	}
 }
