@@ -11,11 +11,14 @@ import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -33,21 +36,17 @@ public class VentanaCoche extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
 	Coche coche;
+	private JButton bVolver;
 	private PanelConImagenFondo imagen_fondo;
  
 	public VentanaCoche (JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m;
+		setTitle( "MI COCHE" );
+		setSize(m.getWidth(), m.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		JButton bok = new JButton("Ok");
-		JPanel pInferior = new JPanel();
-		JPanel pSuperior = new JPanel();
 		Label etiqueta = new Label(Trayectoria.getEscuderia().getPiloto1().getCoche().toString2());
-		pSuperior.add(etiqueta); 
-		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		getContentPane().add(pSuperior, BorderLayout.NORTH); 
-		pInferior.add(bok);
-		
+
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();
 		imagen_fondo.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
@@ -58,50 +57,68 @@ public class VentanaCoche extends JFrame{
 		setContentPane(imagen_fondo);
 		setLayout(new FlowLayout());
 		
+		//CREACIÓN DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
 		JPanel pCentral = new JPanel();
-		JPanel pDatos = new JPanel();
-		JPanel pPresupuesto = new JPanel();
-		pCentral.add(pDatos);
-		pCentral.add(pPresupuesto);
+		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
+		pCentral.setOpaque(false);
+		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
+		
+		//FUENTE
 		Font font = new Font("Verdana", Font.BOLD, 39);
 
+		//DATOS
 //		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 //		Statement st = con.createStatement();
 //		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
 
-		//Imprimimos los datos del coche y sus mejoras
+		//Imprimimos los datos del coche
 		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
-		Integer presupuesto = escuderia_seleccionada.getPresupuesto();
 		
-		JTextArea pr = new JTextArea(presupuesto.toString());
-		pr.setEditable(false);
-		pr.setBackground(Color.LIGHT_GRAY);
-		pPresupuesto.add(pr);
-		pr.setFont(font);
-			
-		
-		Coche coche_seleccionado = Trayectoria.getEscuderia().getPiloto1().getCoche();		
-	
-		JTextArea da = new JTextArea(coche_seleccionado.toString2());
-		da.setEditable(false);
-		da.setBackground(Color.LIGHT_GRAY);
-		pDatos.add(da);
-		da.setFont(font);
+		//PRESUPUESTO DEL EQUIPO
+		Integer presupuesto = escuderia_seleccionada.getPresupuesto();		
+		JTextArea pres = new JTextArea("Presupuesto: " + presupuesto.toString());
+		pres.setEditable(false);
+		pres.setBackground(Color.LIGHT_GRAY);
+		pres.setFont(font);
 				
-		//Escuchadores
-		bok.addActionListener(new ActionListener() {
+		//CARACTERISTICAS COCHE
+		Coche coche_seleccionado = Trayectoria.getEscuderia().getPiloto1().getCoche();			
+		JTextArea datos = new JTextArea(coche_seleccionado.toString2());
+		datos.setEditable(false);
+		datos.setBackground(Color.LIGHT_GRAY);
+		datos.setFont(font);
 
+		//BOTON VOLVER
+		bVolver = new JButton();
+		bVolver.setContentAreaFilled(false);
+		bVolver. setOpaque(false);
+		bVolver.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver2.png"));
+		    	bVolver.setIcon(icono2);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		    	bVolver.setIcon(icono2);
+		    }
+		});
+		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		bVolver.setIcon(icono2);
+		bVolver.setBorder(null);
+		bVolver.addActionListener(new ActionListener() {
+		
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 				MenuPrincipalTrayectoria.setVisible( true );
-				
-			}			
-		}); 
+			}					
+		});
+		datos.setBounds(this.getWidth()/20, this.getHeight()/15, 425, 175);
+		pCentral.add(datos);
+		pres.setBounds(this.getWidth()/3, this.getHeight()/10, 575, 65);
+		pCentral.add(pres);
+		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
+		pCentral.add(bVolver);
 	}
-	
-//	public void dibujar (Graphics g) {
-//		g.drawImage(coche_seleccionado.getImagen(), 0, 0, null);
-//	}
 }

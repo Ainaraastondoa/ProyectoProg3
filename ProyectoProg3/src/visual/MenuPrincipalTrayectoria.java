@@ -51,6 +51,8 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	
 	public MenuPrincipalTrayectoria(JFrame v) throws SQLException {
 		VentanaInicio = v;  
+		setTitle( "Trayectoria" );
+		setSize(v.getWidth(), v.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//FONDO DE LA VENTANA
@@ -258,18 +260,19 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		}); 
 		
 		//POSICIONAR BOTONES Y AÑADIRLOS AL PANEL CENTRAL
-		bInicio.setBounds((this.getWidth()/25) * 2, (this.getHeight()/46) * 35, (this.getWidth()/25) * 5, (this.getHeight()/46)*9);
+		bInicio.setBounds((this.getWidth()/25) * 2, (this.getHeight()/92) * 66, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bInicio);
 		//***
-		bCarrera.setBounds((this.getWidth()/25) * 9, (this.getHeight()/46) * 34, (this.getWidth()/25) * 7, (this.getHeight()/46)*11); 
+		bCarrera.setBounds((this.getWidth()/25) * 9, (this.getHeight()/92) * 63, (this.getWidth()/25) * 7, (this.getHeight()/92)*27); 
 		pCentral.add(bCarrera);
-		bClasificacion.setBounds((this.getWidth()/25) * 18, (this.getHeight()/46) * 35, (this.getWidth()/25) * 5, (this.getHeight()/46)*9);
+		
+		bClasificacion.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 66, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bClasificacion);
-		bMercado.setBounds((this.getWidth()/25) * 18, (this.getHeight()/46) * 24, (this.getWidth()/25) * 5, (this.getHeight()/46)*9);
+		bMercado.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 45, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bMercado);
-		bCoche.setBounds((this.getWidth()/25) * 18, (this.getHeight()/46) * 13, (this.getWidth()/25) * 5, (this.getHeight()/46)*9);
+		bCoche.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 24, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bCoche);
-		bPiloto.setBounds((this.getWidth()/25) * 18, (this.getHeight()/46) * 2, (this.getWidth()/25) * 5, (this.getHeight()/46)*9);
+		bPiloto.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 3, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bPiloto);
 		//LABEL DE MUSICA
 //		lMusica.setBounds(this.getWidth()/80, this.getHeight()/46, this.getWidth()/3, this.getHeight()/10);
