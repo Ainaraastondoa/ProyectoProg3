@@ -1,6 +1,7 @@
 package elementos;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -9,6 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 
  
 public class Trayectoria {
@@ -231,7 +233,24 @@ public class Trayectoria {
 			e.printStackTrace();
 		}
 		return temporadas; 
-		
+			
+	}
+	
+	//Método para la creación del fichero properties(de prueba)
+	public void creacionProperties(String clave, String valor) {
+		Properties properties = new Properties();
+		properties.setProperty(clave,valor);
+		try {
+			properties.storeToXML(new FileOutputStream("ficheroPropiedades.xml"), "propiedades del proyecto");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	//Método para leer el fichero properties(prueba)
+	public void leerProperties() {
 		
 	}
 
