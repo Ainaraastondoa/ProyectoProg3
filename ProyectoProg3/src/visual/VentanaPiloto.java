@@ -54,10 +54,8 @@ public class VentanaPiloto extends JFrame{
 		imagen += Trayectoria.getEscuderia().getPiloto1().getImagen();
 		imagen_fondoI.setImage(imagen);
 		
-		imagen_fondoI.setLayout(new FlowLayout(FlowLayout.LEFT));
+//		imagen_fondoI.setLayout(new FlowLayout(FlowLayout.LEFT));
 		setContentPane(imagen_fondoI);
-		
-		
 		
 		//PARA EL SEGUNDO PILOTO
 		imagen_fondoD = new PanelConImagenFondo();
@@ -66,28 +64,27 @@ public class VentanaPiloto extends JFrame{
 		imagen2 += Trayectoria.getEscuderia().getPiloto2().getImagen();
 		imagen_fondoD.setImage(imagen2);
 		
-		imagen_fondoD.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		setContentPane(imagen_fondoD);
+		
+//		imagen_fondoD.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		//setContentPane(imagen_fondoD);
 		
 		
 		//CREACION DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
 //		JPanel pInferior = new JPanel();
 //		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		//CREAMOS DOS PANELES PARA CADA PILOTO DE LA ESCUDERIA
-		//AÑADIMO
 //		JPanel pDerecha = new JPanel();
 //		JPanel pIzquierda = new JPanel();
-		
 		JPanel pCentral = new JPanel();
-//		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		pCentral.setLayout(new GridLayout(1,2));
+		imagen_fondoD.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		imagen_fondoI.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
 		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
 		
 		//FUENTE
-		Font font = new Font("Verdana", Font.BOLD, 39);
+		Font font = new Font("Verdana", Font.BOLD, 25);
 		
 		//OBTENEMOS LOS DATOS DE LOS PILOTOS DE LA ESCUDERIA SELECCIONADA
 		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
@@ -109,6 +106,7 @@ public class VentanaPiloto extends JFrame{
 		piloto1.setEditable( false );
 		piloto1.setBackground(Color.LIGHT_GRAY);
 //		pIzquierda.add(piloto1);
+		imagen_fondoI.add(piloto1);
 		pCentral.add(piloto1);
 		piloto1.setFont(font);
 	
@@ -117,6 +115,7 @@ public class VentanaPiloto extends JFrame{
 		piloto2.setEditable( false );
 		piloto2.setBackground(Color.LIGHT_GRAY);
 //		pDerecha.add(piloto2);
+		imagen_fondoI.add(piloto2);
 		piloto2.setFont(font);
 		
 		//BOTON VOLVER
@@ -146,9 +145,11 @@ public class VentanaPiloto extends JFrame{
 		});
 //		pCentral.add(pIzquierda);
 //		pCentral.add(pDerecha);
-//		piloto1.setBounds(this.getWidth()/20, this.getHeight()/15, 425, 650);
+//		pCentral.add(imagen_fondoD);
+//		pCentral.add(imagen_fondoI);
+		piloto1.setBounds((this.getWidth()/20) * 13, this.getHeight()/100, 425, 400);
 		pCentral.add(piloto1);
-		//piloto2.setBounds(x, y, width, height);
+		piloto2.setBounds((this.getWidth()/20) * 13, (this.getHeight()/42) * 20, 425, 400);
 		pCentral.add(piloto2);
 		getContentPane().add(pCentral);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);

@@ -119,7 +119,7 @@ public class Piloto {
 	}
 	
 	public String toString2() {
-		return "\n" + "\n" + "\nNOMBRE: " + nombre + 
+		return  "\nNOMBRE: " + nombre + 
 				"\nEDAD: " + edad + "\nNIVEL: " + nivel + "\nREGULARIDAD: " + regularidad
 				+ "\nADELANTAR: " + adelantar + "\nDEFENDER: " + defender + "\nVELOCIDAD: " + velocidad + 
 				"\nMOJADO: " + mojado + "\nCOCHE: " + coche;
