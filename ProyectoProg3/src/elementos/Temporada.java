@@ -23,6 +23,9 @@ public class Temporada {
 	// Properties
 	public static Properties propertiesTemporada = new Properties();
 	
+	// Datos
+	private static Escuderia escuderia; 				//Escuderia seleccionada para la temporada
+	
 	//CONSTRUCTOR
 	public Temporada(int anno, ArrayList<Piloto> listaPilotos, ArrayList<Escuderia> listaEscuderias) {
 		this.anno = anno;
@@ -101,6 +104,14 @@ public class Temporada {
 
 	public void setPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia) {
 		this.puntosEscuderia = puntosEscuderia;
+	}
+	
+	public static Escuderia getEscuderia() {
+		return escuderia;
+	}
+
+	public static void setEscuderia(Escuderia escuderia) {
+		Temporada.escuderia = escuderia;
 	}
 	
 	/**

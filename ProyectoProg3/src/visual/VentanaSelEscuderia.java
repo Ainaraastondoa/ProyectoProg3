@@ -25,16 +25,24 @@ import javax.swing.SpringLayout;
 import elementos.BD;
 import elementos.Escuderia;
 import elementos.Piloto;
+import elementos.Temporada;
 import elementos.Trayectoria;
 
 public class VentanaSelEscuderia extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
+
+	// Datos
+	private int eleccionModoJuego; // 0 si es una trayectoria, 1 si es temporada
+	
+	// Componentes Ventana
 	JFrame VentanaInicial;
 	private JButton bVolver;
 //	private PanelConImagenFondo imagen_fondo;
 //	private String fondo = "/img/selesc.png";
 	
-	public VentanaSelEscuderia(JFrame m) throws SQLException {		
+	public VentanaSelEscuderia(JFrame m, int modoJuego) throws SQLException {	
+		eleccionModoJuego = modoJuego;
 		VentanaInicial = m;
 		setTitle("Selecciona tu escuderia");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -50,7 +58,7 @@ public class VentanaSelEscuderia extends JFrame{
 		Statement st = con.createStatement();	
 		ArrayList<Escuderia> listaEscuderias = BD.listaEscuderiasSelect(st);	
 		
-		//CREACIÓN DEL PANELES QUE ALBERGAN LOS BOTONES
+		//CREACIï¿½N DEL PANELES QUE ALBERGAN LOS BOTONES
 		JPanel pCentral = new JPanel();
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
@@ -92,20 +100,33 @@ public class VentanaSelEscuderia extends JFrame{
 			bEscuderia.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					MenuPrincipalTrayectoria menu;
-					try {
-						menu = new MenuPrincipalTrayectoria( VentanaSelEscuderia.this );
+					if (eleccionModoJuego == 0) { // Modo Trayectoria
+						MenuPrincipalTrayectoria menu;
+						try {
+							menu = new MenuPrincipalTrayectoria( VentanaSelEscuderia.this );
+							menu.setLocation( getLocation() );
+							menu.setSize( getSize() );
+							menu.setVisible( true );
+							VentanaSelEscuderia.this.setVisible( false );
+							
+							//Escuderia seleccionada
+							Trayectoria.setEscuderia(escuderia);
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} else { // Modo Temporada
+						MenuPrincipalTemporada menu;
+						menu = new MenuPrincipalTemporada( VentanaSelEscuderia.this );
 						menu.setLocation( getLocation() );
 						menu.setSize( getSize() );
 						menu.setVisible( true );
 						VentanaSelEscuderia.this.setVisible( false );
 						
 						//Escuderia seleccionada
-						Trayectoria.setEscuderia(escuderia);
+						Temporada.setEscuderia( escuderia );
 						
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
 					}
 				}				
 			});	

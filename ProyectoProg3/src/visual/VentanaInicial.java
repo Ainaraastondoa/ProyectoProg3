@@ -28,13 +28,15 @@ import elementos.*;
 
 public class VentanaInicial extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private JButton bTrayectoria;
 	private JButton bTemporada;
 	private JButton bMulti;
 	private JButton bAyuda;
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondo.png";
-	private Audio musicamenu;
+//	private Audio musicamenu;
 	
 	//metodo main de pruebas
 	public static void main(String[] args) throws SQLException {
@@ -64,7 +66,7 @@ public class VentanaInicial extends JFrame{
 //		Statement st = con.createStatement();
 //		BD.insertDatos(st);
 		
-		//CREACIÓN DEL PANEL QUE ALBERGA LOS BOTONES
+		//CREACIï¿½N DEL PANEL QUE ALBERGA LOS BOTONES
 		JPanel pCentral = new JPanel();
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
@@ -126,7 +128,7 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
-					escuderia = new VentanaSelEscuderia( VentanaInicial.this );
+					escuderia = new VentanaSelEscuderia( VentanaInicial.this, 0 );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
 					escuderia.setVisible( true );
@@ -161,7 +163,7 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
-					escuderia = new VentanaSelEscuderia( VentanaInicial.this );
+					escuderia = new VentanaSelEscuderia( VentanaInicial.this, 1 );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
 					escuderia.setVisible( true );
