@@ -77,17 +77,17 @@ public class VentanaCarrera extends JFrame{
 		
 		JPanel pInfo = new JPanel();
 		pInfo.setBounds(0, 0, 1250, 100);
-		pInfo.setBackground(Color.WHITE);
+//		pInfo.setBackground(Color.WHITE);
 		pCentral.add(pInfo);
 		
 		JPanel pClasificacion = new JPanel();
 		pClasificacion.setBounds(1250, 0, 350, 900);
-		pClasificacion.setBackground(Color.DARK_GRAY);
+//		pClasificacion.setBackground(Color.DARK_GRAY);
 		pCentral.add(pClasificacion);
 		
 		JPanel pCarrera = new JPanel();
 		pCarrera.setBounds(0, 100, 1250, 800);
-		pCarrera.setBackground(Color.BLACK);
+//		pCarrera.setBackground(Color.BLACK);
 		pCarrera.setLayout(null);
 		pCentral.add(pCarrera);
 		
