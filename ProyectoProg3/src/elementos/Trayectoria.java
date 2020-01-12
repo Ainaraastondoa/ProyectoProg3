@@ -118,6 +118,13 @@ public class Trayectoria {
 		Trayectoria.escuderia = escuderia;
 	}
 
+	// Método de aumento de la edad de los pilotos tras una temporada
+	public void aumentarEdadPilotos() {
+		for (Piloto p : this.getListaPilotos()) {
+			p.setEdad( p.getEdad()+ 1 );
+		}
+	}
+	
 	// Método de simulación de una trayectoria
 	public void simularTrayectoriaPrueba() {
 		

@@ -52,7 +52,7 @@ public class VentanaClasifEscuderia extends JFrame{
 		getContentPane().add(pCentral);
 
 		
-//		//Escuchadores
+		//Escuchadores
 //		bok.addActionListener(new ActionListener() {
 //
 //			@Override

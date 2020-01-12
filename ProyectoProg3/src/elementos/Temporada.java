@@ -1,8 +1,12 @@
 package elementos;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Properties;
 
 /** Esta clase define las temporadas y sus atributos
  * 
@@ -15,6 +19,9 @@ public class Temporada {
 	public HashMap<Piloto, Integer> puntosPiloto;		//Puntos que tiene cada piloto en la temporada
 	public ArrayList<Carrera> listaCarreras;			//Lista de carreras de la temporada
 	public HashMap<Escuderia, Integer> puntosEscuderia;	//Puntos que lleva la escuderia
+	
+	// Properties
+	public static Properties propertiesTemporada = new Properties();
 	
 	//CONSTRUCTOR
 	public Temporada(int anno, ArrayList<Piloto> listaPilotos, ArrayList<Escuderia> listaEscuderias) {
@@ -94,6 +101,34 @@ public class Temporada {
 
 	public void setPuntosEscuderia(HashMap<Escuderia, Integer> puntosEscuderia) {
 		this.puntosEscuderia = puntosEscuderia;
+	}
+	
+	/**
+	 * Método para guardar en un fichero properties el número de carrera por el que se va en la temporada
+	 * @param numCarrera Número que queremos almacenar
+	 */
+	public void guardarCarreraActual(int numCarrera) {
+		propertiesTemporada.setProperty("numCarreraTemporada", String.valueOf(numCarrera));
+		try {
+			propertiesTemporada.store(new FileWriter( "archivoProperties" ), "");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Método para leer de un fichero properties el número de carrera por el que se va en la temporada
+	 * @return Número de carrera por la que se va en la temporada
+	 */
+	public int leerCarreraActual() {
+		try {
+			propertiesTemporada.load( new FileReader( "archivoProperties" ));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String ca = propertiesTemporada.getProperty( "numCarreraTemporada" );
+		int numCarrera = Integer.valueOf( ca );
+		return numCarrera;
 	}
 	
 	/**
@@ -178,6 +213,34 @@ public class Temporada {
 			mapa = crearMapaRecursivoAux2( listaEscuderias, indice + 1, mapa );
 			return mapa;
 		}
+	}
+	
+	/**
+	 * Método que sirve para crear las carreras de una temporada
+	 * @param listaCircuitos Lista de los circuitos en los que se compite en esa temporada
+	 */
+	public void crearCarrerasTemporada(ArrayList<Circuito> listaCircuitos) {
+		ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
+		for (Piloto p : puntosPiloto.keySet()) {
+			listaPilotos.add(p);
+		}
+		for (Circuito c : listaCircuitos) {
+			Carrera ca = new Carrera(c, listaPilotos);
+			listaCarreras.add(ca);
+		}
+	}
+	
+	/**
+	 * Método que sirve para simular una carrera y actualizar los resultados según el número de la carrera que se le pase
+	 * @param numCarrera Número de la carrera en el orden adecuado, 1 para la primera carrera de la temporada
+	 */
+	public void simularCarreraTemporada( int numCarrera ) {
+		Carrera ca = listaCarreras.get(numCarrera - 1);
+		ca.simularCarrera();
+		ca.ordenarClasificacionCarrera();
+		ca.repartirPuntos( this.getPuntosPiloto() );
+		ca.actualizarPuntosEscuderia( this.getPuntosEscuderia(), this.getPuntosPiloto() );
+		ca.repartirDinero( this.getPuntosEscuderia() );
 	}
 	
 	// Método main de prueba
