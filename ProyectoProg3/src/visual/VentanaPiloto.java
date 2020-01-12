@@ -37,8 +37,8 @@ public class VentanaPiloto extends JFrame{
 	JFrame MenuPrincipalTrayectoria;
 	Piloto piloto; 
 	private JButton bVolver;
-	private PanelConImagenFondo imagen_fondoI;
-	private PanelConImagenFondo imagen_fondoD;
+	private String fondo = "/img/fondoayuda.png";
+	
 	
 	public VentanaPiloto(JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m;
@@ -47,41 +47,35 @@ public class VentanaPiloto extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//FONDO DE LA VENTANA
-		//PARA EL PRIMER PILOTO
-		imagen_fondoI = new PanelConImagenFondo();
-		imagen_fondoI.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
-		String imagen = "";
-		imagen += Trayectoria.getEscuderia().getPiloto1().getImagen();
-		imagen_fondoI.setImage(imagen);
-		
-//		imagen_fondoI.setLayout(new FlowLayout(FlowLayout.LEFT));
-		setContentPane(imagen_fondoI);
-		
-		//PARA EL SEGUNDO PILOTO
-		imagen_fondoD = new PanelConImagenFondo();
-		imagen_fondoD.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
-		String imagen2 = "";
-		imagen2 += Trayectoria.getEscuderia().getPiloto2().getImagen();
-		imagen_fondoD.setImage(imagen2);
-		
-		
-//		imagen_fondoD.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		//setContentPane(imagen_fondoD);
-		
-		
-		//CREACION DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
-//		JPanel pInferior = new JPanel();
-//		getContentPane().add(pInferior, BorderLayout.SOUTH);
-//		JPanel pDerecha = new JPanel();
-//		JPanel pIzquierda = new JPanel();
+		PanelConImagenFondo imagen_fondo = new PanelConImagenFondo();
+		imagen_fondo.setImage(fondo);
+		setContentPane(imagen_fondo);
+		setLayout(new FlowLayout());
+				
+		//CREACION DE LOS PANELES Y SUBPANELES
 		JPanel pCentral = new JPanel();
-		pCentral.setLayout(new GridLayout(1,2));
-		imagen_fondoD.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		imagen_fondoI.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
 		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
+		
+		PanelConImagenFondo imagen_fondoI = new PanelConImagenFondo();
+		PanelConImagenFondo imagen_fondoD = new PanelConImagenFondo();
+		
+		String imagen = Trayectoria.getEscuderia().getPiloto1().getImagen();
+		String imagen2 = Trayectoria.getEscuderia().getPiloto2().getImagen();
+		
+		imagen_fondoI.setImage(imagen);
+		imagen_fondoD.setImage(imagen2);
+		
+		imagen_fondoI.setOpaque(false);
+		imagen_fondoD.setOpaque(false);
+		
+		imagen_fondoI.setBounds(60,420,1250,370);
+		imagen_fondoD.setBounds(1000,420,1250,370);
+		
+		pCentral.add(imagen_fondoI);
+		pCentral.add(imagen_fondoD);
 		
 		//FUENTE
 		Font font = new Font("Verdana", Font.BOLD, 25);
@@ -105,17 +99,12 @@ public class VentanaPiloto extends JFrame{
 		JTextArea piloto1 = new JTextArea(p1.toString2());
 		piloto1.setEditable( false );
 		piloto1.setBackground(Color.LIGHT_GRAY);
-//		pIzquierda.add(piloto1);
-		imagen_fondoI.add(piloto1);
-		pCentral.add(piloto1);
 		piloto1.setFont(font);
 	
 		//IMPRIMIMOS LOS DATOS DEL SEGUNDO PILOTO
 		JTextArea piloto2 = new JTextArea(p2.toString2());
 		piloto2.setEditable( false );
 		piloto2.setBackground(Color.LIGHT_GRAY);
-//		pDerecha.add(piloto2);
-		imagen_fondoI.add(piloto2);
 		piloto2.setFont(font);
 		
 		//BOTON VOLVER
@@ -143,13 +132,10 @@ public class VentanaPiloto extends JFrame{
 				MenuPrincipalTrayectoria.setVisible( true );
 			}					
 		});
-//		pCentral.add(pIzquierda);
-//		pCentral.add(pDerecha);
-//		pCentral.add(imagen_fondoD);
-//		pCentral.add(imagen_fondoI);
-		piloto1.setBounds((this.getWidth()/20) * 13, this.getHeight()/100, 425, 400);
+
+		piloto1.setBounds(this.getWidth()/20, this.getHeight()/15, 425, 350);
 		pCentral.add(piloto1);
-		piloto2.setBounds((this.getWidth()/20) * 13, (this.getHeight()/42) * 20, 425, 400);
+		piloto2.setBounds((this.getWidth()/20)*13, this.getHeight()/15, 425, 350);
 		pCentral.add(piloto2);
 		getContentPane().add(pCentral);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
