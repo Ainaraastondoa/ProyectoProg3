@@ -18,10 +18,12 @@ public class Piloto {
 	public int mojado; 			//Nivel del piloto en mojado (0-100)
 	public Coche coche;			//Coche con el que compite
 	public String imagen;		//Ruta a imagen del piloto
+	public String imagen2;		//Ruta a imagen2 del piloto
+
 	
 	//CONSTRUCTOR
 	public Piloto(String nombre, int edad, int nivel, int regularidad, int adelantar, int defender, int velocidad, int mojado,
-			Coche coche, String imagen) {
+			Coche coche, String imagen, String imagen2) {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.nivel = nivel;
@@ -32,6 +34,7 @@ public class Piloto {
 		this.mojado = mojado;
 		this.coche = coche;
 		this.imagen = imagen;
+		this.imagen2 = imagen2;
 	}
 	
 	//GETTERS Y SETTERS
@@ -94,6 +97,12 @@ public class Piloto {
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+	public String getImagen2() {
+		return imagen2;
+	}
+	public void setImagen2(String imagen2) {
+		this.imagen2 = imagen2;
 	}
 
 	/**

@@ -72,14 +72,14 @@ public class MenuPrincipalTrayectoria extends JFrame{
 //		Statement st = con.createStatement();
 //		BD.insertDatos(st);
 		
-		//CREACIÓN DEL PANEL QUE ALBERGA LOS BOTONES
+		//CREACIï¿½N DEL PANEL QUE ALBERGA LOS BOTONES
 		JPanel pCentral = new JPanel();
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
 		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
 		
-		//CREACION DE 6 BOTONES DE LA VENTANA INICIAL		
+		//CREACION DE 6 BOTONES DE LA VENTANA 	
 		//INICIO
 		bInicio = new JButton();
 		bInicio.setContentAreaFilled(false);
@@ -259,7 +259,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			}			
 		}); 
 		
-		//POSICIONAR BOTONES Y AÑADIRLOS AL PANEL CENTRAL
+		//POSICIONAR BOTONES Y Aï¿½ADIRLOS AL PANEL CENTRAL
 		bInicio.setBounds((this.getWidth()/25) * 2, (this.getHeight()/92) * 66, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bInicio);
 		//***
