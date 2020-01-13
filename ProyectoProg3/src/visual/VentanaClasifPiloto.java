@@ -13,32 +13,85 @@ import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
 import elementos.BD;
 import elementos.Piloto;
 import elementos.Temporada;
 import elementos.Trayectoria;
 
-/**Ventana en la que se mostrará a los pilotos 
- *clasificados según su puntuación 
+/**Ventana en la que se mostrarï¿½ a los pilotos 
+ *clasificados segï¿½n su puntuaciï¿½n 
  */ 
 
 public class VentanaClasifPiloto extends JFrame{
 	
 	// HACER JTable
 	JFrame VentanaClasifCarrera;
-
+	private Object [][] data = {{}};
+	private String fondo = "/img/fondotrayectoria.png";
 	
 	public VentanaClasifPiloto(JFrame v) {
-		VentanaClasifCarrera = v; 
+		VentanaClasifCarrera = v;
+		setTitle(" CLASIFICACIÃ“N PILOTOS ");
+		setSize(v.getWidth(), v.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//FONDO DE LA VENTANA
+		
+		PanelConImagenFondo imagen_fondo = new PanelConImagenFondo();
+		imagen_fondo.setImage(fondo);
+		setContentPane(imagen_fondo);
+		setLayout(new FlowLayout());
 
+		//CREACION DE PANELES Y BOTONES
+		
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
-		//Imprimimos a sus pilotos con sus respectivos puntos 
+		
+		JPanel panelPrincipal = new JPanel();
+		add(panelPrincipal, BorderLayout.NORTH);
+		
+		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS RESULTADOS OBTENIDOS 
+		//EN LA CARRERA
+		String [] columnNames = {"PILOTO", "PUNTOS OBTENIDOS"};
+		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+		for (int row = 0; row < data.length; row++) {
+			
+			tableModel.addRow(data[row]);
+		}		
+		
+		JTable tabla = new JTable() {
+			
+			//HACIENDO AQUï¿½ MISMO Source->Add/Implement methods
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			@Override
+			public Class<?> getColumnClass(int column) {
+				// TODO Auto-generated method stub
+				if (column == 0) {
+					return Integer.class;
+				}
+				if (column == 1) {
+					return String.class;
+				}
+				
+				return super.getClass();
+			} 			
+		};
+		
+		tabla.setModel(tableModel);
+		
+		//INTRODUCIMOS LOS DATOS CORRESPONDIENTES EN CADA COLUMNA
+		 
 		
 		
 //		//CUANDO SE CIERRE EL JUEGO PARA GUARDAR LA CLASIFICACION
@@ -52,23 +105,14 @@ public class VentanaClasifPiloto extends JFrame{
 		
 		//Creamos el panel de la clasificacion
 		JPanel pCentral = new JPanel();
-		JPanel pDerecha = new JPanel();
-		JPanel pIzquierda = new JPanel();
-		Label eti = new Label("PILOTOS");
-		Label eti2 = new Label("PUNTOS");
-		JPanel pDerechaSupe = new JPanel();
-		JPanel pIzquierdaSupe = new JPanel();
-		pDerechaSupe.add(eti2);
-		pIzquierdaSupe.add(eti);
-		pDerecha.add(pDerechaSupe);
-		pCentral.setLayout(new GridLayout(2,1));
-		pIzquierda.add(pIzquierdaSupe);
-		pIzquierda.setBackground(Color.DARK_GRAY);
-		pDerecha.setBackground(Color.GRAY);
-		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		pCentral.setLayout(new GridLayout(1,2));
-		pCentral.add(pIzquierda);
-		pCentral.add(pDerecha);
+//		JPanel pDerecha = new JPanel();
+//		JPanel pIzquierda = new JPanel();
+//		pIzquierda.setBackground(Color.DARK_GRAY);
+//		pDerecha.setBackground(Color.GRAY);
+//		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
+//		pCentral.setLayout(new GridLayout(1,2));
+//		pCentral.add(pIzquierda);
+//		pCentral.add(pDerecha);
 		getContentPane().add(pCentral);
 
 	

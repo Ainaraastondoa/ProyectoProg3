@@ -33,49 +33,46 @@ import elementos.Trayectoria;
 
 public class VentanaClasifCarrera extends JFrame{
 	
-	
-	// HACER JTable
 	JFrame MenuPrincipalTrayectoria;
 	private Object [][] data = {{}};
+	private String fondo = "/img/fondotrayectoria.png";
 
 	
 	public VentanaClasifCarrera(JFrame m) {
-		MenuPrincipalTrayectoria = m; 
+		MenuPrincipalTrayectoria = m;
+		setTitle(" CLASIFICACIÓN DE LA CARRERA ");
+		setSize(m.getWidth(), m.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//FONDO DE LA VENTANA
+		
+		PanelConImagenFondo imagen_fondo = new PanelConImagenFondo();
+		imagen_fondo.setImage(fondo);
+		setContentPane(imagen_fondo);
+		setLayout(new FlowLayout());
+		
+		//CREACION DE PANELES Y BOTONES
 
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
-		
-		//Escuchadores
-		bok.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VentanaClasifPiloto clasPilotos = new VentanaClasifPiloto( VentanaClasifCarrera.this );
-				clasPilotos.setLocation( getLocation() );
-				clasPilotos.setSize( getSize() );
-				clasPilotos.setVisible( true );
-				VentanaClasifCarrera.this.setVisible( false );				
-			}			
-		}); 
-		
-		//Imprimimos en la ventana a los pilotos con el tiempo que han
-		//obtenido en la carrera y sus respectivos puntos
-				
 		JPanel panelPrincipal = new JPanel();
 		add(panelPrincipal, BorderLayout.NORTH);
 		
+		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS RESULTADOS OBTENIDOS 
+		//EN LA CARRERA
 		String [] columnNames = {"Posicion", "Piloto", "Tiempo", "Puntos"};
 		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-		
+
 		for (int row = 0; row < data.length; row++) {
 			
 			tableModel.addRow(data[row]);
 		}		
+		
 		JTable tabla = new JTable() {
 			
-			//HACIENDO AQU� MISMO Source->Add/Implement methods
+			//HACIENDO AQU� MISMO Source->Add/Implement methods
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// TODO Auto-generated method stub
@@ -100,6 +97,34 @@ public class VentanaClasifCarrera extends JFrame{
 			} 			
 		};
 		
+		tabla.setModel(tableModel);
+		
+		//AÑADIMOS LOS DATOS A SU COLUMNA CORRESPONDIENTE
+		
+		
+		//ORDENAR
+//		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
+//		tabla.setRowSorter(sorter);
+
+//		JScrollPane tablaPane = new JScrollPane(tabla);
+//		panelPrincipal.add(tablaPane);
+
+		VentanaClasifCarrera.this.add(panelPrincipal);
+		VentanaClasifCarrera.this.setVisible(true);	
+		
+		//Escuchadores
+		bok.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaClasifPiloto clasPilotos = new VentanaClasifPiloto( VentanaClasifCarrera.this );
+				clasPilotos.setLocation( getLocation() );
+				clasPilotos.setSize( getSize() );
+				clasPilotos.setVisible( true );
+				VentanaClasifCarrera.this.setVisible( false );				
+			}			
+		}); 
+		
+				
 //		Integer carreraActual = 0;
 //		Temporada.this.listaCarreras.get(carreraActual).getListaPilotos();
 //		Temporada.this.listaCarreras.get(carreraActual).getListaTiempos();
@@ -112,12 +137,6 @@ public class VentanaClasifCarrera extends JFrame{
 //			tableModel.addRow(puntos);
 //		
 	
-		tabla.setModel(tableModel);
-
-		JScrollPane tablaPane = new JScrollPane(tabla);
-		panelPrincipal.add(tablaPane);
-
-		VentanaClasifCarrera.this.add(panelPrincipal);
-		VentanaClasifCarrera.this.setVisible(true);	
+		
 	}
 }

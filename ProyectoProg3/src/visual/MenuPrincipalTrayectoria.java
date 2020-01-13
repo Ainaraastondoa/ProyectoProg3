@@ -29,6 +29,7 @@ import elementos.BD;
 import elementos.Carrera;
 import elementos.Circuito;
 import elementos.Piloto;
+import elementos.Temporada;
 
 
 /**Esta clase es para visualizar el menu principal
@@ -47,6 +48,10 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondotrayectoria.png";
 	private Audio musicamenu;
+	
+	// Datos
+//	private Temporada temporada;
+//	private int numCarrera;
 
 	
 	public MenuPrincipalTrayectoria() throws SQLException {
@@ -141,6 +146,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 				try {
 					dispose();
 					vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this );
+					//vCarrera = new VentanaCarrera ( temporada, numCarrera, 0 );
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible(true);
