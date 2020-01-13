@@ -290,4 +290,13 @@ public class Carrera {
 		}
 		return listaCarreras;
 	}
+	
+	/**
+	 * Método que sirve para comprobar por pantalla los resultados de una carrera
+	 */
+	public void comprobarResultadoCarrera() {
+		System.out.println( "Resultado Carrera: " + this.getCircuito().getNombre() );
+		System.out.println( this.getListaPilotos() );
+		System.out.println( this.getListaTiempos() );
+	}
 }

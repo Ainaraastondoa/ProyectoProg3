@@ -66,7 +66,7 @@ public class VentanaInicial extends JFrame{
 //		Statement st = con.createStatement();
 //		BD.insertDatos(st);
 		
-		//CREACI�N DEL PANEL QUE ALBERGA LOS BOTONES
+		//CREACIÓN DEL PANEL QUE ALBERGA LOS BOTONES
 		JPanel pCentral = new JPanel();
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);

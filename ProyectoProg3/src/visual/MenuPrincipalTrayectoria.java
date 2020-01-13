@@ -37,7 +37,7 @@ import elementos.Piloto;
 
 public class MenuPrincipalTrayectoria extends JFrame{
 	
-	JFrame VentanaInicio;
+//	JFrame VentanaInicio;
 	private JButton bInicio;			//Boton que devuelve a la ventana inicial
 	private JButton bCarrera;			//Boton que inicia la proxima carrera
 	private JButton bClasificacion;		//Boton que muestra la clasificacion de pilotos y escuderias
@@ -49,10 +49,10 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	private Audio musicamenu;
 
 	
-	public MenuPrincipalTrayectoria(JFrame v) throws SQLException {
-		VentanaInicio = v;  
+	public MenuPrincipalTrayectoria() throws SQLException {
+//		VentanaInicio = v;  
 		setTitle( "Trayectoria" );
-		setSize(v.getWidth(), v.getHeight());
+		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//FONDO DE LA VENTANA
@@ -67,8 +67,8 @@ public class MenuPrincipalTrayectoria extends JFrame{
 //		JLabel lMusica = new JLabel("Himno F1");
 		
 		//DATOS
-		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
-		BD.usarCrearTablasBD(con);
+//		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+//		BD.usarCrearTablasBD(con);
 //		Statement st = con.createStatement();
 //		BD.insertDatos(st);
 		
@@ -104,7 +104,13 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				VentanaInicio.setVisible( true );			
+				VentanaInicial v;
+				try {
+					v = new VentanaInicial();
+					v.setVisible( true );
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}			
 		}); 
 		
@@ -133,11 +139,12 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
 				try {
-					vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this);
+					dispose();
+					vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this );
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible(true);
-					MenuPrincipalTrayectoria.this.setVisible(false);
+//					MenuPrincipalTrayectoria.this.setVisible(false);
 				} catch (SQLException sqle) {
 					// TODO Auto-generated catch block
 					sqle.printStackTrace();

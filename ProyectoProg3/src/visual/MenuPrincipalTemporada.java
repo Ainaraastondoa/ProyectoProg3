@@ -6,15 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elementos.BD;
 //import elementos.Audio;
-//import elementos.Temporada;
+import elementos.Temporada;
 
 /**Esta clase es para visualizar el menu principal
  * del modo Temporada
@@ -24,7 +27,6 @@ public class MenuPrincipalTemporada extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	// Componentes Ventana
-	JFrame ventanaInicio;
 	private JButton bInicio;
 	private JButton bCarrera;
 	private JButton bClasificacion;
@@ -35,13 +37,31 @@ public class MenuPrincipalTemporada extends JFrame {
 //	private Audio musicaMenu;
 	
 	// Datos
-//	private Temporada temporada;
-//	private int numCarrera;
+	private Temporada temporada;
+	private int numCarrera;
 	
-	public MenuPrincipalTemporada(JFrame v) {
-		ventanaInicio = v;
+	// Constructor Ventana Temporada
+	public MenuPrincipalTemporada(Temporada temp, int numCa) {
+		
+		// Creación Temporada
+		temporada = temp;
+		if (temporada.getListaCarreras().size() < 10) { // Las carreras no se han creado aún
+			Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+			Statement st;
+			try {
+				st = con.createStatement();
+				temporada.crearCarrerasTemporada( BD.listaCircuitosSelect(st) );
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			numCarrera = 1; // Hay que comenzar por la primera carrera
+		} else {
+			numCarrera = numCa;
+		}
+		
+		// Creación Ventana
 		setTitle("Temporada");
-		setSize(v.getWidth(), v.getHeight());
+		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// Fondo Ventana
@@ -79,7 +99,12 @@ public class MenuPrincipalTemporada extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				ventanaInicio.setVisible( true );			
+				try {
+					VentanaInicial v = new VentanaInicial();
+					v.setVisible( true );
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}			
 			}			
 		});
 		
@@ -105,7 +130,7 @@ public class MenuPrincipalTemporada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
 				try {
-					vCarrera = new VentanaCarrera (MenuPrincipalTemporada.this);
+					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible(true);

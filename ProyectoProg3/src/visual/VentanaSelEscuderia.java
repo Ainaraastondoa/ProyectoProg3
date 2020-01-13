@@ -103,7 +103,7 @@ public class VentanaSelEscuderia extends JFrame{
 					if (eleccionModoJuego == 0) { // Modo Trayectoria
 						MenuPrincipalTrayectoria menu;
 						try {
-							menu = new MenuPrincipalTrayectoria( VentanaSelEscuderia.this );
+							menu = new MenuPrincipalTrayectoria();
 							menu.setLocation( getLocation() );
 							menu.setSize( getSize() );
 							menu.setVisible( true );
@@ -118,11 +118,18 @@ public class VentanaSelEscuderia extends JFrame{
 						}
 					} else { // Modo Temporada
 						MenuPrincipalTemporada menu;
-						menu = new MenuPrincipalTemporada( VentanaSelEscuderia.this );
-						menu.setLocation( getLocation() );
-						menu.setSize( getSize() );
-						menu.setVisible( true );
-						VentanaSelEscuderia.this.setVisible( false );
+						Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+						Statement st;
+						try {
+							st = con.createStatement();
+							menu = new MenuPrincipalTemporada( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0 );
+							menu.setLocation( getLocation() );
+							menu.setSize( getSize() );
+							menu.setVisible( true );
+							VentanaSelEscuderia.this.setVisible( false );
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
 						
 						//Escuderia seleccionada
 						Temporada.setEscuderia( escuderia );

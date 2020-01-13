@@ -1,7 +1,6 @@
 package visual;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -34,8 +33,10 @@ import elementos.Trayectoria;
 
 public class VentanaCarrera extends JFrame{
 	
-	JFrame MenuPrincipalTrayectoria;
-	JFrame VentanaClasifCarrera;
+	private static final long serialVersionUID = 1L;
+	
+//	JFrame MenuPrincipalTrayectoria;
+//	JFrame VentanaClasifCarrera;
 	Piloto piloto;
 	private JButton bVolver;
 	private PanelConImagenFondo imagen_fondo;
@@ -45,8 +46,9 @@ public class VentanaCarrera extends JFrame{
 	
 	ArrayList<Temporada> listaTemporadas;
 	 
-	public VentanaCarrera(JFrame m) throws SQLException {
-		VentanaClasifCarrera = m; 
+	// modoJuego => 0 si es una trayectoria, 1 si es temporada
+	public VentanaCarrera(Temporada temp, int numCarrera, int modoJuego) throws SQLException {
+//		VentanaClasifCarrera = m; 
 		setTitle( "Trayectoria" );
 		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -270,38 +272,34 @@ public class VentanaCarrera extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				MenuPrincipalTrayectoria.setVisible( true );
+				if (modoJuego == 0) { // Modo Trayectoria
+					try {
+						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria();
+						v.setVisible( true );
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				} else { // Modo Temporada
+					MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1);
+					v.setVisible( true );
+				}
 			}					
 		});
 	
 
-		// Añadir temporada
-		Temporada t = new Temporada(2019, pilotos, escuderias);
-		this.getListaTemporadas().add(t);
+		// SIMULACIÓN DE LA CARRERA
+		temp.simularCarreraTemporada( numCarrera );
 		
-		// Añadir carrera 1
-		Carrera c = new Carrera(circuitos.get(0), pilotos);
-		t.getListaCarreras().add(c);
-		
-		// Simular Carrera (carrera 1)
-		Integer carreraActual = 0;
-		t.getListaCarreras().get(carreraActual).simularCarrera();
-		t.getListaCarreras().get(carreraActual).ordenarClasificacionCarrera();
-		t.getListaCarreras().get(carreraActual).repartirPuntos(t.getPuntosPiloto());
-//		t.getListaCarreras().get(carreraActual).actualizarPuntosEscuderia(t.getPuntosEscuderia(), t.getPuntosPiloto());
-		t.getListaCarreras().get(carreraActual).repartirDinero(t.getPuntosEscuderia());
+		// Comprobación de los resultados de la carrera
+		temp.getListaCarreras().get(numCarrera - 1).comprobarResultadoCarrera();
 				
-		// Comprobación (carrera 1)
-		System.out.println("Resultado Carrera:");
-		System.out.println(t.getListaCarreras().get(carreraActual).getListaPilotos());
-		System.out.println(t.getListaCarreras().get(carreraActual).getListaTiempos());		
-		
+
 		//FUENTE
 		Font font = new Font("Verdana", Font.BOLD, 45);
 		
 		//INFO CARRERA PARTE SUPERIOR
-		JTextArea infoCarrera = new JTextArea(//BD.circuitoSelect(st, carreraActual).getImagen() + 
-				BD.circuitoSelect(st, carreraActual+1).getNombre() + " -> " + BD.circuitoSelect(st, carreraActual+1).getVueltas() +
+		JTextArea infoCarrera = new JTextArea(//BD.circuitoSelect(st, numCarrera).getImagen() + 
+				BD.circuitoSelect(st, numCarrera).getNombre() + " -> " + BD.circuitoSelect(st, numCarrera).getVueltas() +
 				" vueltas");
 		infoCarrera.setEditable(false);
 		infoCarrera.setOpaque(false);
@@ -311,7 +309,7 @@ public class VentanaCarrera extends JFrame{
 		//POSICION
 		pInfo.add(infoCarrera);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
-		bVolver.setVisible(false);
+		bVolver.setVisible( true );
 		pCentral.add(bVolver);		
 
 		

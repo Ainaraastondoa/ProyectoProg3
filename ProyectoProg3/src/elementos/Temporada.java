@@ -118,7 +118,7 @@ public class Temporada {
 	 * Método para guardar en un fichero properties el número de carrera por el que se va en la temporada
 	 * @param numCarrera Número que queremos almacenar
 	 */
-	public void guardarCarreraActual(int numCarrera) {
+	public static void guardarCarreraActual(int numCarrera) {
 		propertiesTemporada.setProperty("numCarreraTemporada", String.valueOf(numCarrera));
 		try {
 			propertiesTemporada.store(new FileWriter( "archivoProperties" ), "");
@@ -131,7 +131,7 @@ public class Temporada {
 	 * Método para leer de un fichero properties el número de carrera por el que se va en la temporada
 	 * @return Número de carrera por la que se va en la temporada
 	 */
-	public int leerCarreraActual() {
+	public static int leerCarreraActual() {
 		try {
 			propertiesTemporada.load( new FileReader( "archivoProperties" ));
 		} catch (IOException e) {
