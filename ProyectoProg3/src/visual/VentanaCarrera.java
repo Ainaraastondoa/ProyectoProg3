@@ -280,8 +280,12 @@ public class VentanaCarrera extends JFrame{
 						e1.printStackTrace();
 					}
 				} else { // Modo Temporada
-					MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1);
-					v.setVisible( true );
+					if (numCarrera < 20) { // No ha sido la última carrera
+						MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1);
+						v.setVisible( true );
+					} else { // Ha sido la última carrera de la temporada
+						
+					}
 				}
 			}					
 		});

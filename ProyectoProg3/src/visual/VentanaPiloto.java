@@ -62,8 +62,15 @@ public class VentanaPiloto extends JFrame{
 		PanelConImagenFondo imagen_fondoI = new PanelConImagenFondo();
 		PanelConImagenFondo imagen_fondoD = new PanelConImagenFondo();
 		
-		String imagen = Trayectoria.getEscuderia().getPiloto1().getImagen();
-		String imagen2 = Trayectoria.getEscuderia().getPiloto2().getImagen();
+		String imagen, imagen2;
+		
+		try {
+			imagen = Trayectoria.getEscuderia().getPiloto1().getImagen();
+			imagen2 = Trayectoria.getEscuderia().getPiloto2().getImagen();
+		} catch (NullPointerException e) {
+			imagen = Temporada.getEscuderia().getPiloto1().getImagen();
+			imagen2 = Temporada.getEscuderia().getPiloto2().getImagen();
+		}
 		
 		imagen_fondoI.setImage(imagen);
 		imagen_fondoD.setImage(imagen2);
@@ -81,7 +88,12 @@ public class VentanaPiloto extends JFrame{
 		Font font = new Font("Verdana", Font.BOLD, 25);
 		
 		//OBTENEMOS LOS DATOS DE LOS PILOTOS DE LA ESCUDERIA SELECCIONADA
-		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
+		Escuderia escuderia_seleccionada;
+		try {
+			escuderia_seleccionada = Trayectoria.getEscuderia();
+		} catch (NullPointerException e) {
+			escuderia_seleccionada = Temporada.getEscuderia();
+		}
 		Piloto p1 = escuderia_seleccionada.getPiloto1();
 		Piloto p2 = escuderia_seleccionada.getPiloto2();
 		

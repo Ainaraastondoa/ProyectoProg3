@@ -113,7 +113,6 @@ public class VentanaSelEscuderia extends JFrame{
 							Trayectoria.setEscuderia(escuderia);
 							
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} else { // Modo Temporada
@@ -127,12 +126,13 @@ public class VentanaSelEscuderia extends JFrame{
 							menu.setSize( getSize() );
 							menu.setVisible( true );
 							VentanaSelEscuderia.this.setVisible( false );
+							
+							//Escuderia seleccionada
+							Temporada.setEscuderia( escuderia );
+							
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
-						
-						//Escuderia seleccionada
-						Temporada.setEscuderia( escuderia );
 						
 					}
 				}				
