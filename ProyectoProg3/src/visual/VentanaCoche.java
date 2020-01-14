@@ -35,15 +35,15 @@ import elementos.Trayectoria;
 
 public class VentanaCoche extends JFrame{
 	
-	JFrame MenuPrincipalTrayectoria;
+//	JFrame MenuPrincipalTrayectoria;
 	Coche coche;
-	private JButton bVolver;
+	private JButton bVolver, bMejorarAero, bMejorarMotor, bMejorarChasis;
 	private PanelConImagenFondo imagen_fondo;
  
-	public VentanaCoche (JFrame m) throws SQLException {
-		MenuPrincipalTrayectoria = m;
+	public VentanaCoche (Temporada temp, int modoJuego, int numCa) throws SQLException { // 0 para trayectoria, 1 para temporada
+//		MenuPrincipalTrayectoria = m;
 		setTitle( "MI COCHE" );
-		setSize(m.getWidth(), m.getHeight());
+		setSize(1600, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		Label etiqueta;
@@ -113,7 +113,7 @@ public class VentanaCoche extends JFrame{
 		//BOTON VOLVER
 		bVolver = new JButton();
 		bVolver.setContentAreaFilled(false);
-		bVolver. setOpaque(false);
+		bVolver.setOpaque(false);
 		bVolver.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver2.png"));
@@ -128,18 +128,129 @@ public class VentanaCoche extends JFrame{
 		bVolver.setIcon(icono2);
 		bVolver.setBorder(null);
 		bVolver.addActionListener(new ActionListener() {
-		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				MenuPrincipalTrayectoria.setVisible( true );
+				if (modoJuego==0) { // trayectoria
+//					MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria();
+//					v.setVisible( true );
+				} else {
+					MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCa);
+					v.setVisible( true );
+				}
 			}					
 		});
+		
+		// Botón Mejorar Aero (NO SE VE)
+		bMejorarAero = new JButton();
+		bMejorarAero.setContentAreaFilled(false);
+		bMejorarAero.setOpaque(false);
+		
+		// Poner imagen al botón (GORKA)
+		bMejorarAero.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/volver2.png"));
+		    	bMejorarAero.setIcon(icono3);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		    	bMejorarAero.setIcon(icono3);
+		    }
+		});
+		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		bVolver.setIcon(icono3);
+		bMejorarAero.setBorder( null );
+		bMejorarAero.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (Temporada.getEscuderia().getPresupuesto() >= 2500000) { // Comprobar presupuesto mayor que 2.500.000€
+					if (Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2500000);
+						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() + 1;
+						Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().setRendimiento( rendi );
+						repaint();
+					}
+				}
+			}
+		});
+		
+		// Botón Mejorar Motor (NO SE VE)
+		bMejorarMotor = new JButton();
+		bMejorarMotor.setContentAreaFilled(false);
+		bMejorarMotor.setOpaque(false);
+		
+		// Poner imagen al botón (GORKA)
+		bMejorarMotor.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/volver2.png"));
+		    	bMejorarMotor.setIcon(icono4);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		    	bMejorarMotor.setIcon(icono4);
+		    }
+		});
+		ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		bMejorarMotor.setIcon(icono4);
+		bMejorarMotor.setBorder( null );
+		bMejorarMotor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (Temporada.getEscuderia().getPresupuesto() >= 3000000) { // Comprobar presupuesto mayor que 3.000.000€
+					if (Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 3000000);
+						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() + 1;
+						Temporada.getEscuderia().getPiloto1().getCoche().getMotor().setRendimiento( rendi );
+						repaint();
+					}
+				}
+			}
+		});
+		
+		// Botón Mejorar Chasis (NO SE VE)
+			bMejorarChasis = new JButton();
+			bMejorarChasis.setContentAreaFilled(false);
+			bMejorarChasis.setOpaque(false);
+			
+			// Poner imagen al botón (GORKA)
+			bMejorarChasis.addMouseListener(new MouseAdapter() {
+			    public void mouseEntered(MouseEvent e) {
+			    	ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/volver2.png"));
+			    	bMejorarChasis.setIcon(icono5);
+			    }
+			    public void mouseExited(MouseEvent e) {
+			    	ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/volver.png"));
+			    	bMejorarChasis.setIcon(icono5);
+			    }
+			});
+			ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/volver.png"));
+			bMejorarChasis.setIcon(icono5);
+			bMejorarChasis.setBorder( null );
+			bMejorarChasis.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (Temporada.getEscuderia().getPresupuesto() >= 2750000) { // Comprobar presupuesto mayor que 2.750.000€
+						if (Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+							Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2750000);
+							int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() + 1;
+							Temporada.getEscuderia().getPiloto1().getCoche().getChasis().setRendimiento( rendi );
+							repaint();
+						}
+					}
+				}
+			});
+		
 		datos.setBounds(this.getWidth()/20, this.getHeight()/15, 425, 175);
 		pCentral.add(datos);
 		pres.setBounds(this.getWidth()/3, this.getHeight()/10, 575, 65);
 		pCentral.add(pres);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
 		pCentral.add(bVolver);
+		bMejorarAero.setBounds(this.getWidth()/20, this.getHeight()/5, (this.getWidth()/20) * 2, this.getHeight()/10);
+		pCentral.add(bMejorarAero);
+		bMejorarMotor.setBounds(this.getWidth()/21, this.getHeight()/5, (this.getWidth()/20) * 2, this.getHeight()/10);
+		pCentral.add(bMejorarMotor);
+		bMejorarChasis.setBounds(this.getWidth()/22, this.getHeight()/5, (this.getWidth()/20) * 2, this.getHeight()/10);
+		pCentral.add(bMejorarChasis);
+		
 	}
 }

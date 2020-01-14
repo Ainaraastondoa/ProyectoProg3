@@ -191,7 +191,7 @@ public class MenuPrincipalTemporada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaCoche coche;
 				try {
-					coche = new VentanaCoche( MenuPrincipalTemporada.this );
+					coche = new VentanaCoche( temporada, 1, numCarrera );
 					coche.setLocation( getLocation() );
 					coche.setSize( getSize() );
 					coche.setVisible( true );
