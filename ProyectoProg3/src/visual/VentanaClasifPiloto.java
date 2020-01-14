@@ -28,15 +28,16 @@ import elementos.Trayectoria;
 
 public class VentanaClasifPiloto extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
 	// HACER JTable
-	JFrame VentanaClasifCarrera;
+//	JFrame VentanaClasifCarrera;
 	private Object [][] data = {{}};
 	private String fondo = "/img/fondotrayectoria.png";
 	
-	public VentanaClasifPiloto(JFrame v) {
-		VentanaClasifCarrera = v;
+	public VentanaClasifPiloto(Temporada temp, int modoJuego) { // 0 para trayectoria, 1 para temporada
+//		VentanaClasifCarrera = v;
 		setTitle(" CLASIFICACIÓN PILOTOS ");
-		setSize(v.getWidth(), v.getHeight());
+		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//FONDO DE LA VENTANA
@@ -121,12 +122,11 @@ public class VentanaClasifPiloto extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaClasifEscuderia clasEscuderia = new VentanaClasifEscuderia( VentanaClasifPiloto.this );
+				VentanaClasifEscuderia clasEscuderia = new VentanaClasifEscuderia( temp, modoJuego );
 				clasEscuderia.setLocation( getLocation() );
 				clasEscuderia.setSize( getSize() );
 				clasEscuderia.setVisible( true );
-				VentanaClasifPiloto.this.setVisible( false );
-				
+				VentanaClasifPiloto.this.dispose();
 			}
 			
 		});

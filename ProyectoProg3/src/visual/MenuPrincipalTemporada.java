@@ -134,7 +134,7 @@ public class MenuPrincipalTemporada extends JFrame {
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible(true);
-					MenuPrincipalTemporada.this.setVisible(false);
+					MenuPrincipalTemporada.this.dispose();
 				} catch (SQLException sqle) {
 					sqle.printStackTrace();
 				}		
@@ -161,11 +161,11 @@ public class MenuPrincipalTemporada extends JFrame {
 		bClasificacion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( MenuPrincipalTemporada.this );
+				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temporada, 1 );
 				clasifPiloto.setLocation( getLocation() );
 				clasifPiloto.setSize( getSize() );
 				clasifPiloto.setVisible( true );
-				MenuPrincipalTemporada.this.setVisible( false );		
+				MenuPrincipalTemporada.this.dispose();		
 			}			
 		});
 		
@@ -195,7 +195,7 @@ public class MenuPrincipalTemporada extends JFrame {
 					coche.setLocation( getLocation() );
 					coche.setSize( getSize() );
 					coche.setVisible( true );
-					MenuPrincipalTemporada.this.setVisible( false );
+					MenuPrincipalTemporada.this.dispose();	
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}			
@@ -228,7 +228,7 @@ public class MenuPrincipalTemporada extends JFrame {
 					pilotos.setLocation( getLocation() );
 					pilotos.setSize( getSize() );
 					pilotos.setVisible( true );
-					MenuPrincipalTemporada.this.setVisible( false );	
+					MenuPrincipalTemporada.this.dispose();	
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}			

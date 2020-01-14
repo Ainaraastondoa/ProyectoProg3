@@ -12,17 +12,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elementos.Temporada;
+
 /**Ventana en la que se mostrar�n las escuderias
  *clasificadas seg�n su puntuaci�n 
  */ 
 
 public class VentanaClasifEscuderia extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
 	// HACER JTable
-	JFrame MenuPrincipalTrayectoria; 
+//	JFrame MenuPrincipalTrayectoria; 
 	
-	public VentanaClasifEscuderia(JFrame v) {
-		MenuPrincipalTrayectoria = v; 
+	public VentanaClasifEscuderia(Temporada temp, int modoJuego) {
+//		MenuPrincipalTrayectoria = v; 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		JButton bok = new JButton("Ok");
@@ -53,20 +56,26 @@ public class VentanaClasifEscuderia extends JFrame{
 
 		
 		//Escuchadores
-//		bok.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaClasifEscuderia.this );
-//				menu.setLocation( getLocation() );
-//				menu.setSize( getSize() );
-//				menu.setVisible( true );
-//				VentanaClasifEscuderia.this.setVisible( false );
-//				
-//				
-//			}
-//			
-//		});
+		bok.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (modoJuego==0) { // Modo trayectoria
+//					MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaClasifEscuderia.this );
+//					menu.setLocation( getLocation() );
+//					menu.setSize( getSize() );
+//					menu.setVisible( true );
+					VentanaClasifEscuderia.this.setVisible( false );
+				} else { // Modo temporada
+					MenuPrincipalTemporada menu = new MenuPrincipalTemporada(temp, modoJuego);
+					menu.setLocation( getLocation() );
+					menu.setSize( getSize() );
+					menu.setVisible( true );
+					VentanaClasifEscuderia.this.dispose();
+				}
+			}
+			
+		});
 	}
 
 }

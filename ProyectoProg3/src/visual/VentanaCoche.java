@@ -29,6 +29,7 @@ import elementos.Coche;
 import elementos.Escuderia;
 import elementos.Mejora;
 import elementos.Piloto;
+import elementos.Temporada;
 import elementos.Trayectoria;
 
 
@@ -45,19 +46,29 @@ public class VentanaCoche extends JFrame{
 		setSize(m.getWidth(), m.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		Label etiqueta = new Label(Trayectoria.getEscuderia().getPiloto1().getCoche().toString2());
+		Label etiqueta;
+		try {
+			etiqueta = new Label(Trayectoria.getEscuderia().getPiloto1().getCoche().toString2());
+		} catch (NullPointerException e) {
+			etiqueta = new Label(Temporada.getEscuderia().getPiloto1().getCoche().toString2());
+		}
+		
 
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();
 		imagen_fondo.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
 		String imagen = "";
-		imagen += Trayectoria.getEscuderia().getPiloto1().getCoche().getImagen();
+		try {
+			imagen += Trayectoria.getEscuderia().getPiloto1().getCoche().getImagen();
+		} catch (NullPointerException e) {
+			imagen += Temporada.getEscuderia().getPiloto1().getCoche().getImagen();
+		}
 		imagen_fondo.setImage(imagen);
 		
 		setContentPane(imagen_fondo);
 		setLayout(new FlowLayout());
 		
-		//CREACIÓN DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
+		//CREACIï¿½N DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
 		JPanel pCentral = new JPanel();
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
@@ -74,16 +85,26 @@ public class VentanaCoche extends JFrame{
 
 		//Imprimimos los datos del coche
 		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
+		if (escuderia_seleccionada==null) {
+			escuderia_seleccionada = Temporada.getEscuderia();
+		}
 		
 		//PRESUPUESTO DEL EQUIPO
 		Integer presupuesto = escuderia_seleccionada.getPresupuesto();		
+		
 		JTextArea pres = new JTextArea("Presupuesto: " + presupuesto.toString());
 		pres.setEditable(false);
 		pres.setBackground(Color.LIGHT_GRAY);
 		pres.setFont(font);
 				
 		//CARACTERISTICAS COCHE
-		Coche coche_seleccionado = Trayectoria.getEscuderia().getPiloto1().getCoche();			
+		Coche coche_seleccionado;
+		try {
+			coche_seleccionado = Trayectoria.getEscuderia().getPiloto1().getCoche();
+		} catch (NullPointerException e) {
+			coche_seleccionado = Temporada.getEscuderia().getPiloto1().getCoche();
+		}
+		
 		JTextArea datos = new JTextArea(coche_seleccionado.toString2());
 		datos.setEditable(false);
 		datos.setBackground(Color.LIGHT_GRAY);

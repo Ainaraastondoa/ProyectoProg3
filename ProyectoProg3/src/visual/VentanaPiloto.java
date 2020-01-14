@@ -88,10 +88,8 @@ public class VentanaPiloto extends JFrame{
 		Font font = new Font("Verdana", Font.BOLD, 25);
 		
 		//OBTENEMOS LOS DATOS DE LOS PILOTOS DE LA ESCUDERIA SELECCIONADA
-		Escuderia escuderia_seleccionada;
-		try {
-			escuderia_seleccionada = Trayectoria.getEscuderia();
-		} catch (NullPointerException e) {
+		Escuderia escuderia_seleccionada = Trayectoria.getEscuderia();
+		if (escuderia_seleccionada==null) {
 			escuderia_seleccionada = Temporada.getEscuderia();
 		}
 		Piloto p1 = escuderia_seleccionada.getPiloto1();
