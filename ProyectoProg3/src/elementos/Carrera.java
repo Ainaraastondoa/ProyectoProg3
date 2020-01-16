@@ -50,7 +50,7 @@ public class Carrera {
 	}
 
 	/**
-	 * M�todo para calcular el tiempo por vuelta final de cada piloto
+	 * Método para calcular el tiempo por vuelta final de cada piloto
 	 * @param piloto Piloto del que queremos sacar su tiempo por vuelta
 	 * @param tiempoReferencia Tiempo de referencia cogido de la web de la F1 para cada circuito (en segundos)
 	 * @return El tiempo por vuelta definitivo de ese piloto concreto (en segundos / redondeado a mil�simas)
