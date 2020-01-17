@@ -130,11 +130,12 @@ public class MenuPrincipalTemporada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
 				try {
-					MenuPrincipalTemporada.this.dispose();
+					dispose();
 					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible( true );
+
 				} catch (SQLException sqle) {
 					sqle.printStackTrace();
 				}		
@@ -191,11 +192,12 @@ public class MenuPrincipalTemporada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaCoche coche;
 				try {
+					dispose();
 					coche = new VentanaCoche( temporada, 1, numCarrera );
 					coche.setLocation( getLocation() );
 					coche.setSize( getSize() );
 					coche.setVisible( true );
-					MenuPrincipalTemporada.this.dispose();	
+					dispose();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}			
@@ -224,11 +226,12 @@ public class MenuPrincipalTemporada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaPiloto pilotos;
 				try {
+					dispose();
 					pilotos = new VentanaPiloto( MenuPrincipalTemporada.this );
 					pilotos.setLocation( getLocation() );
 					pilotos.setSize( getSize() );
 					pilotos.setVisible( true );
-					MenuPrincipalTemporada.this.dispose();	
+					dispose();	
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}			

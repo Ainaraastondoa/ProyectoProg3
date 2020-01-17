@@ -292,7 +292,8 @@ public class VentanaCarrera extends JFrame{
 				}
 			}					
 		});
-	
+		
+	///DESDEAQUI
 		// SIMULACIÓN DE LA CARRERA
 		temp.simularCarreraTemporada( numCarrera );
 		
@@ -348,17 +349,17 @@ public class VentanaCarrera extends JFrame{
 
 		float contador = (float)2.0;
 		
-		for (int i = 0; i < 20; i++) {
-			String p = temp.getListaCarreras().get( numCarrera - 1 ).getListaPilotos().get(i).getNombre();
-			for (int j = 0; j < listaEtiquetasBarra.size(); i++) {
-				if ( p.equals( listaEtiquetasBarra.get( j ).getString() ) ) {
-					listaBarras[ j ] = contador;
-				}
-			}
-			contador -= 0.1;
-		}
-		
-		System.out.println( listaBarras );
+//		for (int i = 0; i < 20; i++) {
+//			String p = temp.getListaCarreras().get( numCarrera - 1 ).getListaPilotos().get(i).getNombre();
+//			for (int j = 0; j < listaEtiquetasBarra.size(); i++) {
+//				if ( p.equals( listaEtiquetasBarra.get( j ).getString() ) ) {
+//					listaBarras[ j ] = contador;
+//				}
+//			}
+//			contador -= 0.1;
+//		}
+//		
+//		System.out.println( listaBarras );
 		
 
 		//FUENTE
@@ -376,7 +377,7 @@ public class VentanaCarrera extends JFrame{
 		//POSICION
 		pInfo.add(infoCarrera);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
-		bVolver.setVisible( true );
+//		bVolver.setVisible( true );
 		pCentral.add(bVolver);		
 
 		
