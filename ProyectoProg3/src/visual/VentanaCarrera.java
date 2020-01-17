@@ -353,7 +353,6 @@ public class VentanaCarrera extends JFrame{
 			for (int j = 0; j < listaEtiquetasBarra.size(); i++) {
 				if ( p.equals( listaEtiquetasBarra.get( j ).getString() ) ) {
 					listaBarras[ j ] = contador;
-					break;
 				}
 			}
 			contador -= 0.1;
