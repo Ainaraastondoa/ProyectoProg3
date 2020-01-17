@@ -244,21 +244,15 @@ public class Temporada {
 	/**
 	 * Método que sirve para simular una carrera y actualizar los resultados según el número de la carrera que se le pase
 	 * @param numCarrera Número de la carrera en el orden adecuado, 1 para la primera carrera de la temporada
-	 * @return Mapa para usar en la Ventana Carrera
+	 * @return Lista con los pilotos para usar en la Ventana Carrera
 	 */
-	public HashMap<Piloto, Float> simularCarreraTemporada( int numCarrera ) {
+	public void simularCarreraTemporada( int numCarrera ) {
 		Carrera ca = listaCarreras.get(numCarrera - 1);
 		ca.simularCarrera();
 		ca.ordenarClasificacionCarrera();
 		ca.repartirPuntos( this.getPuntosPiloto() );
 		ca.actualizarPuntosEscuderia( this.getPuntosEscuderia(), this.getPuntosPiloto() );
 		ca.repartirDinero( this.getPuntosEscuderia() );
-		
-		HashMap<Piloto, Float> mapa = new HashMap<Piloto, Float>();
-		for (int i = 0; i < ca.getListaPilotos().size(); i++) {
-			mapa.put(ca.getListaPilotos().get(i), ca.getListaTiempos().get(i));
-		}
-		return mapa;
 	}
 	
 	// Método main de prueba

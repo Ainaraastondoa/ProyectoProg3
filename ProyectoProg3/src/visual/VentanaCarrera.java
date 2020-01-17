@@ -294,7 +294,7 @@ public class VentanaCarrera extends JFrame{
 		});
 	
 		// SIMULACIÓN DE LA CARRERA
-		HashMap<Piloto, Float> mapa = temp.simularCarreraTemporada( numCarrera );
+		temp.simularCarreraTemporada( numCarrera );
 		
 		// Comprobación de los resultados de la carrera
 		temp.getListaCarreras().get(numCarrera - 1).comprobarResultadoCarrera();
@@ -340,81 +340,26 @@ public class VentanaCarrera extends JFrame{
 		j19.setString( "Russell" );
 		JProgressBar j20 = new JProgressBar();
 		j20.setString( "Kubica" );
-				
-		float t1 = 0; float t2 = 0; float t3 = 0; float t4 = 0; float t5 = 0; float t6 = 0; float t7 = 0; float t8 = 0; float t9 = 0; float t10 = 0;
-		float t11 = 0; float t12 = 0; float t13 = 0; float t14 = 0; float t15 = 0; float t16 = 0; float t17 = 0; float t18 = 0; float t19 = 0; float t20 = 0;
-		for (Map.Entry<Piloto, Float> e : mapa.entrySet()) {
-			if (e.getKey().getCoche().getNombre().equals("mercedes")) {
-				if (e.getKey().getNombre().equals("Hamilton")) {
-					t1 = e.getValue();
-				} else { // Bottas
-					t2 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("ferrari")) {
-				if (e.getKey().getNombre().equals("Vettel")) {
-					t3 = e.getValue();
-				} else { // Leclerc
-					t4 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("red bull")) {
-				if (e.getKey().getNombre().equals("Verstappen")) {
-					t5 = e.getValue();
-				} else { // Albon
-					t6 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("mclaren")) {
-				if (e.getKey().getNombre().equals("Sainz")) {
-					t7 = e.getValue();
-				} else { // Norris
-					t8 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("renault")) {
-				if (e.getKey().getNombre().equals("Ricciardo")) {
-					t9 = e.getValue();
-				} else { // Hulkenberg
-					t10 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("toro rosso")) {
-				if (e.getKey().getNombre().equals("Gasly")) {
-					t11 = e.getValue();
-				} else { // Kyvat
-					t12 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("racing point")) {
-				if (e.getKey().getNombre().equals("Perez")) {
-					t13 = e.getValue();
-				} else { // Stroll
-					t14 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("haas")) {
-				if (e.getKey().getNombre().equals("Magnussen")) {
-					t15 = e.getValue();
-				} else { // Grosjean
-					t16 = e.getValue();
-				}
-			} else if (e.getKey().getCoche().getNombre().equals("alfa romeo")) {
-				if (e.getKey().getNombre().equals("Raikkonen")) {
-					t17 = e.getValue();
-				} else { // Giovinazzi
-					t18 = e.getValue();
-				}
-			} else { // Williams
-				if (e.getKey().getNombre().equals("Russell")) {
-					t19 = e.getValue();
-				} else { // Kubica
-					t20 = e.getValue();
+		
+		ArrayList<JProgressBar> listaEtiquetasBarra = new ArrayList<JProgressBar>(Arrays.asList(j1, j2, j3, j4, j5, j6, j7, j8, j9, j10, j11, j12,
+				j13, j14, j15, j16, j17, j18, j19, j20));
+		
+		float listaBarras[] = new float[20];
+
+		float contador = (float)2.0;
+		
+		for (int i = 0; i < 20; i++) {
+			String p = temp.getListaCarreras().get( numCarrera - 1 ).getListaPilotos().get(i).getNombre();
+			for (int j = 0; j < listaEtiquetasBarra.size(); i++) {
+				if ( p.equals( listaEtiquetasBarra.get( j ).getString() ) ) {
+					listaBarras[ j ] = contador;
+					break;
 				}
 			}
+			contador -= 0.1;
 		}
-		ArrayList<Float> listaTiemposOrdenPantalla = new ArrayList<Float>(Arrays.asList(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20)); 
-		int numVueltas = temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas();
-		for (int i = 0; i < listaTiemposOrdenPantalla.size(); i++) {
-			listaTiemposOrdenPantalla.set(i, (listaTiemposOrdenPantalla.get(i) / numVueltas));
-			while (listaTiemposOrdenPantalla.get(i) > 5) {
-				listaTiemposOrdenPantalla.set(i, (listaTiemposOrdenPantalla.get(i) / 2));
-			}
-			System.out.println( listaTiemposOrdenPantalla.get(i) );
-		}
+		
+		System.out.println( listaBarras );
 		
 
 		//FUENTE
