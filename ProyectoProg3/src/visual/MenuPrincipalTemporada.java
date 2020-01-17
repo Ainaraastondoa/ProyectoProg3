@@ -130,11 +130,11 @@ public class MenuPrincipalTemporada extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
 				try {
+					MenuPrincipalTemporada.this.dispose();
 					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
-					vCarrera.setVisible(true);
-					MenuPrincipalTemporada.this.dispose();
+					vCarrera.setVisible( true );
 				} catch (SQLException sqle) {
 					sqle.printStackTrace();
 				}		
