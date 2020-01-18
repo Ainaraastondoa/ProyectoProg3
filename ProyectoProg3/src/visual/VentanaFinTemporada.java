@@ -27,6 +27,7 @@ public class VentanaFinTemporada extends JFrame {
 		setTitle( "Final de la Temporada" );
 		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
 		// Fondo
 		imagenFondo = new PanelConImagenFondo();

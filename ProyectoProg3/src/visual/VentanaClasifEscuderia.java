@@ -27,6 +27,7 @@ public class VentanaClasifEscuderia extends JFrame{
 	public VentanaClasifEscuderia(Temporada temp, int modoJuego) {
 //		MenuPrincipalTrayectoria = v; 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();

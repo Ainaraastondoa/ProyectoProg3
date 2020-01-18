@@ -56,6 +56,7 @@ public class VentanaCarrera extends JFrame{
 		setTitle( "Trayectoria" );
 		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();

@@ -45,6 +45,7 @@ public class VentanaCoche extends JFrame{
 		setTitle( "MI COCHE" );
 		setSize(1600, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 
 		Label etiqueta;
 		try {

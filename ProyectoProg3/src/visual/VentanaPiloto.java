@@ -45,6 +45,7 @@ public class VentanaPiloto extends JFrame{
 		setTitle(" PILOTOS ");
 		setSize(m.getWidth(), m.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
 		//FONDO DE LA VENTANA
 		PanelConImagenFondo imagen_fondo = new PanelConImagenFondo();

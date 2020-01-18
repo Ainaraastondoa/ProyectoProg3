@@ -43,6 +43,7 @@ public class VentanaClasifCarrera extends JFrame{
 		setTitle(" CLASIFICACIÓN DE LA CARRERA ");
 		setSize(m.getWidth(), m.getHeight());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
 		//FONDO DE LA VENTANA
 		

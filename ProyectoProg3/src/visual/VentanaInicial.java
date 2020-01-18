@@ -49,6 +49,7 @@ public class VentanaInicial extends JFrame{
 		setSize(1600, 900);
 		setLocation(0,0);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();

@@ -63,6 +63,7 @@ public class MenuPrincipalTemporada extends JFrame {
 		setTitle("Temporada");
 		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
 		// Fondo Ventana
 		imagen_fondo = new PanelConImagenFondo();

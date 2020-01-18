@@ -39,6 +39,7 @@ public class VentanaClasifPiloto extends JFrame{
 		setTitle(" CLASIFICACIÓN PILOTOS ");
 		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
 		//FONDO DE LA VENTANA
 		

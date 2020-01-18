@@ -34,6 +34,7 @@ public class VentanaAyuda extends JFrame{
 		VentanaInicio = v; 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(v.getWidth(), v.getHeight()); 
+		setResizable(false);
 		
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();

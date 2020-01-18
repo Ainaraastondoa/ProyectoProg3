@@ -46,6 +46,7 @@ public class VentanaSelEscuderia extends JFrame{
 		VentanaInicial = m;
 		setTitle("Selecciona tu escuderia");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 
 		//FONDO DE LA VENTANA
 //		imagen_fondo = new PanelConImagenFondo();
