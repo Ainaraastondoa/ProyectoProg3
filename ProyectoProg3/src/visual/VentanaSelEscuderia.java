@@ -61,16 +61,16 @@ public class VentanaSelEscuderia extends JFrame{
 		
 		//CREACI�N DEL PANELES QUE ALBERGAN LOS BOTONES
 		JPanel pCentral = new JPanel();
+		JPanel pInferior = new JPanel();
+//		pCentral.setBackground(Color.GRAY);
+//		pInferior.setBackground(Color.DARK_GRAY);
+		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
 		pCentral.setOpaque(false);
-		
-		
-		
+			
 		//QUIERO USAR ESTO PERO NO ME VA
 //		pCentral.setLayout(null);
 
-		
-		
 		getContentPane().add(pCentral);
 		
 		//BOTONES (Escuderias + Volver)
@@ -180,28 +180,24 @@ public class VentanaSelEscuderia extends JFrame{
 				pCentral.add(bEscuderia);	
 			}		
 		}		
-//		pCentral.setBackground(Color.DARK_GRAY);
-//		pCentral.setLayout(new GridLayout(4,5));
 		
 		//BOTON VOLVER
-		bVolver = new JButton("Volver");
-//		bVolver.setContentAreaFilled(false);
-//		bVolver. setOpaque(false);
-		
-//		bVolver.addMouseListener(new MouseAdapter() {
-//		    public void mouseEntered(MouseEvent e) {
-//				ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/volver.png"));
-//				bVolver.setIcon(icono4);
-//		    }
-//		    public void mouseExited(MouseEvent e) {
-//				ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/volver.png"));
-//				bVolver.setIcon(icono4);
-//		    }
-//		});
-//
-//		ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/volver.png"));
-//		bVolver.setIcon(icono4);
-//		bVolver.setBorder(null);
+		bVolver = new JButton(); 
+		bVolver.setContentAreaFilled(false);
+		bVolver. setOpaque(false);
+		bVolver.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver2.png"));
+		    	bVolver.setIcon(icono2);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		    	bVolver.setIcon(icono2);
+		    }
+		});
+		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		bVolver.setIcon(icono2);
+		bVolver.setBorder(null);
 		bVolver.addActionListener(new ActionListener() {
 			
 			@Override
@@ -212,7 +208,7 @@ public class VentanaSelEscuderia extends JFrame{
 		}); 
 		
 		bVolver.setBounds((this.getWidth()/20) * 9, (int) ((this.getHeight()/24) * 20.5), (this.getWidth()/20) * 2, (this.getHeight()/24) * 2);
-		pCentral.add(bVolver);		
+		pInferior.add(bVolver);		
 	}
 }
 

@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import elementos.Temporada;
 
@@ -21,39 +23,66 @@ import elementos.Temporada;
 public class VentanaClasifEscuderia extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
+	private String fondo = "/img/fondotrayectoria.png";
+	private Object [][] data = {{}};
 	// HACER JTable
 //	JFrame MenuPrincipalTrayectoria; 
 	
 	public VentanaClasifEscuderia(Temporada temp, int modoJuego) {
-//		MenuPrincipalTrayectoria = v; 
+//		MenuPrincipalTrayectoria = v;
+		setTitle(" CLASIFICACIÓN ESCUDERIAS ");
+		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
+		
+		//FONDO DE LA VENTANA
+		
+		PanelConImagenFondo imagen_fondo = new PanelConImagenFondo();
+		imagen_fondo.setImage(fondo);
+		setContentPane(imagen_fondo);
+		setLayout(new FlowLayout());
+		
+		//CREACION DE PANELES Y BOTONES
 
 		JButton bok = new JButton("Ok");
 		JPanel pInferior = new JPanel();
 		getContentPane().add(pInferior, BorderLayout.SOUTH);
 		pInferior.add(bok);
-		//Imprimimos las escuderias con sus respectivos puntos
-		//Creamos el panel de la clasificaci�n
-		JPanel pCentral = new JPanel();
-		JPanel pDerecha = new JPanel();
-		JPanel pIzquierda = new JPanel();
-		Label eti = new Label("ESCUDERIAS");
-		Label eti2 = new Label("PUNTOS");
-		JPanel pDerechaSupe = new JPanel();
-		JPanel pIzquierdaSupe = new JPanel();
-		pDerechaSupe.add(eti2);
-		pIzquierdaSupe.add(eti);
-		pDerecha.add(pDerechaSupe);
-		pCentral.setLayout(new GridLayout(2,1));
-		pIzquierda.add(pIzquierdaSupe);
-		pIzquierda.setBackground(Color.GRAY);
-		pDerecha.setBackground(Color.DARK_GRAY);
-		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		pCentral.setLayout(new GridLayout(1,2));
-		pCentral.add(pIzquierda);
-		pCentral.add(pDerecha);
-		getContentPane().add(pCentral);
+		
+		JPanel panelPrincipal = new JPanel();
+		add(panelPrincipal, BorderLayout.NORTH);
+		
+		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS PUNTOS DE 
+		//CADA ESCUDERIA
+		
+		String [] columnNames = {"ESCUDERIA", "PUNTOS OBTENIDOS"};
+		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+		for (int row = 0; row < data.length; row++) {
+			
+			tableModel.addRow(data[row]);
+		}		
+		
+		JTable tabla = new JTable() {
+			
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+			@Override
+			public Class<?> getColumnClass(int column) {
+				if (column == 0) {
+					return Integer.class;
+				}
+				if (column == 1) {
+					return String.class;
+				}
+				
+				return super.getClass();
+			} 			
+		};
+		
+		tabla.setModel(tableModel);
 
 		
 		//Escuchadores

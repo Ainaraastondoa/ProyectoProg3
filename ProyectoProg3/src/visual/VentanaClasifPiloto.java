@@ -58,8 +58,8 @@ public class VentanaClasifPiloto extends JFrame{
 		JPanel panelPrincipal = new JPanel();
 		add(panelPrincipal, BorderLayout.NORTH);
 		
-		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS RESULTADOS OBTENIDOS 
-		//EN LA CARRERA
+		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS PUNTOS
+		//DE LOS PILOTOS
 		String [] columnNames = {"PILOTO", "PUNTOS OBTENIDOS"};
 		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
@@ -70,15 +70,13 @@ public class VentanaClasifPiloto extends JFrame{
 		
 		JTable tabla = new JTable() {
 			
-			//HACIENDO AQU� MISMO Source->Add/Implement methods
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			@Override
 			public Class<?> getColumnClass(int column) {
-				// TODO Auto-generated method stub
+				
 				if (column == 0) {
 					return Integer.class;
 				}

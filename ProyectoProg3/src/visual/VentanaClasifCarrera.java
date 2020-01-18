@@ -76,12 +76,10 @@ public class VentanaClasifCarrera extends JFrame{
 			//HACIENDO AQU� MISMO Source->Add/Implement methods
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			@Override
-			public Class<?> getColumnClass(int column) {
-				// TODO Auto-generated method stub
+			public Class<?> getColumnClass(int column) {		
 				if (column == 0) {
 					return Integer.class;
 				}
