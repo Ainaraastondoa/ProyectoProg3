@@ -20,19 +20,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+
 /** Clase para la ventana de ayuda en la que explicaremos
  * las reglas del simulador 
  *
  */ 
-public class VentanaAyuda extends JFrame{
+public class VentanaAyuda extends JFrame{ 
 	
 	JFrame VentanaInicio;
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondoayuda.png";
-	
+	  
 	public VentanaAyuda(JFrame v) {
 		VentanaInicio = v; 
-		setDefaultCloseOperation(EXIT_ON_CLOSE); 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(v.getWidth(), v.getHeight()); 
 		setResizable(false);
 		
@@ -53,39 +54,39 @@ public class VentanaAyuda extends JFrame{
 		//TEXTO
 		JTextArea texto = new JTextArea(//"AYUDA\r\n" + 
 				"\r\n" + 
-				"	MODO TRAYECTORIA: Modo de juego que consiste en gestionar a una escuder�a de F1 a lo largo de 10 temporadas completas. " +
+				"	MODO TRAYECTORIA: Modo de juego que consiste en gestionar a una escudería de F1 a lo largo de 10 temporadas completas. " +
 				"\r\n" +
 				"	Ejerce de director y controla el desarrollo del monoplaza a lo largo de las carreras.\r\n" + 
 				"\r\n" + 
-				"	La primera vez que entras en el Modo Trayectoria deber�s elegir una entre las 10 escuder�as participantes en la F1, " +
+				"	La primera vez que entras en el Modo Trayectoria deberás elegir una entre las 10 escuderías participantes en la F1, " +
 				"\r\n" +
-				"	tras ello, pasar�s a la ventana principal de Trayectoria.\r\n " +
+				"	tras ello, pasarás a la ventana principal de Trayectoria.\r\n " +
 				"\r\n" +
-				"	A partir de ese momento, cada vez que entres al Modo Trayectoria, ser�s enviado a la ventana principal " +
+				"	A partir de ese momento, cada vez que entres al Modo Trayectoria, serás enviado a la ventana principal " +
 				"\r\n" +
-				"	tambi�n al no tener que volver elegir una escuder�a.\r\n" + 
+				"	también al no tener que volver elegir una escudería.\r\n" + 
 				"\r\n" + 
-				"	Una vez en la ventana principal, existen varias opciones: Carrera, Piloto, Coche, Clasificaci�n y Volver.\r\n" + 
+				"	Una vez en la ventana principal, existen varias opciones: Carrera, Piloto, Coche, Clasificación y Volver.\r\n" + 
 				"\r\n" + 
-				"	El bot�n Carrera simula la siguiente carrera en el calendario de la temporada y te muestra los resultados de esta, " +
+				"	El botón Carrera simula la siguiente carrera en el calendario de la temporada y te muestra los resultados de esta, " +
 				"\r\n" +
-				"	con su actualizaci�n correspondiente en las clasificaciones de pilotos y equipos.\r\n" + 
+				"	con su actualización correspondiente en las clasificaciones de pilotos y equipos.\r\n" + 
 				"\r\n" + 
-				"	El bot�n Piloto permite visualizar los atributos de los dos pilotos de tu escuder�a: consistencia, adelantar, " +
+				"	El botón Piloto permite visualizar los atributos de los dos pilotos de tu escudería: consistencia, adelantar, " +
 				"\r\n" +
-				"	defender, rendimiento a 1 vuelta y conducci�n en mojado.\r\n" + 
+				"	defender, rendimiento a 1 vuelta y conducción en mojado.\r\n" + 
 				"\r\n" + 
-				"	El bot�n Coche permite ver al �rbol de mejoras del coche de la escuder�a y seleccionar las mejoras que queremos " +
+				"	El botón Coche permite ver al árbol de mejoras del coche de la escudería y seleccionar las mejoras que queremos " +
 				"\r\n" +
-				"	realizar en funci�n de nuestro presupuesto.\r\n" + 
+				"	realizar en función de nuestro presupuesto.\r\n" + 
 				"\r\n" + 
-				"	El bot�n Clasificaci�n nos muestra las clasificaciones de pilotos y escuder�as de la temporada actual.\r\n" + 
+				"	El botón Clasificación nos muestra las clasificaciones de pilotos y escuderías de la temporada actual.\r\n" + 
 				"\r\n" + 
-				"	El bot�n Volver te devuelve al men� principal del juego.\r\n" + 
+				"	El botón Volver te devuelve al menú principal del juego.\r\n" + 
 				"\r\n" + 
-				"	UN JUGADOR: Modos de juego disponibles pr�ximamente\r\n" + 
+				"	UN JUGADOR: Modos de juego disponibles próximamente\r\n" + 
 				"\r\n" + 
-				"	MULTIJUGADOR: Modos de juego disponibles pr�ximamente");
+				"	MULTIJUGADOR: Modos de juego disponibles próximamente");
 		Font fuente = new Font("Arial", Font.BOLD, 20);
 		texto.setFont(fuente);
 		texto.setForeground(Color.white);

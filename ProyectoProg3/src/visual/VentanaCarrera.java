@@ -42,12 +42,11 @@ public class VentanaCarrera extends JFrame{
 //	JFrame MenuPrincipalTrayectoria;
 //	JFrame VentanaClasifCarrera;
 	Piloto piloto;
-	private JButton bVolver;
+	private JButton bVolver; 
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondocarrera.jpg";
 	private PanelConImagenFondo panel_semaforo;
-	static boolean ejecutaHilo = true;
-	
+	static boolean ejecutaHilo = true;	
 	ArrayList<Temporada> listaTemporadas;
 	 
 	// modoJuego => 0 si es una trayectoria, 1 si es temporada
@@ -69,7 +68,7 @@ public class VentanaCarrera extends JFrame{
 		Statement st = con.createStatement();
 		BD.usarCrearTablasBD(con);
 //		BD.insertDatos(st);
-//		ArrayList<Circuito> circuitos = BD.listaCircuitosSelect(st);
+		ArrayList<Circuito> circuitos = BD.listaCircuitosSelect(st);
 		ArrayList<Piloto> pilotos = BD.listaPilotosSelect(st);
 //		ArrayList<Escuderia> escuderias = BD.listaEscuderiasSelect(st);
 		this.listaTemporadas = new ArrayList<Temporada>();
@@ -83,7 +82,7 @@ public class VentanaCarrera extends JFrame{
 		getContentPane().add(pCentral);
 		
 		JPanel pInfo = new JPanel();
-		pInfo.setBounds(0, 0, 1250, 100);
+		pInfo.setBounds(0, 10, 1250, 100);
 		pInfo.setOpaque(false);
 //		pInfo.setBackground(Color.WHITE);
 		pCentral.add(pInfo);
@@ -152,102 +151,102 @@ public class VentanaCarrera extends JFrame{
 			String img = pilotos.get(i).getImagen2();
 			if (i==0) {
 				p1.setImage(img);
-				p1.setBounds(0, 0, 1250, 37);
+				p1.setBounds(5, 0, 1250, 37);
 				p1.setOpaque(false);
 				pCarrera.add(p1);
 			}else if (i==1) {
 				p2.setImage(img);
-				p2.setBounds(0, 37, 1250, 37);
+				p2.setBounds(5, 37, 1250, 37);
 				p2.setOpaque(false);
 				pCarrera.add(p2);
 			}else if (i==2) {
 				p3.setImage(img);
-				p3.setBounds(0, 74, 1250, 37);
+				p3.setBounds(5, 74, 1250, 37);
 				p3.setOpaque(false);
 				pCarrera.add(p3);
 			}else if (i==3) {
 				p4.setImage(img);
-				p4.setBounds(0, 111, 1250, 37);
+				p4.setBounds(5, 111, 1250, 37);
 				p4.setOpaque(false);
 				pCarrera.add(p4);
 			}else if (i==4) {
 				p5.setImage(img);
-				p5.setBounds(0, 148, 1250, 37);
+				p5.setBounds(5, 148, 1250, 37);
 				p5.setOpaque(false);
 				pCarrera.add(p5);
 			}else if (i==5) {
 				p6.setImage(img);
-				p6.setBounds(0, 185, 1250, 37);
+				p6.setBounds(5, 185, 1250, 37);
 				p6.setOpaque(false);
 				pCarrera.add(p6);
 			}else if (i==6) {
 				p7.setImage(img);
-				p7.setBounds(0, 222, 1250, 37);
+				p7.setBounds(5, 222, 1250, 37);
 				p7.setOpaque(false);
 				pCarrera.add(p7);
 			}else if (i==7) {
 				p8.setImage(img);
-				p8.setBounds(0, 259, 1250, 37);
+				p8.setBounds(5, 259, 1250, 37);
 				p8.setOpaque(false);
 				pCarrera.add(p8);
 			}else if (i==8) {
 				p9.setImage(img);
-				p9.setBounds(0, 296, 1250, 37);
+				p9.setBounds(5, 296, 1250, 37);
 				p9.setOpaque(false);
 				pCarrera.add(p9);
 			}else if (i==9) {
 				p10.setImage(img);
-				p10.setBounds(0, 333, 1250, 37);
+				p10.setBounds(5, 333, 1250, 37);
 				p10.setOpaque(false);
 				pCarrera.add(p10);
 			}else if (i==10) {
 				p11.setImage(img);
-				p11.setBounds(0, 370, 1250, 37);
+				p11.setBounds(5, 370, 1250, 37);
 				p11.setOpaque(false);
 				pCarrera.add(p11);
 			}else if (i==11) {
 				p12.setImage(img);
-				p12.setBounds(0, 407, 1250, 37);
+				p12.setBounds(5, 407, 1250, 37);
 				p12.setOpaque(false);
 				pCarrera.add(p12);
 			}else if (i==12) {
 				p13.setImage(img);
-				p13.setBounds(0, 444, 1250, 37);
+				p13.setBounds(5, 444, 1250, 37);
 				p13.setOpaque(false);
 				pCarrera.add(p13);
 			}else if (i==13) {
 				p14.setImage(img);
-				p14.setBounds(0, 481, 1250, 37);
+				p14.setBounds(5, 481, 1250, 37);
 				p14.setOpaque(false);
 				pCarrera.add(p14);
 			}else if (i==14) {
 				p15.setImage(img);
-				p15.setBounds(0, 518, 1250, 37);
+				p15.setBounds(5, 518, 1250, 37);
 				p15.setOpaque(false);
 				pCarrera.add(p15);
 			}else if (i==15) {
 				p16.setImage(img);
-				p16.setBounds(0, 555, 1250, 37);
+				p16.setBounds(5, 555, 1250, 37);
 				p16.setOpaque(false);
 				pCarrera.add(p16);
 			}else if (i==16) {
 				p17.setImage(img);
-				p17.setBounds(0, 592, 1250, 37);
+				p17.setBounds(5, 592, 1250, 37);
 				p17.setOpaque(false);
 				pCarrera.add(p17);
 			}else if (i==17) {
-				p18.setImage(img);
-				p18.setBounds(0, 629, 1250, 37);
+				p18.setImage(img); 
+				p18.setBounds(5, 629, 1250, 37);
 				p18.setOpaque(false);
 				pCarrera.add(p18);
 			}else if (i==18) {
 				p19.setImage(img);
-				p19.setBounds(0, 666, 1250, 37);
+				p19.setBounds(5, 666, 1250, 37);
 				p19.setOpaque(false);
-				pCarrera.add(p19);
+				pCarrera.add(p19); 
 			}else if (i==19) {
 				p20.setImage(img);
-				p20.setBounds(0, 703, 1250, 37);
+				p20.setBounds(5, 703, 1250, 37);
 				p20.setOpaque(false);
 				pCarrera.add(p20);
 			}
@@ -370,13 +369,22 @@ public class VentanaCarrera extends JFrame{
 		JTextArea infoCarrera = new JTextArea(//BD.circuitoSelect(st, numCarrera).getImagen() + 
 				BD.circuitoSelect(st, numCarrera).getNombre() + " -> " + BD.circuitoSelect(st, numCarrera).getVueltas() +
 				" vueltas");
+		infoCarrera.setForeground(Color.BLACK);
 		infoCarrera.setEditable(false);
 		infoCarrera.setOpaque(false);
 //		infoCarrera.setBackground(null);
 		infoCarrera.setFont(font);
 		
+		//IMAGEN
+		PanelConImagenFondo imagenCarrera = new PanelConImagenFondo();
+		String img = circuitos.get(numCarrera - 1).getImagen();
+		imagenCarrera.setImage(img);
+		imagenCarrera.setOpaque(false);
+		
 		//POSICION
 		pInfo.add(infoCarrera);
+		imagenCarrera.setBounds(50, -8, 150, 100);
+		pCentral.add(imagenCarrera);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
 //		bVolver.setVisible( true );
 		pCentral.add(bVolver);		

@@ -38,8 +38,7 @@ public class VentanaPiloto extends JFrame{
 	Piloto piloto; 
 	private JButton bVolver;
 	private String fondo = "/img/fondoayuda.png";
-	
-	
+		   
 	public VentanaPiloto(JFrame m) throws SQLException {
 		MenuPrincipalTrayectoria = m;
 		setTitle(" PILOTOS ");

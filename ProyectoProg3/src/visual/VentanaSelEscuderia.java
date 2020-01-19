@@ -34,13 +34,12 @@ public class VentanaSelEscuderia extends JFrame{
 
 	// Datos
 	private int eleccionModoJuego; // 0 si es una trayectoria, 1 si es temporada
-	
 	// Componentes Ventana
 	JFrame VentanaInicial;
 	private JButton bVolver;
-//	private PanelConImagenFondo imagen_fondo;
-//	private String fondo = "/img/selesc.png";
-	
+	private PanelConImagenFondo imagen_fondo;
+	private String fondo = "/img/fondoayuda.png";
+	 
 	public VentanaSelEscuderia(JFrame m, int modoJuego) throws SQLException {	
 		eleccionModoJuego = modoJuego;
 		VentanaInicial = m;
@@ -49,29 +48,43 @@ public class VentanaSelEscuderia extends JFrame{
 		setResizable(false);
 
 		//FONDO DE LA VENTANA
-//		imagen_fondo = new PanelConImagenFondo();
-//		imagen_fondo.setImage(fondo);
-//		setContentPane(imagen_fondo);
-//		setLayout(new FlowLayout());
+		imagen_fondo = new PanelConImagenFondo();
+		imagen_fondo.setImage(fondo);
+		setContentPane(imagen_fondo);
+		setLayout(new FlowLayout());
 
 		//DATOS
 		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 		Statement st = con.createStatement();	
 		ArrayList<Escuderia> listaEscuderias = BD.listaEscuderiasSelect(st);	
 		
-		//CREACI�N DEL PANELES QUE ALBERGAN LOS BOTONES
+		//CREACIÓN DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
 		JPanel pCentral = new JPanel();
-		JPanel pInferior = new JPanel();
-//		pCentral.setBackground(Color.GRAY);
-//		pInferior.setBackground(Color.DARK_GRAY);
-		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
+		pCentral.setPreferredSize( new Dimension(1600, 900));
 		pCentral.setOpaque(false);
-			
-		//QUIERO USAR ESTO PERO NO ME VA
-//		pCentral.setLayout(null);
-
+		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
+		
+		JPanel p1 = new JPanel();
+		p1.setBounds(240, 90, 1060, 150);
+		p1.setOpaque(false);
+		pCentral.add(p1);
+		
+		JPanel p2 = new JPanel();
+		p2.setBounds(80, 280, 1430, 150);
+		p2.setOpaque(false);
+		pCentral.add(p2);
+		
+		JPanel p3 = new JPanel();
+		p3.setBounds(240, 470, 1060, 150);
+		p3.setOpaque(false);
+		pCentral.add(p3);
+
+		JPanel pVolver = new JPanel();
+		pVolver.setBounds(720, 700, 160, 100);
+		pVolver.setOpaque(false);
+		pCentral.add(pVolver);
+		
 		
 		//BOTONES (Escuderias + Volver)
 		for (Escuderia escuderia : listaEscuderias) {
@@ -139,45 +152,44 @@ public class VentanaSelEscuderia extends JFrame{
 				}				
 			});	
 			if (escuderia.getNombre().equals(listaEscuderias.get(0).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 4, (this.getHeight()/24) * 5, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 4, (this.getHeight()/24) * 5, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p1.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(1).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 8, (this.getHeight()/24) * 5, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 8, (this.getHeight()/24) * 5, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p1.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(2).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 12, (this.getHeight()/24) * 5, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 12, (this.getHeight()/24) * 5, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p1.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(3).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 2, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 2, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p2.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(4).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 6, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 6, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p2.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(5).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 10, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 10, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p2.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(6).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 14, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 14, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p2.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(7).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 4, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 4, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p3.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(8).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 8, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 8, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p3.add(bEscuderia);	
 			}
 			else if (escuderia.getNombre().equals(listaEscuderias.get(9).getNombre())) {
-				bEscuderia.setBounds((this.getWidth()/20) * 12, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
-				pCentral.add(bEscuderia);	
+//				bEscuderia.setBounds((this.getWidth()/20) * 12, (this.getHeight()/24) * 10, (this.getWidth()/20) * 4, (this.getHeight()/24) * 4);
+				p3.add(bEscuderia);	
 			}		
 		}		
 		
@@ -203,12 +215,17 @@ public class VentanaSelEscuderia extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				VentanaInicial.setVisible( true );				
-			}			
+				VentanaInicial v;
+				try {
+					v = new VentanaInicial();
+					v.setVisible( true );			
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}			  
 		}); 
-		
-		bVolver.setBounds((this.getWidth()/20) * 9, (int) ((this.getHeight()/24) * 20.5), (this.getWidth()/20) * 2, (this.getHeight()/24) * 2);
-		pInferior.add(bVolver);		
+		pVolver.add(bVolver);		
 	}
 }
 

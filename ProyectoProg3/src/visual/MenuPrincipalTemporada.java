@@ -24,16 +24,15 @@ import elementos.Temporada;
  */
 public class MenuPrincipalTemporada extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	
-	// Componentes Ventana
+	private static final long serialVersionUID = 1L;	
+	// Componentes Ventana 
 	private JButton bInicio;
 	private JButton bCarrera;
 	private JButton bClasificacion;
-	private JButton bCoche;
+	private JButton bCoche; 
 	private JButton bPiloto;
 	private PanelConImagenFondo imagen_fondo;
-	private String fondo = "/img/fondotrayectoria.png";
+	private String fondo = "/img/fondotemporada.png";
 //	private Audio musicaMenu;
 	
 	// Datos
@@ -94,13 +93,13 @@ public class MenuPrincipalTemporada extends JFrame {
 		    }
 		});    	
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/inicio.png"));
-		bInicio.setIcon(icono);
+		bInicio.setIcon(icono); 
 		bInicio.setBorder(null);
 		bInicio.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				try {
+				try { 
 					VentanaInicial v = new VentanaInicial();
 					v.setVisible( true );
 				} catch (SQLException e1) {
@@ -246,9 +245,9 @@ public class MenuPrincipalTemporada extends JFrame {
 		pCentral.add(bCarrera);
 		bClasificacion.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 66, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bClasificacion);
-		bCoche.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 24, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
+		bCoche.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 37, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bCoche);
-		bPiloto.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 3, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
+		bPiloto.setBounds((this.getWidth()/25) * 18, (this.getHeight()/92) * 10, (this.getWidth()/25) * 5, (this.getHeight()/92)*19);
 		pCentral.add(bPiloto);
 	}
 }

@@ -35,10 +35,9 @@ import elementos.Temporada;
 /**Esta clase es para visualizar el menu principal
  * del modo trayectoria
  */ 
-
-public class MenuPrincipalTrayectoria extends JFrame{
-	
-//	JFrame VentanaInicio;
+public class MenuPrincipalTrayectoria extends JFrame{ 
+	 
+//	JFrame VentanaInicio; 
 	private JButton bInicio;			//Boton que devuelve a la ventana inicial
 	private JButton bCarrera;			//Boton que inicia la proxima carrera
 	private JButton bClasificacion;		//Boton que muestra la clasificacion de pilotos y escuderias

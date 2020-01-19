@@ -32,7 +32,6 @@ import elementos.Piloto;
 import elementos.Temporada;
 import elementos.Trayectoria;
 
-
 public class VentanaCoche extends JFrame{
 	
 //	JFrame MenuPrincipalTrayectoria;
@@ -43,10 +42,10 @@ public class VentanaCoche extends JFrame{
 	public VentanaCoche (Temporada temp, int modoJuego, int numCa) throws SQLException { // 0 para trayectoria, 1 para temporada
 //		MenuPrincipalTrayectoria = m;
 		setTitle( "MI COCHE" );
-		setSize(1600, 600);
+		setSize(1600, 600); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-
+   
 		Label etiqueta;
 		try {
 			etiqueta = new Label(Trayectoria.getEscuderia().getPiloto1().getCoche().toString2());
@@ -71,9 +70,9 @@ public class VentanaCoche extends JFrame{
 		
 		//CREACI�N DEL PANEL QUE ALBERGA LOS DATOS Y BOTONES
 		JPanel pCentral = new JPanel();
-		pCentral.setPreferredSize( new Dimension( this.getWidth(), this.getHeight() ));
+		pCentral.setPreferredSize( new Dimension(1600, 900));
 		pCentral.setOpaque(false);
-//		pCentral.setLayout(null);
+		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
 		
 		//FUENTE
@@ -143,12 +142,11 @@ public class VentanaCoche extends JFrame{
 			}					
 		});
 		
-		// Botón Mejorar Aero (NO SE VE)
+		// Botón Mejorar Aero 
 		bMejorarAero = new JButton();
 		bMejorarAero.setContentAreaFilled(false);
 		bMejorarAero.setOpaque(false);
 		
-		// Poner imagen al botón (GORKA)
 		bMejorarAero.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/mejoraraero2.png"));
@@ -170,20 +168,29 @@ public class VentanaCoche extends JFrame{
 						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2500000);
 						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() + 1;
 						Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().setRendimiento( rendi );
-						repaint();
-						System.out.println("funciona");
-						revalidate();
+						dispose();
+						try {
+							VentanaCoche vc = new VentanaCoche(temp, modoJuego, numCa);
+							vc.setLocation( getLocation() );
+							vc.setSize( getSize() );
+							vc.setVisible( true );
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+//						repaint();
+//						System.out.println("funciona");
+//						revalidate();
 					}
 				}
 			}
 		});
 		
-		// Botón Mejorar Motor (NO SE VE)
+		// Botón Mejorar Motor 
 		bMejorarMotor = new JButton();
 		bMejorarMotor.setContentAreaFilled(false);
 		bMejorarMotor.setOpaque(false);
 		
-		// Poner imagen al botón (GORKA)
 		bMejorarMotor.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/mejorarmotor2.png"));
@@ -205,18 +212,27 @@ public class VentanaCoche extends JFrame{
 						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 3000000);
 						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() + 1;
 						Temporada.getEscuderia().getPiloto1().getCoche().getMotor().setRendimiento( rendi );
-						repaint();
+						dispose();
+						try {
+							VentanaCoche vc = new VentanaCoche(temp, modoJuego, numCa);
+							vc.setLocation( getLocation() );
+							vc.setSize( getSize() );
+							vc.setVisible( true );
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+//						repaint();
 					}
 				}
 			}
 		});
 		
-		// Botón Mejorar Chasis (NO SE VE)
+		// Botón Mejorar Chasis 
 			bMejorarChasis = new JButton();
 			bMejorarChasis.setContentAreaFilled(false);
 			bMejorarChasis.setOpaque(false);
 			
-			// Poner imagen al botón (GORKA)
 			bMejorarChasis.addMouseListener(new MouseAdapter() {
 			    public void mouseEntered(MouseEvent e) {
 			    	ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/mejorarchasis2.png"));
@@ -238,23 +254,33 @@ public class VentanaCoche extends JFrame{
 							Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2750000);
 							int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() + 1;
 							Temporada.getEscuderia().getPiloto1().getCoche().getChasis().setRendimiento( rendi );
-							repaint();
+							dispose();
+							try {
+								VentanaCoche vc = new VentanaCoche(temp, modoJuego, numCa);
+								vc.setLocation( getLocation() );
+								vc.setSize( getSize() );
+								vc.setVisible( true );
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+//							repaint();
 						}
 					}
 				}
 			});
 		
-		datos.setBounds(100, 110, 400, 200);
+		datos.setBounds(50, 60, 400, 200);
 		pCentral.add(datos);
-		pres.setBounds(this.getWidth()/3, this.getHeight()/10, 575, 65);
+		pres.setBounds(1000, 100, 700, 75);
 		pCentral.add(pres);
-		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
+		bVolver.setBounds(720, 700, 160, 85);
 		pCentral.add(bVolver);
-		bMejorarAero.setBounds(390, this.getHeight()/5, (this.getWidth()/20) * 2, this.getHeight()/10);
+		bMejorarAero.setBounds(50, 340, 400, 100);
 		pCentral.add(bMejorarAero);
-		bMejorarMotor.setBounds(540, this.getHeight()/5, (this.getWidth()/20) * 2, this.getHeight()/10);
+		bMejorarMotor.setBounds(50, 490, 400, 100);
 		pCentral.add(bMejorarMotor);
-		bMejorarChasis.setBounds(690, this.getHeight()/5, (this.getWidth()/20) * 2, this.getHeight()/10);
+		bMejorarChasis.setBounds(50, 640, 400, 100);
 		pCentral.add(bMejorarChasis);
 		
 	}

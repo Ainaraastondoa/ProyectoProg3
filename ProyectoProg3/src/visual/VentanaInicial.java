@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +18,9 @@ import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import elementos.*;
 
@@ -27,18 +30,18 @@ import elementos.*;
  */ 
 
 public class VentanaInicial extends JFrame{
-	
+	 
 	private static final long serialVersionUID = 1L;
 	
 	private JButton bTrayectoria;
 	private JButton bTemporada;
 	private JButton bMulti;
-	private JButton bAyuda;
+	private JButton bAyuda; 
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondo.png";
-//	private Audio musicamenu;
+	private Audio musicamenu;
 	
-	//metodo main de pruebas
+	//metodo main de pruebas 
 	public static void main(String[] args) throws SQLException {
 		VentanaInicial v = new VentanaInicial(); 
 		v.setVisible( true );
@@ -57,10 +60,6 @@ public class VentanaInicial extends JFrame{
 		setContentPane(imagen_fondo);
 		setLayout(new FlowLayout());
 		
-		//MUSICA MENU
-//		musicamenu = new Audio("/audio/menu.wav");
-//		musicamenu.start();
-		
 		//DATOS
 		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
 		BD.usarCrearTablasBD(con);
@@ -73,6 +72,27 @@ public class VentanaInicial extends JFrame{
 		pCentral.setOpaque(false);
 		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
+		
+		//MUSICA MENU
+		musicamenu = new Audio("/audio/menu.wav");
+		musicamenu.start();
+		Font font = new Font("Verdana", Font.BOLD, 28);
+		JLabel texto = new JLabel("Brian Tyler - Formula 1 Theme");
+		texto.setFont(font);
+		texto.setForeground(Color.white);
+//		texto.setOpaque(false);
+		texto.setBounds(40, 20, 800, 50);
+		texto.setBackground(new Color(255,255,255));
+		pCentral.add(texto);
+		//A LOS 6 segundos se quita el titulo de la cancion
+		Timer t = new Timer(6000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                texto.setText(null);
+            }  
+        });
+		t.setRepeats(false);
+        t.start();
 		
 		//CREACION DE 4 BOTONES DE LA VENTANA INICIAL		
 		//AYUDA
@@ -129,6 +149,8 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
+					dispose();
+					musicamenu.stop();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this, 0 );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
@@ -140,6 +162,7 @@ public class VentanaInicial extends JFrame{
 				}
 			}					
 		});
+		
 		
 		//TEMPORADA		
 		bTemporada = new JButton();
@@ -164,6 +187,8 @@ public class VentanaInicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
 				try {
+					dispose();
+					musicamenu.stop();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this, 1 );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );
