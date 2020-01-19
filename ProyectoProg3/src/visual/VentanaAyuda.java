@@ -32,7 +32,7 @@ public class VentanaAyuda extends JFrame{
 	
 	public VentanaAyuda(JFrame v) {
 		VentanaInicio = v; 
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE); 
 		setSize(v.getWidth(), v.getHeight()); 
 		setResizable(false);
 		
