@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 
+import elementos.Audio;
 import elementos.BD;
 import elementos.Carrera;
 import elementos.Circuito;
@@ -45,7 +46,7 @@ public class VentanaCarrera extends JFrame{
 	private JButton bVolver; 
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondocarrera.jpg";
-	private PanelConImagenFondo panel_semaforo;
+	private Audio musicaSemaforo;
 	static boolean ejecutaHilo = true;	
 	ArrayList<Temporada> listaTemporadas;
 	 
@@ -126,25 +127,81 @@ public class VentanaCarrera extends JFrame{
 		Thread hilo = new Thread(new Runnable() {			
 			@Override
 			public void run() {
-				while(ejecutaHilo) {
-					for (int i=0; i<5; i++) {
-						String imagen = "/img/semaforo" + i + ".png";
-						panel_semaforo.setImage(imagen);
-						panel_semaforo.setBounds(500, 150, 400, 100);
-						setContentPane(panel_semaforo);
-
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+				if(ejecutaHilo==true) {					
+					String imagen = "/img/semaforo0.png";
+					PanelConImagenFondo panel_semaforo = new PanelConImagenFondo();
+					panel_semaforo.setImage(imagen);
+					panel_semaforo.setOpaque(false);
+					panel_semaforo.setBounds(500, 150, 400, 100);
+					pCentral.add(panel_semaforo);
+					try {
+						Thread.sleep(1500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				}			
+					musicaSemaforo = new Audio("/audio/semaforo.wav");
+					musicaSemaforo.start();
+					String imagen1 = "/img/semaforo1.png";
+					panel_semaforo.setImage(imagen1);
+					panel_semaforo.setOpaque(false);
+					panel_semaforo.setBounds(500, 150, 400, 100);
+					repaint();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					String imagen2 = "/img/semaforo2.png";
+					panel_semaforo.setImage(imagen2);
+					panel_semaforo.setOpaque(false);
+					panel_semaforo.setBounds(500, 150, 400, 100);
+					repaint();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					String imagen3 = "/img/semaforo3.png";
+					panel_semaforo.setImage(imagen3);
+					panel_semaforo.setOpaque(false);
+					panel_semaforo.setBounds(500, 150, 400, 100);
+					repaint();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					String imagen4 = "/img/semaforo4.png";
+					panel_semaforo.setImage(imagen4);
+					panel_semaforo.setOpaque(false);
+					panel_semaforo.setBounds(500, 150, 400, 100);
+					repaint();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					panel_semaforo.setImage(imagen);
+					panel_semaforo.setOpaque(false);
+					panel_semaforo.setBounds(500, 150, 400, 100);
+					repaint();
+					try {
+						Thread.sleep(750);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					panel_semaforo.setVisible(false);;
+					ejecutaHilo = false;
+				}							
 			}
 		});		
 		hilo.start();
-		ejecutaHilo = false;
 		
 		//PANEL CARRERA - CrearPilotos-Coches
 		for (int i = 0; i < pilotos.size(); i++) {
