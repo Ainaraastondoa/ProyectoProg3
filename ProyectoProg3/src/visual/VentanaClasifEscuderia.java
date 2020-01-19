@@ -5,12 +5,14 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +25,7 @@ import elementos.Temporada;
 public class VentanaClasifEscuderia extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
-	private String fondo = "/img/fondotrayectoria.png";
+	private String fondo = "/img/fondoayuda.png";
 	private Object [][] data = {{}};
 	// HACER JTable
 //	JFrame MenuPrincipalTrayectoria; 
@@ -83,6 +85,14 @@ public class VentanaClasifEscuderia extends JFrame{
 		};
 		
 		tabla.setModel(tableModel);
+		
+		JScrollPane tablaPane = new JScrollPane(tabla);
+		panelPrincipal.add(tablaPane);
+		
+		tabla.setVisible(true);
+	
+		
+		//INTRODUCIMOS LOS DATOS CORRESPONDIENTES EN EL JTABLE
 
 		
 		//Escuchadores

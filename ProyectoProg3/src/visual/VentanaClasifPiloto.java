@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +33,7 @@ public class VentanaClasifPiloto extends JFrame{
 	// HACER JTable
 //	JFrame VentanaClasifCarrera;
 	private Object [][] data = {{}};
-	private String fondo = "/img/fondotrayectoria.png";
+	private String fondo = "/img/fondoayuda.png";
 	
 	public VentanaClasifPiloto(Temporada temp, int modoJuego) { // 0 para trayectoria, 1 para temporada
 //		VentanaClasifCarrera = v;
@@ -57,6 +58,7 @@ public class VentanaClasifPiloto extends JFrame{
 		
 		JPanel panelPrincipal = new JPanel();
 		add(panelPrincipal, BorderLayout.NORTH);
+		
 		
 		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS PUNTOS
 		//DE LOS PILOTOS
@@ -90,6 +92,12 @@ public class VentanaClasifPiloto extends JFrame{
 		
 		tabla.setModel(tableModel);
 		
+		JScrollPane tablaPane = new JScrollPane(tabla);
+		panelPrincipal.add(tablaPane);
+		
+		tabla.setVisible(true);
+	
+		
 		//INTRODUCIMOS LOS DATOS CORRESPONDIENTES EN CADA COLUMNA
 		 
 		
@@ -104,19 +112,11 @@ public class VentanaClasifPiloto extends JFrame{
 //		}
 		
 		//Creamos el panel de la clasificacion
-		JPanel pCentral = new JPanel();
-//		JPanel pDerecha = new JPanel();
-//		JPanel pIzquierda = new JPanel();
-//		pIzquierda.setBackground(Color.DARK_GRAY);
-//		pDerecha.setBackground(Color.GRAY);
-//		pDerecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
-//		pCentral.setLayout(new GridLayout(1,2));
-//		pCentral.add(pIzquierda);
-//		pCentral.add(pDerecha);
-		getContentPane().add(pCentral);
+//		JPanel pCentral = new JPanel();
+//		getContentPane().add(pCentral);
 
 	
-		//Escuchadores
+		//BOTON OK 
 		bok.addActionListener(new ActionListener() {
 
 			@Override

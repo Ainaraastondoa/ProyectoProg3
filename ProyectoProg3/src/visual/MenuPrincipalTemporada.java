@@ -227,7 +227,7 @@ public class MenuPrincipalTemporada extends JFrame {
 				VentanaPiloto pilotos;
 				try {
 					dispose();
-					pilotos = new VentanaPiloto( MenuPrincipalTemporada.this );
+					pilotos = new VentanaPiloto( temporada, 1, numCarrera );
 					pilotos.setLocation( getLocation() );
 					pilotos.setSize( getSize() );
 					pilotos.setVisible( true );

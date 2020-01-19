@@ -35,7 +35,7 @@ public class VentanaClasifCarrera extends JFrame{
 	
 	JFrame MenuPrincipalTrayectoria;
 	private Object [][] data = {{}};
-	private String fondo = "/img/fondotrayectoria.png";
+	private String fondo = "/img/fondoayuda.png";
 
 	
 	public VentanaClasifCarrera(JFrame m) {
@@ -97,6 +97,11 @@ public class VentanaClasifCarrera extends JFrame{
 		};
 		
 		tabla.setModel(tableModel);
+		
+		JScrollPane tablaPane = new JScrollPane(tabla);
+		panelPrincipal.add(tablaPane);
+		
+		tabla.setVisible(true);
 		
 		//AÑADIMOS LOS DATOS A SU COLUMNA CORRESPONDIENTE
 		
