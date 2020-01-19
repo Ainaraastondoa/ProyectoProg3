@@ -3,6 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -53,13 +54,14 @@ public class VentanaClasifCarrera extends JFrame{
 		setLayout(new FlowLayout());
 		
 		//CREACION DE PANELES Y BOTONES
-
+		JPanel pCentral = new JPanel();
+		pCentral.setPreferredSize( new Dimension(1600, 900));
+		pCentral.setOpaque(false);
+		getContentPane().add(pCentral);
+		
 		JButton bok = new JButton("Ok");
-		JPanel pInferior = new JPanel();
-		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		pInferior.add(bok);
-		JPanel panelPrincipal = new JPanel();
-		add(panelPrincipal, BorderLayout.NORTH);
+		pCentral.add(bok, BorderLayout.SOUTH);
+		
 		
 		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS RESULTADOS OBTENIDOS 
 		//EN LA CARRERA
@@ -99,7 +101,7 @@ public class VentanaClasifCarrera extends JFrame{
 		tabla.setModel(tableModel);
 		
 		JScrollPane tablaPane = new JScrollPane(tabla);
-		panelPrincipal.add(tablaPane);
+		pCentral.add(tablaPane);
 		
 		tabla.setVisible(true);
 		
@@ -113,7 +115,7 @@ public class VentanaClasifCarrera extends JFrame{
 //		JScrollPane tablaPane = new JScrollPane(tabla);
 //		panelPrincipal.add(tablaPane);
 
-		VentanaClasifCarrera.this.add(panelPrincipal);
+		VentanaClasifCarrera.this.add(pCentral);
 		VentanaClasifCarrera.this.setVisible(true);	
 		
 		//Escuchadores

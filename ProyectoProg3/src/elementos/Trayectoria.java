@@ -258,20 +258,8 @@ public class Trayectoria {
 	}
 	
 	//Método para leer el fichero properties(prueba)
-	public String leerProperties(String clave) {
-		Properties properties = new Properties();
-		properties.clear();
-		try {
-		properties.loadFromXML(new FileInputStream("propiedades.xml"));
-		} catch (InvalidPropertiesFormatException e) {
-		e.printStackTrace();
-		} catch (FileNotFoundException e) {
-		e.printStackTrace();
-		} catch (IOException e) {
-		e.printStackTrace();
-		}
-
-		return properties.getProperty(clave);
+	public void leerProperties() {
+		
 		
 	}
 

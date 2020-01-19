@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -46,13 +47,13 @@ public class VentanaClasifEscuderia extends JFrame{
 		
 		//CREACION DE PANELES Y BOTONES
 
-		JButton bok = new JButton("Ok");
-		JPanel pInferior = new JPanel();
-		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		pInferior.add(bok);
+		JPanel pCentral = new JPanel();
+		pCentral.setPreferredSize( new Dimension(1600, 900));
+		pCentral.setOpaque(false);
+		getContentPane().add(pCentral);
 		
-		JPanel panelPrincipal = new JPanel();
-		add(panelPrincipal, BorderLayout.NORTH);
+		JButton bok = new JButton("Ok");
+		pCentral.add(bok, BorderLayout.SOUTH);
 		
 		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS PUNTOS DE 
 		//CADA ESCUDERIA
@@ -87,7 +88,7 @@ public class VentanaClasifEscuderia extends JFrame{
 		tabla.setModel(tableModel);
 		
 		JScrollPane tablaPane = new JScrollPane(tabla);
-		panelPrincipal.add(tablaPane);
+		pCentral.add(tablaPane);
 		
 		tabla.setVisible(true);
 	

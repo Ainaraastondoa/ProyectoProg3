@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -51,14 +52,15 @@ public class VentanaClasifPiloto extends JFrame{
 
 		//CREACION DE PANELES Y BOTONES
 		
+		JPanel pCentral = new JPanel();
+		pCentral.setPreferredSize( new Dimension(1600, 900));
+		pCentral.setOpaque(false);
+		getContentPane().add(pCentral);
+		
 		JButton bok = new JButton("Ok");
-		JPanel pInferior = new JPanel();
-		getContentPane().add(pInferior, BorderLayout.SOUTH);
-		pInferior.add(bok);
-		
-		JPanel panelPrincipal = new JPanel();
-		add(panelPrincipal, BorderLayout.NORTH);
-		
+		bok.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
+		pCentral.add(bok, BorderLayout.SOUTH);
+		pCentral.add(bok);
 		
 		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS PUNTOS
 		//DE LOS PILOTOS
@@ -93,7 +95,7 @@ public class VentanaClasifPiloto extends JFrame{
 		tabla.setModel(tableModel);
 		
 		JScrollPane tablaPane = new JScrollPane(tabla);
-		panelPrincipal.add(tablaPane);
+		pCentral.add(tablaPane);
 		
 		tabla.setVisible(true);
 	
