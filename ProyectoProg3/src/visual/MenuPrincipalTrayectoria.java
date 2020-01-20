@@ -48,14 +48,30 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	private JButton bPiloto;			//Boton que muestra la ventana pilto
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondotrayectoria.png";
-	private Audio musicatrayectoria;
 	
 	// Datos
-//	private Temporada temporada;
-//	private int numCarrera;
+	private Temporada temporada;
+	private int numCarrera;
 
 	
 	public MenuPrincipalTrayectoria(Temporada temp, int numCa, int audio) throws SQLException {
+		
+		// Creación Temporada
+		temporada = temp;
+		if (temporada.getListaCarreras().size() < 10) { // Las carreras no se han creado aún
+			Connection con = BD.initBD("src/datos/F1BaseDatos.db");
+			Statement st;
+			try {
+				st = con.createStatement();
+				temporada.crearCarrerasTemporada( BD.listaCircuitosSelect(st) );
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			numCarrera = 1; // Hay que comenzar por la primera carrera
+		} else {
+			numCarrera = numCa;
+		}
+		
 //		VentanaInicio = v;  
 		setTitle( "Trayectoria" );
 		setSize(1600, 900);
@@ -82,28 +98,28 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		getContentPane().add(pCentral);
 		
 		//MUSICA
-//		musicatrayectoria = new Audio("/audio/trayectoria.wav");
+//		Audio musicatrayectoria = new Audio("/audio/trayectoria.wav");
 //		if (audio == 1) {
 //			musicatrayectoria.start();
 //		}
-		Audio.lanzaAudioEnHilo("/audio/trayectoria.wav");
-		Font font = new Font("Arial", Font.BOLD, 44);
-		JLabel texto = new JLabel("Red Hot Chili Peppers - Can't Stop");
-		texto.setFont(font);
-		texto.setForeground(Color.white);
-//		texto.setOpaque(false);
-		texto.setBounds(60, 30, 800, 50);
-		texto.setBackground(new Color(255,255,255));
-		pCentral.add(texto);
-		//A LOS 6 segundos se quita el titulo de la cancion
-		Timer t = new Timer(6000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                texto.setText(null);
-            }  
-        });
-		t.setRepeats(false);
-        t.start();
+//		Audio.lanzaAudioEnHilo("/audio/trayectoria.wav");
+//		Font font = new Font("Arial", Font.BOLD, 44);
+//		JLabel texto = new JLabel("Red Hot Chili Peppers - Can't Stop" );
+//		texto.setFont(font);
+//		texto.setForeground(Color.white);
+////		texto.setOpaque(false);
+//		texto.setBounds(60, 30, 800, 50);
+//		texto.setBackground(new Color(255,255,255));
+//		pCentral.add(texto);
+//		//A LOS 6 segundos se quita el titulo de la cancion
+//		Timer t = new Timer(6000, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                texto.setText(null);
+//            }  
+//        });
+//		t.setRepeats(false);
+//        t.start();
 		
 		//CREACION DE 6 BOTONES DE LA VENTANA 	
 		//INICIO
@@ -130,7 +146,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				musicatrayectoria.stop();
+//				musicatrayectoria.stop();
 				dispose();
 				VentanaInicial v;
 				try {
@@ -149,10 +165,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bCarrera.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	ImageIcon icono = new ImageIcon(getClass().getResource("/img/carrera2.png"));
-		    	bCarrera.setIcon(icono);
-//		    	//AGRANDAR EL BOTON EN UN 10%
-//				bAyuda.setBounds((int) ((this.getWidth()/35) * 0.95), (int) (((this.getHeight()/18)*9.5) * 0.95), (int) (((this.getWidth()/35)*7) * 1.1), (int) (((this.getHeight()/18)*4) * 1.1));
-//				revalidate();		    
+		    	bCarrera.setIcon(icono); 
 			}
 			public void mouseExited(MouseEvent e) {
 		    	ImageIcon icono = new ImageIcon(getClass().getResource("/img/carrera.png"));
@@ -167,10 +180,10 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
-				musicatrayectoria.stop();
+//				musicatrayectoria.stop();
 				try {
 					dispose();
-					vCarrera = new VentanaCarrera (temp,numCa,0);
+					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible(true);
@@ -205,9 +218,9 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bClasificacion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				musicatrayectoria.stop();
+//				musicatrayectoria.stop();
 				dispose();		
-				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temp, numCa );
+				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temp, 0, numCa );
 				clasifPiloto.setLocation( getLocation() );
 				clasifPiloto.setSize( getSize() );
 				clasifPiloto.setVisible( true );
@@ -246,7 +259,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCoche coche;
-				musicatrayectoria.stop();
+//				musicatrayectoria.stop();
 				try {
 					dispose();
 					coche = new VentanaCoche( temp, numCa, 0 );
@@ -284,7 +297,7 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaPiloto pilotos;
-				musicatrayectoria.stop();
+//				musicatrayectoria.stop();
 				try {
 					dispose();
 					pilotos = new VentanaPiloto( temp, numCa, 0 );

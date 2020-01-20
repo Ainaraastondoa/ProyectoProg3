@@ -150,7 +150,7 @@ public class VentanaInicial extends JFrame{
 				VentanaSelEscuderia escuderia;
 				try {
 					dispose();
-//					musicamenu.stop();
+					musicamenu.stop();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this, 0 );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );

@@ -5,14 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elementos.BD;
 import elementos.Temporada;
+import elementos.Trayectoria;
 
 public class VentanaFinTemporada extends JFrame {
 
@@ -22,7 +26,7 @@ public class VentanaFinTemporada extends JFrame {
 	private PanelConImagenFondo imagenFondo;
 	private String fondo = "/img/FONDO.jpg"; // Hay que poner foto
 	
-	public VentanaFinTemporada(Temporada temp) {
+	public VentanaFinTemporada(Temporada temp, int modoJuego) {
 		// Creación ventana
 		setTitle( "Final de la Temporada" );
 		setSize(1600, 900);
@@ -93,11 +97,19 @@ public class VentanaFinTemporada extends JFrame {
 		bClasif.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaClasifPiloto v = new VentanaClasifPiloto(temp, 2);
-				v.setLocation( getLocation() );
-				v.setSize( getSize() );
-				v.setVisible( true );
-				VentanaFinTemporada.this.dispose();
+				if (modoJuego == 0) { // Modo Trayectoria
+					VentanaClasifPiloto v = new VentanaClasifPiloto(temp, 0, 21);
+					v.setLocation( getLocation() );
+					v.setSize( getSize() );
+					v.setVisible( true );
+					VentanaFinTemporada.this.dispose();
+				} else { // Modo Temporada
+					VentanaClasifPiloto v = new VentanaClasifPiloto(temp, 1, 21);
+					v.setLocation( getLocation() );
+					v.setSize( getSize() );
+					v.setVisible( true );
+					VentanaFinTemporada.this.dispose();					
+				}
 			}
 		});
 		

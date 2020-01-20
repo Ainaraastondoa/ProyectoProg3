@@ -167,10 +167,10 @@ public class VentanaCarrera extends JFrame{
 					PanelConImagenFondo panel_semaforo = new PanelConImagenFondo();
 					panel_semaforo.setImage(imagen);
 					panel_semaforo.setOpaque(false);
-					panel_semaforo.setBounds(500, 150, 400, 100);
+					panel_semaforo.setBounds(600, 150, 400, 100);
 					pCentral.add(panel_semaforo);
 					try {
-						Thread.sleep(1500);
+						Thread.sleep(900);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -180,7 +180,7 @@ public class VentanaCarrera extends JFrame{
 					String imagen1 = "/img/semaforo1.png";
 					panel_semaforo.setImage(imagen1);
 					panel_semaforo.setOpaque(false);
-					panel_semaforo.setBounds(500, 150, 400, 100);
+					panel_semaforo.setBounds(600, 150, 400, 100);
 					repaint();
 					try {
 						Thread.sleep(1000);
@@ -191,7 +191,7 @@ public class VentanaCarrera extends JFrame{
 					String imagen2 = "/img/semaforo2.png";
 					panel_semaforo.setImage(imagen2);
 					panel_semaforo.setOpaque(false);
-					panel_semaforo.setBounds(500, 150, 400, 100);
+					panel_semaforo.setBounds(600, 150, 400, 100);
 					repaint();
 					try {
 						Thread.sleep(1000);
@@ -202,7 +202,7 @@ public class VentanaCarrera extends JFrame{
 					String imagen3 = "/img/semaforo3.png";
 					panel_semaforo.setImage(imagen3);
 					panel_semaforo.setOpaque(false);
-					panel_semaforo.setBounds(500, 150, 400, 100);
+					panel_semaforo.setBounds(600, 150, 400, 100);
 					repaint();
 					try {
 						Thread.sleep(1000);
@@ -213,7 +213,7 @@ public class VentanaCarrera extends JFrame{
 					String imagen4 = "/img/semaforo4.png";
 					panel_semaforo.setImage(imagen4);
 					panel_semaforo.setOpaque(false);
-					panel_semaforo.setBounds(500, 150, 400, 100);
+					panel_semaforo.setBounds(600, 150, 400, 100);
 					repaint();
 					try {
 						Thread.sleep(1000);
@@ -223,7 +223,7 @@ public class VentanaCarrera extends JFrame{
 					}
 					panel_semaforo.setImage(imagen);
 					panel_semaforo.setOpaque(false);
-					panel_semaforo.setBounds(500, 150, 400, 100);
+					panel_semaforo.setBounds(600, 150, 400, 100);
 					repaint();
 					try {
 						Thread.sleep(750);
