@@ -196,12 +196,14 @@ public class MenuPrincipalTemporada extends JFrame {
 		bClasificacion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				musicatemporada.stop();
-				dispose();
-				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temporada, 1 );
-				clasifPiloto.setLocation( getLocation() );
-				clasifPiloto.setSize( getSize() );
-				clasifPiloto.setVisible( true );
+				if (numCarrera > 1) {
+					musicatemporada.stop();
+					dispose();
+					VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temporada, 1, numCarrera );
+					clasifPiloto.setLocation( getLocation() );
+					clasifPiloto.setSize( getSize() );
+					clasifPiloto.setVisible( true );
+				}
 			}			
 		});
 		

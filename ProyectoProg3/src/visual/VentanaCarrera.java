@@ -540,8 +540,21 @@ public class VentanaCarrera extends JFrame{
 						if (vuelta == temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas()-1) {
 							Thread.sleep(750);
 							dispose();
-							VentanaClasifCarrera clasificacion = new VentanaClasifCarrera(temp, numCarrera, modoJuego);
-							clasificacion.setVisible(true);
+							if (modoJuego == 0) { // Modo Trayectoria
+								try {
+									MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
+									v.setVisible( true );
+								} catch (SQLException e1) {
+									e1.printStackTrace();
+								}
+							} else { // Modo Temporada
+								if (numCarrera < 20) { // No ha sido la última carrera
+									MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1, 1);
+									v.setVisible( true );
+								} else { // Ha sido la última carrera de la temporada
+									
+								}
+							}
 						}
 					}
 				
