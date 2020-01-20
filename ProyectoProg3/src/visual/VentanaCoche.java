@@ -1,22 +1,15 @@
 package visual;
 
-import java.awt.BorderLayout;
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,21 +17,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import elementos.BD;
 import elementos.Coche;
 import elementos.Escuderia;
-import elementos.Mejora;
-import elementos.Piloto;
 import elementos.Temporada;
 import elementos.Trayectoria;
 
 public class VentanaCoche extends JFrame{
+
+	private static final long serialVersionUID = 1L;
 	
 	Coche coche;
 	private JButton bVolver, bMejorarAero, bMejorarMotor, bMejorarChasis;
 	private PanelConImagenFondo imagen_fondo;
  
-	public VentanaCoche (Temporada temp, int numCa, int modoJuego) throws SQLException { // 0 para trayectoria, 1 para temporada
+	public VentanaCoche (Temporada temp, int numCa, int modoJuego, int numTempo) throws SQLException { // 0 para trayectoria, 1 para temporada
 		setTitle( "MI COCHE" );
 		setSize(1600, 600); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -132,7 +124,7 @@ public class VentanaCoche extends JFrame{
 					dispose();
 					MenuPrincipalTrayectoria tra;
 					try {
-						tra = new MenuPrincipalTrayectoria(temp, numCa, 1);
+						tra = new MenuPrincipalTrayectoria(temp, numCa, 1, numTempo);
 						tra.setVisible(true);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -167,15 +159,38 @@ public class VentanaCoche extends JFrame{
 		bMejorarAero.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Temporada.getEscuderia().getPresupuesto() >= 2500000) { // Comprobar presupuesto mayor que 2.500.000€
-					if (Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
-						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2500000);
-						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() + 1;
-						Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().setRendimiento( rendi );
+				if (numTempo == 0) { // Temporada
+					if (Temporada.getEscuderia().getPresupuesto() >= 2500000) { // Comprobar presupuesto mayor que 2.500.000€
+						if (Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+							Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2500000);
+							int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() + 1;
+							Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().setRendimiento( rendi );
+							try {
+								dispose();
+//								menu.setVisible(false);
+								VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego, 0);
+								vc.setLocation( getLocation() );
+								vc.setSize( getSize() );
+								vc.setVisible( true );
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+//							repaint();
+//							System.out.println("funciona");
+//							revalidate();
+					}
+				}
+			} else {
+				if (Trayectoria.getEscuderia().getPresupuesto() >= 2500000) { // Comprobar presupuesto mayor que 2.500.000€
+					if (Trayectoria.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+						Trayectoria.getEscuderia().setPresupuesto(Trayectoria.getEscuderia().getPresupuesto() - 2500000);
+						int rendi = Trayectoria.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() + 1;
+						Trayectoria.getEscuderia().getPiloto1().getCoche().getAerodinamica().setRendimiento( rendi );
 						try {
 							dispose();
 //							menu.setVisible(false);
-							VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego);
+							VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego, numTempo);
 							vc.setLocation( getLocation() );
 							vc.setSize( getSize() );
 							vc.setVisible( true );
@@ -183,13 +198,10 @@ public class VentanaCoche extends JFrame{
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-//						repaint();
-//						System.out.println("funciona");
-//						revalidate();
-					}
 				}
 			}
-		});
+			}
+		}});
 		
 		// Botón Mejorar Motor 
 		bMejorarMotor = new JButton();
@@ -212,25 +224,45 @@ public class VentanaCoche extends JFrame{
 		bMejorarMotor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Temporada.getEscuderia().getPresupuesto() >= 3000000) { // Comprobar presupuesto mayor que 3.000.000€
-					if (Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
-						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 3000000);
-						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() + 1;
-						Temporada.getEscuderia().getPiloto1().getCoche().getMotor().setRendimiento( rendi );
-						try {
-							dispose();
-							VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego);
-							vc.setLocation( getLocation() );
-							vc.setSize( getSize() );
-							vc.setVisible( true );
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+				if (numTempo == 0) {
+					if (Temporada.getEscuderia().getPresupuesto() >= 3000000) { // Comprobar presupuesto mayor que 3.000.000€
+						if (Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+							Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 3000000);
+							int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() + 1;
+							Temporada.getEscuderia().getPiloto1().getCoche().getMotor().setRendimiento( rendi );
+							try {
+								dispose();
+								VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego, 0);
+								vc.setLocation( getLocation() );
+								vc.setSize( getSize() );
+								vc.setVisible( true );
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+//							repaint();
 						}
-//						repaint();
+					}
+				} else {
+					if (Trayectoria.getEscuderia().getPresupuesto() >= 3000000) { // Comprobar presupuesto mayor que 3.000.000€
+						if (Trayectoria.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+							Trayectoria.getEscuderia().setPresupuesto(Trayectoria.getEscuderia().getPresupuesto() - 3000000);
+							int rendi = Trayectoria.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() + 1;
+							Trayectoria.getEscuderia().getPiloto1().getCoche().getMotor().setRendimiento( rendi );
+							try {
+								dispose();
+								VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego, numTempo);
+								vc.setLocation( getLocation() );
+								vc.setSize( getSize() );
+								vc.setVisible( true );
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
 					}
 				}
-			}
+			} 
 		});
 		
 		// Botón Mejorar Chasis 
@@ -254,22 +286,43 @@ public class VentanaCoche extends JFrame{
 			bMejorarChasis.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (Temporada.getEscuderia().getPresupuesto() >= 2750000) { // Comprobar presupuesto mayor que 2.750.000€
-						if (Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
-							Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2750000);
-							int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() + 1;
-							Temporada.getEscuderia().getPiloto1().getCoche().getChasis().setRendimiento( rendi );
-							try {
-								dispose();
-								VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego);
-								vc.setLocation( getLocation() );
-								vc.setSize( getSize() );
-								vc.setVisible( true );
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+					if (numTempo == 0) {
+						if (Temporada.getEscuderia().getPresupuesto() >= 2750000) { // Comprobar presupuesto mayor que 2.750.000€
+							if (Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+								Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2750000);
+								int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() + 1;
+								Temporada.getEscuderia().getPiloto1().getCoche().getChasis().setRendimiento( rendi );
+								try {
+									dispose();
+									VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego, 0);
+									vc.setLocation( getLocation() );
+									vc.setSize( getSize() );
+									vc.setVisible( true );
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+//								repaint();
 							}
-//							repaint();
+						}
+					} else {
+						if (Trayectoria.getEscuderia().getPresupuesto() >= 2750000) { // Comprobar presupuesto mayor que 2.750.000€
+							if (Trayectoria.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() <= 110) { // Comprobar rendimiento máximo 110
+								Trayectoria.getEscuderia().setPresupuesto(Trayectoria.getEscuderia().getPresupuesto() - 2750000);
+								int rendi = Trayectoria.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() + 1;
+								Trayectoria.getEscuderia().getPiloto1().getCoche().getChasis().setRendimiento( rendi );
+								try {
+									dispose();
+									VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego, numTempo);
+									vc.setLocation( getLocation() );
+									vc.setSize( getSize() );
+									vc.setVisible( true );
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+//								repaint();
+							}
 						}
 					}
 				}

@@ -1,12 +1,9 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,25 +12,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 
 import elementos.Audio;
 import elementos.BD;
-import elementos.Carrera;
 import elementos.Circuito;
-import elementos.Escuderia;
 import elementos.Piloto;
 import elementos.Temporada;
-import elementos.Trayectoria;
 
 
 public class VentanaCarrera extends JFrame{
@@ -51,7 +41,7 @@ public class VentanaCarrera extends JFrame{
 	ArrayList<Temporada> listaTemporadas;
 	 
 	// modoJuego => 0 si es una trayectoria, 1 si es temporada
-	public VentanaCarrera(Temporada temp, int numCarrera, int modoJuego) throws SQLException {
+	public VentanaCarrera(Temporada temp, int numCarrera, int modoJuego, int numTemporada) throws SQLException {
 //		VentanaClasifCarrera = m; 
 		setTitle( "Trayectoria" );
 		setSize(1600, 900);
@@ -368,12 +358,12 @@ public class VentanaCarrera extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				if (modoJuego == 0) { // Modo Trayectoria
-					try {
-						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
-						v.setVisible( true );
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
+//					try {
+//						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
+//						v.setVisible( true );
+//					} catch (SQLException e1) {
+//						e1.printStackTrace();
+//					}
 				} else { // Modo Temporada
 					if (numCarrera < 20) { // No ha sido la última carrera
 						MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1, 1);
@@ -531,7 +521,7 @@ public class VentanaCarrera extends JFrame{
 						}					
 						//TIEMPO ENTRE VUELTAS
 						try {
-							Thread.sleep(300);
+							Thread.sleep(200);   
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -542,17 +532,24 @@ public class VentanaCarrera extends JFrame{
 							dispose();
 							if (modoJuego == 0) { // Modo Trayectoria
 								try {
-									MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
-									v.setVisible( true );
+									if (numCarrera < 21) {
+										MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1, numTemporada);
+										v.setVisible( true );
+									} else { // Cambio de temporada
+										MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(new Temporada(2020, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 50, 1, numTemporada);
+										v.setVisible( true );
+									}
+									
 								} catch (SQLException e1) {
 									e1.printStackTrace();
 								}
 							} else { // Modo Temporada
-								if (numCarrera < 20) { // No ha sido la última carrera
+								if (numCarrera < 21) { // No ha sido la última carrera
 									MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1, 1);
 									v.setVisible( true );
 								} else { // Ha sido la última carrera de la temporada
-									
+									VentanaClasifPiloto v = new VentanaClasifPiloto(temp, 1, 50, 0); // 50 porque se ha acabado, para finalizar
+									v.setVisible( true );
 								}
 							}
 						}

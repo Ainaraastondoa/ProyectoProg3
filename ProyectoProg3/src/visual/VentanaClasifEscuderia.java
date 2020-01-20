@@ -1,13 +1,9 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -25,12 +21,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import elementos.Escuderia;
-import elementos.Piloto;
 import elementos.Temporada;
 
 /**Ventana en la que se mostrar�n las escuderias
@@ -49,7 +42,7 @@ public class VentanaClasifEscuderia extends JFrame{
 	// Labels para clasificación
 	private JLabel lp1, lp2, lp3, lp4, lp5, lp6, lp7, lp8, lp9, lp10, lp11, lp12, lp13, lp14, lp15, lp16, lp17, lp18, lp19, lp20;
 	
-	public VentanaClasifEscuderia(Temporada temp, int modoJuego, int numCarrera) {
+	public VentanaClasifEscuderia(Temporada temp, int modoJuego, int numCarrera, int numTempo) {
 //		MenuPrincipalTrayectoria = v;
 		setTitle(" CLASIFICACIÓN ESCUDERIAS ");
 		setSize(1600, 900);
@@ -103,7 +96,7 @@ public class VentanaClasifEscuderia extends JFrame{
 					MenuPrincipalTrayectoria menu;
 					try {
 						dispose();
-						menu = new MenuPrincipalTrayectoria( temp, modoJuego, 1 );
+						menu = new MenuPrincipalTrayectoria( temp, modoJuego, 1, numTempo );
 						menu.setLocation( getLocation() );
 						menu.setSize( getSize() );
 						menu.setVisible( true );
@@ -114,10 +107,21 @@ public class VentanaClasifEscuderia extends JFrame{
 
 				} else { // Modo temporada
 					dispose();
-					MenuPrincipalTemporada menu = new MenuPrincipalTemporada(temp, numCarrera, 1);
-					menu.setLocation( getLocation() );
-					menu.setSize( getSize() );
-					menu.setVisible( true );
+					if (numCarrera < 40) {
+						MenuPrincipalTemporada menu = new MenuPrincipalTemporada(temp, numCarrera, 1);
+						menu.setLocation( getLocation() );
+						menu.setSize( getSize() );
+						menu.setVisible( true );
+					} else {
+						VentanaInicial v;
+						try {
+							v = new VentanaInicial();
+							v.setVisible( true );
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
 				}
 			}			
 		});

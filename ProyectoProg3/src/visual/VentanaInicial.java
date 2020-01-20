@@ -1,19 +1,15 @@
 package visual;
 
-import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -145,6 +141,7 @@ public class VentanaInicial extends JFrame{
 		bTrayectoria.setBorder(null);
 		bTrayectoria.addActionListener(new ActionListener() {
 		
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;
@@ -183,6 +180,7 @@ public class VentanaInicial extends JFrame{
 		bTemporada.setBorder(null);
 		bTemporada.addActionListener(new ActionListener() {
 		
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaSelEscuderia escuderia;

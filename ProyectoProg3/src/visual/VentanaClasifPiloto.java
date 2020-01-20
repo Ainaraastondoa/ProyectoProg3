@@ -1,24 +1,18 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
@@ -26,15 +20,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
-import elementos.BD;
 import elementos.Piloto;
 import elementos.Temporada;
-import elementos.Trayectoria;
 
 /**Ventana en la que se mostrar� a los pilotos 
  *clasificados seg�n su puntuaci�n 
@@ -53,7 +42,7 @@ public class VentanaClasifPiloto extends JFrame{
 	private JLabel lp1, lp2, lp3, lp4, lp5, lp6, lp7, lp8, lp9, lp10, lp11, lp12, lp13, lp14, lp15, lp16, lp17, lp18, lp19, lp20,
 		lp21, lp22, lp23, lp24, lp25, lp26, lp27, lp28, lp29, lp30, lp31, lp32, lp33, lp34, lp35, lp36, lp37, lp38, lp39, lp40;
 	
-	public VentanaClasifPiloto(Temporada temp, int modoJuego, int numCarrera) { // 0 para trayectoria, 1 para temporada
+	public VentanaClasifPiloto(Temporada temp, int modoJuego, int numCarrera, int numTempo) { // 0 para trayectoria, 1 para temporada
 //		VentanaClasifCarrera = v;
 		setTitle(" CLASIFICACIÓN PILOTOS ");
 		setSize(1600, 900);
@@ -100,7 +89,7 @@ public class VentanaClasifPiloto extends JFrame{
 		bSiguiente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaClasifEscuderia clasEscuderia = new VentanaClasifEscuderia( temp, modoJuego, numCarrera );
+				VentanaClasifEscuderia clasEscuderia = new VentanaClasifEscuderia( temp, modoJuego, numCarrera, numTempo );
 				clasEscuderia.setLocation( getLocation() );
 				clasEscuderia.setSize( getSize() );
 				clasEscuderia.setVisible( true );

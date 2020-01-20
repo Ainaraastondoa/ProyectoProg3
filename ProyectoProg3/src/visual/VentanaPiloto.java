@@ -1,29 +1,20 @@
 package visual;
 
-import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import elementos.*;
 
@@ -34,11 +25,13 @@ import elementos.*;
 
 public class VentanaPiloto extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
+	
 	Piloto piloto; 
 	private JButton bVolver;
 	private String fondo = "/img/fondoayuda.png";
 		   
-	public VentanaPiloto(Temporada temp, int numCa, int modoJuego) throws SQLException {
+	public VentanaPiloto(Temporada temp, int numCa, int modoJuego, int numTempo) throws SQLException {
 		setTitle(" PILOTOS ");
 		setSize(1600,900);
 		setLocation(0,0);
@@ -141,7 +134,7 @@ public class VentanaPiloto extends JFrame{
 					dispose();
 					MenuPrincipalTrayectoria tra;
 					try {
-						tra = new MenuPrincipalTrayectoria(temp, numCa, 1);
+						tra = new MenuPrincipalTrayectoria(temp, numCa, 1, numTempo);
 						tra.setVisible(true);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

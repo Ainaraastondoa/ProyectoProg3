@@ -1,11 +1,7 @@
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,16 +11,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 
 import elementos.BD;
 import elementos.Escuderia;
-import elementos.Piloto;
 import elementos.Temporada;
 import elementos.Trayectoria;
 
@@ -117,7 +110,7 @@ public class VentanaSelEscuderia extends JFrame{
 					if (eleccionModoJuego == 0) { // Modo Trayectoria
 						MenuPrincipalTrayectoria menu;
 						try {
-							menu = new MenuPrincipalTrayectoria( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0, 1 );
+							menu = new MenuPrincipalTrayectoria( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0, 1, 1 );
 							menu.setLocation( getLocation() );
 							menu.setSize( getSize() );
 							menu.setVisible( true );

@@ -1,36 +1,21 @@
 package visual;
 
-import java.awt.BorderLayout;
-
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
-import elementos.Audio;
 import elementos.BD;
-import elementos.Carrera;
-import elementos.Circuito;
-import elementos.Piloto;
 import elementos.Temporada;
 
 
@@ -39,7 +24,9 @@ import elementos.Temporada;
  */ 
 public class MenuPrincipalTrayectoria extends JFrame{ 
 	 
-//	JFrame VentanaInicio; 
+	
+	private static final long serialVersionUID = 1L;
+	//	JFrame VentanaInicio; 
 	private JButton bInicio;			//Boton que devuelve a la ventana inicial
 	private JButton bCarrera;			//Boton que inicia la proxima carrera
 	private JButton bClasificacion;		//Boton que muestra la clasificacion de pilotos y escuderias
@@ -52,9 +39,10 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	// Datos
 	private Temporada temporada;
 	private int numCarrera;
+	private int numTemporada;
 
 	
-	public MenuPrincipalTrayectoria(Temporada temp, int numCa, int audio) throws SQLException {
+	public MenuPrincipalTrayectoria(Temporada temp, int numCa, int audio, int numTempo) throws SQLException {
 		
 		// Creación Temporada
 		temporada = temp;
@@ -68,8 +56,15 @@ public class MenuPrincipalTrayectoria extends JFrame{
 				e1.printStackTrace();
 			}
 			numCarrera = 1; // Hay que comenzar por la primera carrera
+			numTemporada = 1;
 		} else {
-			numCarrera = numCa;
+			if (numCa < 40) { // Normal
+				numCarrera = numCa;
+				numTemporada = numTempo;
+			} else { // Cambio de temporada
+				numCarrera = 1;
+				numTemporada = numTempo + 1;
+			}
 		}
 		
 //		VentanaInicio = v;  
@@ -143,7 +138,6 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bInicio.setIcon(icono);
 		bInicio.setBorder(null);
 		bInicio.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 //				musicatrayectoria.stop();
@@ -176,17 +170,21 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bCarrera.setIcon(icono2);
 		bCarrera.setBorder(null);
 		bCarrera.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
 //				musicatrayectoria.stop();
 				try {
 					dispose();
-					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
-					vCarrera.setLocation(getLocation());
-					vCarrera.setSize(getSize());
-					vCarrera.setVisible(true);
+					if (numTemporada < 11) {
+						vCarrera = new VentanaCarrera(temporada, numCarrera, 1, numTemporada);
+						vCarrera.setLocation(getLocation());
+						vCarrera.setSize(getSize());
+						vCarrera.setVisible(true);
+					} else { // Se acabó lo que se daba
+						VentanaInicial v = new VentanaInicial();
+						v.setVisible( true );
+					}
 				} catch (SQLException sqle) {
 					// TODO Auto-generated catch block
 					sqle.printStackTrace();
@@ -220,10 +218,22 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 //				musicatrayectoria.stop();
 				dispose();		
-				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temp, 0, numCa );
-				clasifPiloto.setLocation( getLocation() );
-				clasifPiloto.setSize( getSize() );
-				clasifPiloto.setVisible( true );
+				if (numTemporada < 11) {
+					VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temp, 0, numCarrera, numTemporada );
+					clasifPiloto.setLocation( getLocation() );
+					clasifPiloto.setSize( getSize() );
+					clasifPiloto.setVisible( true );
+				} else {
+					VentanaInicial v;
+					try {
+						v = new VentanaInicial();
+						v.setVisible( true );
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
 			}			
 		}); 
 		
@@ -262,10 +272,22 @@ public class MenuPrincipalTrayectoria extends JFrame{
 //				musicatrayectoria.stop();
 				try {
 					dispose();
-					coche = new VentanaCoche( temp, numCa, 0 );
-					coche.setLocation( getLocation() );
-					coche.setSize( getSize() );
-					coche.setVisible( true );
+					if (numTemporada < 11) {
+						coche = new VentanaCoche( temp, numCa, 0, numTempo );
+						coche.setLocation( getLocation() );
+						coche.setSize( getSize() );
+						coche.setVisible( true );
+					} else {
+						VentanaInicial v;
+						try {
+							v = new VentanaInicial();
+							v.setVisible( true );
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -300,10 +322,22 @@ public class MenuPrincipalTrayectoria extends JFrame{
 //				musicatrayectoria.stop();
 				try {
 					dispose();
-					pilotos = new VentanaPiloto( temp, numCa, 0 );
-					pilotos.setLocation( getLocation() );
-					pilotos.setSize( getSize() );
-					pilotos.setVisible( true );
+					if (numTemporada < 11) {
+						pilotos = new VentanaPiloto( temp, numCa, 0, numTemporada );
+						pilotos.setLocation( getLocation() );
+						pilotos.setSize( getSize() );
+						pilotos.setVisible( true );
+					} else {
+						VentanaInicial v;
+						try {
+							v = new VentanaInicial();
+							v.setVisible( true );
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

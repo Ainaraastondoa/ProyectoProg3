@@ -1,13 +1,9 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -22,22 +18,13 @@ import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 import elementos.Piloto;
 import elementos.Temporada;
-import elementos.Trayectoria;
 
 /**Ventana en la que se mostraran los resultados de la carrera
  * con los pilotos clasificados por el tiempo que han logrado
@@ -45,6 +32,8 @@ import elementos.Trayectoria;
  */ 
 
 public class VentanaClasifCarrera extends JFrame{
+	
+	private static final long serialVersionUID = 1L;
 	
 	JFrame MenuPrincipalTrayectoria;
 	private Object [][] data = {{}};
@@ -56,7 +45,7 @@ public class VentanaClasifCarrera extends JFrame{
 		lp21, lp22, lp23, lp24, lp25, lp26, lp27, lp28, lp29, lp30, lp31, lp32, lp33, lp34, lp35, lp36, lp37, lp38, lp39, lp40;
 
 	
-	public VentanaClasifCarrera(Temporada temp, int numCarrera, int modoJuego) {
+	public VentanaClasifCarrera(Temporada temp, int numCarrera, int modoJuego, int numTempo) {
 //		MenuPrincipalTrayectoria = m;
 		setTitle(" CLASIFICACIÓN DE LA CARRERA ");
 		setSize(1600,900);
@@ -315,7 +304,7 @@ public class VentanaClasifCarrera extends JFrame{
 				dispose();
 				if (modoJuego == 0) { // Modo Trayectoria
 					try {
-						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
+						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1, numTempo);
 						v.setVisible( true );
 					} catch (SQLException e1) {
 						e1.printStackTrace();

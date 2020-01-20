@@ -165,7 +165,7 @@ public class MenuPrincipalTemporada extends JFrame {
 				musicatemporada.stop();
 				try {
 					dispose();
-					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
+					vCarrera = new VentanaCarrera(temporada, numCarrera, 1, 0);
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible( true );
@@ -194,12 +194,13 @@ public class MenuPrincipalTemporada extends JFrame {
 		bClasificacion.setIcon(icono3);
 		bClasificacion.setBorder(null);
 		bClasificacion.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (numCarrera > 1) {
 					musicatemporada.stop();
 					dispose();
-					VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temporada, 1, numCarrera );
+					VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temporada, 1, numCarrera, 0 );
 					clasifPiloto.setLocation( getLocation() );
 					clasifPiloto.setSize( getSize() );
 					clasifPiloto.setVisible( true );
@@ -225,13 +226,14 @@ public class MenuPrincipalTemporada extends JFrame {
 		bCoche.setIcon(icono4);
 		bCoche.setBorder(null);
 		bCoche.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCoche coche;
 				musicatemporada.stop();
 				try {
 					dispose();
-					coche = new VentanaCoche( temp, numCa, 1 );
+					coche = new VentanaCoche( temp, numCa, 1, 0 );
 					coche.setLocation( getLocation() );
 					coche.setSize( getSize() );
 					coche.setVisible( true );
@@ -259,13 +261,14 @@ public class MenuPrincipalTemporada extends JFrame {
 		bPiloto.setIcon(icono5);
 		bPiloto.setBorder(null);
 		bPiloto.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaPiloto pilotos;
 				musicatemporada.stop();
 				try {
 					dispose();
-					pilotos = new VentanaPiloto( temp, numCa, 1 );
+					pilotos = new VentanaPiloto( temp, numCa, 1, 0 );
 					pilotos.setLocation( getLocation() );
 					pilotos.setSize( getSize() );
 					pilotos.setVisible( true );
