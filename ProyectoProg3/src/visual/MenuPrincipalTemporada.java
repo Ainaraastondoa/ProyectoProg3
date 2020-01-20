@@ -1,7 +1,9 @@
 package visual;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,8 +15,11 @@ import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
+import elementos.Audio;
 import elementos.BD;
 //import elementos.Audio;
 import elementos.Temporada;
@@ -33,14 +38,13 @@ public class MenuPrincipalTemporada extends JFrame {
 	private JButton bPiloto;
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondotemporada.png";
-//	private Audio musicaMenu;
 	
 	// Datos
 	private Temporada temporada;
 	private int numCarrera;
 	
-	// Constructor Ventana Temporada
-	public MenuPrincipalTemporada(Temporada temp, int numCa) {
+	// Constructor Ventana Temporada. audio a 1 cuando haya que reiniciar cancion
+	public MenuPrincipalTemporada(Temporada temp, int numCa, int audio) {
 		
 		// Creación Temporada
 		temporada = temp;
@@ -77,6 +81,32 @@ public class MenuPrincipalTemporada extends JFrame {
 		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
 		
+		//MUSICA
+		Audio musicatemporada = new Audio("/audio/temporada.wav");
+		if (audio == 1) {
+			musicatemporada.start();
+		}
+		Font font = new Font("Arial", Font.BOLD, 44);
+		JLabel texto = new JLabel("Muse - Uprising");
+		texto.setFont(font);
+		texto.setForeground(Color.white);
+//		texto.setOpaque(false);
+		texto.setBounds(60, 30, 800, 50);
+		texto.setBackground(new Color(255,255,255));
+		pCentral.add(texto);
+		//A LOS 6 segundos se quita el titulo de la cancion
+		Timer t = new Timer(6000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                texto.setText(null);
+            }  
+        });
+		t.setRepeats(false);
+        t.start();
+        
+        
+        
+		
 		// Creación de los botones
 		// Botón INICIO
 		bInicio = new JButton();
@@ -96,8 +126,10 @@ public class MenuPrincipalTemporada extends JFrame {
 		bInicio.setIcon(icono); 
 		bInicio.setBorder(null);
 		bInicio.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				musicatemporada.stop();
 				dispose();
 				try { 
 					VentanaInicial v = new VentanaInicial();
@@ -126,9 +158,11 @@ public class MenuPrincipalTemporada extends JFrame {
 		bCarrera.setIcon(icono2);
 		bCarrera.setBorder(null);
 		bCarrera.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
+				musicatemporada.stop();
 				try {
 					dispose();
 					vCarrera = new VentanaCarrera(temporada, numCarrera, 1);
@@ -162,11 +196,12 @@ public class MenuPrincipalTemporada extends JFrame {
 		bClasificacion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				musicatemporada.stop();
+				dispose();
 				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temporada, 1 );
 				clasifPiloto.setLocation( getLocation() );
 				clasifPiloto.setSize( getSize() );
 				clasifPiloto.setVisible( true );
-				MenuPrincipalTemporada.this.dispose();		
 			}			
 		});
 		
@@ -191,13 +226,13 @@ public class MenuPrincipalTemporada extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCoche coche;
+				musicatemporada.stop();
 				try {
 					dispose();
-					coche = new VentanaCoche( temporada, 1, numCarrera );
+					coche = new VentanaCoche( temp, numCa, 1 );
 					coche.setLocation( getLocation() );
 					coche.setSize( getSize() );
 					coche.setVisible( true );
-					dispose();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}			
@@ -225,13 +260,13 @@ public class MenuPrincipalTemporada extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaPiloto pilotos;
+				musicatemporada.stop();
 				try {
 					dispose();
-					pilotos = new VentanaPiloto( temporada, 1, numCarrera );
+					pilotos = new VentanaPiloto( temp, numCa, 1 );
 					pilotos.setLocation( getLocation() );
 					pilotos.setSize( getSize() );
 					pilotos.setVisible( true );
-					dispose();	
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}			

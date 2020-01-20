@@ -9,7 +9,11 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -37,17 +41,17 @@ public class VentanaClasifCarrera extends JFrame{
 	JFrame MenuPrincipalTrayectoria;
 	private Object [][] data = {{}};
 	private String fondo = "/img/fondoayuda.png";
+	private JButton bSiguiente;
 
 	
-	public VentanaClasifCarrera(JFrame m) {
-		MenuPrincipalTrayectoria = m;
+	public VentanaClasifCarrera(Temporada temp, int numCarrera, int modoJuego) {
+//		MenuPrincipalTrayectoria = m;
 		setTitle(" CLASIFICACIÓN DE LA CARRERA ");
-		setSize(m.getWidth(), m.getHeight());
+		setSize(1600,900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		
-		//FONDO DE LA VENTANA
-		
+		//FONDO DE LA VENTANA		
 		PanelConImagenFondo imagen_fondo = new PanelConImagenFondo();
 		imagen_fondo.setImage(fondo);
 		setContentPane(imagen_fondo);
@@ -57,11 +61,8 @@ public class VentanaClasifCarrera extends JFrame{
 		JPanel pCentral = new JPanel();
 		pCentral.setPreferredSize( new Dimension(1600, 900));
 		pCentral.setOpaque(false);
+		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
-		
-		JButton bok = new JButton("Ok");
-		pCentral.add(bok, BorderLayout.SOUTH);
-		
 		
 		//CREACION JTABLE DONDE SE VAN A INTRODUCIR LOS RESULTADOS OBTENIDOS 
 		//EN LA CARRERA
@@ -69,12 +70,10 @@ public class VentanaClasifCarrera extends JFrame{
 		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
 		for (int row = 0; row < data.length; row++) {
-			
 			tableModel.addRow(data[row]);
 		}		
 		
-		JTable tabla = new JTable() {
-			
+		JTable tabla = new JTable() {		
 			//HACIENDO AQU� MISMO Source->Add/Implement methods
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -96,8 +95,7 @@ public class VentanaClasifCarrera extends JFrame{
 				}
 				return super.getClass();
 			} 			
-		};
-		
+		};		
 		tabla.setModel(tableModel);
 		
 		JScrollPane tablaPane = new JScrollPane(tabla);
@@ -108,6 +106,49 @@ public class VentanaClasifCarrera extends JFrame{
 		//AÑADIMOS LOS DATOS A SU COLUMNA CORRESPONDIENTE
 		
 		
+		
+		//BOTON VOLVER
+		bSiguiente = new JButton();
+		bSiguiente.setContentAreaFilled(false);
+		bSiguiente.setOpaque(false);
+		bSiguiente.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/siguiente2.png"));
+		    	bSiguiente.setIcon(icono2);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/siguiente.png"));
+		    	bSiguiente.setIcon(icono2);
+		    }
+		});
+		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/siguiente.png"));
+		bSiguiente.setIcon(icono2);
+		bSiguiente.setBorder(null);
+		bSiguiente.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				if (modoJuego == 0) { // Modo Trayectoria
+					try {
+						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
+						v.setVisible( true );
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				} else { // Modo Temporada
+					if (numCarrera < 20) { // No ha sido la última carrera
+						MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1, 1);
+						v.setVisible( true );
+					} else { // Ha sido la última carrera de la temporada
+						
+					}
+				}
+			}					
+		});		
+		bSiguiente.setBounds(720, 700, 160, 85);
+		pCentral.add(bSiguiente);
+		
+		
 		//ORDENAR
 //		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
 //		tabla.setRowSorter(sorter);
@@ -115,20 +156,20 @@ public class VentanaClasifCarrera extends JFrame{
 //		JScrollPane tablaPane = new JScrollPane(tabla);
 //		panelPrincipal.add(tablaPane);
 
-		VentanaClasifCarrera.this.add(pCentral);
-		VentanaClasifCarrera.this.setVisible(true);	
-		
-		//Escuchadores
-		bok.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VentanaClasifPiloto clasPilotos = new VentanaClasifPiloto( VentanaClasifCarrera.this );
-				clasPilotos.setLocation( getLocation() );
-				clasPilotos.setSize( getSize() );
-				clasPilotos.setVisible( true );
-				VentanaClasifCarrera.this.setVisible( false );				
-			}			
-		}); 
+//		VentanaClasifCarrera.this.add(pCentral);
+//		VentanaClasifCarrera.this.setVisible(true);	
+//		
+//		//Escuchadores
+//		bok.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				VentanaClasifPiloto clasPilotos = new VentanaClasifPiloto();
+//				clasPilotos.setLocation( getLocation() );
+//				clasPilotos.setSize( getSize() );
+//				clasPilotos.setVisible( true );
+//				VentanaClasifCarrera.this.setVisible( false );				
+//			}			
+//		}); 
 		
 				
 //		Integer carreraActual = 0;

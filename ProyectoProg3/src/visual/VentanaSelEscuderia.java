@@ -46,7 +46,7 @@ public class VentanaSelEscuderia extends JFrame{
 		setTitle("Selecciona tu escuderia");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-
+		
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();
 		imagen_fondo.setImage(fondo);
@@ -117,7 +117,7 @@ public class VentanaSelEscuderia extends JFrame{
 					if (eleccionModoJuego == 0) { // Modo Trayectoria
 						MenuPrincipalTrayectoria menu;
 						try {
-							menu = new MenuPrincipalTrayectoria();
+							menu = new MenuPrincipalTrayectoria( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0, 1 );
 							menu.setLocation( getLocation() );
 							menu.setSize( getSize() );
 							menu.setVisible( true );
@@ -135,7 +135,7 @@ public class VentanaSelEscuderia extends JFrame{
 						Statement st;
 						try {
 							st = con.createStatement();
-							menu = new MenuPrincipalTemporada( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0 );
+							menu = new MenuPrincipalTemporada( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0, 1 );
 							menu.setLocation( getLocation() );
 							menu.setSize( getSize() );
 							menu.setVisible( true );

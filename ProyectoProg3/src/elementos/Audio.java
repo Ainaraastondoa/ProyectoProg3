@@ -19,7 +19,6 @@ public class Audio extends Thread {
 		lanzaAudioEnHilo(super.getName());
 	}
 	
-	
 	/** Lanza un audio indicado en un fichero wav
 	 * @param ficheroWav	Path correcto del fichero wav indicado
 	 */
@@ -48,7 +47,7 @@ public class Audio extends Thread {
                 }
             }
         } catch (Exception e) {
-        	// Excepción si el fichero es nulo, erróneo, o wav incorrecto
+        	// Excepciï¿½n si el fichero es nulo, errï¿½neo, o wav incorrecto
         }
     	if (lineaDatosSonido != null) {
             lineaDatosSonido.drain();
@@ -85,7 +84,7 @@ public class Audio extends Thread {
                 }
             }
         } catch (Exception e) {
-        	// Excepción si el fichero es nulo, erróneo, o wav incorrecto
+        	// Excepciï¿½n si el fichero es nulo, errï¿½neo, o wav incorrecto
         }
     	if (lineaDatosSonido != null) {
             lineaDatosSonido.drain();

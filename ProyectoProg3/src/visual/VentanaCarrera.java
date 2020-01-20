@@ -47,7 +47,7 @@ public class VentanaCarrera extends JFrame{
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondocarrera.jpg";
 	private Audio musicaSemaforo;
-	static boolean ejecutaHilo = true;	
+	static boolean ejecutaHilo;	
 	ArrayList<Temporada> listaTemporadas;
 	 
 	// modoJuego => 0 si es una trayectoria, 1 si es temporada
@@ -57,6 +57,7 @@ public class VentanaCarrera extends JFrame{
 		setSize(1600, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
+		ejecutaHilo = true;
 
 		//FONDO DE LA VENTANA
 		imagen_fondo = new PanelConImagenFondo();
@@ -83,45 +84,79 @@ public class VentanaCarrera extends JFrame{
 		getContentPane().add(pCentral);
 		
 		JPanel pInfo = new JPanel();
-		pInfo.setBounds(0, 10, 1250, 100);
+		pInfo.setBounds(150, 20, 1410, 80);
 		pInfo.setOpaque(false);
 //		pInfo.setBackground(Color.WHITE);
 		pCentral.add(pInfo);
 		
-		JPanel pClasificacion = new JPanel();
-		pClasificacion.setBounds(1250, 0, 350, 900);
-		pClasificacion.setOpaque(false);
-//		pClasificacion.setBackground(Color.DARK_GRAY);
-		pCentral.add(pClasificacion);
-		
 		JPanel pCarrera = new JPanel();
-		pCarrera.setBounds(0, 100, 1250, 800);
+		pCarrera.setBounds(100, 105, 1500, 750);
 		pCarrera.setOpaque(false);
 //		pCarrera.setBackground(Color.BLACK);
 		pCarrera.setLayout(null);
 		pCentral.add(pCarrera);
 		
-		PanelConImagenFondo p1 = new PanelConImagenFondo();
-		PanelConImagenFondo p2 = new PanelConImagenFondo();
-		PanelConImagenFondo p3 = new PanelConImagenFondo();
-		PanelConImagenFondo p4 = new PanelConImagenFondo();
-		PanelConImagenFondo p5 = new PanelConImagenFondo();
-		PanelConImagenFondo p6 = new PanelConImagenFondo();
-		PanelConImagenFondo p7 = new PanelConImagenFondo();
-		PanelConImagenFondo p8 = new PanelConImagenFondo();
-		PanelConImagenFondo p9 = new PanelConImagenFondo();
-		PanelConImagenFondo p10 = new PanelConImagenFondo();
-		PanelConImagenFondo p11 = new PanelConImagenFondo();
-		PanelConImagenFondo p12 = new PanelConImagenFondo();
-		PanelConImagenFondo p13 = new PanelConImagenFondo();
-		PanelConImagenFondo p14 = new PanelConImagenFondo();
-		PanelConImagenFondo p15 = new PanelConImagenFondo();
-		PanelConImagenFondo p16 = new PanelConImagenFondo();
-		PanelConImagenFondo p17 = new PanelConImagenFondo();
-		PanelConImagenFondo p18 = new PanelConImagenFondo();
-		PanelConImagenFondo p19 = new PanelConImagenFondo();
-		PanelConImagenFondo p20 = new PanelConImagenFondo();
-		
+		ArrayList<PanelConImagenFondo> paneles = new ArrayList<PanelConImagenFondo>();
+		PanelConImagenFondo Hamilton = new PanelConImagenFondo();
+		Hamilton.setName("Hamilton");
+		paneles.add(Hamilton);
+		PanelConImagenFondo Bottas = new PanelConImagenFondo();
+		Bottas.setName("Bottas");
+		paneles.add(Bottas);
+		PanelConImagenFondo Vettel = new PanelConImagenFondo();
+		Vettel.setName("Vettel");
+		paneles.add(Vettel);
+		PanelConImagenFondo Leclerc = new PanelConImagenFondo();
+		Leclerc.setName("Leclerc");
+		paneles.add(Leclerc);
+		PanelConImagenFondo Verstappen = new PanelConImagenFondo();
+		Verstappen.setName("Verstappen");
+		paneles.add(Verstappen);
+		PanelConImagenFondo Albon = new PanelConImagenFondo();
+		Albon.setName("Albon");
+		paneles.add(Albon);
+		PanelConImagenFondo Sainz = new PanelConImagenFondo();
+		Sainz.setName("Sainz");
+		paneles.add(Sainz);
+		PanelConImagenFondo Norris = new PanelConImagenFondo();
+		Norris.setName("Norris");
+		paneles.add(Norris);
+		PanelConImagenFondo Ricciardo = new PanelConImagenFondo();
+		Ricciardo.setName("Ricciardo");
+		paneles.add(Ricciardo);
+		PanelConImagenFondo Hulkenberg = new PanelConImagenFondo();
+		Hulkenberg.setName("Hulkenberg");
+		paneles.add(Hulkenberg);
+		PanelConImagenFondo Gasly = new PanelConImagenFondo();
+		Gasly.setName("Gasly");
+		paneles.add(Gasly);
+		PanelConImagenFondo Kvyat = new PanelConImagenFondo();
+		Kvyat.setName("Kvyat");
+		paneles.add(Kvyat);
+		PanelConImagenFondo Perez = new PanelConImagenFondo();
+		Perez.setName("Perez");
+		paneles.add(Perez);
+		PanelConImagenFondo Stroll = new PanelConImagenFondo();
+		Stroll.setName("Stroll");
+		paneles.add(Stroll);
+		PanelConImagenFondo Magnussen = new PanelConImagenFondo();
+		Magnussen.setName("Magnussen");
+		paneles.add(Magnussen);
+		PanelConImagenFondo Grosjean = new PanelConImagenFondo();
+		Grosjean.setName("Grosjean");
+		paneles.add(Grosjean);
+		PanelConImagenFondo Raikkonen = new PanelConImagenFondo();
+		Raikkonen.setName("Raikkonen");
+		paneles.add(Raikkonen);
+		PanelConImagenFondo Giovinazzi = new PanelConImagenFondo();
+		Giovinazzi.setName("Giovinazzi");
+		paneles.add(Giovinazzi);
+		PanelConImagenFondo Russell = new PanelConImagenFondo();
+		Russell.setName("Russell");
+		paneles.add(Russell);
+		PanelConImagenFondo Kubica = new PanelConImagenFondo();
+		Kubica.setName("Kubica");
+		paneles.add(Kubica);
 
 		//HILO INICIAL DE SEMAFORO
 		Thread hilo = new Thread(new Runnable() {			
@@ -207,105 +242,105 @@ public class VentanaCarrera extends JFrame{
 		for (int i = 0; i < pilotos.size(); i++) {
 			String img = pilotos.get(i).getImagen2();
 			if (i==0) {
-				p1.setImage(img);
-				p1.setBounds(5, 0, 1250, 37);
-				p1.setOpaque(false);
-				pCarrera.add(p1);
+				Hamilton.setImage(img);
+				Hamilton.setBounds(5, 0, 1250, 37);
+				Hamilton.setOpaque(false);
+				pCarrera.add(Hamilton);
 			}else if (i==1) {
-				p2.setImage(img);
-				p2.setBounds(5, 37, 1250, 37);
-				p2.setOpaque(false);
-				pCarrera.add(p2);
+				Bottas.setImage(img);
+				Bottas.setBounds(5, 37, 1250, 37);
+				Bottas.setOpaque(false);
+				pCarrera.add(Bottas);
 			}else if (i==2) {
-				p3.setImage(img);
-				p3.setBounds(5, 74, 1250, 37);
-				p3.setOpaque(false);
-				pCarrera.add(p3);
+				Vettel.setImage(img);
+				Vettel.setBounds(5, 74, 1250, 37);
+				Vettel.setOpaque(false);
+				pCarrera.add(Vettel);
 			}else if (i==3) {
-				p4.setImage(img);
-				p4.setBounds(5, 111, 1250, 37);
-				p4.setOpaque(false);
-				pCarrera.add(p4);
+				Leclerc.setImage(img);
+				Leclerc.setBounds(5, 111, 1250, 37);
+				Leclerc.setOpaque(false);
+				pCarrera.add(Leclerc);
 			}else if (i==4) {
-				p5.setImage(img);
-				p5.setBounds(5, 148, 1250, 37);
-				p5.setOpaque(false);
-				pCarrera.add(p5);
+				Verstappen.setImage(img);
+				Verstappen.setBounds(5, 148, 1250, 37);
+				Verstappen.setOpaque(false);
+				pCarrera.add(Verstappen);
 			}else if (i==5) {
-				p6.setImage(img);
-				p6.setBounds(5, 185, 1250, 37);
-				p6.setOpaque(false);
-				pCarrera.add(p6);
+				Albon.setImage(img);
+				Albon.setBounds(5, 185, 1250, 37);
+				Albon.setOpaque(false);
+				pCarrera.add(Albon);
 			}else if (i==6) {
-				p7.setImage(img);
-				p7.setBounds(5, 222, 1250, 37);
-				p7.setOpaque(false);
-				pCarrera.add(p7);
+				Sainz.setImage(img);
+				Sainz.setBounds(5, 222, 1250, 37);
+				Sainz.setOpaque(false);
+				pCarrera.add(Sainz);
 			}else if (i==7) {
-				p8.setImage(img);
-				p8.setBounds(5, 259, 1250, 37);
-				p8.setOpaque(false);
-				pCarrera.add(p8);
+				Norris.setImage(img);
+				Norris.setBounds(5, 259, 1250, 37);
+				Norris.setOpaque(false);
+				pCarrera.add(Norris);
 			}else if (i==8) {
-				p9.setImage(img);
-				p9.setBounds(5, 296, 1250, 37);
-				p9.setOpaque(false);
-				pCarrera.add(p9);
+				Ricciardo.setImage(img);
+				Ricciardo.setBounds(5, 296, 1250, 37);
+				Ricciardo.setOpaque(false);
+				pCarrera.add(Ricciardo);
 			}else if (i==9) {
-				p10.setImage(img);
-				p10.setBounds(5, 333, 1250, 37);
-				p10.setOpaque(false);
-				pCarrera.add(p10);
+				Hulkenberg.setImage(img);
+				Hulkenberg.setBounds(5, 333, 1250, 37);
+				Hulkenberg.setOpaque(false);
+				pCarrera.add(Hulkenberg);
 			}else if (i==10) {
-				p11.setImage(img);
-				p11.setBounds(5, 370, 1250, 37);
-				p11.setOpaque(false);
-				pCarrera.add(p11);
+				Gasly.setImage(img);
+				Gasly.setBounds(5, 370, 1250, 37);
+				Gasly.setOpaque(false);
+				pCarrera.add(Gasly);
 			}else if (i==11) {
-				p12.setImage(img);
-				p12.setBounds(5, 407, 1250, 37);
-				p12.setOpaque(false);
-				pCarrera.add(p12);
+				Kvyat.setImage(img);
+				Kvyat.setBounds(5, 407, 1250, 37);
+				Kvyat.setOpaque(false);
+				pCarrera.add(Kvyat);
 			}else if (i==12) {
-				p13.setImage(img);
-				p13.setBounds(5, 444, 1250, 37);
-				p13.setOpaque(false);
-				pCarrera.add(p13);
+				Perez.setImage(img);
+				Perez.setBounds(5, 444, 1250, 37);
+				Perez.setOpaque(false);
+				pCarrera.add(Perez);
 			}else if (i==13) {
-				p14.setImage(img);
-				p14.setBounds(5, 481, 1250, 37);
-				p14.setOpaque(false);
-				pCarrera.add(p14);
+				Stroll.setImage(img);
+				Stroll.setBounds(5, 481, 1250, 37);
+				Stroll.setOpaque(false);
+				pCarrera.add(Stroll);
 			}else if (i==14) {
-				p15.setImage(img);
-				p15.setBounds(5, 518, 1250, 37);
-				p15.setOpaque(false);
-				pCarrera.add(p15);
+				Magnussen.setImage(img);
+				Magnussen.setBounds(5, 518, 1250, 37);
+				Magnussen.setOpaque(false);
+				pCarrera.add(Magnussen);
 			}else if (i==15) {
-				p16.setImage(img);
-				p16.setBounds(5, 555, 1250, 37);
-				p16.setOpaque(false);
-				pCarrera.add(p16);
+				Grosjean.setImage(img);
+				Grosjean.setBounds(5, 555, 1250, 37);
+				Grosjean.setOpaque(false);
+				pCarrera.add(Grosjean);
 			}else if (i==16) {
-				p17.setImage(img);
-				p17.setBounds(5, 592, 1250, 37);
-				p17.setOpaque(false);
-				pCarrera.add(p17);
+				Raikkonen.setImage(img);
+				Raikkonen.setBounds(5, 592, 1250, 37);
+				Raikkonen.setOpaque(false);
+				pCarrera.add(Raikkonen);
 			}else if (i==17) {
-				p18.setImage(img); 
-				p18.setBounds(5, 629, 1250, 37);
-				p18.setOpaque(false);
-				pCarrera.add(p18);
+				Giovinazzi.setImage(img); 
+				Giovinazzi.setBounds(5, 629, 1250, 37);
+				Giovinazzi.setOpaque(false);
+				pCarrera.add(Giovinazzi);
 			}else if (i==18) {
-				p19.setImage(img);
-				p19.setBounds(5, 666, 1250, 37);
-				p19.setOpaque(false);
-				pCarrera.add(p19); 
+				Russell.setImage(img);
+				Russell.setBounds(5, 666, 1250, 37);
+				Russell.setOpaque(false);
+				pCarrera.add(Russell); 
 			}else if (i==19) {
-				p20.setImage(img);
-				p20.setBounds(5, 703, 1250, 37);
-				p20.setOpaque(false);
-				pCarrera.add(p20);
+				Kubica.setImage(img);
+				Kubica.setBounds(5, 703, 1250, 37);
+				Kubica.setOpaque(false);
+				pCarrera.add(Kubica);
 			}
 		}
 		
@@ -334,14 +369,14 @@ public class VentanaCarrera extends JFrame{
 				dispose();
 				if (modoJuego == 0) { // Modo Trayectoria
 					try {
-						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria();
+						MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria(temp, numCarrera + 1, 1);
 						v.setVisible( true );
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
 				} else { // Modo Temporada
 					if (numCarrera < 20) { // No ha sido la última carrera
-						MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1);
+						MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCarrera + 1, 1);
 						v.setVisible( true );
 					} else { // Ha sido la última carrera de la temporada
 						
@@ -356,56 +391,220 @@ public class VentanaCarrera extends JFrame{
 		
 		// Comprobación de los resultados de la carrera
 		temp.getListaCarreras().get(numCarrera - 1).comprobarResultadoCarrera();
+				
+		Thread carrera = new Thread ( new Runnable() {			
+			private String nombre;
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(6250);
+					for (int vuelta=0; vuelta < temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(); vuelta++) {
+						//Recorrer la lista de pilotos ordenada segun posiciones en carrera.
+						ArrayList<Piloto> posPilotos = temp.getListaCarreras().get(numCarrera-1).posPilotos();
+						for (int pil=0; pil < posPilotos.size(); pil++) {
+							//Recorrer paneles de pilotos
+							for (PanelConImagenFondo panel : paneles) {	
+								nombre = panel.toString();
+								if (posPilotos.get(pil).toString().equals(nombre)) {
+									if (pil==0) {
+										panel.setBounds(panel.getX() + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==1) {
+										panel.setBounds(panel.getX()  - 1 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==2) {
+										panel.setBounds(panel.getX() - 2 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==3) {
+										panel.setBounds(panel.getX() - 3 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==4) {
+										panel.setBounds(panel.getX() - 4 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==5) {
+										panel.setBounds(panel.getX() - 5 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==6) {
+										panel.setBounds(panel.getX() -6 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==7) {
+										panel.setBounds(panel.getX() -7 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==8) {
+										panel.setBounds(panel.getX() -8 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==9) {
+										panel.setBounds(panel.getX() -9 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==10) {
+										panel.setBounds(panel.getX() - 10 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==11) {
+										panel.setBounds(panel.getX() - 11 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==12) {
+										panel.setBounds(panel.getX() - 12 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==13) {
+										panel.setBounds(panel.getX() - 13 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==14) {
+										panel.setBounds(panel.getX() - 14 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==15) {
+										panel.setBounds(panel.getX() - 15 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==16) {
+										panel.setBounds(panel.getX() - 16 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==17) {
+										panel.setBounds(panel.getX() - 17 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==18) {
+										panel.setBounds(panel.getX() - 18 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());
+										repaint();
+										revalidate();
+									}
+									if (pil==19) {
+										panel.setBounds(panel.getX() - 19 + (pCarrera.getWidth() - 110) / temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas(), 
+												panel.getY(), panel.getWidth(), panel.getHeight());							
+										repaint();
+										revalidate();
+									}
+								}
+							}
+						}					
+						//TIEMPO ENTRE VUELTAS
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						//Cuando termina carrera - Saltar a clasificacion
+						if (vuelta == temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas()-1) {
+							dispose();
+							VentanaClasifCarrera clasificacion = new VentanaClasifCarrera(temp, numCarrera, modoJuego);
+							clasificacion.setVisible(true);
+						}
+					}
+				
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}				
+		});
+		carrera.start();
 		
-		// Creación Progress Bar para dibujar transcurso carrera
-		JProgressBar j1 = new JProgressBar();
-		j1.setString( "Hamilton" );
-		JProgressBar j2 = new JProgressBar();
-		j2.setString( "Bottas" );
-		JProgressBar j3 = new JProgressBar();
-		j3.setString( "Vettel" );
-		JProgressBar j4 = new JProgressBar();
-		j4.setString( "Leclerc" );
-		JProgressBar j5 = new JProgressBar();
-		j5.setString( "Verstappen" );
-		JProgressBar j6 = new JProgressBar();
-		j6.setString( "Albon" );
-		JProgressBar j7 = new JProgressBar();
-		j7.setString( "Sainz" );
-		JProgressBar j8 = new JProgressBar();
-		j8.setString( "Norris" );
-		JProgressBar j9 = new JProgressBar();
-		j9.setString( "Ricciardo" );
-		JProgressBar j10 = new JProgressBar();
-		j10.setString( "Hulkenberg" );
-		JProgressBar j11 = new JProgressBar();
-		j11.setString( "Gasly" );
-		JProgressBar j12 = new JProgressBar();
-		j12.setString( "Kyvat" );
-		JProgressBar j13 = new JProgressBar();
-		j13.setString( "Perez" );
-		JProgressBar j14 = new JProgressBar();
-		j14.setString( "Stroll" );
-		JProgressBar j15 = new JProgressBar();
-		j15.setString( "Magnussen" );
-		JProgressBar j16 = new JProgressBar();
-		j16.setString( "Grosjean" );
-		JProgressBar j17 = new JProgressBar();
-		j17.setString( "Raikkonen" );
-		JProgressBar j18 = new JProgressBar();
-		j18.setString( "Giovinazzi" );
-		JProgressBar j19 = new JProgressBar();
-		j19.setString( "Russell" );
-		JProgressBar j20 = new JProgressBar();
-		j20.setString( "Kubica" );
 		
-		ArrayList<JProgressBar> listaEtiquetasBarra = new ArrayList<JProgressBar>(Arrays.asList(j1, j2, j3, j4, j5, j6, j7, j8, j9, j10, j11, j12,
-				j13, j14, j15, j16, j17, j18, j19, j20));
-		
-		float listaBarras[] = new float[20];
-
-		float contador = (float)2.0;
-		
+//		// Creación Progress Bar para dibujar transcurso carrera
+//		JProgressBar j1 = new JProgressBar();
+//		j1.setString( "Hamilton" );
+//		JProgressBar j2 = new JProgressBar();
+//		j2.setString( "Bottas" );
+//		JProgressBar j3 = new JProgressBar();
+//		j3.setString( "Vettel" );
+//		JProgressBar j4 = new JProgressBar();
+//		j4.setString( "Leclerc" );
+//		JProgressBar j5 = new JProgressBar();
+//		j5.setString( "Verstappen" );
+//		JProgressBar j6 = new JProgressBar();
+//		j6.setString( "Albon" );
+//		JProgressBar j7 = new JProgressBar();
+//		j7.setString( "Sainz" );
+//		JProgressBar j8 = new JProgressBar();
+//		j8.setString( "Norris" );
+//		JProgressBar j9 = new JProgressBar();
+//		j9.setString( "Ricciardo" );
+//		JProgressBar j10 = new JProgressBar();
+//		j10.setString( "Hulkenberg" );
+//		JProgressBar j11 = new JProgressBar();
+//		j11.setString( "Gasly" );
+//		JProgressBar j12 = new JProgressBar();
+//		j12.setString( "Kyvat" );
+//		JProgressBar j13 = new JProgressBar();
+//		j13.setString( "Perez" );
+//		JProgressBar j14 = new JProgressBar();
+//		j14.setString( "Stroll" );
+//		JProgressBar j15 = new JProgressBar();
+//		j15.setString( "Magnussen" );
+//		JProgressBar j16 = new JProgressBar();
+//		j16.setString( "Grosjean" );
+//		JProgressBar j17 = new JProgressBar();
+//		j17.setString( "Raikkonen" );
+//		JProgressBar j18 = new JProgressBar();
+//		j18.setString( "Giovinazzi" );
+//		JProgressBar j19 = new JProgressBar();
+//		j19.setString( "Russell" );
+//		JProgressBar j20 = new JProgressBar();
+//		j20.setString( "Kubica" );
+//		
+//
+//		
+//		
+//		ArrayList<JProgressBar> listaEtiquetasBarra = new ArrayList<JProgressBar>(Arrays.asList(j1, j2, j3, j4, j5, j6, j7, j8, j9, j10, j11, j12,
+//				j13, j14, j15, j16, j17, j18, j19, j20));
+//		
+//		float listaBarras[] = new float[20];
+//
+//		float contador = (float)2.0;
+//		
 //		for (int i = 0; i < 20; i++) {
 //			String p = temp.getListaCarreras().get( numCarrera - 1 ).getListaPilotos().get(i).getNombre();
 //			for (int j = 0; j < listaEtiquetasBarra.size(); i++) {
@@ -440,7 +639,7 @@ public class VentanaCarrera extends JFrame{
 		
 		//POSICION
 		pInfo.add(infoCarrera);
-		imagenCarrera.setBounds(50, -8, 150, 100);
+		imagenCarrera.setBounds(220, 0, 150, 100);
 		pCentral.add(imagenCarrera);
 		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
 //		bVolver.setVisible( true );

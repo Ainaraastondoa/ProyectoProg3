@@ -299,4 +299,11 @@ public class Carrera {
 		System.out.println( this.getListaPilotos() );
 		System.out.println( this.getListaTiempos() );
 	}
+	
+	/**
+	 * @return Lista de pilotos ordenada segun posicion en carrera.
+	 */
+	public ArrayList<Piloto> posPilotos() {
+		return this.getListaPilotos();		
+	}
 }

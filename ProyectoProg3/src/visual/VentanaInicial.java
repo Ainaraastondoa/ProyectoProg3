@@ -76,7 +76,7 @@ public class VentanaInicial extends JFrame{
 		//MUSICA MENU
 		musicamenu = new Audio("/audio/menu.wav");
 		musicamenu.start();
-		Font font = new Font("Verdana", Font.BOLD, 28);
+		Font font = new Font("Arial", Font.BOLD, 32);
 		JLabel texto = new JLabel("Brian Tyler - Formula 1 Theme");
 		texto.setFont(font);
 		texto.setForeground(Color.white);
@@ -150,7 +150,7 @@ public class VentanaInicial extends JFrame{
 				VentanaSelEscuderia escuderia;
 				try {
 					dispose();
-					musicamenu.stop();
+//					musicamenu.stop();
 					escuderia = new VentanaSelEscuderia( VentanaInicial.this, 0 );
 					escuderia.setLocation( getLocation() );
 					escuderia.setSize( getSize() );

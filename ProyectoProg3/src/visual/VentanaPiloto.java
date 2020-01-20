@@ -34,13 +34,11 @@ import elementos.*;
 
 public class VentanaPiloto extends JFrame{
 	
-//	JFrame MenuPrincipalTrayectoria;
 	Piloto piloto; 
 	private JButton bVolver;
 	private String fondo = "/img/fondoayuda.png";
 		   
-	public VentanaPiloto(Temporada temp, int modoJuego, int numCa) throws SQLException {
-//		MenuPrincipalTrayectoria = m;
+	public VentanaPiloto(Temporada temp, int numCa, int modoJuego) throws SQLException {
 		setTitle(" PILOTOS ");
 		setSize(1600,900);
 		setLocation(0,0);
@@ -140,15 +138,21 @@ public class VentanaPiloto extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (modoJuego==0) { // trayectoria
-//					dispose();
-//					MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria();
-//					v.setVisible( true );
+					dispose();
+					MenuPrincipalTrayectoria tra;
+					try {
+						tra = new MenuPrincipalTrayectoria(temp, numCa, 1);
+						tra.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} else {
 					dispose();
-					MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCa);
-					v.setVisible( true );
-				}
-			}					
+					MenuPrincipalTemporada tem = new MenuPrincipalTemporada(temp, numCa, 1);
+					tem.setVisible(true);
+				} 				 
+			}				
 		});
 
 		piloto1.setBounds(this.getWidth()/20, this.getHeight()/15, 425, 350);

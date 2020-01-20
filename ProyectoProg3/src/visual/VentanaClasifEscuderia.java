@@ -9,6 +9,7 @@ import java.awt.Label;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -102,17 +103,24 @@ public class VentanaClasifEscuderia extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (modoJuego==0) { // Modo trayectoria
-//					MenuPrincipalTrayectoria menu = new MenuPrincipalTrayectoria( VentanaClasifEscuderia.this );
-//					menu.setLocation( getLocation() );
-//					menu.setSize( getSize() );
-//					menu.setVisible( true );
-					VentanaClasifEscuderia.this.setVisible( false );
+					MenuPrincipalTrayectoria menu;
+					try {
+						dispose();
+						menu = new MenuPrincipalTrayectoria( temp, modoJuego, 1 );
+						menu.setLocation( getLocation() );
+						menu.setSize( getSize() );
+						menu.setVisible( true );
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
 				} else { // Modo temporada
-					MenuPrincipalTemporada menu = new MenuPrincipalTemporada(temp, modoJuego);
+					dispose();
+					MenuPrincipalTemporada menu = new MenuPrincipalTemporada(temp, modoJuego, 1);
 					menu.setLocation( getLocation() );
 					menu.setSize( getSize() );
 					menu.setVisible( true );
-					VentanaClasifEscuderia.this.dispose();
 				}
 			}
 			

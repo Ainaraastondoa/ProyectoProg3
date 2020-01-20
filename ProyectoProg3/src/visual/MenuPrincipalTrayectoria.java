@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import elementos.Audio;
 import elementos.BD;
@@ -46,14 +48,14 @@ public class MenuPrincipalTrayectoria extends JFrame{
 	private JButton bPiloto;			//Boton que muestra la ventana pilto
 	private PanelConImagenFondo imagen_fondo;
 	private String fondo = "/img/fondotrayectoria.png";
-	private Audio musicamenu;
+	private Audio musicatrayectoria;
 	
 	// Datos
 //	private Temporada temporada;
 //	private int numCarrera;
 
 	
-	public MenuPrincipalTrayectoria() throws SQLException {
+	public MenuPrincipalTrayectoria(Temporada temp, int numCa, int audio) throws SQLException {
 //		VentanaInicio = v;  
 		setTitle( "Trayectoria" );
 		setSize(1600, 900);
@@ -65,11 +67,6 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		imagen_fondo.setImage(fondo);
 		setContentPane(imagen_fondo);
 		setLayout(new FlowLayout());
-		
-		//MUSICA MENU
-//		musicamenu = new Audio("/audio/menu.wav");
-//		musicamenu.start();
-//		JLabel lMusica = new JLabel("Himno F1");
 		
 		//DATOS
 //		Connection con = BD.initBD("src/datos/F1BaseDatos.db");
@@ -83,6 +80,30 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		pCentral.setOpaque(false);
 		pCentral.setLayout(null);
 		getContentPane().add(pCentral);
+		
+		//MUSICA
+//		musicatrayectoria = new Audio("/audio/trayectoria.wav");
+//		if (audio == 1) {
+//			musicatrayectoria.start();
+//		}
+		Audio.lanzaAudioEnHilo("/audio/trayectoria.wav");
+		Font font = new Font("Arial", Font.BOLD, 44);
+		JLabel texto = new JLabel("Red Hot Chili Peppers - Can't Stop");
+		texto.setFont(font);
+		texto.setForeground(Color.white);
+//		texto.setOpaque(false);
+		texto.setBounds(60, 30, 800, 50);
+		texto.setBackground(new Color(255,255,255));
+		pCentral.add(texto);
+		//A LOS 6 segundos se quita el titulo de la cancion
+		Timer t = new Timer(6000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                texto.setText(null);
+            }  
+        });
+		t.setRepeats(false);
+        t.start();
 		
 		//CREACION DE 6 BOTONES DE LA VENTANA 	
 		//INICIO
@@ -106,8 +127,10 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bInicio.setIcon(icono);
 		bInicio.setBorder(null);
 		bInicio.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				musicatrayectoria.stop();
 				dispose();
 				VentanaInicial v;
 				try {
@@ -140,17 +163,17 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bCarrera.setIcon(icono2);
 		bCarrera.setBorder(null);
 		bCarrera.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCarrera vCarrera;
+				musicatrayectoria.stop();
 				try {
 					dispose();
-					vCarrera = new VentanaCarrera ( MenuPrincipalTrayectoria.this );
-					//vCarrera = new VentanaCarrera ( temporada, numCarrera, 0 );
+					vCarrera = new VentanaCarrera (temp,numCa,0);
 					vCarrera.setLocation(getLocation());
 					vCarrera.setSize(getSize());
 					vCarrera.setVisible(true);
-//					MenuPrincipalTrayectoria.this.setVisible(false);
 				} catch (SQLException sqle) {
 					// TODO Auto-generated catch block
 					sqle.printStackTrace();
@@ -182,11 +205,12 @@ public class MenuPrincipalTrayectoria extends JFrame{
 		bClasificacion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( MenuPrincipalTrayectoria.this );
+				musicatrayectoria.stop();
+				dispose();		
+				VentanaClasifPiloto clasifPiloto = new VentanaClasifPiloto( temp, numCa );
 				clasifPiloto.setLocation( getLocation() );
 				clasifPiloto.setSize( getSize() );
 				clasifPiloto.setVisible( true );
-				MenuPrincipalTrayectoria.this.setVisible( false );		
 			}			
 		}); 
 		
@@ -222,12 +246,13 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaCoche coche;
+				musicatrayectoria.stop();
 				try {
-					coche = new VentanaCoche( MenuPrincipalTrayectoria.this );
+					dispose();
+					coche = new VentanaCoche( temp, numCa, 0 );
 					coche.setLocation( getLocation() );
 					coche.setSize( getSize() );
 					coche.setVisible( true );
-					MenuPrincipalTrayectoria.this.setVisible( false );
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -259,12 +284,13 @@ public class MenuPrincipalTrayectoria extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaPiloto pilotos;
+				musicatrayectoria.stop();
 				try {
-					pilotos = new VentanaPiloto( MenuPrincipalTrayectoria.this );
+					dispose();
+					pilotos = new VentanaPiloto( temp, numCa, 0 );
 					pilotos.setLocation( getLocation() );
 					pilotos.setSize( getSize() );
 					pilotos.setVisible( true );
-					MenuPrincipalTrayectoria.this.setVisible( false );	
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

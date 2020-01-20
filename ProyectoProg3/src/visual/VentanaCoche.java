@@ -34,13 +34,11 @@ import elementos.Trayectoria;
 
 public class VentanaCoche extends JFrame{
 	
-//	JFrame MenuPrincipalTrayectoria;
 	Coche coche;
 	private JButton bVolver, bMejorarAero, bMejorarMotor, bMejorarChasis;
 	private PanelConImagenFondo imagen_fondo;
  
-	public VentanaCoche (Temporada temp, int modoJuego, int numCa) throws SQLException { // 0 para trayectoria, 1 para temporada
-//		MenuPrincipalTrayectoria = m;
+	public VentanaCoche (Temporada temp, int numCa, int modoJuego) throws SQLException { // 0 para trayectoria, 1 para temporada
 		setTitle( "MI COCHE" );
 		setSize(1600, 600); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -109,7 +107,7 @@ public class VentanaCoche extends JFrame{
 		datos.setEditable(false);
 		datos.setBackground(Color.LIGHT_GRAY);
 		datos.setFont(font);
-
+		
 		//BOTON VOLVER
 		bVolver = new JButton();
 		bVolver.setContentAreaFilled(false);
@@ -131,15 +129,21 @@ public class VentanaCoche extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (modoJuego==0) { // trayectoria
-//					dispose();
-//					MenuPrincipalTrayectoria v = new MenuPrincipalTrayectoria();
-//					v.setVisible( true );
+					dispose();
+					MenuPrincipalTrayectoria tra;
+					try {
+						tra = new MenuPrincipalTrayectoria(temp, numCa, 1);
+						tra.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} else {
 					dispose();
-					MenuPrincipalTemporada v = new MenuPrincipalTemporada(temp, numCa);
-					v.setVisible( true );
-				}
-			}					
+					MenuPrincipalTemporada tem = new MenuPrincipalTemporada(temp, numCa, 1);
+					tem.setVisible(true);
+				} 				 
+			}
 		});
 		
 		// Botón Mejorar Aero 
@@ -168,9 +172,10 @@ public class VentanaCoche extends JFrame{
 						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2500000);
 						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().getRendimiento() + 1;
 						Temporada.getEscuderia().getPiloto1().getCoche().getAerodinamica().setRendimiento( rendi );
-						dispose();
 						try {
-							VentanaCoche vc = new VentanaCoche(temp, modoJuego, numCa);
+							dispose();
+//							menu.setVisible(false);
+							VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego);
 							vc.setLocation( getLocation() );
 							vc.setSize( getSize() );
 							vc.setVisible( true );
@@ -212,9 +217,9 @@ public class VentanaCoche extends JFrame{
 						Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 3000000);
 						int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getMotor().getRendimiento() + 1;
 						Temporada.getEscuderia().getPiloto1().getCoche().getMotor().setRendimiento( rendi );
-						dispose();
 						try {
-							VentanaCoche vc = new VentanaCoche(temp, modoJuego, numCa);
+							dispose();
+							VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego);
 							vc.setLocation( getLocation() );
 							vc.setSize( getSize() );
 							vc.setVisible( true );
@@ -254,9 +259,9 @@ public class VentanaCoche extends JFrame{
 							Temporada.getEscuderia().setPresupuesto(Temporada.getEscuderia().getPresupuesto() - 2750000);
 							int rendi = Temporada.getEscuderia().getPiloto1().getCoche().getChasis().getRendimiento() + 1;
 							Temporada.getEscuderia().getPiloto1().getCoche().getChasis().setRendimiento( rendi );
-							dispose();
 							try {
-								VentanaCoche vc = new VentanaCoche(temp, modoJuego, numCa);
+								dispose();
+								VentanaCoche vc = new VentanaCoche(temp, numCa, modoJuego);
 								vc.setLocation( getLocation() );
 								vc.setSize( getSize() );
 								vc.setVisible( true );

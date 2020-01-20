@@ -17,4 +17,8 @@ public class PanelConImagenFondo extends JPanel{
         fondo = new ImageIcon(getClass().getResource(image)).getImage();
     
 	}
+	@Override
+	public String toString() {
+		return this.getName();
+	}
 }
