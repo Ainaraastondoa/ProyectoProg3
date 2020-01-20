@@ -135,7 +135,7 @@ public class VentanaSelEscuderia extends JFrame{
 						Statement st;
 						try {
 							st = con.createStatement();
-							menu = new MenuPrincipalTemporada( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 0, 1 );
+							menu = new MenuPrincipalTemporada( new Temporada(2019, BD.listaPilotosSelect(st), BD.listaEscuderiasSelect(st)), 1, 1 );
 							menu.setLocation( getLocation() );
 							menu.setSize( getSize() );
 							menu.setVisible( true );

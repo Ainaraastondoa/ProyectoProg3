@@ -531,13 +531,14 @@ public class VentanaCarrera extends JFrame{
 						}					
 						//TIEMPO ENTRE VUELTAS
 						try {
-							Thread.sleep(500);
+							Thread.sleep(300);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						//Cuando termina carrera - Saltar a clasificacion
 						if (vuelta == temp.getListaCarreras().get(numCarrera-1).getCircuito().getVueltas()-1) {
+							Thread.sleep(750);
 							dispose();
 							VentanaClasifCarrera clasificacion = new VentanaClasifCarrera(temp, numCarrera, modoJuego);
 							clasificacion.setVisible(true);
@@ -641,9 +642,9 @@ public class VentanaCarrera extends JFrame{
 		pInfo.add(infoCarrera);
 		imagenCarrera.setBounds(220, 0, 150, 100);
 		pCentral.add(imagenCarrera);
-		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
+//		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
 //		bVolver.setVisible( true );
-		pCentral.add(bVolver);		
+//		pCentral.add(bVolver);		
 
 		
 	}
