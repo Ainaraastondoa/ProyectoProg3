@@ -8,9 +8,12 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -96,11 +99,22 @@ public class VentanaAyuda extends JFrame{
 		pCentral.add(texto, BorderLayout.PAGE_START);
 		
 		//BOTON VOLVER
-		JButton bVolver = new JButton( "Volver" ); 
-//		bVolver.setLayout(null);
-		bVolver.setBounds((v.getWidth()/20) * 9, (int) ((v.getHeight()/24) * 20.5), (v.getWidth()/20) * 2, (v.getHeight()/24) * 2);
-		pCentral.add(bVolver, BorderLayout.PAGE_END);
-		
+		JButton bVolver = new JButton(); 
+		bVolver.setContentAreaFilled(false);
+		bVolver. setOpaque(false);
+		bVolver.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver2.png"));
+		    	bVolver.setIcon(icono2);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		    	bVolver.setIcon(icono2);
+		    }
+		});
+		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/volver.png"));
+		bVolver.setIcon(icono2);
+		bVolver.setBorder(null);
 		//ESCUCHADORES
 		bVolver.addActionListener( new ActionListener() {
 
@@ -117,5 +131,7 @@ public class VentanaAyuda extends JFrame{
 				VentanaInicio.setVisible( true );
 			}	
 		});
+		bVolver.setBounds((this.getWidth()/20) * 9, (this.getHeight()/10) * 8, (this.getWidth()/20) * 2, this.getHeight()/10);
+		pCentral.add(bVolver);
 	}
 }

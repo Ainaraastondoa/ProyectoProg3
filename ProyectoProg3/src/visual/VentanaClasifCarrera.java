@@ -333,13 +333,6 @@ public class VentanaClasifCarrera extends JFrame{
 		bSiguiente.setBounds(720, 700, 160, 85);
 		pCentral.add(bSiguiente);
 		
-		
-		//ORDENAR
-//		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
-//		tabla.setRowSorter(sorter);
-
-//		JScrollPane tablaPane = new JScrollPane(tabla);
-//		panelPrincipal.add(tablaPane);
 
 //		VentanaClasifCarrera.this.add(pCentral);
 //		VentanaClasifCarrera.this.setVisible(true);	
